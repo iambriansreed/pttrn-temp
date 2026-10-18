@@ -12,6 +12,7 @@ import { Hooks } from 'src/docs/hooks';
 import { Icons } from 'src/docs/icons';
 import Intro from 'src/docs/intro.md?raw';
 import { Stylesheets } from 'src/docs/styles';
+import Tokens from 'src/docs/tokens.md?raw';
 import { Typography } from 'src/docs/typography.tsx';
 import { Welcome } from 'src/docs/welcome';
 import { componentsMeta, MetaComponentName, typesMeta } from 'src/meta';
@@ -62,6 +63,15 @@ export const routes: RouteLink[] = [
             },
             { path: '/components', Component: Components, title: 'Components' },
             { path: '/icons', Component: Icons, title: 'Icons', noIndex: true },
+            {
+                path: '/tokens',
+                Component: () => (
+                    <Page>
+                        <Markdown md={Tokens} />
+                    </Page>
+                ),
+                title: 'Design Tokens',
+            },
             { path: '/styles', Component: Stylesheets, title: 'Styles' },
             { path: '/typography', Component: Typography, title: 'Typography' },
             {
