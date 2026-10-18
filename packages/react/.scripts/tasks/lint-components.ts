@@ -8,7 +8,7 @@
 import fs from 'fs';
 import path from 'path';
 
-import { getLocalMeta } from '../utils';
+import { getLocalMeta } from '.scripts/utils';
 
 async function main() {
     const errors: string[] = [];

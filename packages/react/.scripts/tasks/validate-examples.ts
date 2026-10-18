@@ -15,7 +15,7 @@ import fs from 'fs';
 import path from 'path';
 
 import { ComponentMeta } from 'src/types/meta';
-import { getLocalMeta } from '../utils';
+import { getLocalMeta } from '.scripts/utils';
 
 async function main() {
     const { typesMeta, componentsMeta } = await getLocalMeta(true);

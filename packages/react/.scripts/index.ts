@@ -4,15 +4,15 @@
 /**
  * A simple CLI script to run development tasks.
  *
- * After you run `npm link` to install dependencies, you can run this script with: $ ui {task} [args]
+ * Run this script from packages/react with: $ npx tsx .scripts/index.ts {task} [args]
  *
  * For example to create a new component, you can run:
  *
- * $ ui newc Dropdown
+ * $ npx tsx .scripts/index.ts newc Dropdown
  *
  * To see a list of available tasks, run:
  *
- * $ ui
+ * $ npx tsx .scripts/index.ts
  *
  * This will show an arrow-navigable menu of available tasks.
  *
@@ -35,7 +35,7 @@
  *
  * This will allow you to run the task with:
  *
- * $ ui newc [args]
+ * $ npx tsx .scripts/index.ts newc [args]
  *
  * The script will pass any additional arguments to the task file.
  */

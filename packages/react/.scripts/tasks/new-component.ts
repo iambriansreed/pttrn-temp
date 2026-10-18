@@ -11,12 +11,12 @@ import { execSync } from 'child_process';
 import fs from 'fs/promises';
 import path from 'path';
 
-import { generateAndWriteComponentFile } from '../lib/generateComponentFile';
-import { generateAndWriteExampleFile } from '../lib/generateExampleFile';
-import { generateAndWriteStylesFile } from '../lib/generateStylesFile';
-import { generateAndWriteTestFile } from '../lib/generateTestFile';
-import { getComponentsDir } from '../lib/getComponentsDir';
-import { kebabCase, capitalizeFirstLetter } from '../utils';
+import { generateAndWriteComponentFile } from '.scripts/lib/generateComponentFile';
+import { generateAndWriteExampleFile } from '.scripts/lib/generateExampleFile';
+import { generateAndWriteStylesFile } from '.scripts/lib/generateStylesFile';
+import { generateAndWriteTestFile } from '.scripts/lib/generateTestFile';
+import { getComponentsDir } from '.scripts/lib/getComponentsDir';
+import { kebabCase, capitalizeFirstLetter } from '.scripts/utils';
 
 (async () => {
     const [nameArg, modeArg] = process.argv.slice(2);

@@ -9,7 +9,7 @@ npm install @ptrn/react
 ```
 
 ```bash
-npm install --peer @ptrn/icons react react-dom
+npm install react react-dom
 ```
 
 ## Usage

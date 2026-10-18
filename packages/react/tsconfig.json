@@ -22,7 +22,8 @@
             "-/utils/*": ["./src/utils/*"],
             "-/types/*": ["./src/types/*"],
             "-/constants/*": ["./src/constants/*"],
-            "-/rtl/*": ["./src/rtl/*"]
+            "-/rtl/*": ["./src/rtl/*"],
+            ".scripts/*": ["./.scripts/*"]
         },
         "moduleDetection": "auto",
         "types": ["node", "jest", "@testing-library/jest-dom"]

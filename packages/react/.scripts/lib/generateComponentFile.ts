@@ -1,5 +1,5 @@
 import fs from 'fs/promises';
-import { kebabCase } from '../utils';
+import { kebabCase } from '.scripts/utils';
 
 /** Generates and writes a boilerplate component file for a component name and destination file path. */
 export const generateAndWriteComponentFile = async (componentName: string, filePath: string) => {
@@ -33,7 +33,7 @@ export const generateComponentFile = (componentName: string) => {
      * @phase Dev
      * 
      */
-    export function ${componentName}({ children, variant = DEFAULT.variant }: ${componentName}Props) {
+    export function ${componentName}({ children, variant }: ${componentName}Props) {
         return (
             <span data-pttrn="${slug}" data-variant={variant || undefined}>
                 {children}

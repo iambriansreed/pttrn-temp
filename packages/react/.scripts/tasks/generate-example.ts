@@ -7,7 +7,7 @@
  * UI: gen-ex - Generate the example file for a component
  */
 import fs from 'fs';
-import { generateAndWriteExampleFile } from '../lib/generateExampleFile';
+import { generateAndWriteExampleFile } from '.scripts/lib/generateExampleFile';
 
 function main() {
     const [nameArg] = process.argv.slice(2);

@@ -8,8 +8,8 @@
  */
 
 import fs from 'fs';
-import { generateAndWriteTestFile } from '../lib/generateTestFile';
-import { getComponentFiles } from '../lib/getComponentFiles';
+import { generateAndWriteTestFile } from '.scripts/lib/generateTestFile';
+import { getComponentFiles } from '.scripts/lib/getComponentFiles';
 
 const blackList: { [key: string]: true } = {};
 
