@@ -991,8 +991,11 @@ async function buildStylesheet(themeCollectionId: string | null): Promise<{
             if (text === 'true' || text === 'false') return { $type: 'boolean', $value: text === 'true' };
             const quoted = text.match(/^"(.*)"$/);
             if (quoted) {
-                if (/font-family/.test(prop.comment)) return { $type: 'fontFamily', $value: quoted[1] };
-                if (/font-weight/.test(prop.comment)) return { $type: 'fontWeight', $value: quoted[1] };
+                // A variable named "font-family/sans" or a text style's "(font family)" property.
+                const about = (what: string) =>
+                    new RegExp(`font[-\\s/]?${what}`, 'i').test(`${prop.comment} ${prop.name}`);
+                if (about('family')) return { $type: 'fontFamily', $value: quoted[1] };
+                if (about('weight')) return { $type: 'fontWeight', $value: quoted[1] };
                 // No DTCG type fits a plain string (a size name, a focus style); `string` is pttrn's extension.
                 return { $type: 'string', $value: quoted[1] };
             }
