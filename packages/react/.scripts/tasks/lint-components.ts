@@ -40,9 +40,11 @@ async function main() {
             ];
 
             if (
-                !exports.every(
-                    ({ key, value }) => key in packageJsonData.exports && packageJsonData.exports[key] === value,
-                )
+                !exports.every(({ key, value }) => {
+                    // An entry is the module path, or a conditional export whose default is that path.
+                    const entry = packageJsonData.exports[key];
+                    return entry === value || (typeof entry === 'object' && entry !== null && entry.default === value);
+                })
             ) {
                 errors.push(`❌ ${name} is not exported properly in package.json. Please add it to the exports.`);
                 return;
