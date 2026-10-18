@@ -43,6 +43,9 @@ export function Components() {
                 </Grid>
                 <Flex>
                     <span>
+                        Stable <Dot color={colors.Stable} />
+                    </span>
+                    <span>
                         UX Review <Dot color={colors.UXReview} />
                     </span>
                     <span>

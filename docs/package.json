@@ -23,7 +23,7 @@
         "test:dev": "TEST_URL=http://localhost:8055 playwright test",
         "test": "playwright test",
         "test:a11y": "PTTRN_A11Y=1 playwright test",
-        "preview": "vite preview --port 8055 --strictPort"
+        "preview": "vite preview --host 127.0.0.1 --port 8055 --strictPort"
     },
     "peerDependencies": {
         "react": "^18.3.1",

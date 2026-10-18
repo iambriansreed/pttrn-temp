@@ -13,6 +13,10 @@ const REACT_SRC = resolve(__dirname, '../packages/react/src');
 export default ({ mode, command }: { mode: string; command: 'build' | 'serve' }) => {
     process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
 
+    // Set VITE_DEV_HOST (for example in docs/.env.local) when the dev server is reached through a local HTTPS proxy
+    // such as https://pttrn.local: the HMR socket then connects through that origin on 443 instead of localhost.
+    const proxyHost = process.env.VITE_DEV_HOST;
+
     return defineConfig({
         css: {
             preprocessorOptions: {
@@ -52,19 +56,14 @@ export default ({ mode, command }: { mode: string; command: 'build' | 'serve' })
             exclude: ['@ptrn/react'],
         },
         server: {
-            // The site is served at https://pttrn.local through a proxy, so the HMR socket must go
-            // through that same origin (wss on 443), not straight to localhost.
-            hmr: {
-                host: 'pttrn.local',
-                protocol: 'wss',
-                clientPort: 443,
-            },
             port: 8055,
-            allowedHosts: ['pttrn.local'],
+            ...(proxyHost
+                ? { hmr: { host: proxyHost, protocol: 'wss', clientPort: 443 }, allowedHosts: [proxyHost] }
+                : {}),
         },
         preview: {
             port: 8055,
-            allowedHosts: ['pttrn.local'],
+            ...(proxyHost ? { allowedHosts: [proxyHost] } : {}),
         },
         build: {
             outDir: './dist',

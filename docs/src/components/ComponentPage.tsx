@@ -100,8 +100,8 @@ export function ComponentPage({ componentName }: { componentName: MetaComponentN
                             <p>
                                 These examples show common design patterns implemented two ways: directly with this
                                 component and with a more flexible pattern. Both are intended to look identical, to
-                                demonstrate how different approaches can produce the same UI.The patterns are a starting
-                                point and can be adapted as needed.
+                                demonstrate how different approaches can produce the same UI. The patterns are a
+                                starting point and can be adapted as needed.
                             </p>
                             {component.blockConfigs.map((p, index) => (
                                 <BlockExampleSection

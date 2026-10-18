@@ -28,7 +28,7 @@ The `@ptrn/icons` package provides a comprehensive set of icons for development 
 npm install @ptrn/styles
 ```
 
-The `@ptrn/styles` package is typically not used directly unless you are building with something other than React or need to access raw stylesheets and utilities. It contains the USWDS design tokens and themes, exported from the USWDS Design Kit in Figma, and the shared reset. You can browse the available stylesheets on the <a data-testid="styles-link" href="/style">styles page</a>.
+The `@ptrn/styles` package is typically not used directly unless you are building with something other than React or need to access raw stylesheets and utilities. It contains the USWDS design tokens and themes, exported from the USWDS Design Kit in Figma, and the shared reset. You can browse the available stylesheets on the <a data-testid="styles-link" href="/styles">styles page</a>.
 
 ### Versioning
 

@@ -3,6 +3,7 @@ import '@ptrn/web/Accordion';
 import { AccordionProps } from '@ptrn/react/Accordion';
 import { ComponentType, ReactElement, ReactNode } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
+import { version as webVersion } from '../../../packages/web/package.json';
 import { WebComponentDemo } from 'src/wc/types';
 
 /**
@@ -68,7 +69,7 @@ function accordionToHtml({ items = [], singleOpen = true }: Partial<AccordionPro
     return `<ptrn-accordion${singleOpen ? '' : ' multiple'}>\n${itemsHtml}\n</ptrn-accordion>`;
 }
 
-const USAGE = `<script type="module" src="https://cdn.jsdelivr.net/npm/@ptrn/web/dist/cdn/ptrn-web.min.js"></script>
+const USAGE = `<script type="module" src="https://cdn.jsdelivr.net/npm/@ptrn/web@${webVersion}/dist/cdn/ptrn-web.min.js"></script>
 
 <div style="width: 400px">
     <ptrn-accordion>

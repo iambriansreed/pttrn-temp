@@ -51,6 +51,11 @@ const trimContent = (content: string, matchIndex: number, excerptLength: number 
     return (matchIndex ? '...' : '') + chunk.trim() + (sliceEnd < content.length ? '...' : '');
 };
 
+/** Escapes a user-typed string so it can be used inside a RegExp literally. */
+function escapeRegExp(value: string) {
+    return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
 export function SearchModal(props: DialogProps) {
     //
     const [search, setSearch] = useState('');
@@ -65,11 +70,12 @@ export function SearchModal(props: DialogProps) {
     const navigate = useNavigate();
 
     const updateSearch = (next: string | undefined) => {
-        setSearch(next || '');
+        const value = next || '';
+        setSearch(value);
 
         timeout.clear();
 
-        if (!search.length) {
+        if (!value.trim().length) {
             setResults(null);
             return;
         }
@@ -77,7 +83,7 @@ export function SearchModal(props: DialogProps) {
         setResults('searching');
 
         timeout.set(() => {
-            const searchString = search.toLowerCase().trim();
+            const searchString = value.toLowerCase().trim();
 
             const nextResultIndexes = (
                 [
@@ -93,7 +99,7 @@ export function SearchModal(props: DialogProps) {
                     let trimmedContent = '';
                     let match: RegExpMatchArray | null = null;
                     if (meta.description) {
-                        match = meta.description?.match(new RegExp(searchString, 'i'));
+                        match = meta.description?.match(new RegExp(escapeRegExp(searchString), 'i'));
                         if (match) trimmedContent = trimContent(meta.description, match.index || 0);
                     }
 

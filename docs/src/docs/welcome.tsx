@@ -73,7 +73,7 @@ export function Welcome() {
         <Page style={{ padding: '0' }}>
             <audio autoPlay={!!state.volume} controls loop={!!state.volume} ref={audioRef} style={{ display: 'none' }}>
                 <track kind="captions" />
-                <source src="/audio-test.mp3" type="audio/ogg" />
+                <source src="/audio-test.mp3" type="audio/mpeg" />
             </audio>
             <section
                 style={{

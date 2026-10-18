@@ -1,4 +1,5 @@
 /* eslint-disable react/no-multi-comp */
+import { IconType } from '@ptrn/icons';
 import { SvgClose } from '@ptrn/icons/Close';
 import { SvgSearch } from '@ptrn/icons/Search';
 import { SvgIcon } from '@ptrn/icons/SvgIcon';
@@ -21,9 +22,7 @@ import 'src/docs/icons.scss';
 
 const titleCase = (word: string) => word[0].toUpperCase() + word.slice(1);
 
-const iconTypes = ['material', 'nowhere'] as const;
-
-type IconType = (typeof iconTypes)[number];
+const iconTypes = [...new Set(ICONS.map((icon) => icon.type))].sort() as IconType[];
 
 export function Icons() {
     const [filter, setFilter] = useState<{

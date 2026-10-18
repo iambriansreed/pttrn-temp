@@ -11,5 +11,5 @@ export const LINKS: Record<string, string> = {
     ref: 'https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom',
     'input control name': 'https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name',
     ...Object.fromEntries(typesMeta.map((m) => [m.name, `#${kebabCase(m.name)}`])),
-    'React.ReactNode': 'https://reactnative.dev/docs/react-node',
+    'React.ReactNode': 'https://react.dev/learn/typescript#typing-children',
 };

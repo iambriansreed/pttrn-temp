@@ -32,7 +32,7 @@ export default defineConfig({
     webServer: process.env.TEST_URL
         ? undefined
         : {
-              command: `npx vite preview --port ${PORT} --strictPort`,
+              command: `npx vite preview --host 127.0.0.1 --port ${PORT} --strictPort`,
               url: baseURL,
               reuseExistingServer: !process.env.CI,
               timeout: 60_000,
