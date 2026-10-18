@@ -32,7 +32,15 @@ export default defineConfig([
     jsxA11y.flatConfigs.recommended,
     eslintConfigPrettier,
     cspellESLintPluginRecommended,
-    globalIgnores(['node_modules/**', '.github', 'dist/', '*/.tmp/']),
+    globalIgnores([
+        'node_modules/**',
+        '.github',
+        'dist/',
+        '*/.tmp/',
+        'playwright-report/',
+        'test-results/',
+        'blob-report/',
+    ]),
     {
         plugins: { 'react-hooks': reactHooks },
 

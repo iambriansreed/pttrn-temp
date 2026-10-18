@@ -13,7 +13,6 @@
         "node": ">=24"
     },
     "scripts": {
-        "build:dev": "vite-node ./.scripts/build.ts",
         "build": "vite-node ./.scripts/build.ts",
         "meta": "vite-node ./.scripts/meta.ts",
         "dev": "vite-node ./.scripts/dev.ts",
@@ -21,11 +20,10 @@
         "lint:fix": "eslint --fix",
         "lint:css": "npx stylelint '**/*.scss'",
         "lint:css:fix": "npx stylelint '**/*.scss' --fix",
-        "preview:local": "vite-node ./.scripts/preview.ts local",
-        "test:dev": "TEST_URL=http://localhost:8675 playwright test",
-        "test:local:setup": "vite-node ./.scripts/build-test-local.ts",
-        "test:local": "TEST_URL=http://localhost:8080 playwright test",
-        "tasks": "vite-node ./.scripts/tasks.ts"
+        "test:dev": "TEST_URL=http://localhost:8055 playwright test",
+        "test": "playwright test",
+        "test:a11y": "PTTRN_A11Y=1 playwright test",
+        "preview": "vite preview --port 8055 --strictPort"
     },
     "peerDependencies": {
         "react": "^18.3.1",

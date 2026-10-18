@@ -1,55 +1,40 @@
-import { test, expect } from '@playwright/test';
+import { Page, test, expect } from '@playwright/test';
 
-import { components, gotoUrl } from './utils';
+import { components, componentsWithDemo, gotoUrl } from './utils';
 
-test(`should not have any console error - Home`, async ({ page }) => {
+/** Collects console errors on a page, ignoring the 404s that missing optional assets produce. */
+function collectConsoleErrors(page: Page) {
     const errors: string[] = [];
     page.on('console', (msg) => {
-        // Only consider error messages
         if (msg.type() !== 'error') return;
-
-        // Ignore 404 errors
         if (msg.text().includes('404')) return;
-
-        // Only capture error messages that are not 404s
         errors.push(msg.text());
-
-        console.log('Forwarded:', msg.text());
     });
+    return errors;
+}
 
-    await gotoUrl(page, `/`);
+test('home page has no console errors', async ({ page }) => {
+    const errors = collectConsoleErrors(page);
 
-    await page.waitForLoadState('networkidle');
+    await gotoUrl(page, '/');
 
-    console.error('Console errors:', errors);
-    expect(errors.length).toEqual(0);
-
-    console.info(`Pass Home`);
+    expect(errors).toEqual([]);
 });
 
 for (const component of components) {
-    test(`should not have any console error ${component.name}`, async ({ page }) => {
-        const errors: string[] = [];
-        page.on('console', (msg) => {
-            // Only consider error messages
-            if (msg.type() !== 'error') return;
-
-            // Ignore 404 errors
-            if (msg.text().includes('404')) return;
-
-            // Only capture error messages that are not 404s
-            errors.push(msg.text());
-
-            console.log('Forwarded:', msg.text());
-        });
+    test(`${component.name} page has no console errors`, async ({ page }) => {
+        const errors = collectConsoleErrors(page);
 
         await gotoUrl(page, `/${component.slug}`);
 
-        await page.waitForLoadState('networkidle');
+        expect(errors).toEqual([]);
+    });
+}
 
-        console.error('Console errors:', errors);
-        expect(errors.length).toEqual(0);
+for (const component of componentsWithDemo) {
+    test(`${component.name} page renders its demo`, async ({ page }) => {
+        await gotoUrl(page, `/${component.slug}`);
 
-        console.info(`Pass ${component.name}`);
+        await expect(page.locator('[data-main-example] [data-example-render]').first()).toBeAttached();
     });
 }

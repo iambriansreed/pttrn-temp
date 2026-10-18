@@ -1,37 +1,41 @@
 import { defineConfig, devices } from '@playwright/test';
 
-/** Read environment variables from file. */
-// import dotenv from 'dotenv';
-// import path from 'path';
-// dotenv.config({ path: path.resolve(__dirname, '.env') });
+/**
+ * Docs site tests.
+ *
+ * - `npm test` runs the regular suite (console errors and examples on every page, component behavior).
+ * - `npm run test:a11y` (PTTRN_A11Y=1) runs the accessibility matrix instead: axe on every component's main example, in
+ *   every theme, or only the theme named by PTTRN_THEME. CI runs one job per theme.
+ * - The site under test is `dist`, served by `vite preview`. Build it first (`npm run build:docs` at the root). Set
+ *   TEST_URL to test an already running server instead (`npm run test:dev` targets the dev server).
+ * - PLAYWRIGHT_CHROMIUM_EXECUTABLE points the tests at a Chromium that is already on the machine, for environments that
+ *   cannot download the browser Playwright pins. CI leaves it unset and installs the pinned browser.
+ */
+const PORT = 8055;
+const executablePath = process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE;
+const a11y = !!process.env.PTTRN_A11Y;
+const baseURL = process.env.TEST_URL || `http://127.0.0.1:${PORT}`;
 
-/** See https://playwright.dev/docs/test-configuration. */
 export default defineConfig({
     testDir: './tests',
-    testIgnore: [
-        // Ignore all files in the tests directory
-        '**/tests/intensive/**',
-    ],
-    /* Run tests in files in parallel */
+    testMatch: a11y ? ['**/tests/intensive/**/*.spec.ts'] : ['**/tests/*.spec.ts', '**/tests/components/**/*.spec.ts'],
     fullyParallel: true,
-    /* Fail the build on CI if you accidentally left test.only in the source code. */
     forbidOnly: !!process.env.CI,
-    /* Retry on CI only */
     retries: process.env.CI ? 2 : 0,
-    /* Opt out of parallel tests on CI. */
-    workers: process.env.CI ? 1 : undefined,
-    /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-    reporter: 'html',
-    /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
+    workers: process.env.CI ? 2 : undefined,
+    reporter: process.env.CI ? [['list'], ['html', { open: 'never' }]] : 'html',
     use: {
+        baseURL,
         trace: 'on-first-retry',
+        ...(executablePath ? { launchOptions: { executablePath } } : {}),
     },
-
-    /* Configure projects for major browsers */
-    projects: [
-        {
-            name: 'chromium',
-            use: { ...devices['Desktop Chrome'] },
-        },
-    ],
+    webServer: process.env.TEST_URL
+        ? undefined
+        : {
+              command: `npx vite preview --port ${PORT} --strictPort`,
+              url: baseURL,
+              reuseExistingServer: !process.env.CI,
+              timeout: 60_000,
+          },
+    projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
 });

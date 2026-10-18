@@ -1,40 +1,50 @@
-import { execSync } from 'child_process';
-import fs from 'fs';
-
 import { AxeBuilder } from '@axe-core/playwright';
 import { test, expect } from '@playwright/test';
 import { COLOR_THEMES } from '@ptrn/react/utils/uiContext';
 
-import { gotoUrl, components } from '../utils';
+import { gotoUrl, componentsWithDemo } from '../utils';
 
-for (const component of components) {
-    for (const theme of COLOR_THEMES) {
-        test(`${component.name} / ${theme} should not have automatically detectable accessibility violations`, async ({
-            page,
-        }) => {
-            await gotoUrl(page, `/${component.slug}?theme=${theme}`);
+/**
+ * The accessibility matrix: axe-core on every component's main example in every theme.
+ *
+ * PTTRN_THEME narrows the run to one theme so CI can run the themes as parallel jobs. Each test asserts the theme the
+ * page actually applied before scanning, so a broken query string fails loudly instead of scanning the default theme
+ * for every row of the matrix.
+ */
+const requested = process.env.PTTRN_THEME;
+const themes = requested ? COLOR_THEMES.filter((theme) => theme === requested) : [...COLOR_THEMES];
 
-            const renderSelector = '[data-main-example] [data-example-render]';
-            await page.locator(renderSelector).first().waitFor();
+if (requested && themes.length === 0) {
+    throw new Error(`PTTRN_THEME=${requested} is not a theme. Known themes: ${COLOR_THEMES.join(', ')}`);
+}
 
-            const accessibilityScanResults = await new AxeBuilder({ page }).include(renderSelector).analyze();
+for (const theme of themes) {
+    test.describe(`theme: ${theme}`, () => {
+        for (const component of componentsWithDemo) {
+            test(`${component.name} has no automatically detectable accessibility violations`, async ({
+                page,
+            }, testInfo) => {
+                await gotoUrl(page, `/${component.slug}?theme=${theme}`);
 
-            const violationsPath = `./src/accessibility-violations/${component.slug}-${theme}.ts`;
-
-            if (accessibilityScanResults.violations.length > 0) {
-                fs.writeFileSync(
-                    violationsPath,
-                    `export const violations = ${JSON.stringify(accessibilityScanResults.violations, null, 2)}`,
+                await expect(page.locator('html'), 'the page applied the requested theme').toHaveAttribute(
+                    'data-uswds-theme',
+                    theme,
                 );
-                execSync(`npx prettier --write "${violationsPath}"`, { stdio: 'inherit' });
-                execSync(`npx eslint --fix "${violationsPath}"`, { stdio: 'inherit' });
-            } else {
-                if (fs.existsSync(violationsPath)) fs.unlinkSync(violationsPath);
-            }
 
-            expect(accessibilityScanResults.violations).toEqual([]);
+                const renderSelector = '[data-main-example] [data-example-render]';
+                await page.locator(renderSelector).first().waitFor();
 
-            console.info(`Pass ${component.name}`);
-        });
-    }
+                const results = await new AxeBuilder({ page }).include(renderSelector).analyze();
+
+                if (results.violations.length > 0) {
+                    await testInfo.attach(`axe-violations-${component.slug}-${theme}.json`, {
+                        body: JSON.stringify(results.violations, null, 2),
+                        contentType: 'application/json',
+                    });
+                }
+
+                expect(results.violations).toEqual([]);
+            });
+        }
+    });
 }
