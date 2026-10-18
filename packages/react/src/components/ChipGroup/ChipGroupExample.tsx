@@ -4,8 +4,8 @@ import { SvgCloud } from '@ptrn/icons/Cloud';
 import { SvgIcecream } from '@ptrn/icons/Icecream';
 import { SvgKeyboardArrowDown } from '@ptrn/icons/KeyboardArrowDown';
 import { SvgLightbulb } from '@ptrn/icons/Lightbulb';
-import { SvgOpportunities } from '@ptrn/icons/Opportunities';
 import { SvgSignLanguage } from '@ptrn/icons/SignLanguage';
+import { SvgStar } from '@ptrn/icons/Star';
 
 // import { Chip } from '-/components/Chip';
 import { ChipGroupProps } from '-/components/ChipGroup';
@@ -20,7 +20,7 @@ export const presets: Preset<ChipGroupProps>[] = [
                 { label: 'chip 1', leadingIcon: <SvgLightbulb />, trailingIcon: <SvgChevronRight /> },
                 { label: 'chip 2', leadingIcon: <SvgIcecream />, trailingIcon: <SvgChevronRight /> },
                 { label: 'chip 3', leadingIcon: <SvgSignLanguage />, trailingIcon: <SvgClose /> },
-                { label: 'chip 4', leadingIcon: <SvgOpportunities />, trailingIcon: <SvgClose /> },
+                { label: 'chip 4', leadingIcon: <SvgStar />, trailingIcon: <SvgClose /> },
                 { label: 'chip 5', leadingIcon: <SvgCloud />, trailingIcon: <SvgKeyboardArrowDown /> },
             ],
         },
@@ -46,7 +46,7 @@ export const presets: Preset<ChipGroupProps>[] = [
                 {
                     flat: true,
                     label: 'chip 4',
-                    leadingIcon: <SvgOpportunities />,
+                    leadingIcon: <SvgStar />,
                     trailingBadge: { count: 5, size: 'x-small' },
                 },
                 {
@@ -69,7 +69,7 @@ export const ChipGroupExample: ComponentExampleFn<ChipGroupProps> = ({ action })
             { label: 'chip 1', leadingIcon: <SvgLightbulb />, trailingIcon: <SvgChevronRight /> },
             { label: 'chip 2', leadingIcon: <SvgIcecream />, trailingIcon: <SvgChevronRight /> },
             { label: 'chip 3', leadingIcon: <SvgSignLanguage />, trailingIcon: <SvgClose /> },
-            { label: 'chip 4', leadingIcon: <SvgOpportunities />, trailingIcon: <SvgClose /> },
+            { label: 'chip 4', leadingIcon: <SvgStar />, trailingIcon: <SvgClose /> },
             { label: 'chip 5', leadingIcon: <SvgCloud />, trailingIcon: <SvgKeyboardArrowDown /> },
         ],
     },

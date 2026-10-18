@@ -573,32 +573,6 @@
         "alias": "programming, development, script, syntax"
     },
     {
-        "name": "Barn",
-        "title": "Barn",
-        "type": "nowhere",
-        "variantFill": "BarnFill",
-        "alias": "farm, agriculture, farming, storage, rural, countryside, livestock, animals, shed, outbuilding"
-    },
-    {
-        "name": "BarnFill",
-        "title": "Barn Fill",
-        "type": "nowhere",
-        "variantUnfilled": "Barn"
-    },
-    {
-        "name": "Basement",
-        "title": "Basement",
-        "type": "nowhere",
-        "variantFill": "BasementFill",
-        "alias": "cellar, lower level, underground, foundation, storage, room below, downstairs, subterranean"
-    },
-    {
-        "name": "BasementFill",
-        "title": "Basement Fill",
-        "type": "nowhere",
-        "variantUnfilled": "Basement"
-    },
-    {
         "name": "Bathroom",
         "title": "Bathroom",
         "type": "material",
@@ -760,8 +734,8 @@
         "variantUnfilled": "Box"
     },
     {
-        "name": "Brail",
-        "title": "Brail",
+        "name": "Braille",
+        "title": "Braille",
         "type": "nowhere",
         "alias": "braille, tactile-reading, blind-reading, dots, tactile-text, accessibility-text, raised-dots"
     },
@@ -1324,19 +1298,6 @@
         "title": "Copyright Fill",
         "type": "material",
         "variantUnfilled": "Copyright"
-    },
-    {
-        "name": "Crawlspace",
-        "title": "Crawlspace",
-        "type": "nowhere",
-        "variantFill": "CrawlspaceFill",
-        "alias": "basement, underground, foundation, attic, storage, confined-space"
-    },
-    {
-        "name": "CrawlspaceFill",
-        "title": "Crawlspace Fill",
-        "type": "nowhere",
-        "variantUnfilled": "Crawlspace"
     },
     {
         "name": "CreditCard",
@@ -2319,12 +2280,6 @@
         "alias": "font size, text size, formatting, typography, scale, resize"
     },
     {
-        "name": "ForSaleSign",
-        "title": "For Sale Sign",
-        "type": "nowhere",
-        "alias": "for sale, real estate, property, selling, house sale, yard sign, listing"
-    },
-    {
         "name": "Forum",
         "title": "Forum",
         "type": "material",
@@ -2643,19 +2598,6 @@
         "title": "Home Lock Fill",
         "type": "nowhere",
         "variantUnfilled": "HomeLock"
-    },
-    {
-        "name": "HomeMonitize",
-        "title": "Home Monitize",
-        "type": "nowhere",
-        "variantFill": "HomeMonitizeFill",
-        "alias": "home monetize, property income, rental income, real estate profit, house money"
-    },
-    {
-        "name": "HomeMonitizeFill",
-        "title": "Home Monitize Fill",
-        "type": "nowhere",
-        "variantUnfilled": "HomeMonitize"
     },
     {
         "name": "HomeMove",
@@ -3729,19 +3671,6 @@
         "variantUnfilled": "Nutrition"
     },
     {
-        "name": "OmniChatbox",
-        "title": "Omni Chatbox",
-        "type": "nowhere",
-        "variantFill": "OmniChatboxFill",
-        "alias": "omni chat, chatbox, messaging, conversation, communication, chat widget"
-    },
-    {
-        "name": "OmniChatboxFill",
-        "title": "Omni Chatbox Fill",
-        "type": "nowhere",
-        "variantUnfilled": "OmniChatbox"
-    },
-    {
         "name": "OpenInFull",
         "title": "Open In Full",
         "type": "material",
@@ -3752,12 +3681,6 @@
         "title": "Open In New",
         "type": "material",
         "alias": "create, add, fresh, recent, expand, view, access, launch"
-    },
-    {
-        "name": "Opportunities",
-        "title": "Opportunities",
-        "type": "nowhere",
-        "alias": "chances, possibilities, options, potential, prospects, openings"
     },
     {
         "name": "Orders",
@@ -4317,12 +4240,6 @@
         "alias": "basket, buy, purchase, ecommerce, drag, relocate, transfer, shift, location, marker, point, attach, delete, trash, clear, erase"
     },
     {
-        "name": "RentSign",
-        "title": "Rent Sign",
-        "type": "nowhere",
-        "alias": "rent sign, for rent, rental property, lease, property rental, available"
-    },
-    {
         "name": "Replay",
         "title": "Replay",
         "type": "material",
@@ -4590,19 +4507,6 @@
         "type": "material",
         "variantFill": "SellFill",
         "alias": "sale, commerce, trade, business, market, transaction"
-    },
-    {
-        "name": "Seller",
-        "title": "Seller",
-        "type": "nowhere",
-        "variantFill": "SellerFill",
-        "alias": "vendor, merchant, dealer, retailer, salesperson, trader, supplier"
-    },
-    {
-        "name": "SellerFill",
-        "title": "Seller Fill",
-        "type": "nowhere",
-        "variantUnfilled": "Seller"
     },
     {
         "name": "SellFill",

@@ -292,7 +292,7 @@ export { SvgIcon };
     });
 
     // icons without aliases
-    const missingAliases = nextMeta.filter((icon) => icon.alias === icon.title);
+    const missingAliases = nextMeta.filter((icon) => !icon.alias);
 
     if (missingAliases.length > 0) {
         console.warn(
@@ -311,7 +311,7 @@ export type IconName = '${iconData.map((icon) => icon.name).join("' | '")}';
 export const meta: IconMeta[] = ${JSON.stringify(nextMeta)} as const;`,
     );
 
-    fs.writeFileSync(path.join('icon-aliases.json'), JSON.stringify(nextMeta, null, 2));
+    fs.writeFileSync(path.join('icon-aliases.json'), `${JSON.stringify(nextMeta, null, 4)}\n`);
 
     exec(
         `npx prettier --log-level silent --write ./src/*.tsx`,
