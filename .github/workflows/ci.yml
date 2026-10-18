@@ -52,6 +52,9 @@ jobs:
             - run: npx tsx .scripts/check-css-vars.ts
               working-directory: packages/react
             - run: npx prettier --check .
+            # The stylesheets and the token module in @ptrn/styles are built from tokens/ and committed; they must match.
+            - name: Built token files match the committed ones
+              run: git diff --exit-code --stat -- packages/styles
 
     unit:
         name: Unit tests
