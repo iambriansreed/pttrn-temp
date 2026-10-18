@@ -1,0 +1,295 @@
+{
+    "font-type-mono": {
+        "usa": {
+            "font-family": {
+                "mono": {
+                    "$type": "fontFamily",
+                    "$value": "IBM Plex Mono",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--usa-font-family-mono",
+                            "figma": "!-usa/font-family/mono"
+                        }
+                    }
+                }
+            },
+            "font-size": {
+                "mono": {
+                    "1": {
+                        "$type": "dimension",
+                        "$value": {
+                            "value": 11.4,
+                            "unit": "px"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--usa-font-size-mono-1",
+                                "figma": "!-usa/font-size/mono/1"
+                            }
+                        }
+                    },
+                    "2": {
+                        "$type": "dimension",
+                        "$value": {
+                            "value": 12.4,
+                            "unit": "px"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--usa-font-size-mono-2",
+                                "figma": "!-usa/font-size/mono/2"
+                            }
+                        }
+                    },
+                    "3": {
+                        "$type": "dimension",
+                        "$value": {
+                            "value": 13.3,
+                            "unit": "px"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--usa-font-size-mono-3",
+                                "figma": "!-usa/font-size/mono/3"
+                            }
+                        }
+                    },
+                    "4": {
+                        "$type": "dimension",
+                        "$value": {
+                            "value": 14.3,
+                            "unit": "px"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--usa-font-size-mono-4",
+                                "figma": "!-usa/font-size/mono/4"
+                            }
+                        }
+                    },
+                    "5": {
+                        "$type": "dimension",
+                        "$value": {
+                            "value": 15.2,
+                            "unit": "px"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--usa-font-size-mono-5",
+                                "figma": "!-usa/font-size/mono/5"
+                            }
+                        }
+                    },
+                    "6": {
+                        "$type": "dimension",
+                        "$value": {
+                            "value": 16.2,
+                            "unit": "px"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--usa-font-size-mono-6",
+                                "figma": "!-usa/font-size/mono/6"
+                            }
+                        }
+                    },
+                    "7": {
+                        "$type": "dimension",
+                        "$value": {
+                            "value": 17.1,
+                            "unit": "px"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--usa-font-size-mono-7",
+                                "figma": "!-usa/font-size/mono/7"
+                            }
+                        }
+                    },
+                    "8": {
+                        "$type": "dimension",
+                        "$value": {
+                            "value": 19,
+                            "unit": "px"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--usa-font-size-mono-8",
+                                "figma": "!-usa/font-size/mono/8"
+                            }
+                        }
+                    },
+                    "9": {
+                        "$type": "dimension",
+                        "$value": {
+                            "value": 20.9,
+                            "unit": "px"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--usa-font-size-mono-9",
+                                "figma": "!-usa/font-size/mono/9"
+                            }
+                        }
+                    },
+                    "10": {
+                        "$type": "dimension",
+                        "$value": {
+                            "value": 22.8,
+                            "unit": "px"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--usa-font-size-mono-10",
+                                "figma": "!-usa/font-size/mono/10"
+                            }
+                        }
+                    },
+                    "11": {
+                        "$type": "dimension",
+                        "$value": {
+                            "value": 26.6,
+                            "unit": "px"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--usa-font-size-mono-11",
+                                "figma": "!-usa/font-size/mono/11"
+                            }
+                        }
+                    },
+                    "12": {
+                        "$type": "dimension",
+                        "$value": {
+                            "value": 30.4,
+                            "unit": "px"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--usa-font-size-mono-12",
+                                "figma": "!-usa/font-size/mono/12"
+                            }
+                        }
+                    },
+                    "13": {
+                        "$type": "dimension",
+                        "$value": {
+                            "value": 34.2,
+                            "unit": "px"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--usa-font-size-mono-13",
+                                "figma": "!-usa/font-size/mono/13"
+                            }
+                        }
+                    },
+                    "14": {
+                        "$type": "dimension",
+                        "$value": {
+                            "value": 38,
+                            "unit": "px"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--usa-font-size-mono-14",
+                                "figma": "!-usa/font-size/mono/14"
+                            }
+                        }
+                    },
+                    "15": {
+                        "$type": "dimension",
+                        "$value": {
+                            "value": 45.6,
+                            "unit": "px"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--usa-font-size-mono-15",
+                                "figma": "!-usa/font-size/mono/15"
+                            }
+                        }
+                    },
+                    "16": {
+                        "$type": "dimension",
+                        "$value": {
+                            "value": 53.2,
+                            "unit": "px"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--usa-font-size-mono-16",
+                                "figma": "!-usa/font-size/mono/16"
+                            }
+                        }
+                    },
+                    "17": {
+                        "$type": "dimension",
+                        "$value": {
+                            "value": 60.8,
+                            "unit": "px"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--usa-font-size-mono-17",
+                                "figma": "!-usa/font-size/mono/17"
+                            }
+                        }
+                    },
+                    "18": {
+                        "$type": "dimension",
+                        "$value": {
+                            "value": 76,
+                            "unit": "px"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--usa-font-size-mono-18",
+                                "figma": "!-usa/font-size/mono/18"
+                            }
+                        }
+                    },
+                    "19": {
+                        "$type": "dimension",
+                        "$value": {
+                            "value": 114,
+                            "unit": "px"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--usa-font-size-mono-19",
+                                "figma": "!-usa/font-size/mono/19"
+                            }
+                        }
+                    },
+                    "20": {
+                        "$type": "dimension",
+                        "$value": {
+                            "value": 133,
+                            "unit": "px"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--usa-font-size-mono-20",
+                                "figma": "!-usa/font-size/mono/20"
+                            }
+                        }
+                    },
+                    "micro": {
+                        "$type": "dimension",
+                        "$value": {
+                            "value": 9.5,
+                            "unit": "px"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--usa-font-size-mono-micro",
+                                "figma": "!-usa/font-size/mono/micro"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

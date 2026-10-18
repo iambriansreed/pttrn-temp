@@ -1,0 +1,297 @@
+{
+    "font-role-ui": {
+        "usa": {
+            "font-family": {
+                "ui": {
+                    "$value": "{font-type-sans.usa.font-family.sans}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--usa-font-family-ui",
+                            "figma": "!-usa/font-family/ui"
+                        }
+                    }
+                }
+            },
+            "font-size": {
+                "ui": {
+                    "1": {
+                        "$value": "{font-type-sans.usa.font-size.sans.1}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--usa-font-size-ui-1",
+                                "figma": "!-usa/font-size/ui/1"
+                            }
+                        }
+                    },
+                    "2": {
+                        "$value": "{font-type-sans.usa.font-size.sans.2}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--usa-font-size-ui-2",
+                                "figma": "!-usa/font-size/ui/2"
+                            }
+                        }
+                    },
+                    "3": {
+                        "$value": "{font-type-sans.usa.font-size.sans.3}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--usa-font-size-ui-3",
+                                "figma": "!-usa/font-size/ui/3"
+                            }
+                        }
+                    },
+                    "4": {
+                        "$value": "{font-type-sans.usa.font-size.sans.4}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--usa-font-size-ui-4",
+                                "figma": "!-usa/font-size/ui/4"
+                            }
+                        }
+                    },
+                    "5": {
+                        "$value": "{font-type-sans.usa.font-size.sans.5}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--usa-font-size-ui-5",
+                                "figma": "!-usa/font-size/ui/5"
+                            }
+                        }
+                    },
+                    "6": {
+                        "$value": "{font-type-sans.usa.font-size.sans.6}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--usa-font-size-ui-6",
+                                "figma": "!-usa/font-size/ui/6"
+                            }
+                        }
+                    },
+                    "7": {
+                        "$value": "{font-type-sans.usa.font-size.sans.7}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--usa-font-size-ui-7",
+                                "figma": "!-usa/font-size/ui/7"
+                            }
+                        }
+                    },
+                    "8": {
+                        "$value": "{font-type-sans.usa.font-size.sans.8}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--usa-font-size-ui-8",
+                                "figma": "!-usa/font-size/ui/8"
+                            }
+                        }
+                    },
+                    "9": {
+                        "$value": "{font-type-sans.usa.font-size.sans.9}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--usa-font-size-ui-9",
+                                "figma": "!-usa/font-size/ui/9"
+                            }
+                        }
+                    },
+                    "10": {
+                        "$value": "{font-type-sans.usa.font-size.sans.10}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--usa-font-size-ui-10",
+                                "figma": "!-usa/font-size/ui/10"
+                            }
+                        }
+                    },
+                    "11": {
+                        "$value": "{font-type-sans.usa.font-size.sans.11}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--usa-font-size-ui-11",
+                                "figma": "!-usa/font-size/ui/11"
+                            }
+                        }
+                    },
+                    "12": {
+                        "$value": "{font-type-sans.usa.font-size.sans.12}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--usa-font-size-ui-12",
+                                "figma": "!-usa/font-size/ui/12"
+                            }
+                        }
+                    },
+                    "13": {
+                        "$value": "{font-type-sans.usa.font-size.sans.13}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--usa-font-size-ui-13",
+                                "figma": "!-usa/font-size/ui/13"
+                            }
+                        }
+                    },
+                    "14": {
+                        "$value": "{font-type-sans.usa.font-size.sans.14}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--usa-font-size-ui-14",
+                                "figma": "!-usa/font-size/ui/14"
+                            }
+                        }
+                    },
+                    "15": {
+                        "$value": "{font-type-sans.usa.font-size.sans.15}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--usa-font-size-ui-15",
+                                "figma": "!-usa/font-size/ui/15"
+                            }
+                        }
+                    },
+                    "16": {
+                        "$value": "{font-type-sans.usa.font-size.sans.16}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--usa-font-size-ui-16",
+                                "figma": "!-usa/font-size/ui/16"
+                            }
+                        }
+                    },
+                    "17": {
+                        "$value": "{font-type-sans.usa.font-size.sans.17}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--usa-font-size-ui-17",
+                                "figma": "!-usa/font-size/ui/17"
+                            }
+                        }
+                    },
+                    "18": {
+                        "$value": "{font-type-sans.usa.font-size.sans.18}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--usa-font-size-ui-18",
+                                "figma": "!-usa/font-size/ui/18"
+                            }
+                        }
+                    },
+                    "19": {
+                        "$value": "{font-type-sans.usa.font-size.sans.19}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--usa-font-size-ui-19",
+                                "figma": "!-usa/font-size/ui/19"
+                            }
+                        }
+                    },
+                    "20": {
+                        "$value": "{font-type-sans.usa.font-size.sans.20}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--usa-font-size-ui-20",
+                                "figma": "!-usa/font-size/ui/20"
+                            }
+                        }
+                    },
+                    "micro": {
+                        "$value": "{font-type-sans.usa.font-size.sans.micro}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--usa-font-size-ui-micro",
+                                "figma": "!-usa/font-size/ui/micro"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "theme": {
+            "font-size": {
+                "ui": {
+                    "3xs": {
+                        "$value": "{uswds-theme.theme.font-size.sans.3xs}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-font-size-ui-3xs",
+                                "figma": "#-theme/font-size/ui/3xs"
+                            }
+                        }
+                    },
+                    "2xs": {
+                        "$value": "{uswds-theme.theme.font-size.sans.2xs}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-font-size-ui-2xs",
+                                "figma": "#-theme/font-size/ui/2xs"
+                            }
+                        }
+                    },
+                    "xs": {
+                        "$value": "{uswds-theme.theme.font-size.sans.xs}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-font-size-ui-xs",
+                                "figma": "#-theme/font-size/ui/xs"
+                            }
+                        }
+                    },
+                    "sm": {
+                        "$value": "{uswds-theme.theme.font-size.sans.sm}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-font-size-ui-sm",
+                                "figma": "#-theme/font-size/ui/sm"
+                            }
+                        }
+                    },
+                    "md": {
+                        "$value": "{uswds-theme.theme.font-size.sans.md}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-font-size-ui-md",
+                                "figma": "#-theme/font-size/ui/md"
+                            }
+                        }
+                    },
+                    "lg": {
+                        "$value": "{uswds-theme.theme.font-size.sans.lg}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-font-size-ui-lg",
+                                "figma": "#-theme/font-size/ui/lg"
+                            }
+                        }
+                    },
+                    "xl": {
+                        "$value": "{uswds-theme.theme.font-size.sans.xl}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-font-size-ui-xl",
+                                "figma": "#-theme/font-size/ui/xl"
+                            }
+                        }
+                    },
+                    "2xl": {
+                        "$value": "{uswds-theme.theme.font-size.sans.2xl}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-font-size-ui-2xl",
+                                "figma": "#-theme/font-size/ui/2xl"
+                            }
+                        }
+                    },
+                    "3xl": {
+                        "$value": "{uswds-theme.theme.font-size.sans.3xl}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-font-size-ui-3xl",
+                                "figma": "#-theme/font-size/ui/3xl"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -8,6 +8,8 @@ interface ZipFile {
 interface ExportResult {
     css: string;
     files: { name: string; css: string }[];
+    tokenFiles: { name: string; text: string }[];
+    tokens: number;
     themes: number;
     skipped: string[];
     images: { name: string; bytes: Uint8Array }[];
@@ -233,7 +235,8 @@ function createZip(files: ZipFile[]) {
         ui!.themesCell.hidden = next.themes === 0;
         ui!.imagesCell.hidden = images === 0;
 
-        ui!.download.textContent = images || next.files.length ? 'Download ZIP' : 'Download CSS';
+        ui!.download.textContent =
+            images || next.files.length || next.tokenFiles.length ? 'Download ZIP' : 'Download CSS';
 
         const skipped = next.skipped.length;
         ui!.skipped.hidden = skipped === 0;
@@ -270,7 +273,7 @@ function createZip(files: ZipFile[]) {
         try {
             const cssFile = `${current.fileName}.css`;
 
-            if (current.images.length === 0 && current.files.length === 0) {
+            if (current.images.length === 0 && current.files.length === 0 && current.tokenFiles.length === 0) {
                 download(new Blob([current.css], { type: 'text/css' }), cssFile);
                 feedback(`Downloaded ${shorten(cssFile)}`, false, `Downloaded ${cssFile}`);
                 return;
@@ -281,6 +284,7 @@ function createZip(files: ZipFile[]) {
             const encoder = new TextEncoder();
             const files: ZipFile[] = [
                 ...stylesheets.map(({ name, css }) => ({ name, data: encoder.encode(css) })),
+                ...current.tokenFiles.map(({ name, text }) => ({ name, data: encoder.encode(text) })),
                 ...current.images.map(({ name, bytes }) => ({ name: `${current.imageDir}/${name}`, data: bytes })),
             ];
             download(createZip(files), `${current.fileName}.zip`);

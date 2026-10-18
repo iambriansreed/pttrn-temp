@@ -1,0 +1,222 @@
+{
+    "source": {
+        "figmaFile": "USWDS Design Kit Beta (Community)",
+        "exportedAt": "October 4, 2026 at 11:17 PM (UTC-04:00)",
+        "exporter": "pttrn Export Tokens",
+        "importedBy": "scripts/css-to-dtcg.ts from tokens.css and themes/*.css"
+    },
+    "collections": [
+        {
+            "name": "Color",
+            "slug": "color",
+            "kind": "variables",
+            "file": "color.tokens.json"
+        },
+        {
+            "name": "Spacing",
+            "slug": "spacing",
+            "kind": "variables",
+            "file": "spacing.tokens.json"
+        },
+        {
+            "name": "Font",
+            "slug": "font",
+            "kind": "variables",
+            "file": "font.tokens.json"
+        },
+        {
+            "name": "Radius",
+            "slug": "radius",
+            "kind": "variables",
+            "file": "radius.tokens.json"
+        },
+        {
+            "name": "Font type / Proto",
+            "slug": "font-type-proto",
+            "kind": "variables",
+            "file": "font-type-proto.tokens.json"
+        },
+        {
+            "name": "Spacing",
+            "slug": "spacing-2",
+            "kind": "variables",
+            "file": "spacing-2.tokens.json"
+        },
+        {
+            "name": "XX _System",
+            "slug": "xx-system",
+            "kind": "variables",
+            "file": "xx-system.tokens.json"
+        },
+        {
+            "name": "General",
+            "slug": "general",
+            "kind": "variables",
+            "file": "general.tokens.json"
+        },
+        {
+            "name": "Effect styles",
+            "slug": "effect-styles",
+            "kind": "styles",
+            "file": "effect-styles.tokens.json"
+        },
+        {
+            "name": "USWDS Theme",
+            "slug": "uswds-theme",
+            "kind": "variables",
+            "attribute": "data-uswds-theme",
+            "modes": [
+                "default",
+                "project-theme",
+                "project-theme-dark"
+            ],
+            "defaultMode": "default",
+            "theme": true,
+            "files": {
+                "default": "uswds-theme/default.tokens.json",
+                "project-theme": "uswds-theme/project-theme.tokens.json",
+                "project-theme-dark": "uswds-theme/project-theme-dark.tokens.json"
+            }
+        },
+        {
+            "name": "Font type / Serif",
+            "slug": "font-type-serif",
+            "kind": "variables",
+            "attribute": "data-font-type-serif",
+            "modes": [
+                "merriweather",
+                "georgia",
+                "garamond",
+                "proto"
+            ],
+            "defaultMode": "merriweather",
+            "files": {
+                "merriweather": "font-type-serif/merriweather.tokens.json",
+                "georgia": "font-type-serif/georgia.tokens.json",
+                "garamond": "font-type-serif/garamond.tokens.json",
+                "proto": "font-type-serif/proto.tokens.json"
+            }
+        },
+        {
+            "name": "Font type / Mono",
+            "slug": "font-type-mono",
+            "kind": "variables",
+            "attribute": "data-font-type-mono",
+            "modes": [
+                "roboto-mono",
+                "ibm-plex-mono",
+                "proto"
+            ],
+            "defaultMode": "roboto-mono",
+            "files": {
+                "roboto-mono": "font-type-mono/roboto-mono.tokens.json",
+                "ibm-plex-mono": "font-type-mono/ibm-plex-mono.tokens.json",
+                "proto": "font-type-mono/proto.tokens.json"
+            }
+        },
+        {
+            "name": "Font type / Sans",
+            "slug": "font-type-sans",
+            "kind": "variables",
+            "attribute": "data-font-type-sans",
+            "modes": [
+                "public-sans",
+                "source-sans-pro",
+                "system",
+                "proto"
+            ],
+            "defaultMode": "public-sans",
+            "files": {
+                "public-sans": "font-type-sans/public-sans.tokens.json",
+                "source-sans-pro": "font-type-sans/source-sans-pro.tokens.json",
+                "system": "font-type-sans/system.tokens.json",
+                "proto": "font-type-sans/proto.tokens.json"
+            }
+        },
+        {
+            "name": "Font role / Body",
+            "slug": "font-role-body",
+            "kind": "variables",
+            "attribute": "data-font-role-body",
+            "modes": [
+                "sans",
+                "serif",
+                "proto"
+            ],
+            "defaultMode": "sans",
+            "files": {
+                "sans": "font-role-body/sans.tokens.json",
+                "serif": "font-role-body/serif.tokens.json",
+                "proto": "font-role-body/proto.tokens.json"
+            }
+        },
+        {
+            "name": "Font role / Code",
+            "slug": "font-role-code",
+            "kind": "variables",
+            "attribute": "data-font-role-code",
+            "modes": [
+                "mono",
+                "proto"
+            ],
+            "defaultMode": "mono",
+            "files": {
+                "mono": "font-role-code/mono.tokens.json",
+                "proto": "font-role-code/proto.tokens.json"
+            }
+        },
+        {
+            "name": "Font role / Heading",
+            "slug": "font-role-heading",
+            "kind": "variables",
+            "attribute": "data-font-role-heading",
+            "modes": [
+                "sans",
+                "serif",
+                "proto"
+            ],
+            "defaultMode": "sans",
+            "files": {
+                "sans": "font-role-heading/sans.tokens.json",
+                "serif": "font-role-heading/serif.tokens.json",
+                "proto": "font-role-heading/proto.tokens.json"
+            }
+        },
+        {
+            "name": "Font role / UI",
+            "slug": "font-role-ui",
+            "kind": "variables",
+            "attribute": "data-font-role-ui",
+            "modes": [
+                "sans",
+                "mono",
+                "proto"
+            ],
+            "defaultMode": "sans",
+            "files": {
+                "sans": "font-role-ui/sans.tokens.json",
+                "mono": "font-role-ui/mono.tokens.json",
+                "proto": "font-role-ui/proto.tokens.json"
+            }
+        },
+        {
+            "name": "Font role / Alt",
+            "slug": "font-role-alt",
+            "kind": "variables",
+            "attribute": "data-font-role-alt",
+            "modes": [
+                "sans",
+                "serif",
+                "mono",
+                "proto"
+            ],
+            "defaultMode": "sans",
+            "files": {
+                "sans": "font-role-alt/sans.tokens.json",
+                "serif": "font-role-alt/serif.tokens.json",
+                "mono": "font-role-alt/mono.tokens.json",
+                "proto": "font-role-alt/proto.tokens.json"
+            }
+        }
+    ]
+}

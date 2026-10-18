@@ -13,10 +13,12 @@ packages/icons/meta
 packages/icons/SvgIcon
 packages/icons/src
 
-# Design tokens exported from Figma
+# Design tokens: the DTCG source the Figma plugin writes and the files @ptrn/styles builds from it
+packages/styles/tokens
 packages/styles/tokens.css
+packages/styles/tokens.js
+packages/styles/tokens.d.ts
 packages/styles/themes
-plans/*.css
 
 # Generated metadata and data
 docs/src/meta

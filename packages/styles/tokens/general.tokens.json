@@ -1,0 +1,1235 @@
+{
+    "general": {
+        "usa": {
+            "color": {
+                "white": {
+                    "$type": "color",
+                    "$value": {
+                        "colorSpace": "srgb",
+                        "components": [
+                            1,
+                            1,
+                            1
+                        ],
+                        "alpha": 1,
+                        "hex": "#ffffff"
+                    },
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--general-usa-color-white",
+                            "figma": "usa/color/white"
+                        }
+                    }
+                },
+                "gray": {
+                    "10": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.902,
+                                0.902,
+                                0.902
+                            ],
+                            "alpha": 1,
+                            "hex": "#e6e6e6"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-gray-10",
+                                "figma": "usa/color/gray/10"
+                            }
+                        }
+                    },
+                    "30": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.6784,
+                                0.6784,
+                                0.6784
+                            ],
+                            "alpha": 1,
+                            "hex": "#adadad"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-gray-30",
+                                "figma": "usa/color/gray/30"
+                            }
+                        }
+                    },
+                    "50": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.4588,
+                                0.4588,
+                                0.4588
+                            ],
+                            "alpha": 1,
+                            "hex": "#757575"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-gray-50",
+                                "figma": "usa/color/gray/50"
+                            }
+                        }
+                    },
+                    "80": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.1804,
+                                0.1804,
+                                0.1804
+                            ],
+                            "alpha": 1,
+                            "hex": "#2e2e2e"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-gray-80",
+                                "figma": "usa/color/gray/80"
+                            }
+                        }
+                    }
+                },
+                "none": {
+                    "$type": "color",
+                    "$value": {
+                        "colorSpace": "srgb",
+                        "components": [
+                            1,
+                            1,
+                            1
+                        ],
+                        "alpha": 0,
+                        "hex": "#ffffff"
+                    },
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--general-usa-color-none",
+                            "figma": "usa/color/none"
+                        }
+                    }
+                },
+                "blue-warm": {
+                    "5": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.9255,
+                                0.9451,
+                                0.9686
+                            ],
+                            "alpha": 1,
+                            "hex": "#ecf1f7"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-blue-warm-5",
+                                "figma": "usa/color/blue-warm/5"
+                            }
+                        }
+                    },
+                    "20": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.7333,
+                                0.7922,
+                                0.8941
+                            ],
+                            "alpha": 1,
+                            "hex": "#bbcae4"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-blue-warm-20",
+                                "figma": "usa/color/blue-warm/20"
+                            }
+                        }
+                    },
+                    "70": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.1843,
+                                0.2745,
+                                0.4078
+                            ],
+                            "alpha": 1,
+                            "hex": "#2f4668"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-blue-warm-70",
+                                "figma": "usa/color/blue-warm/70"
+                            }
+                        }
+                    },
+                    "80": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.1451,
+                                0.1843,
+                                0.2431
+                            ],
+                            "alpha": 1,
+                            "hex": "#252f3e"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-blue-warm-80",
+                                "figma": "usa/color/blue-warm/80"
+                            }
+                        }
+                    },
+                    "60v": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0,
+                                0.3137,
+                                0.8471
+                            ],
+                            "alpha": 1,
+                            "hex": "#0050d8"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-blue-warm-60v",
+                                "figma": "usa/color/blue-warm/60v"
+                            }
+                        }
+                    },
+                    "50v": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.149,
+                                0.4471,
+                                0.8706
+                            ],
+                            "alpha": 1,
+                            "hex": "#2672de"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-blue-warm-50v",
+                                "figma": "usa/color/blue-warm/50v"
+                            }
+                        }
+                    },
+                    "70v": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.102,
+                                0.2667,
+                                0.502
+                            ],
+                            "alpha": 1,
+                            "hex": "#1a4480"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-blue-warm-70v",
+                                "figma": "usa/color/blue-warm/70v"
+                            }
+                        }
+                    },
+                    "80v": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.0863,
+                                0.1804,
+                                0.3176
+                            ],
+                            "alpha": 1,
+                            "hex": "#162e51"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-blue-warm-80v",
+                                "figma": "usa/color/blue-warm/80v"
+                            }
+                        }
+                    }
+                },
+                "blue": {
+                    "10": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.851,
+                                0.9098,
+                                0.9647
+                            ],
+                            "alpha": 1,
+                            "hex": "#d9e8f6"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-blue-10",
+                                "figma": "usa/color/blue/10"
+                            }
+                        }
+                    },
+                    "30": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.451,
+                                0.702,
+                                0.9059
+                            ],
+                            "alpha": 1,
+                            "hex": "#73b3e7"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-blue-30",
+                                "figma": "usa/color/blue/30"
+                            }
+                        }
+                    },
+                    "60v": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0,
+                                0.3686,
+                                0.6353
+                            ],
+                            "alpha": 1,
+                            "hex": "#005ea2"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-blue-60v",
+                                "figma": "usa/color/blue/60v"
+                            }
+                        }
+                    }
+                },
+                "red-cool": {
+                    "10v": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.9725,
+                                0.8706,
+                                0.8824
+                            ],
+                            "alpha": 1,
+                            "hex": "#f8dee1"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-red-cool-10v",
+                                "figma": "usa/color/red-cool/10v"
+                            }
+                        }
+                    },
+                    "50v": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.8941,
+                                0.1059,
+                                0.2353
+                            ],
+                            "alpha": 1,
+                            "hex": "#e41b3c"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-red-cool-50v",
+                                "figma": "usa/color/red-cool/50v"
+                            }
+                        }
+                    }
+                },
+                "gold": {
+                    "10": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.9451,
+                                0.898,
+                                0.8039
+                            ],
+                            "alpha": 1,
+                            "hex": "#f1e5cd"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-gold-10",
+                                "figma": "usa/color/gold/10"
+                            }
+                        }
+                    },
+                    "60": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.4196,
+                                0.349,
+                                0.2784
+                            ],
+                            "alpha": 1,
+                            "hex": "#6b5947"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-gold-60",
+                                "figma": "usa/color/gold/60"
+                            }
+                        }
+                    },
+                    "70": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.302,
+                                0.2667,
+                                0.2196
+                            ],
+                            "alpha": 1,
+                            "hex": "#4d4438"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-gold-70",
+                                "figma": "usa/color/gold/70"
+                            }
+                        }
+                    },
+                    "80": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.1961,
+                                0.1765,
+                                0.149
+                            ],
+                            "alpha": 1,
+                            "hex": "#322d26"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-gold-80",
+                                "figma": "usa/color/gold/80"
+                            }
+                        }
+                    },
+                    "20v": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                1,
+                                0.7451,
+                                0.1804
+                            ],
+                            "alpha": 1,
+                            "hex": "#ffbe2e"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-gold-20v",
+                                "figma": "usa/color/gold/20v"
+                            }
+                        }
+                    },
+                    "50v": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.5765,
+                                0.4353,
+                                0.2196
+                            ],
+                            "alpha": 1,
+                            "hex": "#936f38"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-gold-50v",
+                                "figma": "usa/color/gold/50v"
+                            }
+                        }
+                    }
+                },
+                "red": {
+                    "20": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.9686,
+                                0.7333,
+                                0.6941
+                            ],
+                            "alpha": 1,
+                            "hex": "#f7bbb1"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-red-20",
+                                "figma": "usa/color/red/20"
+                            }
+                        }
+                    },
+                    "30": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.949,
+                                0.5765,
+                                0.549
+                            ],
+                            "alpha": 1,
+                            "hex": "#f2938c"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-red-30",
+                                "figma": "usa/color/red/30"
+                            }
+                        }
+                    },
+                    "50": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.8471,
+                                0.2235,
+                                0.2
+                            ],
+                            "alpha": 1,
+                            "hex": "#d83933"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-red-50",
+                                "figma": "usa/color/red/50"
+                            }
+                        }
+                    },
+                    "60": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.6353,
+                                0.2157,
+                                0.2157
+                            ],
+                            "alpha": 1,
+                            "hex": "#a23737"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-red-60",
+                                "figma": "usa/color/red/60"
+                            }
+                        }
+                    },
+                    "70": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.4353,
+                                0.2,
+                                0.1922
+                            ],
+                            "alpha": 1,
+                            "hex": "#6f3331"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-red-70",
+                                "figma": "usa/color/red/70"
+                            }
+                        }
+                    },
+                    "50v": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.898,
+                                0.1333,
+                                0.0275
+                            ],
+                            "alpha": 1,
+                            "hex": "#e52207"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-red-50v",
+                                "figma": "usa/color/red/50v"
+                            }
+                        }
+                    },
+                    "70v": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.5451,
+                                0.0392,
+                                0.0118
+                            ],
+                            "alpha": 1,
+                            "hex": "#8b0a03"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-red-70v",
+                                "figma": "usa/color/red/70v"
+                            }
+                        }
+                    },
+                    "80v": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.3608,
+                                0.0667,
+                                0.0667
+                            ],
+                            "alpha": 1,
+                            "hex": "#5c1111"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-red-80v",
+                                "figma": "usa/color/red/80v"
+                            }
+                        }
+                    }
+                },
+                "mint": {
+                    "5v": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.7882,
+                                0.9843,
+                                0.9216
+                            ],
+                            "alpha": 1,
+                            "hex": "#c9fbeb"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-mint-5v",
+                                "figma": "usa/color/mint/5v"
+                            }
+                        }
+                    }
+                },
+                "blue-cool": {
+                    "5v": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.8824,
+                                0.9529,
+                                0.9725
+                            ],
+                            "alpha": 1,
+                            "hex": "#e1f3f8"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-blue-cool-5v",
+                                "figma": "usa/color/blue-cool/5v"
+                            }
+                        }
+                    }
+                },
+                "indigo": {
+                    "5": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.9373,
+                                0.9373,
+                                0.9725
+                            ],
+                            "alpha": 1,
+                            "hex": "#efeff8"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-indigo-5",
+                                "figma": "usa/color/indigo/5"
+                            }
+                        }
+                    },
+                    "10": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.898,
+                                0.8941,
+                                0.9804
+                            ],
+                            "alpha": 1,
+                            "hex": "#e5e4fa"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-indigo-10",
+                                "figma": "usa/color/indigo/10"
+                            }
+                        }
+                    },
+                    "80": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.1686,
+                                0.1725,
+                                0.251
+                            ],
+                            "alpha": 1,
+                            "hex": "#2b2c40"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-indigo-80",
+                                "figma": "usa/color/indigo/80"
+                            }
+                        }
+                    },
+                    "70v": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.2,
+                                0.2,
+                                0.6392
+                            ],
+                            "alpha": 1,
+                            "hex": "#3333a3"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-indigo-70v",
+                                "figma": "usa/color/indigo/70v"
+                            }
+                        }
+                    }
+                },
+                "orange": {
+                    "10": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.949,
+                                0.8941,
+                                0.8314
+                            ],
+                            "alpha": 1,
+                            "hex": "#f2e4d4"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-orange-10",
+                                "figma": "usa/color/orange/10"
+                            }
+                        }
+                    },
+                    "60": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.4667,
+                                0.3333,
+                                0.251
+                            ],
+                            "alpha": 1,
+                            "hex": "#775540"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-orange-60",
+                                "figma": "usa/color/orange/60"
+                            }
+                        }
+                    },
+                    "20v": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                1,
+                                0.7373,
+                                0.4706
+                            ],
+                            "alpha": 1,
+                            "hex": "#ffbc78"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-orange-20v",
+                                "figma": "usa/color/orange/20v"
+                            }
+                        }
+                    },
+                    "30v": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.9804,
+                                0.5804,
+                                0.2549
+                            ],
+                            "alpha": 1,
+                            "hex": "#fa9441"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-orange-30v",
+                                "figma": "usa/color/orange/30v"
+                            }
+                        }
+                    },
+                    "50v": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.7529,
+                                0.3373,
+                                0
+                            ],
+                            "alpha": 1,
+                            "hex": "#c05600"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-orange-50v",
+                                "figma": "usa/color/orange/50v"
+                            }
+                        }
+                    }
+                },
+                "cyan": {
+                    "20": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.6,
+                                0.8706,
+                                0.9176
+                            ],
+                            "alpha": 1,
+                            "hex": "#99deea"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-cyan-20",
+                                "figma": "usa/color/cyan/20"
+                            }
+                        }
+                    },
+                    "70": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.1725,
+                                0.2902,
+                                0.3059
+                            ],
+                            "alpha": 1,
+                            "hex": "#2c4a4e"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-cyan-70",
+                                "figma": "usa/color/cyan/70"
+                            }
+                        }
+                    },
+                    "30v": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0,
+                                0.7412,
+                                0.8902
+                            ],
+                            "alpha": 1,
+                            "hex": "#00bde3"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-cyan-30v",
+                                "figma": "usa/color/cyan/30v"
+                            }
+                        }
+                    },
+                    "60v": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0,
+                                0.4078,
+                                0.4902
+                            ],
+                            "alpha": 1,
+                            "hex": "#00687d"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-cyan-60v",
+                                "figma": "usa/color/cyan/60v"
+                            }
+                        }
+                    }
+                },
+                "green-cool": {
+                    "5": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.9255,
+                                0.9529,
+                                0.9255
+                            ],
+                            "alpha": 1,
+                            "hex": "#ecf3ec"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-green-cool-5",
+                                "figma": "usa/color/green-cool/5"
+                            }
+                        }
+                    },
+                    "20v": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.4392,
+                                0.8824,
+                                0.4824
+                            ],
+                            "alpha": 1,
+                            "hex": "#70e17b"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-green-cool-20v",
+                                "figma": "usa/color/green-cool/20v"
+                            }
+                        }
+                    },
+                    "40v": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0,
+                                0.6627,
+                                0.1098
+                            ],
+                            "alpha": 1,
+                            "hex": "#00a91c"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-green-cool-40v",
+                                "figma": "usa/color/green-cool/40v"
+                            }
+                        }
+                    },
+                    "60v": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.1294,
+                                0.4314,
+                                0.1216
+                            ],
+                            "alpha": 1,
+                            "hex": "#216e1f"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-green-cool-60v",
+                                "figma": "usa/color/green-cool/60v"
+                            }
+                        }
+                    },
+                    "70v": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.0824,
+                                0.298,
+                                0.1294
+                            ],
+                            "alpha": 1,
+                            "hex": "#154c21"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-green-cool-70v",
+                                "figma": "usa/color/green-cool/70v"
+                            }
+                        }
+                    }
+                },
+                "yellow": {
+                    "5": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.9804,
+                                0.9529,
+                                0.8196
+                            ],
+                            "alpha": 1,
+                            "hex": "#faf3d1"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-yellow-5",
+                                "figma": "usa/color/yellow/5"
+                            }
+                        }
+                    },
+                    "70": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.3137,
+                                0.2627,
+                                0.1961
+                            ],
+                            "alpha": 1,
+                            "hex": "#504332"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-yellow-70",
+                                "figma": "usa/color/yellow/70"
+                            }
+                        }
+                    },
+                    "80": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.2,
+                                0.1765,
+                                0.1529
+                            ],
+                            "alpha": 1,
+                            "hex": "#332d27"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-yellow-80",
+                                "figma": "usa/color/yellow/80"
+                            }
+                        }
+                    },
+                    "10v": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.9961,
+                                0.902,
+                                0.5216
+                            ],
+                            "alpha": 1,
+                            "hex": "#fee685"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-yellow-10v",
+                                "figma": "usa/color/yellow/10v"
+                            }
+                        }
+                    },
+                    "30v": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.8667,
+                                0.6667,
+                                0.0039
+                            ],
+                            "alpha": 1,
+                            "hex": "#ddaa01"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-yellow-30v",
+                                "figma": "usa/color/yellow/30v"
+                            }
+                        }
+                    },
+                    "50v": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.5804,
+                                0.4431,
+                                0
+                            ],
+                            "alpha": 1,
+                            "hex": "#947100"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-yellow-50v",
+                                "figma": "usa/color/yellow/50v"
+                            }
+                        }
+                    }
+                },
+                "red-warm": {
+                    "60v": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0.6118,
+                                0.2392,
+                                0.0627
+                            ],
+                            "alpha": 1,
+                            "hex": "#9c3d10"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-red-warm-60v",
+                                "figma": "usa/color/red-warm/60v"
+                            }
+                        }
+                    }
+                },
+                "black-transparent": {
+                    "20": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0,
+                                0,
+                                0
+                            ],
+                            "alpha": 0.2,
+                            "hex": "#000000"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-black-transparent-20",
+                                "figma": "usa/color/black-transparent/20"
+                            }
+                        }
+                    },
+                    "30": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0,
+                                0,
+                                0
+                            ],
+                            "alpha": 0.3,
+                            "hex": "#000000"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-black-transparent-30",
+                                "figma": "usa/color/black-transparent/30"
+                            }
+                        }
+                    },
+                    "50": {
+                        "$type": "color",
+                        "$value": {
+                            "colorSpace": "srgb",
+                            "components": [
+                                0,
+                                0,
+                                0
+                            ],
+                            "alpha": 0.5,
+                            "hex": "#000000"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--general-usa-color-black-transparent-50",
+                                "figma": "usa/color/black-transparent/50"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

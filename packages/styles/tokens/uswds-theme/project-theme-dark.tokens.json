@@ -1,0 +1,3046 @@
+{
+    "uswds-theme": {
+        "theme": {
+            "body": {
+                "background-color": {
+                    "$value": "{uswds-theme.theme.color.ink-reverse}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--theme-body-background-color",
+                            "figma": "#-theme/body/background-color"
+                        }
+                    }
+                },
+                "font-size": {
+                    "$value": "{font-role-body.theme.font-size.body.sm}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--theme-body-font-size",
+                            "figma": "#-theme/body/font-size"
+                        }
+                    }
+                },
+                "text-color": {
+                    "$value": "{uswds-theme.theme.color.ink}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--theme-body-text-color",
+                            "figma": "#-theme/body/text-color"
+                        }
+                    }
+                }
+            },
+            "site": {
+                "margins": {
+                    "width": {
+                        "$value": "{spacing.usa.spacing.4}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-site-margins-width",
+                                "figma": "#-theme/site/margins/width"
+                            }
+                        }
+                    },
+                    "mobile-width": {
+                        "$value": "{spacing.usa.spacing.2}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-site-margins-mobile-width",
+                                "figma": "#-theme/site/margins/mobile-width"
+                            }
+                        }
+                    }
+                }
+            },
+            "border-radius": {
+                "sm": {
+                    "$value": "{spacing-2.usa.spacing.2px}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--theme-border-radius-sm",
+                            "figma": "#-theme/border-radius/sm"
+                        }
+                    }
+                },
+                "md": {
+                    "$value": "{spacing-2.usa.spacing.05}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--theme-border-radius-md",
+                            "figma": "#-theme/border-radius/md"
+                        }
+                    }
+                },
+                "lg": {
+                    "$value": "{spacing-2.usa.spacing.1}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--theme-border-radius-lg",
+                            "figma": "#-theme/border-radius/lg"
+                        }
+                    }
+                }
+            },
+            "color": {
+                "ink": {
+                    "$value": "{general.usa.color.white}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--theme-color-ink",
+                            "figma": "#-theme/color/ink"
+                        }
+                    }
+                },
+                "ink-reverse": {
+                    "$value": "{uswds-theme.theme.color.base.darkest}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--theme-color-ink-reverse",
+                            "figma": "#-theme/color/ink-reverse"
+                        }
+                    }
+                },
+                "base": {
+                    "lightest": {
+                        "$value": "{color.usa.color.gray.5}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-base-lightest",
+                                "figma": "#-theme/color/base/lightest"
+                            }
+                        }
+                    },
+                    "lighter": {
+                        "$value": "{general.usa.color.gray.10}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-base-lighter",
+                                "figma": "#-theme/color/base/lighter"
+                            }
+                        }
+                    },
+                    "light": {
+                        "$value": "{general.usa.color.gray.30}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-base-light",
+                                "figma": "#-theme/color/base/light"
+                            }
+                        }
+                    },
+                    "medium": {
+                        "$value": "{general.usa.color.gray.50}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-base-medium",
+                                "figma": "#-theme/color/base/medium"
+                            }
+                        }
+                    },
+                    "dark": {
+                        "$value": "{color.usa.color.gray.60}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-base-dark",
+                                "figma": "#-theme/color/base/dark"
+                            }
+                        }
+                    },
+                    "darker": {
+                        "$value": "{general.usa.color.gray.80}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-base-darker",
+                                "figma": "#-theme/color/base/darker"
+                            }
+                        }
+                    },
+                    "darkest": {
+                        "$value": "{color.usa.color.gray.90}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-base-darkest",
+                                "figma": "#-theme/color/base/darkest"
+                            }
+                        }
+                    }
+                },
+                "primary": {
+                    "lightest": {
+                        "$value": "{general.usa.color.blue-warm.5}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-primary-lightest",
+                                "figma": "#-theme/color/primary/lightest"
+                            }
+                        }
+                    },
+                    "lighter": {
+                        "$value": "{general.usa.color.blue-warm.20}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-primary-lighter",
+                                "figma": "#-theme/color/primary/lighter"
+                            }
+                        }
+                    },
+                    "light": {
+                        "$value": "{color.usa.color.blue-warm.30v}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-primary-light",
+                                "figma": "#-theme/color/primary/light"
+                            }
+                        }
+                    },
+                    "medium": {
+                        "$value": "{color.usa.color.blue-warm.50}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-primary-medium",
+                                "figma": "#-theme/color/primary/medium"
+                            }
+                        }
+                    },
+                    "vivid": {
+                        "$value": "{general.usa.color.blue-warm.50v}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-primary-vivid",
+                                "figma": "#-theme/color/primary/vivid"
+                            }
+                        }
+                    },
+                    "dark": {
+                        "$value": "{color.usa.color.blue-warm.60}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-primary-dark",
+                                "figma": "#-theme/color/primary/dark"
+                            }
+                        }
+                    },
+                    "darker": {
+                        "$value": "{general.usa.color.blue-warm.70}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-primary-darker",
+                                "figma": "#-theme/color/primary/darker"
+                            }
+                        }
+                    },
+                    "darkest": {
+                        "$value": "{general.usa.color.blue-warm.80}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-primary-darkest",
+                                "figma": "#-theme/color/primary/darkest"
+                            }
+                        }
+                    }
+                },
+                "secondary": {
+                    "lightest": {
+                        "$value": "{color.usa.color.gold.5}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-secondary-lightest",
+                                "figma": "#-theme/color/secondary/lightest"
+                            }
+                        }
+                    },
+                    "lighter": {
+                        "$value": "{general.usa.color.gold.10}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-secondary-lighter",
+                                "figma": "#-theme/color/secondary/lighter"
+                            }
+                        }
+                    },
+                    "light": {
+                        "$value": "{color.usa.color.gold.30}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-secondary-light",
+                                "figma": "#-theme/color/secondary/light"
+                            }
+                        }
+                    },
+                    "medium": {
+                        "$value": "{color.usa.color.gold.50}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-secondary-medium",
+                                "figma": "#-theme/color/secondary/medium"
+                            }
+                        }
+                    },
+                    "vivid": {
+                        "$value": "{color.usa.color.gold.30v}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-secondary-vivid",
+                                "figma": "#-theme/color/secondary/vivid"
+                            }
+                        }
+                    },
+                    "dark": {
+                        "$value": "{general.usa.color.gold.60}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-secondary-dark",
+                                "figma": "#-theme/color/secondary/dark"
+                            }
+                        }
+                    },
+                    "darker": {
+                        "$value": "{general.usa.color.gold.70}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-secondary-darker",
+                                "figma": "#-theme/color/secondary/darker"
+                            }
+                        }
+                    },
+                    "darkest": {
+                        "$value": "{general.usa.color.gold.80}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-secondary-darkest",
+                                "figma": "#-theme/color/secondary/darkest"
+                            }
+                        }
+                    }
+                },
+                "accent-cool": {
+                    "lightest": {
+                        "$value": "{general.usa.color.mint.5v}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-accent-cool-lightest",
+                                "figma": "#-theme/color/accent-cool/lightest"
+                            }
+                        }
+                    },
+                    "lighter": {
+                        "$value": "{color.usa.color.mint.20}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-accent-cool-lighter",
+                                "figma": "#-theme/color/accent-cool/lighter"
+                            }
+                        }
+                    },
+                    "light": {
+                        "$value": "{color.usa.color.mint.30}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-accent-cool-light",
+                                "figma": "#-theme/color/accent-cool/light"
+                            }
+                        }
+                    },
+                    "medium": {
+                        "$value": "{color.usa.color.mint.50}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-accent-cool-medium",
+                                "figma": "#-theme/color/accent-cool/medium"
+                            }
+                        }
+                    },
+                    "vivid": {
+                        "$value": "{color.usa.color.mint.30v}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-accent-cool-vivid",
+                                "figma": "#-theme/color/accent-cool/vivid"
+                            }
+                        }
+                    },
+                    "dark": {
+                        "$value": "{color.usa.color.mint.60}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-accent-cool-dark",
+                                "figma": "#-theme/color/accent-cool/dark"
+                            }
+                        }
+                    },
+                    "darker": {
+                        "$value": "{color.usa.color.mint.70}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-accent-cool-darker",
+                                "figma": "#-theme/color/accent-cool/darker"
+                            }
+                        }
+                    },
+                    "darkest": {
+                        "$value": "{color.usa.color.mint.80}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-accent-cool-darkest",
+                                "figma": "#-theme/color/accent-cool/darkest"
+                            }
+                        }
+                    }
+                },
+                "accent-warm": {
+                    "lightest": {
+                        "$value": "{general.usa.color.indigo.5}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-accent-warm-lightest",
+                                "figma": "#-theme/color/accent-warm/lightest"
+                            }
+                        }
+                    },
+                    "lighter": {
+                        "$value": "{general.usa.color.indigo.10}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-accent-warm-lighter",
+                                "figma": "#-theme/color/accent-warm/lighter"
+                            }
+                        }
+                    },
+                    "light": {
+                        "$value": "{color.usa.color.indigo.40v}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-accent-warm-light",
+                                "figma": "#-theme/color/accent-warm/light"
+                            }
+                        }
+                    },
+                    "medium": {
+                        "$value": "{color.usa.color.indigo.50}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-accent-warm-medium",
+                                "figma": "#-theme/color/accent-warm/medium"
+                            }
+                        }
+                    },
+                    "vivid": {
+                        "$value": "{color.usa.color.indigo-warm.50v}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-accent-warm-vivid",
+                                "figma": "#-theme/color/accent-warm/vivid"
+                            }
+                        }
+                    },
+                    "dark": {
+                        "$value": "{color.usa.color.indigo.60v}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-accent-warm-dark",
+                                "figma": "#-theme/color/accent-warm/dark"
+                            }
+                        }
+                    },
+                    "darker": {
+                        "$value": "{general.usa.color.indigo.70v}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-accent-warm-darker",
+                                "figma": "#-theme/color/accent-warm/darker"
+                            }
+                        }
+                    },
+                    "darkest": {
+                        "$value": "{general.usa.color.indigo.80}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-accent-warm-darkest",
+                                "figma": "#-theme/color/accent-warm/darkest"
+                            }
+                        }
+                    }
+                },
+                "info": {
+                    "lightest": {
+                        "$value": "{color.usa.color.cyan.5}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-info-lightest",
+                                "figma": "#-theme/color/info/lightest"
+                            }
+                        }
+                    },
+                    "lighter": {
+                        "$value": "{general.usa.color.cyan.20}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-info-lighter",
+                                "figma": "#-theme/color/info/lighter"
+                            }
+                        }
+                    },
+                    "light": {
+                        "$value": "{general.usa.color.cyan.30v}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-info-light",
+                                "figma": "#-theme/color/info/light"
+                            }
+                        }
+                    },
+                    "medium": {
+                        "$value": "{color.usa.color.cyan.50v}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-info-medium",
+                                "figma": "#-theme/color/info/medium"
+                            }
+                        }
+                    },
+                    "dark": {
+                        "$value": "{general.usa.color.cyan.60v}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-info-dark",
+                                "figma": "#-theme/color/info/dark"
+                            }
+                        }
+                    },
+                    "darker": {
+                        "$value": "{general.usa.color.cyan.70}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-info-darker",
+                                "figma": "#-theme/color/info/darker"
+                            }
+                        }
+                    },
+                    "darkest": {
+                        "$value": "{color.usa.color.cyan.80}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-info-darkest",
+                                "figma": "#-theme/color/info/darkest"
+                            }
+                        }
+                    }
+                },
+                "success": {
+                    "lightest": {
+                        "$value": "{general.usa.color.green-cool.5}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-success-lightest",
+                                "figma": "#-theme/color/success/lightest"
+                            }
+                        }
+                    },
+                    "lighter": {
+                        "$value": "{general.usa.color.green-cool.20v}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-success-lighter",
+                                "figma": "#-theme/color/success/lighter"
+                            }
+                        }
+                    },
+                    "light": {
+                        "$value": "{general.usa.color.green-cool.40v}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-success-light",
+                                "figma": "#-theme/color/success/light"
+                            }
+                        }
+                    },
+                    "medium": {
+                        "$value": "{color.usa.color.green-cool.50v}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-success-medium",
+                                "figma": "#-theme/color/success/medium"
+                            }
+                        }
+                    },
+                    "dark": {
+                        "$value": "{general.usa.color.green-cool.60v}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-success-dark",
+                                "figma": "#-theme/color/success/dark"
+                            }
+                        }
+                    },
+                    "darker": {
+                        "$value": "{general.usa.color.green-cool.70v}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-success-darker",
+                                "figma": "#-theme/color/success/darker"
+                            }
+                        }
+                    },
+                    "darkest": {
+                        "$value": "{color.usa.color.green-cool.80}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-success-darkest",
+                                "figma": "#-theme/color/success/darkest"
+                            }
+                        }
+                    }
+                },
+                "warning": {
+                    "lightest": {
+                        "$value": "{color.usa.color.yellow.5}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-warning-lightest",
+                                "figma": "#-theme/color/warning/lightest"
+                            }
+                        }
+                    },
+                    "lighter": {
+                        "$value": "{color.usa.color.yellow.20v}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-warning-lighter",
+                                "figma": "#-theme/color/warning/lighter"
+                            }
+                        }
+                    },
+                    "light": {
+                        "$value": "{general.usa.color.yellow.30v}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-warning-light",
+                                "figma": "#-theme/color/warning/light"
+                            }
+                        }
+                    },
+                    "medium": {
+                        "$value": "{general.usa.color.yellow.50v}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-warning-medium",
+                                "figma": "#-theme/color/warning/medium"
+                            }
+                        }
+                    },
+                    "dark": {
+                        "$value": "{color.usa.color.yellow.60}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-warning-dark",
+                                "figma": "#-theme/color/warning/dark"
+                            }
+                        }
+                    },
+                    "darker": {
+                        "$value": "{general.usa.color.yellow.70}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-warning-darker",
+                                "figma": "#-theme/color/warning/darker"
+                            }
+                        }
+                    },
+                    "darkest": {
+                        "$value": "{general.usa.color.yellow.80}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-warning-darkest",
+                                "figma": "#-theme/color/warning/darkest"
+                            }
+                        }
+                    }
+                },
+                "error": {
+                    "lightest": {
+                        "$value": "{color.usa.color.red.10}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-error-lightest",
+                                "figma": "#-theme/color/error/lightest"
+                            }
+                        }
+                    },
+                    "lighter": {
+                        "$value": "{general.usa.color.red.20}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-error-lighter",
+                                "figma": "#-theme/color/error/lighter"
+                            }
+                        }
+                    },
+                    "light": {
+                        "$value": "{color.usa.color.red.30v}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-error-light",
+                                "figma": "#-theme/color/error/light"
+                            }
+                        }
+                    },
+                    "medium": {
+                        "$value": "{general.usa.color.red.50v}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-error-medium",
+                                "figma": "#-theme/color/error/medium"
+                            }
+                        }
+                    },
+                    "dark": {
+                        "$value": "{color.usa.color.red.60v}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-error-dark",
+                                "figma": "#-theme/color/error/dark"
+                            }
+                        }
+                    },
+                    "darker": {
+                        "$value": "{general.usa.color.red.70v}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-error-darker",
+                                "figma": "#-theme/color/error/darker"
+                            }
+                        }
+                    },
+                    "darkest": {
+                        "$value": "{general.usa.color.red.80v}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-error-darkest",
+                                "figma": "#-theme/color/error/darkest"
+                            }
+                        }
+                    }
+                },
+                "emergency": {
+                    "medium": {
+                        "$value": "{general.usa.color.red-warm.60v}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-emergency-medium",
+                                "figma": "#-theme/color/emergency/medium"
+                            }
+                        }
+                    },
+                    "dark": {
+                        "$value": "{color.usa.color.red-warm.80}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-emergency-dark",
+                                "figma": "#-theme/color/emergency/dark"
+                            }
+                        }
+                    }
+                },
+                "disabled": {
+                    "lightest": {
+                        "$value": "{color.usa.color.black-transparent.10}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-disabled-lightest",
+                                "figma": "#-theme/color/disabled/lightest"
+                            }
+                        }
+                    },
+                    "lighter": {
+                        "$value": "{general.usa.color.black-transparent.30}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-disabled-lighter",
+                                "figma": "#-theme/color/disabled/lighter"
+                            }
+                        }
+                    },
+                    "light": {
+                        "$value": "{color.usa.color.black-transparent.40}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-disabled-light",
+                                "figma": "#-theme/color/disabled/light"
+                            }
+                        }
+                    },
+                    "medium": {
+                        "$value": "{general.usa.color.black-transparent.50}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-disabled-medium",
+                                "figma": "#-theme/color/disabled/medium"
+                            }
+                        }
+                    },
+                    "dark": {
+                        "$value": "{color.usa.color.white-transparent.30}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-disabled-dark",
+                                "figma": "#-theme/color/disabled/dark"
+                            }
+                        }
+                    },
+                    "darker": {
+                        "$value": "{color.usa.color.white-transparent.20}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-disabled-darker",
+                                "figma": "#-theme/color/disabled/darker"
+                            }
+                        }
+                    },
+                    "darkest": {
+                        "$value": "{color.usa.color.white-transparent.10}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-color-disabled-darkest",
+                                "figma": "#-theme/color/disabled/darkest"
+                            }
+                        }
+                    }
+                }
+            },
+            "font-size": {
+                "sans": {
+                    "3xs": {
+                        "$value": "{font-type-sans.usa.font-size.sans.2}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-font-size-sans-3xs",
+                                "figma": "#-theme/font-size/sans/3xs"
+                            }
+                        }
+                    },
+                    "2xs": {
+                        "$value": "{font-type-sans.usa.font-size.sans.3}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-font-size-sans-2xs",
+                                "figma": "#-theme/font-size/sans/2xs"
+                            }
+                        }
+                    },
+                    "xs": {
+                        "$value": "{font-type-sans.usa.font-size.sans.4}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-font-size-sans-xs",
+                                "figma": "#-theme/font-size/sans/xs"
+                            }
+                        }
+                    },
+                    "sm": {
+                        "$value": "{font-type-sans.usa.font-size.sans.5}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-font-size-sans-sm",
+                                "figma": "#-theme/font-size/sans/sm"
+                            }
+                        }
+                    },
+                    "md": {
+                        "$value": "{font-type-sans.usa.font-size.sans.6}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-font-size-sans-md",
+                                "figma": "#-theme/font-size/sans/md"
+                            }
+                        }
+                    },
+                    "lg": {
+                        "$value": "{font-type-sans.usa.font-size.sans.9}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-font-size-sans-lg",
+                                "figma": "#-theme/font-size/sans/lg"
+                            }
+                        }
+                    },
+                    "xl": {
+                        "$value": "{font-type-sans.usa.font-size.sans.12}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-font-size-sans-xl",
+                                "figma": "#-theme/font-size/sans/xl"
+                            }
+                        }
+                    },
+                    "2xl": {
+                        "$value": "{font-type-sans.usa.font-size.sans.14}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-font-size-sans-2xl",
+                                "figma": "#-theme/font-size/sans/2xl"
+                            }
+                        }
+                    },
+                    "3xl": {
+                        "$value": "{font-type-sans.usa.font-size.sans.15}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-font-size-sans-3xl",
+                                "figma": "#-theme/font-size/sans/3xl"
+                            }
+                        }
+                    }
+                },
+                "serif": {
+                    "3xs": {
+                        "$value": "{font-type-serif.usa.font-size.serif.2}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-font-size-serif-3xs",
+                                "figma": "#-theme/font-size/serif/3xs"
+                            }
+                        }
+                    },
+                    "2xs": {
+                        "$value": "{font-type-serif.usa.font-size.serif.3}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-font-size-serif-2xs",
+                                "figma": "#-theme/font-size/serif/2xs"
+                            }
+                        }
+                    },
+                    "xs": {
+                        "$value": "{font-type-serif.usa.font-size.serif.4}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-font-size-serif-xs",
+                                "figma": "#-theme/font-size/serif/xs"
+                            }
+                        }
+                    },
+                    "sm": {
+                        "$value": "{font-type-serif.usa.font-size.serif.5}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-font-size-serif-sm",
+                                "figma": "#-theme/font-size/serif/sm"
+                            }
+                        }
+                    },
+                    "md": {
+                        "$value": "{font-type-serif.usa.font-size.serif.6}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-font-size-serif-md",
+                                "figma": "#-theme/font-size/serif/md"
+                            }
+                        }
+                    },
+                    "lg": {
+                        "$value": "{font-type-serif.usa.font-size.serif.9}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-font-size-serif-lg",
+                                "figma": "#-theme/font-size/serif/lg"
+                            }
+                        }
+                    },
+                    "xl": {
+                        "$value": "{font-type-serif.usa.font-size.serif.12}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-font-size-serif-xl",
+                                "figma": "#-theme/font-size/serif/xl"
+                            }
+                        }
+                    },
+                    "2xl": {
+                        "$value": "{font-type-serif.usa.font-size.serif.14}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-font-size-serif-2xl",
+                                "figma": "#-theme/font-size/serif/2xl"
+                            }
+                        }
+                    },
+                    "3xl": {
+                        "$value": "{font-type-serif.usa.font-size.serif.15}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-font-size-serif-3xl",
+                                "figma": "#-theme/font-size/serif/3xl"
+                            }
+                        }
+                    }
+                },
+                "mono": {
+                    "3xs": {
+                        "$value": "{font-type-mono.usa.font-size.mono.2}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-font-size-mono-3xs",
+                                "figma": "#-theme/font-size/mono/3xs"
+                            }
+                        }
+                    },
+                    "2xs": {
+                        "$value": "{font-type-mono.usa.font-size.mono.3}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-font-size-mono-2xs",
+                                "figma": "#-theme/font-size/mono/2xs"
+                            }
+                        }
+                    },
+                    "xs": {
+                        "$value": "{font-type-mono.usa.font-size.mono.4}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-font-size-mono-xs",
+                                "figma": "#-theme/font-size/mono/xs"
+                            }
+                        }
+                    },
+                    "sm": {
+                        "$value": "{font-type-mono.usa.font-size.mono.5}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-font-size-mono-sm",
+                                "figma": "#-theme/font-size/mono/sm"
+                            }
+                        }
+                    },
+                    "md": {
+                        "$value": "{font-type-mono.usa.font-size.mono.6}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-font-size-mono-md",
+                                "figma": "#-theme/font-size/mono/md"
+                            }
+                        }
+                    },
+                    "lg": {
+                        "$value": "{font-type-mono.usa.font-size.mono.9}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-font-size-mono-lg",
+                                "figma": "#-theme/font-size/mono/lg"
+                            }
+                        }
+                    },
+                    "xl": {
+                        "$value": "{font-type-mono.usa.font-size.mono.12}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-font-size-mono-xl",
+                                "figma": "#-theme/font-size/mono/xl"
+                            }
+                        }
+                    },
+                    "2xl": {
+                        "$value": "{font-type-mono.usa.font-size.mono.14}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-font-size-mono-2xl",
+                                "figma": "#-theme/font-size/mono/2xl"
+                            }
+                        }
+                    },
+                    "3xl": {
+                        "$value": "{font-type-mono.usa.font-size.mono.15}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-font-size-mono-3xl",
+                                "figma": "#-theme/font-size/mono/3xl"
+                            }
+                        }
+                    }
+                },
+                "proto": {
+                    "3xs": {
+                        "$value": "{font-type-proto.usa.font-size.proto.2}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-font-size-proto-3xs",
+                                "figma": "#-theme/font-size/proto/3xs"
+                            }
+                        }
+                    },
+                    "2xs": {
+                        "$value": "{font-type-proto.usa.font-size.proto.3}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-font-size-proto-2xs",
+                                "figma": "#-theme/font-size/proto/2xs"
+                            }
+                        }
+                    },
+                    "xs": {
+                        "$value": "{font-type-proto.usa.font-size.proto.4}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-font-size-proto-xs",
+                                "figma": "#-theme/font-size/proto/xs"
+                            }
+                        }
+                    },
+                    "sm": {
+                        "$value": "{font-type-proto.usa.font-size.proto.5}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-font-size-proto-sm",
+                                "figma": "#-theme/font-size/proto/sm"
+                            }
+                        }
+                    },
+                    "md": {
+                        "$value": "{font-type-proto.usa.font-size.proto.6}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-font-size-proto-md",
+                                "figma": "#-theme/font-size/proto/md"
+                            }
+                        }
+                    },
+                    "lg": {
+                        "$value": "{font-type-proto.usa.font-size.proto.7}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-font-size-proto-lg",
+                                "figma": "#-theme/font-size/proto/lg"
+                            }
+                        }
+                    },
+                    "xl": {
+                        "$value": "{font-type-proto.usa.font-size.proto.12}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-font-size-proto-xl",
+                                "figma": "#-theme/font-size/proto/xl"
+                            }
+                        }
+                    },
+                    "2xl": {
+                        "$value": "{font-type-proto.usa.font-size.proto.14}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-font-size-proto-2xl",
+                                "figma": "#-theme/font-size/proto/2xl"
+                            }
+                        }
+                    },
+                    "3xl": {
+                        "$value": "{font-type-proto.usa.font-size.proto.15}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-font-size-proto-3xl",
+                                "figma": "#-theme/font-size/proto/3xl"
+                            }
+                        }
+                    }
+                }
+            },
+            "font-weight": {
+                "thin": {
+                    "$type": "fontWeight",
+                    "$value": "regular",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--theme-font-weight-thin",
+                            "figma": "#-theme/font-weight/thin"
+                        }
+                    }
+                },
+                "light": {
+                    "$type": "fontWeight",
+                    "$value": "regular",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--theme-font-weight-light",
+                            "figma": "#-theme/font-weight/light"
+                        }
+                    }
+                },
+                "normal": {
+                    "$type": "fontWeight",
+                    "$value": "regular",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--theme-font-weight-normal",
+                            "figma": "#-theme/font-weight/normal"
+                        }
+                    }
+                },
+                "semibold": {
+                    "$type": "fontWeight",
+                    "$value": "extra bold",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--theme-font-weight-semibold",
+                            "figma": "#-theme/font-weight/semibold"
+                        }
+                    }
+                },
+                "bold": {
+                    "$type": "fontWeight",
+                    "$value": "extra bold",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--theme-font-weight-bold",
+                            "figma": "#-theme/font-weight/bold"
+                        }
+                    }
+                },
+                "heavy": {
+                    "$type": "fontWeight",
+                    "$value": "extra bold",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--theme-font-weight-heavy",
+                            "figma": "#-theme/font-weight/heavy"
+                        }
+                    }
+                }
+            },
+            "page": {
+                "background-color": {
+                    "$value": "{uswds-theme.theme.color.ink-reverse}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--theme-page-background-color",
+                            "figma": "#-theme/page/background-color"
+                        }
+                    }
+                },
+                "text-color": {
+                    "$value": "{general.usa.color.white}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--theme-page-text-color",
+                            "figma": "#-theme/page/text-color"
+                        }
+                    }
+                },
+                "text-color-on-dark": {
+                    "$value": "{uswds-theme.theme.color.base.darkest}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--theme-page-text-color-on-dark",
+                            "figma": "#-theme/page/text-color-on-dark"
+                        }
+                    }
+                },
+                "margins": {
+                    "breakpoint": {
+                        "$value": "{spacing-2.usa.spacing.desktop}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-page-margins-breakpoint",
+                                "figma": "#-theme/page/margins/breakpoint"
+                            }
+                        }
+                    },
+                    "mobile-width": {
+                        "$value": "{spacing-2.usa.spacing.2}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-page-margins-mobile-width",
+                                "figma": "#-theme/page/margins/mobile-width"
+                            }
+                        }
+                    },
+                    "width": {
+                        "$value": "{spacing-2.usa.spacing.4}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--theme-page-margins-width",
+                                "figma": "#-theme/page/margins/width"
+                            }
+                        }
+                    }
+                }
+            },
+            "global": {
+                "focus-color": {
+                    "$value": "{uswds-theme.theme.color.primary.vivid}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--theme-global-focus-color",
+                            "figma": "#-theme/global/focus-color"
+                        }
+                    }
+                },
+                "focus-width": {
+                    "$value": "{spacing.usa.spacing.05}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--theme-global-focus-width",
+                            "figma": "#-theme/global/focus-width"
+                        }
+                    }
+                },
+                "focus-style": {
+                    "$type": "string",
+                    "$value": "solid",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--theme-global-focus-style",
+                            "figma": "#-theme/global/focus-style"
+                        }
+                    }
+                }
+            }
+        },
+        "component": {
+            "accordion": {
+                "background-color": {
+                    "$value": "{uswds-theme.theme.body.background-color}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-accordion-background-color",
+                            "figma": "@-component/accordion/background-color"
+                        }
+                    }
+                },
+                "font-family": {
+                    "$value": "{font-role-heading.usa.font-family.heading}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-accordion-font-family",
+                            "figma": "@-component/accordion/font-family"
+                        }
+                    }
+                },
+                "font-size": {
+                    "$value": "{font-role-heading.theme.font-size.heading.sm}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-accordion-font-size",
+                            "figma": "@-component/accordion/font-size"
+                        }
+                    }
+                },
+                "border": {
+                    "color": {
+                        "$value": "{uswds-theme.component.accordion.button.background-color}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--component-accordion-border-color",
+                                "figma": "@-component/accordion/border/color"
+                            }
+                        }
+                    },
+                    "width": {
+                        "$value": "{spacing-2.usa.spacing.05}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--component-accordion-border-width",
+                                "figma": "@-component/accordion/border/width"
+                            }
+                        }
+                    }
+                },
+                "button": {
+                    "background-color": {
+                        "$value": "{uswds-theme.theme.color.base.darker}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--component-accordion-button-background-color",
+                                "figma": "@-component/accordion/button/background-color"
+                            }
+                        }
+                    },
+                    "text-color": {
+                        "$value": "{uswds-theme.theme.color.ink}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--component-accordion-button-text-color",
+                                "figma": "@-component/accordion/button/text-color"
+                            }
+                        }
+                    },
+                    "padding-y": {
+                        "$value": "{spacing-2.usa.spacing.2}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--component-accordion-button-padding-y",
+                                "figma": "@-component/accordion/button/padding-y"
+                            }
+                        }
+                    },
+                    "padding-y-thin": {
+                        "$value": "{spacing-2.usa.spacing.1}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--component-accordion-button-padding-y-thin",
+                                "figma": "@-component/accordion/button/padding-y-thin"
+                            }
+                        }
+                    }
+                },
+                "details": {
+                    "text-color": {
+                        "$value": "{uswds-theme.theme.color.ink}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--component-accordion-details-text-color",
+                                "figma": "@-component/accordion/details/text-color"
+                            }
+                        }
+                    }
+                }
+            },
+            "alert": {
+                "bar-width": {
+                    "$value": "{spacing-2.usa.spacing.1}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-alert-bar-width",
+                            "figma": "@-component/alert/bar-width"
+                        }
+                    }
+                },
+                "font-family": {
+                    "$value": "{font-role-ui.usa.font-family.ui}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-alert-font-family",
+                            "figma": "@-component/alert/font-family"
+                        }
+                    }
+                },
+                "icon-size": {
+                    "$value": "{xx-system.local.xx.spacing.4}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-alert-icon-size",
+                            "figma": "@-component/alert/icon-size"
+                        }
+                    }
+                },
+                "padding-x": {
+                    "$value": "{spacing-2.usa.spacing.205}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-alert-padding-x",
+                            "figma": "@-component/alert/padding-x"
+                        }
+                    }
+                },
+                "padding-y": {
+                    "$value": "{spacing-2.usa.spacing.2}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-alert-padding-y",
+                            "figma": "@-component/alert/padding-y"
+                        }
+                    }
+                },
+                "text-color": {
+                    "$value": "{uswds-theme.theme.page.text-color}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-alert-text-color",
+                            "figma": "@-component/alert/text-color"
+                        }
+                    }
+                },
+                "link-color": {
+                    "$value": "{uswds-theme.component.link.color}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-alert-link-color",
+                            "figma": "@-component/alert/link-color"
+                        }
+                    }
+                }
+            },
+            "banner": {
+                "background-color": {
+                    "$value": "{uswds-theme.theme.color.base.lightest}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-banner-background-color",
+                            "figma": "@-component/banner/background-color"
+                        }
+                    }
+                },
+                "font-family": {
+                    "$value": "{font-type-sans.usa.font-family.sans}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-banner-font-family",
+                            "figma": "@-component/banner/font-family"
+                        }
+                    }
+                },
+                "link-color": {
+                    "$value": "{uswds-theme.component.link.color}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-banner-link-color",
+                            "figma": "@-component/banner/link-color"
+                        }
+                    }
+                },
+                "max-width": {
+                    "$value": "{spacing-2.usa.spacing.desktop}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-banner-max-width",
+                            "figma": "@-component/banner/max-width"
+                        }
+                    }
+                },
+                "font-size": {
+                    "$value": "{font-type-sans.usa.font-size.sans.1}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-banner-font-size",
+                            "figma": "@-component/banner/font-size"
+                        }
+                    }
+                },
+                "details-font-size": {
+                    "$value": "{font-type-sans.usa.font-size.sans.4}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-banner-details-font-size",
+                            "figma": "@-component/banner/details-font-size"
+                        }
+                    }
+                },
+                "security-color": {
+                    "$value": "{color.usa.color.green.40v}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-banner-security-color",
+                            "figma": "@-component/banner/_security-color"
+                        }
+                    }
+                },
+                "domain-color": {
+                    "$value": "{color.usa.color.blue.50}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-banner-domain-color",
+                            "figma": "@-component/banner/_domain-color"
+                        }
+                    }
+                }
+            },
+            "breadcrumb": {
+                "background-color": {
+                    "$value": "{color.usa.color.none}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-breadcrumb-background-color",
+                            "figma": "@-component/breadcrumb/background-color"
+                        }
+                    }
+                },
+                "font-family": {
+                    "$value": "{font-role-body.usa.font-family.body}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-breadcrumb-font-family",
+                            "figma": "@-component/breadcrumb/font-family"
+                        }
+                    }
+                },
+                "font-size": {
+                    "$value": "{font-role-body.theme.font-size.body.sm}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-breadcrumb-font-size",
+                            "figma": "@-component/breadcrumb/font-size"
+                        }
+                    }
+                },
+                "link-color": {
+                    "$value": "{uswds-theme.component.link.color}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-breadcrumb-link-color",
+                            "figma": "@-component/breadcrumb/link-color"
+                        }
+                    }
+                },
+                "min-width": {
+                    "$value": "{spacing.usa.spacing.mobile-lg}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-breadcrumb-min-width",
+                            "figma": "@-component/breadcrumb/min-width"
+                        }
+                    }
+                },
+                "padding-bottom": {
+                    "$value": "{spacing.usa.spacing.2}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-breadcrumb-padding-bottom",
+                            "figma": "@-component/breadcrumb/padding-bottom"
+                        }
+                    }
+                },
+                "padding-top": {
+                    "$value": "{spacing.usa.spacing.2}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-breadcrumb-padding-top",
+                            "figma": "@-component/breadcrumb/padding-top"
+                        }
+                    }
+                },
+                "padding-x": {
+                    "$value": "{spacing.usa.spacing.0}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-breadcrumb-padding-x",
+                            "figma": "@-component/breadcrumb/padding-x"
+                        }
+                    }
+                },
+                "separator-color": {
+                    "$value": "{uswds-theme.theme.color.base.medium}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-breadcrumb-separator-color",
+                            "figma": "@-component/breadcrumb/separator-color"
+                        }
+                    }
+                },
+                "gap": {
+                    "$value": "{spacing.usa.spacing.1}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-breadcrumb-gap",
+                            "figma": "@-component/breadcrumb/_gap"
+                        }
+                    }
+                },
+                "separator-size": {
+                    "$value": "{spacing.usa.spacing.2}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-breadcrumb-separator-size",
+                            "figma": "@-component/breadcrumb/_separator-size"
+                        }
+                    }
+                }
+            },
+            "button": {
+                "padding-x": {
+                    "$value": "{spacing.usa.spacing.205}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-button-padding-x",
+                            "figma": "@-component/button/padding-x"
+                        }
+                    }
+                },
+                "padding-y": {
+                    "$value": "{spacing.usa.spacing.105}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-button-padding-y",
+                            "figma": "@-component/button/padding-y"
+                        }
+                    }
+                },
+                "padding": {
+                    "$type": "string",
+                    "$value": "String value",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-button-padding",
+                            "figma": "@-component/button/padding"
+                        }
+                    }
+                },
+                "size": {
+                    "$type": "string",
+                    "$value": "String value",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-button-size",
+                            "figma": "@-component/button/size"
+                        }
+                    }
+                },
+                "radius": {
+                    "$value": "{uswds-theme.theme.border-radius.md}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-button-radius",
+                            "figma": "@-component/button/radius"
+                        }
+                    }
+                },
+                "border-width": {
+                    "$value": "{spacing.usa.spacing.05}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-button-border-width",
+                            "figma": "@-component/button/border-width"
+                        }
+                    }
+                },
+                "icon-gap": {
+                    "$value": "{spacing.usa.spacing.1}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-button-icon-gap",
+                            "figma": "@-component/button/icon-gap"
+                        }
+                    }
+                },
+                "small": {
+                    "padding-x": {
+                        "$value": "{spacing.usa.spacing.105}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--component-button-small-padding-x",
+                                "figma": "@-component/button/small/padding-x"
+                            }
+                        }
+                    },
+                    "padding-y": {
+                        "$value": "{spacing.usa.spacing.05}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--component-button-small-padding-y",
+                                "figma": "@-component/button/small/padding-y"
+                            }
+                        }
+                    }
+                },
+                "large": {
+                    "padding-x": {
+                        "$value": "{spacing.usa.spacing.3}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--component-button-large-padding-x",
+                                "figma": "@-component/button/large/padding -x"
+                            }
+                        }
+                    },
+                    "padding-y": {
+                        "$value": "{spacing.usa.spacing.2}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--component-button-large-padding-y",
+                                "figma": "@-component/button/large/padding-y"
+                            }
+                        }
+                    }
+                }
+            },
+            "card": {
+                "header-font-family": {
+                    "$value": "{font-role-heading.usa.font-family.heading}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-card-header-font-family",
+                            "figma": "@-component/card/header-font-family"
+                        }
+                    }
+                },
+                "header-font-size": {
+                    "$value": "{font-role-heading.theme.font-size.heading.lg}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-card-header-font-size",
+                            "figma": "@-component/card/header-font-size"
+                        }
+                    }
+                },
+                "font-family": {
+                    "$value": "{font-role-body.usa.font-family.body}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-card-font-family",
+                            "figma": "@-component/card/font-family"
+                        }
+                    }
+                },
+                "font-size": {
+                    "$value": "{font-role-body.theme.font-size.body.sm}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-card-font-size",
+                            "figma": "@-component/card/font-size"
+                        }
+                    }
+                },
+                "border-color": {
+                    "$value": "{uswds-theme.theme.color.base.lighter}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-card-border-color",
+                            "figma": "@-component/card/border-color"
+                        }
+                    }
+                },
+                "border-radius": {
+                    "$value": "{uswds-theme.theme.border-radius.lg}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-card-border-radius",
+                            "figma": "@-component/card/border-radius"
+                        }
+                    }
+                },
+                "border-width": {
+                    "$value": "{spacing.usa.spacing.2px}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-card-border-width",
+                            "figma": "@-component/card/border-width"
+                        }
+                    }
+                },
+                "padding-perimeter": {
+                    "$value": "{spacing.usa.spacing.3}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-card-padding-perimeter",
+                            "figma": "@-component/card/padding-perimeter"
+                        }
+                    }
+                },
+                "padding-y": {
+                    "$value": "{spacing.usa.spacing.2}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-card-padding-y",
+                            "figma": "@-component/card/padding-y"
+                        }
+                    }
+                },
+                "padding-y-half": {
+                    "$value": "{spacing.usa.spacing.1}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-card-padding-y-half",
+                            "figma": "@-component/card/padding-y-half"
+                        }
+                    }
+                },
+                "flag-image-width": {
+                    "$value": "{spacing.usa.spacing.card-lg}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-card-flag-image-width",
+                            "figma": "@-component/card/flag-image-width"
+                        }
+                    }
+                }
+            },
+            "checkbox": {
+                "border-radius": {
+                    "$value": "{uswds-theme.theme.border-radius.sm}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-checkbox-border-radius",
+                            "figma": "@-component/checkbox/border-radius"
+                        }
+                    }
+                }
+            },
+            "collection": {
+                "font-family": {
+                    "$value": "{font-role-ui.usa.font-family.ui}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-collection-font-family",
+                            "figma": "@-component/collection/font-family"
+                        }
+                    }
+                },
+                "header-font-family": {
+                    "$value": "{font-role-ui.usa.font-family.ui}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-collection-header-font-family",
+                            "figma": "@-component/collection/header-font-family"
+                        }
+                    }
+                },
+                "header-font-size": {
+                    "$value": "{font-role-ui.theme.font-size.ui.md}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-collection-header-font-size",
+                            "figma": "@-component/collection/header-font-size"
+                        }
+                    }
+                },
+                "font-size": {
+                    "$value": "{font-role-ui.theme.font-size.ui.sm}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-collection-font-size",
+                            "figma": "@-component/collection/font-size"
+                        }
+                    }
+                }
+            },
+            "footer": {
+                "font-family": {
+                    "$value": "{font-role-body.usa.font-family.body}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-footer-font-family",
+                            "figma": "@-component/footer/font-family"
+                        }
+                    }
+                },
+                "max-width": {
+                    "$value": "{spacing.usa.spacing.desktop}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-footer-max-width",
+                            "figma": "@-component/footer/max-width"
+                        }
+                    }
+                }
+            },
+            "form": {
+                "font-family": {
+                    "$value": "{font-role-ui.usa.font-family.ui}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-form-font-family",
+                            "figma": "@-component/form/font-family"
+                        }
+                    }
+                },
+                "font-size": {
+                    "$value": "{font-role-ui.theme.font-size.ui.sm}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-form-font-size",
+                            "figma": "@-component/form/font-size"
+                        }
+                    }
+                }
+            },
+            "header": {
+                "font-family": {
+                    "$value": "{font-role-ui.usa.font-family.ui}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-header-font-family",
+                            "figma": "@-component/header/font-family"
+                        }
+                    }
+                },
+                "max-width": {
+                    "$value": "{spacing.usa.spacing.desktop}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-header-max-width",
+                            "figma": "@-component/header/max-width"
+                        }
+                    }
+                },
+                "logo": {
+                    "text-width": {
+                        "$type": "dimension",
+                        "$value": {
+                            "value": 33,
+                            "unit": "px"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--component-header-logo-text-width",
+                                "figma": "@-component/header/logo/text-width"
+                            }
+                        }
+                    }
+                },
+                "min-width": {
+                    "$value": "{spacing.usa.spacing.desktop}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-header-min-width",
+                            "figma": "@-component/header/min-width"
+                        }
+                    }
+                }
+            },
+            "icon-list": {
+                "font-family": {
+                    "$value": "{font-role-body.usa.font-family.body}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-icon-list-font-family",
+                            "figma": "@-component/icon-list/font-family"
+                        }
+                    }
+                },
+                "header-font-family": {
+                    "$value": "{font-role-heading.usa.font-family.heading}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-icon-list-header-font-family",
+                            "figma": "@-component/icon-list/header-font-family"
+                        }
+                    }
+                }
+            },
+            "identifier": {
+                "background-color": {
+                    "$value": "{uswds-theme.theme.color.ink}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-identifier-background-color",
+                            "figma": "@-component/identifier/background-color"
+                        }
+                    }
+                },
+                "font-family": {
+                    "$value": "{font-role-ui.usa.font-family.ui}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-identifier-font-family",
+                            "figma": "@-component/identifier/font-family"
+                        }
+                    }
+                },
+                "font-size": {
+                    "$value": "{font-role-ui.theme.font-size.ui.sm}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-identifier-font-size",
+                            "figma": "@-component/identifier/font-size"
+                        }
+                    }
+                },
+                "identity-domain-color": {
+                    "$value": "{uswds-theme.theme.color.base.light}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-identifier-identity-domain-color",
+                            "figma": "@-component/identifier/identity-domain-color"
+                        }
+                    }
+                },
+                "max-width": {
+                    "$value": "{spacing.usa.spacing.desktop}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-identifier-max-width",
+                            "figma": "@-component/identifier/max-width"
+                        }
+                    }
+                },
+                "primary-link-color": {
+                    "$value": "{color.usa.color.white}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-identifier-primary-link-color",
+                            "figma": "@-component/identifier/primary-link-color"
+                        }
+                    }
+                },
+                "secondary-link-color": {
+                    "$value": "{uswds-theme.theme.color.base.light}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-identifier-secondary-link-color",
+                            "figma": "@-component/identifier/secondary-link-color"
+                        }
+                    }
+                },
+                "link-gap": {
+                    "$value": "{spacing.usa.spacing.105}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-identifier-link-gap",
+                            "figma": "@-component/identifier/_link-gap"
+                        }
+                    }
+                },
+                "link-gap-desktop": {
+                    "$value": "{spacing.usa.spacing.1}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-identifier-link-gap-desktop",
+                            "figma": "@-component/identifier/_link-gap-desktop"
+                        }
+                    }
+                },
+                "links-gap": {
+                    "$value": "{spacing.usa.spacing.4}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-identifier-links-gap",
+                            "figma": "@-component/identifier/_links-gap"
+                        }
+                    }
+                },
+                "logo-height": {
+                    "$value": "{spacing.usa.spacing.6}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-identifier-logo-height",
+                            "figma": "@-component/identifier/_logo-height"
+                        }
+                    }
+                },
+                "section-margin-y": {
+                    "$value": "{spacing.usa.spacing.2}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-identifier-section-margin-y",
+                            "figma": "@-component/identifier/_section-margin-y"
+                        }
+                    }
+                },
+                "section-margin-y-small": {
+                    "$value": "{spacing.usa.spacing.1}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-identifier-section-margin-y-small",
+                            "figma": "@-component/identifier/_section-margin-y-small"
+                        }
+                    }
+                }
+            },
+            "in-page-navigation": {
+                "background-color": {
+                    "$value": "{uswds-theme.theme.body.background-color}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-in-page-navigation-background-color",
+                            "figma": "@-component/in-page-navigation/background-color"
+                        }
+                    }
+                },
+                "background-padding": {
+                    "$value": "{spacing.usa.spacing.2}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-in-page-navigation-background-padding",
+                            "figma": "@-component/in-page-navigation/background-padding"
+                        }
+                    }
+                },
+                "background-radius": {
+                    "$value": "{uswds-theme.theme.border-radius.lg}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-in-page-navigation-background-radius",
+                            "figma": "@-component/in-page-navigation/background-radius"
+                        }
+                    }
+                },
+                "bar-color": {
+                    "$value": "{uswds-theme.theme.color.ink}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-in-page-navigation-bar-color",
+                            "figma": "@-component/in-page-navigation/bar-color"
+                        }
+                    }
+                },
+                "bar-width": {
+                    "$value": "{spacing.usa.spacing.05}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-in-page-navigation-bar-width",
+                            "figma": "@-component/in-page-navigation/bar-width"
+                        }
+                    }
+                },
+                "font-family": {
+                    "$value": "{font-role-ui.usa.font-family.ui}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-in-page-navigation-font-family",
+                            "figma": "@-component/in-page-navigation/font-family"
+                        }
+                    }
+                },
+                "link-color": {
+                    "$value": "{uswds-theme.component.link.color}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-in-page-navigation-link-color",
+                            "figma": "@-component/in-page-navigation/link-color"
+                        }
+                    }
+                }
+            },
+            "input": {
+                "min-height": {
+                    "$value": "{spacing.usa.spacing.6}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-input-min-height",
+                            "figma": "@-component/input/min-height"
+                        }
+                    }
+                },
+                "error-background-color": {
+                    "$value": "{color.usa.color.white}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-input-error-background-color",
+                            "figma": "@-component/input/error-background-color"
+                        }
+                    }
+                },
+                "border-radius": {
+                    "$value": "{uswds-theme.theme.border-radius.lg}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-input-border-radius",
+                            "figma": "@-component/input/border-radius"
+                        }
+                    }
+                },
+                "background-color": {
+                    "$value": "{uswds-theme.theme.body.background-color}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-input-background-color",
+                            "figma": "@-component/input/background-color"
+                        }
+                    }
+                },
+                "max-width": {
+                    "$value": "{spacing.usa.spacing.mobile-lg}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-input-max-width",
+                            "figma": "@-component/input/max-width"
+                        }
+                    }
+                },
+                "select-size": {
+                    "$value": "{spacing.usa.spacing.205}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-input-select-size",
+                            "figma": "@-component/input/select-size"
+                        }
+                    }
+                },
+                "select-border-width": {
+                    "$value": "{spacing.usa.spacing.2px}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-input-select-border-width",
+                            "figma": "@-component/input/select-border-width"
+                        }
+                    }
+                },
+                "state-border-width": {
+                    "$value": "{spacing.usa.spacing.05}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-input-state-border-width",
+                            "figma": "@-component/input/state-border-width"
+                        }
+                    }
+                },
+                "tile-border-radius": {
+                    "$value": "{uswds-theme.theme.border-radius.md}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-input-tile-border-radius",
+                            "figma": "@-component/input/tile-border-radius"
+                        }
+                    }
+                },
+                "tile-border-width": {
+                    "$value": "{spacing.usa.spacing.2px}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-input-tile-border-width",
+                            "figma": "@-component/input/tile-border-width"
+                        }
+                    }
+                }
+            },
+            "link": {
+                "color": {
+                    "$value": "{uswds-theme.theme.color.primary.dark}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-link-color",
+                            "figma": "@-component/link/color"
+                        }
+                    }
+                },
+                "hover-color": {
+                    "$value": "{uswds-theme.theme.color.primary.darker}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-link-hover-color",
+                            "figma": "@-component/link/hover-color"
+                        }
+                    }
+                },
+                "active-color": {
+                    "$value": "{color.usa.color.black}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-link-active-color",
+                            "figma": "@-component/link/active-color"
+                        }
+                    }
+                },
+                "visited-color": {
+                    "$value": "{color.usa.color.violet.70v}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-link-visited-color",
+                            "figma": "@-component/link/visited-color"
+                        }
+                    }
+                },
+                "reverse-color": {
+                    "$value": "{uswds-theme.theme.color.primary.light}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-link-reverse-color",
+                            "figma": "@-component/link/reverse-color"
+                        }
+                    }
+                },
+                "reverse-hover-color": {
+                    "$value": "{uswds-theme.theme.color.primary.lighter}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-link-reverse-hover-color",
+                            "figma": "@-component/link/reverse-hover-color"
+                        }
+                    }
+                },
+                "reverse-active-color": {
+                    "$value": "{color.usa.color.white}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-link-reverse-active-color",
+                            "figma": "@-component/link/reverse-active-color"
+                        }
+                    }
+                }
+            },
+            "megamenu": {
+                "columns": {
+                    "$type": "dimension",
+                    "$value": {
+                        "value": 3,
+                        "unit": "px"
+                    },
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-megamenu-columns",
+                            "figma": "@-component/megamenu/columns"
+                        }
+                    }
+                }
+            },
+            "modal": {
+                "border-radius": {
+                    "$value": "{uswds-theme.theme.border-radius.lg}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-modal-border-radius",
+                            "figma": "@-component/modal/border-radius"
+                        }
+                    }
+                },
+                "lg-content-max-width": {
+                    "$value": "{spacing.usa.spacing.tablet}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-modal-lg-content-max-width",
+                            "figma": "@-component/modal/lg-content-max-width"
+                        }
+                    }
+                },
+                "lg-max-width": {
+                    "$value": "{spacing.usa.spacing.tablet-lg}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-modal-lg-max-width",
+                            "figma": "@-component/modal/lg-max-width"
+                        }
+                    }
+                }
+            },
+            "navigation": {
+                "font-family": {
+                    "$value": "{font-role-ui.usa.font-family.ui}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-navigation-font-family",
+                            "figma": "@-component/navigation/font-family"
+                        }
+                    }
+                }
+            },
+            "pagination": {
+                "background-color": {
+                    "$value": "{uswds-theme.theme.body.background-color}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-pagination-background-color",
+                            "figma": "@-component/pagination/background-color"
+                        }
+                    }
+                },
+                "button-border-radius": {
+                    "$value": "{uswds-theme.theme.border-radius.md}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-pagination-button-border-radius",
+                            "figma": "@-component/pagination/button-border-radius"
+                        }
+                    }
+                },
+                "button-border-width": {
+                    "$value": "{spacing.usa.spacing.1px}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-pagination-button-border-width",
+                            "figma": "@-component/pagination/button-border-width"
+                        }
+                    }
+                },
+                "font-family": {
+                    "$value": "{font-role-ui.usa.font-family.ui}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-pagination-font-family",
+                            "figma": "@-component/pagination/font-family"
+                        }
+                    }
+                }
+            },
+            "process-list": {
+                "font-family": {
+                    "$value": "{font-role-ui.usa.font-family.ui}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-process-list-font-family",
+                            "figma": "@-component/process-list/font-family"
+                        }
+                    }
+                },
+                "font-size": {
+                    "$value": "{font-role-ui.theme.font-size.ui.sm}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-process-list-font-size",
+                            "figma": "@-component/process-list/font-size"
+                        }
+                    }
+                },
+                "connector": {
+                    "color": {
+                        "$value": "{uswds-theme.theme.color.primary.lighter}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--component-process-list-connector-color",
+                                "figma": "@-component/process-list/connector/color"
+                            }
+                        }
+                    },
+                    "width": {
+                        "$value": "{spacing.usa.spacing.1}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--component-process-list-connector-width",
+                                "figma": "@-component/process-list/connector/width"
+                            }
+                        }
+                    }
+                },
+                "counter": {
+                    "background-color": {
+                        "$value": "{color.usa.color.white}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--component-process-list-counter-background-color",
+                                "figma": "@-component/process-list/counter/background-color"
+                            }
+                        }
+                    },
+                    "border-color": {
+                        "$value": "{uswds-theme.theme.color.ink}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--component-process-list-counter-border-color",
+                                "figma": "@-component/process-list/counter/border-color"
+                            }
+                        }
+                    },
+                    "border-width": {
+                        "$value": "{spacing.usa.spacing.05}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--component-process-list-counter-border-width",
+                                "figma": "@-component/process-list/counter/border-width"
+                            }
+                        }
+                    },
+                    "font-family": {
+                        "$value": "{font-role-ui.usa.font-family.ui}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--component-process-list-counter-font-family",
+                                "figma": "@-component/process-list/counter/font-family"
+                            }
+                        }
+                    },
+                    "font-size": {
+                        "$value": "{font-role-ui.theme.font-size.ui.lg}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--component-process-list-counter-font-size",
+                                "figma": "@-component/process-list/counter/font-size"
+                            }
+                        }
+                    },
+                    "gap-color": {
+                        "$value": "{color.usa.color.white}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--component-process-list-counter-gap-color",
+                                "figma": "@-component/process-list/counter/gap-color"
+                            }
+                        }
+                    },
+                    "gap-width": {
+                        "$value": "{spacing.usa.spacing.05}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--component-process-list-counter-gap-width",
+                                "figma": "@-component/process-list/counter/gap-width"
+                            }
+                        }
+                    },
+                    "size": {
+                        "$value": "{spacing.usa.spacing.5}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--component-process-list-counter-size",
+                                "figma": "@-component/process-list/counter/size"
+                            }
+                        }
+                    },
+                    "text-color": {
+                        "$value": "{uswds-theme.theme.color.ink}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--component-process-list-counter-text-color",
+                                "figma": "@-component/process-list/counter/text-color"
+                            }
+                        }
+                    }
+                },
+                "heading": {
+                    "color": {
+                        "$value": "{uswds-theme.theme.color.ink}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--component-process-list-heading-color",
+                                "figma": "@-component/process-list/heading/color"
+                            }
+                        }
+                    },
+                    "font-family": {
+                        "$value": "{font-role-ui.usa.font-family.ui}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--component-process-list-heading-font-family",
+                                "figma": "@-component/process-list/heading/font-family"
+                            }
+                        }
+                    },
+                    "font-size": {
+                        "$value": "{font-role-ui.theme.font-size.ui.lg}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--component-process-list-heading-font-size",
+                                "figma": "@-component/process-list/heading/font-size"
+                            }
+                        }
+                    }
+                }
+            },
+            "prose": {
+                "h1-font-size": {
+                    "$value": "{font-role-heading.theme.font-size.heading.2xl}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-prose-h1-font-size",
+                            "figma": "@-component/prose/h1-font-size"
+                        }
+                    }
+                },
+                "h2-font-size": {
+                    "$value": "{font-role-heading.theme.font-size.heading.xl}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-prose-h2-font-size",
+                            "figma": "@-component/prose/h2-font-size"
+                        }
+                    }
+                },
+                "h3-font-size": {
+                    "$value": "{font-role-heading.theme.font-size.heading.lg}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-prose-h3-font-size",
+                            "figma": "@-component/prose/h3-font-size"
+                        }
+                    }
+                },
+                "h4-font-size": {
+                    "$value": "{font-role-heading.theme.font-size.heading.sm}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-prose-h4-font-size",
+                            "figma": "@-component/prose/h4-font-size"
+                        }
+                    }
+                },
+                "h5-font-size": {
+                    "$value": "{font-role-heading.theme.font-size.heading.xs}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-prose-h5-font-size",
+                            "figma": "@-component/prose/h5-font-size"
+                        }
+                    }
+                },
+                "h6-font-size": {
+                    "$value": "{font-role-heading.theme.font-size.heading.3xs}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-prose-h6-font-size",
+                            "figma": "@-component/prose/h6-font-size"
+                        }
+                    }
+                },
+                "small-font-size": {
+                    "$value": "{font-role-body.theme.font-size.body.2xs}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-prose-small-font-size",
+                            "figma": "@-component/prose/small-font-size"
+                        }
+                    }
+                },
+                "display-font-size": {
+                    "$value": "{font-role-heading.theme.font-size.heading.3xl}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-prose-display-font-size",
+                            "figma": "@-component/prose/display-font-size"
+                        }
+                    }
+                }
+            },
+            "sidenav": {
+                "current-border-width": {
+                    "$value": "{spacing.usa.spacing.05}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-sidenav-current-border-width",
+                            "figma": "@-component/sidenav/current-border-width"
+                        }
+                    }
+                },
+                "font-family": {
+                    "$value": "{font-role-ui.usa.font-family.ui}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-sidenav-font-family",
+                            "figma": "@-component/sidenav/font-family"
+                        }
+                    }
+                }
+            },
+            "site-alert": {
+                "max-width": {
+                    "$value": "{spacing.usa.spacing.desktop}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-site-alert-max-width",
+                            "figma": "@-component/site-alert/max-width"
+                        }
+                    }
+                }
+            },
+            "step-indicator": {
+                "background-color": {
+                    "$value": "{color.usa.color.white}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-step-indicator-background-color",
+                            "figma": "@-component/step-indicator/background-color"
+                        }
+                    }
+                },
+                "font-family": {
+                    "$value": "{font-role-ui.usa.font-family.ui}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-step-indicator-font-family",
+                            "figma": "@-component/step-indicator/font-family"
+                        }
+                    }
+                },
+                "min-width": {
+                    "$value": "{spacing.usa.spacing.tablet}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-step-indicator-min-width",
+                            "figma": "@-component/step-indicator/min-width"
+                        }
+                    }
+                },
+                "text-pending-color": {
+                    "$value": "{uswds-theme.theme.color.base.dark}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-step-indicator-text-pending-color",
+                            "figma": "@-component/step-indicator/text-pending-color"
+                        }
+                    }
+                },
+                "counter": {
+                    "gap": {
+                        "$value": "{spacing.usa.spacing.05}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--component-step-indicator-counter-gap",
+                                "figma": "@-component/step-indicator/counter/gap"
+                            }
+                        }
+                    },
+                    "border-width": {
+                        "$value": "{spacing.usa.spacing.05}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--component-step-indicator-counter-border-width",
+                                "figma": "@-component/step-indicator/counter/border-width"
+                            }
+                        }
+                    }
+                },
+                "heading": {
+                    "color": {
+                        "$value": "{uswds-theme.theme.color.ink}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--component-step-indicator-heading-color",
+                                "figma": "@-component/step-indicator/heading/color"
+                            }
+                        }
+                    },
+                    "font-family": {
+                        "$value": "{font-role-ui.usa.font-family.ui}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--component-step-indicator-heading-font-family",
+                                "figma": "@-component/step-indicator/heading/font-family"
+                            }
+                        }
+                    },
+                    "font-size": {
+                        "$value": "{font-role-ui.theme.font-size.ui.lg}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--component-step-indicator-heading-font-size",
+                                "figma": "@-component/step-indicator/heading/font-size"
+                            }
+                        }
+                    },
+                    "font-size-small": {
+                        "$value": "{font-role-ui.theme.font-size.ui.md}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--component-step-indicator-heading-font-size-small",
+                                "figma": "@-component/step-indicator/heading/font-size-small"
+                            }
+                        }
+                    }
+                },
+                "label": {
+                    "font-size": {
+                        "$value": "{font-role-ui.theme.font-size.ui.sm}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--component-step-indicator-label-font-size",
+                                "figma": "@-component/step-indicator/label/font-size"
+                            }
+                        }
+                    }
+                },
+                "segment": {
+                    "color-pending": {
+                        "$value": "{color.usa.color.gray.40}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--component-step-indicator-segment-color-pending",
+                                "figma": "@-component/step-indicator/segment/color-pending"
+                            }
+                        }
+                    },
+                    "color-complete": {
+                        "$value": "{uswds-theme.theme.color.primary.darker}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--component-step-indicator-segment-color-complete",
+                                "figma": "@-component/step-indicator/segment/color-complete"
+                            }
+                        }
+                    },
+                    "color-current": {
+                        "$value": "{uswds-theme.theme.color.primary.medium}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--component-step-indicator-segment-color-current",
+                                "figma": "@-component/step-indicator/segment/color-current"
+                            }
+                        }
+                    },
+                    "gap": {
+                        "$value": "{spacing.usa.spacing.2px}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--component-step-indicator-segment-gap",
+                                "figma": "@-component/step-indicator/segment/gap"
+                            }
+                        }
+                    },
+                    "height": {
+                        "$value": "{spacing.usa.spacing.1}",
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--component-step-indicator-segment-height",
+                                "figma": "@-component/step-indicator/segment/height"
+                            }
+                        }
+                    }
+                }
+            },
+            "summary-box": {
+                "border-color": {
+                    "$value": "{uswds-theme.theme.color.info.medium}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-summary-box-border-color",
+                            "figma": "@-component/summary-box/border-color"
+                        }
+                    }
+                },
+                "background-color": {
+                    "$value": "{uswds-theme.theme.color.info.darkest}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-summary-box-background-color",
+                            "figma": "@-component/summary-box/background-color"
+                        }
+                    }
+                },
+                "border-width": {
+                    "$value": "{spacing.usa.spacing.1px}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-summary-box-border-width",
+                            "figma": "@-component/summary-box/border-width"
+                        }
+                    }
+                },
+                "border-radius": {
+                    "$value": "{uswds-theme.theme.border-radius.md}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-summary-box-border-radius",
+                            "figma": "@-component/summary-box/border-radius"
+                        }
+                    }
+                },
+                "font-family": {
+                    "$value": "{font-role-ui.usa.font-family.ui}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-summary-box-font-family",
+                            "figma": "@-component/summary-box/font-family"
+                        }
+                    }
+                },
+                "link-color": {
+                    "$value": "{uswds-theme.component.link.color}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-summary-box-link-color",
+                            "figma": "@-component/summary-box/link-color"
+                        }
+                    }
+                },
+                "text-color": {
+                    "$value": "{uswds-theme.theme.body.text-color}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-summary-box-text-color",
+                            "figma": "@-component/summary-box/text-color"
+                        }
+                    }
+                }
+            },
+            "tooltip": {
+                "background-color": {
+                    "$value": "{uswds-theme.theme.color.ink}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-tooltip-background-color",
+                            "figma": "@-component/tooltip/background-color"
+                        }
+                    }
+                },
+                "font-color": {
+                    "$value": "{uswds-theme.theme.color.base.lightest}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-tooltip-font-color",
+                            "figma": "@-component/tooltip/font-color"
+                        }
+                    }
+                },
+                "font-size": {
+                    "$value": "{font-role-ui.theme.font-size.ui.xs}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-tooltip-font-size",
+                            "figma": "@-component/tooltip/font-size"
+                        }
+                    }
+                }
+            },
+            "table": {
+                "background-color": {
+                    "$value": "{uswds-theme.theme.body.background-color}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-table-background-color",
+                            "figma": "@-component/table/background-color"
+                        }
+                    }
+                },
+                "border-color": {
+                    "$value": "{uswds-theme.theme.color.ink}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-table-border-color",
+                            "figma": "@-component/table/border-color"
+                        }
+                    }
+                },
+                "header-background-color": {
+                    "$value": "{uswds-theme.theme.color.base.lighter}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-table-header-background-color",
+                            "figma": "@-component/table/header-background-color"
+                        }
+                    }
+                },
+                "header-text-color": {
+                    "$value": "{uswds-theme.theme.color.ink}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-table-header-text-color",
+                            "figma": "@-component/table/header-text-color"
+                        }
+                    }
+                },
+                "sorted-background-color": {
+                    "$value": "{uswds-theme.theme.color.accent-cool.lighter}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-table-sorted-background-color",
+                            "figma": "@-component/table/sorted-background-color"
+                        }
+                    }
+                },
+                "sorted-header-background-color": {
+                    "$value": "{uswds-theme.theme.color.accent-cool.light}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-table-sorted-header-background-color",
+                            "figma": "@-component/table/sorted-header-background-color"
+                        }
+                    }
+                },
+                "sorted-icon-color": {
+                    "$value": "{uswds-theme.theme.color.ink}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-table-sorted-icon-color",
+                            "figma": "@-component/table/sorted-icon-color"
+                        }
+                    }
+                },
+                "sorted-stripe-background-color": {
+                    "$value": "{color.usa.color.blue-cool.10v}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-table-sorted-stripe-background-color",
+                            "figma": "@-component/table/sorted-stripe-background-color"
+                        }
+                    }
+                },
+                "stripe-background-color": {
+                    "$value": "{uswds-theme.theme.color.base.lightest}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-table-stripe-background-color",
+                            "figma": "@-component/table/stripe-background-color"
+                        }
+                    }
+                },
+                "stripe-text-color": {
+                    "$value": "{uswds-theme.theme.color.ink}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-table-stripe-text-color",
+                            "figma": "@-component/table/stripe-text-color"
+                        }
+                    }
+                },
+                "text-color": {
+                    "$value": "{uswds-theme.theme.color.ink}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-table-text-color",
+                            "figma": "@-component/table/text-color"
+                        }
+                    }
+                },
+                "unsorted-icon-color": {
+                    "$value": "{uswds-theme.theme.color.base.medium}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--component-table-unsorted-icon-color",
+                            "figma": "@-component/table/unsorted-icon-color"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

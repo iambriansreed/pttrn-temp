@@ -1,0 +1,41 @@
+{
+    "effect-styles": {
+        "card-shadow": {
+            "$type": "shadow",
+            "$value": {
+                "color": {
+                    "colorSpace": "srgb",
+                    "components": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "alpha": 0.15,
+                    "hex": "#000000"
+                },
+                "offsetX": {
+                    "value": 0,
+                    "unit": "px"
+                },
+                "offsetY": {
+                    "value": 4,
+                    "unit": "px"
+                },
+                "blur": {
+                    "value": 8,
+                    "unit": "px"
+                },
+                "spread": {
+                    "value": 0,
+                    "unit": "px"
+                }
+            },
+            "$extensions": {
+                "pttrn": {
+                    "css": "--card-shadow",
+                    "figma": "card-shadow"
+                }
+            }
+        }
+    }
+}

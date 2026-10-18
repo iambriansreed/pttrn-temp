@@ -2,10 +2,13 @@
     "name": "@ptrn/styles",
     "version": "0.0.1",
     "license": "MIT",
-    "description": "pttrn design tokens (USWDS Design Kit) plus the reset shared by @ptrn/react and @ptrn/web.",
+    "description": "pttrn design tokens: the DTCG token source exported from the USWDS Design Kit in Figma, the stylesheets built from it, and the reset shared by @ptrn/react and @ptrn/web.",
     "files": [
         "*.css",
         "themes",
+        "tokens",
+        "tokens.js",
+        "tokens.d.ts",
         "README.md",
         "LICENSE",
         "NOTICE.md"
@@ -25,6 +28,9 @@
         "node": ">=22"
     },
     "scripts": {
+        "build": "tsx build.ts",
+        "tokens:import": "tsx scripts/css-to-dtcg.ts",
+        "lint": "tsc --noEmit -p tsconfig.json",
         "prepack": "node ../../scripts/copy-license.mjs",
         "postpack": "node ../../scripts/copy-license.mjs --clean"
     },
@@ -38,6 +44,17 @@
             "default": "./reset.css"
         },
         "./themes/*.css": "./themes/*.css",
+        "./tokens": {
+            "types": "./tokens.d.ts",
+            "default": "./tokens.js"
+        },
+        "./tokens/*": "./tokens/*",
         "./package.json": "./package.json"
-    }
+    },
+    "devDependencies": {
+        "style-dictionary": "^5.7.0",
+        "tsx": "^4.23.15"
+    },
+    "type": "module",
+    "types": "./tokens.d.ts"
 }

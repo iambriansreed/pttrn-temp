@@ -1,6 +1,6 @@
 # pttrn Export Tokens
 
-A Figma plugin that exports the file's variables and styles (paint, effect, text and grid) as a CSS stylesheet of custom properties.
+A Figma plugin that exports the file's variables and styles (paint, effect, text and grid) as DTCG token files and as a CSS stylesheet of custom properties. The token files are the source `@ptrn/styles` builds from; the stylesheet works on its own for anyone else.
 
 ## Install it in Figma
 
@@ -21,6 +21,14 @@ The plugin is built for the USWDS Design Kit. When the file has a variable colle
 - `themes/<mode>.css`, one per mode (`default.css`, `project-theme.css`, `project-theme-dark.css`): every variable of the collection with that mode's values, under `:root, [data-uswds-theme="<mode>"]`.
 
 Load `tokens.css`, then one theme file. Each theme file is complete, so it does not need `default.css` beside it. Each also sets `:root`, so when several are loaded the last one is the page default; load more than one only to switch part of the page with `data-uswds-theme`. **Copy CSS** still copies the single all-in-one stylesheet.
+
+## Token files (DTCG)
+
+The ZIP always holds a `tokens/` folder: `manifest.json` and one [DTCG](https://www.designtokens.org/) file per variable collection, or one per mode for a collection with several modes (`<collection>/<mode>.tokens.json`). Styles are grouped the same way (`effect-styles.tokens.json`). The manifest records the Figma file, the export time and the plugin version, and lists every collection with its `data-*` attribute, modes and default mode.
+
+Each file's top-level group is the collection slug, so a reference is unambiguous across collections (`{color.usa.color.red.50}`). Every token carries `$extensions.pttrn.css` (its custom property name, exactly as the stylesheet declares it) and `$extensions.pttrn.figma` (its name in Figma). Colors are `srgb` objects with a hex fallback, sizes are `dimension` objects, font names are `fontFamily`, and a Figma string that no DTCG type fits uses `string`, pttrn's extension of the type list. A value with no DTCG form (a gradient, an image fill, a `font` shorthand) stays in the stylesheet only; the header lists them.
+
+To refresh `@ptrn/styles`, replace its `tokens/` folder with the one from the ZIP and run `npm run build --workspace @ptrn/styles`.
 
 ## What the CSS looks like
 

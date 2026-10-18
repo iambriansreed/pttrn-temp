@@ -1,0 +1,364 @@
+{
+    "spacing": {
+        "usa": {
+            "spacing": {
+                "0": {
+                    "$type": "dimension",
+                    "$value": {
+                        "value": 0,
+                        "unit": "px"
+                    },
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--usa-spacing-0",
+                            "figma": "!-usa/spacing/0"
+                        }
+                    }
+                },
+                "1": {
+                    "$type": "dimension",
+                    "$value": {
+                        "value": 8,
+                        "unit": "px"
+                    },
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--usa-spacing-1",
+                            "figma": "!-usa/spacing/1"
+                        }
+                    }
+                },
+                "2": {
+                    "$type": "dimension",
+                    "$value": {
+                        "value": 16,
+                        "unit": "px"
+                    },
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--usa-spacing-2",
+                            "figma": "!-usa/spacing/2"
+                        }
+                    }
+                },
+                "3": {
+                    "$type": "dimension",
+                    "$value": {
+                        "value": 24,
+                        "unit": "px"
+                    },
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--usa-spacing-3",
+                            "figma": "!-usa/spacing/3"
+                        }
+                    }
+                },
+                "4": {
+                    "$type": "dimension",
+                    "$value": {
+                        "value": 32,
+                        "unit": "px"
+                    },
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--usa-spacing-4",
+                            "figma": "!-usa/spacing/4"
+                        }
+                    }
+                },
+                "5": {
+                    "$type": "dimension",
+                    "$value": {
+                        "value": 40,
+                        "unit": "px"
+                    },
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--usa-spacing-5",
+                            "figma": "!-usa/spacing/5"
+                        }
+                    }
+                },
+                "6": {
+                    "$type": "dimension",
+                    "$value": {
+                        "value": 48,
+                        "unit": "px"
+                    },
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--usa-spacing-6",
+                            "figma": "!-usa/spacing/6"
+                        }
+                    }
+                },
+                "7": {
+                    "$type": "dimension",
+                    "$value": {
+                        "value": 56,
+                        "unit": "px"
+                    },
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--usa-spacing-7",
+                            "figma": "!-usa/spacing/7"
+                        }
+                    }
+                },
+                "8": {
+                    "$type": "dimension",
+                    "$value": {
+                        "value": 64,
+                        "unit": "px"
+                    },
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--usa-spacing-8",
+                            "figma": "!-usa/spacing/8"
+                        }
+                    }
+                },
+                "9": {
+                    "$type": "dimension",
+                    "$value": {
+                        "value": 72,
+                        "unit": "px"
+                    },
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--usa-spacing-9",
+                            "figma": "!-usa/spacing/9"
+                        }
+                    }
+                },
+                "10": {
+                    "$type": "dimension",
+                    "$value": {
+                        "value": 80,
+                        "unit": "px"
+                    },
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--usa-spacing-10",
+                            "figma": "!-usa/spacing/10"
+                        }
+                    }
+                },
+                "15": {
+                    "$type": "dimension",
+                    "$value": {
+                        "value": 120,
+                        "unit": "px"
+                    },
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--usa-spacing-15",
+                            "figma": "!-usa/spacing/15"
+                        }
+                    }
+                },
+                "105": {
+                    "$type": "dimension",
+                    "$value": {
+                        "value": 12,
+                        "unit": "px"
+                    },
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--usa-spacing-105",
+                            "figma": "!-usa/spacing/105"
+                        }
+                    }
+                },
+                "205": {
+                    "$type": "dimension",
+                    "$value": {
+                        "value": 20,
+                        "unit": "px"
+                    },
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--usa-spacing-205",
+                            "figma": "!-usa/spacing/205"
+                        }
+                    }
+                },
+                "1px": {
+                    "$type": "dimension",
+                    "$value": {
+                        "value": 1,
+                        "unit": "px"
+                    },
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--usa-spacing-1px",
+                            "figma": "!-usa/spacing/1px"
+                        }
+                    }
+                },
+                "2px": {
+                    "$type": "dimension",
+                    "$value": {
+                        "value": 2,
+                        "unit": "px"
+                    },
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--usa-spacing-2px",
+                            "figma": "!-usa/spacing/2px"
+                        }
+                    }
+                },
+                "05": {
+                    "$type": "dimension",
+                    "$value": {
+                        "value": 4,
+                        "unit": "px"
+                    },
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--usa-spacing-05",
+                            "figma": "!-usa/spacing/05"
+                        }
+                    }
+                },
+                "card": {
+                    "$type": "dimension",
+                    "$value": {
+                        "value": 160,
+                        "unit": "px"
+                    },
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--usa-spacing-card",
+                            "figma": "!-usa/spacing/card"
+                        }
+                    }
+                },
+                "card-lg": {
+                    "$type": "dimension",
+                    "$value": {
+                        "value": 240,
+                        "unit": "px"
+                    },
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--usa-spacing-card-lg",
+                            "figma": "!-usa/spacing/card-lg"
+                        }
+                    }
+                },
+                "mobile": {
+                    "$type": "dimension",
+                    "$value": {
+                        "value": 320,
+                        "unit": "px"
+                    },
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--usa-spacing-mobile",
+                            "figma": "!-usa/spacing/mobile"
+                        }
+                    }
+                },
+                "mobile-lg": {
+                    "$type": "dimension",
+                    "$value": {
+                        "value": 480,
+                        "unit": "px"
+                    },
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--usa-spacing-mobile-lg",
+                            "figma": "!-usa/spacing/mobile-lg"
+                        }
+                    }
+                },
+                "tablet": {
+                    "$type": "dimension",
+                    "$value": {
+                        "value": 640,
+                        "unit": "px"
+                    },
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--usa-spacing-tablet",
+                            "figma": "!-usa/spacing/tablet"
+                        }
+                    }
+                },
+                "tablet-lg": {
+                    "$type": "dimension",
+                    "$value": {
+                        "value": 880,
+                        "unit": "px"
+                    },
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--usa-spacing-tablet-lg",
+                            "figma": "!-usa/spacing/tablet-lg"
+                        }
+                    }
+                },
+                "desktop": {
+                    "$type": "dimension",
+                    "$value": {
+                        "value": 1024,
+                        "unit": "px"
+                    },
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--usa-spacing-desktop",
+                            "figma": "!-usa/spacing/desktop"
+                        }
+                    }
+                },
+                "desktop-lg": {
+                    "$type": "dimension",
+                    "$value": {
+                        "value": 1200,
+                        "unit": "px"
+                    },
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--usa-spacing-desktop-lg",
+                            "figma": "!-usa/spacing/desktop-lg"
+                        }
+                    }
+                },
+                "widescreen": {
+                    "$type": "dimension",
+                    "$value": {
+                        "value": 1400,
+                        "unit": "px"
+                    },
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--usa-spacing-widescreen",
+                            "figma": "!-usa/spacing/widescreen"
+                        }
+                    }
+                },
+                "touch-minimum": {
+                    "$value": "{spacing.usa.spacing.6}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--usa-spacing-touch-minimum",
+                            "figma": "!-usa/spacing/touch-minimum"
+                        }
+                    }
+                },
+                "pointer-minimum": {
+                    "$value": "{spacing.usa.spacing.3}",
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--usa-spacing-pointer-minimum",
+                            "figma": "!-usa/spacing/pointer-minimum"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

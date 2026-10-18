@@ -1,0 +1,23 @@
+{
+    "xx-system": {
+        "local": {
+            "xx": {
+                "spacing": {
+                    "4": {
+                        "$type": "dimension",
+                        "$value": {
+                            "value": 32,
+                            "unit": "px"
+                        },
+                        "$extensions": {
+                            "pttrn": {
+                                "css": "--local-xx-spacing-4",
+                                "figma": "local/xx/spacing/4"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

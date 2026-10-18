@@ -1,3 +1,6 @@
+/** Set by scripts/build.js from package.json when the plugin is compiled. */
+declare const PLUGIN_VERSION: string;
+
 const WINDOW_WIDTH = 320;
 
 figma.showUI(__html__, {
@@ -46,6 +49,12 @@ interface Entry {
 interface CssFile {
     name: string;
     css: string;
+}
+
+/** A DTCG token file for the tokens/ folder of the download. */
+interface TokenFile {
+    name: string;
+    text: string;
 }
 
 const WEIGHTS: Record<string, number> = {
@@ -236,6 +245,8 @@ const send = (label: string, fraction: number) => figma.ui.postMessage({ type: '
 async function buildStylesheet(): Promise<{
     css: string;
     files: CssFile[];
+    tokenFiles: TokenFile[];
+    tokens: number;
     themes: number;
     skipped: string[];
     images: ImageFile[];
@@ -741,6 +752,7 @@ async function buildStylesheet(): Promise<{
           }
         | undefined;
     const defaults = (list: Prop[]) => list.map((prop) => ({ prop, value: prop.def }));
+    const scopedCollections = new Map<string, { attr: string; defaultKey: string; keys: string[] }>();
 
     for (const id of collectionOrder) {
         const collection = collectionsInUse.get(id);
@@ -793,6 +805,7 @@ async function buildStylesheet(): Promise<{
         }
 
         modeIndex.push({ attr: `[data-${attr}]`, values: [`${defaultKey} (default)`, ...keys] });
+        scopedCollections.set(id, { attr, defaultKey, keys });
         if (collection.name === THEME_COLLECTION) themeSet = { collection, attr, defaultKey, keys, own, outside };
 
         for (const key of keys) {
@@ -831,11 +844,213 @@ async function buildStylesheet(): Promise<{
         classRules.forEach((rule) => ruleBlocks.push(textRule(`.${rule.className}`, rule)));
     }
 
+    // Phase 4: the token files. The same properties as DTCG documents, one per collection (and per mode), which is
+    // what @ptrn/styles builds its stylesheets from. Values that have no DTCG form stay in the stylesheets only.
+    send('Building token files', 0.98);
+    const exportedAt = formatTimestamp(new Date());
+    const tokenFiles: TokenFile[] = [];
+    const cssOnly: string[] = [];
+    {
+        interface TokenJson {
+            $type?: string;
+            $value: unknown;
+            $extensions: { pttrn: { css: string; figma: string } };
+        }
+        interface Json {
+            [key: string]: Json | TokenJson;
+        }
+        interface TokenCollection {
+            name: string;
+            slug: string;
+            kind: 'variables' | 'styles';
+            props: Prop[];
+            attribute?: string;
+            modes?: string[];
+            defaultMode?: string;
+            theme?: boolean;
+        }
+
+        const usedSlugs = new Set<string>();
+        const collectionSlug = (name: string) => {
+            const base = slug(name) || 'collection';
+            let next = base;
+            for (let i = 2; usedSlugs.has(next); i++) next = `${base}-${i}`;
+            usedSlugs.add(next);
+            return next;
+        };
+
+        const tokenCollections: TokenCollection[] = [];
+        for (const id of collectionOrder) {
+            const collection = collectionsInUse.get(id);
+            if (!collection) continue;
+            const entry: TokenCollection = {
+                name: collection.name,
+                slug: collectionSlug(collection.name),
+                kind: 'variables',
+                props: variableProps.filter((prop) => prop.collectionId === id),
+            };
+            const scope = scopedCollections.get(id);
+            if (scope) {
+                entry.attribute = `data-${scope.attr}`;
+                entry.modes = [scope.defaultKey].concat(scope.keys);
+                entry.defaultMode = scope.defaultKey;
+                if (collection.name === THEME_COLLECTION) entry.theme = true;
+            }
+            tokenCollections.push(entry);
+        }
+        const styleGroups: string[] = [];
+        styleProps.forEach((prop) => {
+            if (styleGroups.indexOf(prop.group) === -1) styleGroups.push(prop.group);
+        });
+        for (const group of styleGroups) {
+            tokenCollections.push({
+                name: group,
+                slug: collectionSlug(group),
+                kind: 'styles',
+                props: styleProps.filter((prop) => prop.group === group),
+            });
+        }
+
+        // `{collection}.{figma name segments}`: `!-usa/color/red/5` in the Color collection is `color.usa.color.red.5`.
+        const pathOf = (collection: TokenCollection, prop: Prop) => {
+            const segments = prop.comment.split('/').map(slug).filter(Boolean);
+            return [collection.slug].concat(segments.length ? segments : ['unnamed']).join('.');
+        };
+        const pathByCss = new Map<string, string>();
+        for (const collection of tokenCollections) {
+            for (const prop of collection.props) pathByCss.set(prop.name, pathOf(collection, prop));
+        }
+
+        const hex2 = (n: number) => (n < 16 ? '0' : '') + n.toString(16);
+        const dimension = (value: string) => ({ value: Number(value), unit: 'px' });
+        const toToken = (text: string, prop: Prop): { $type?: string; $value: unknown } | null => {
+            const alias = text.match(/^var\((--[A-Za-z0-9_-]+)\)$/);
+            if (alias) {
+                const target = pathByCss.get(alias[1]);
+                return target ? { $value: `{${target}}` } : null;
+            }
+            const color = text.match(/^rgb\((\d+) (\d+) (\d+)(?: \/ (\d*\.?\d+)%)?\)$/);
+            if (color) {
+                const [r, g, b] = [Number(color[1]), Number(color[2]), Number(color[3])];
+                return {
+                    $type: 'color',
+                    $value: {
+                        colorSpace: 'srgb',
+                        components: [round(r / 255), round(g / 255), round(b / 255)],
+                        alpha: color[4] === undefined ? 1 : round(Number(color[4]) / 100),
+                        hex: `#${hex2(r)}${hex2(g)}${hex2(b)}`,
+                    },
+                };
+            }
+            const pixels = text.match(/^(-?\d*\.?\d+)px$/);
+            if (pixels) return { $type: 'dimension', $value: dimension(pixels[1]) };
+            if (/^-?\d*\.?\d+$/.test(text)) return { $type: 'number', $value: Number(text) };
+            if (text === 'true' || text === 'false') return { $type: 'boolean', $value: text === 'true' };
+            const quoted = text.match(/^"(.*)"$/);
+            if (quoted) {
+                if (/font-family/.test(prop.comment)) return { $type: 'fontFamily', $value: quoted[1] };
+                if (/font-weight/.test(prop.comment)) return { $type: 'fontWeight', $value: quoted[1] };
+                // No DTCG type fits a plain string (a size name, a focus style); `string` is pttrn's extension.
+                return { $type: 'string', $value: quoted[1] };
+            }
+            const layers = text.split(/,(?![^(]*\))/).map((layer) => {
+                const shadow = layer
+                    .trim()
+                    .match(/^(inset )?(-?\d*\.?\d+)px (-?\d*\.?\d+)px (-?\d*\.?\d+)px (-?\d*\.?\d+)px (rgb\(.*\))$/);
+                const shadowColor = shadow ? toToken(shadow[6], prop) : null;
+                if (!shadow || !shadowColor || shadowColor.$type !== 'color') return null;
+                return Object.assign(shadow[1] ? { inset: true } : {}, {
+                    color: shadowColor.$value,
+                    offsetX: dimension(shadow[2]),
+                    offsetY: dimension(shadow[3]),
+                    blur: dimension(shadow[4]),
+                    spread: dimension(shadow[5]),
+                });
+            });
+            if (layers.length && layers.every((layer) => layer !== null)) {
+                return { $type: 'shadow', $value: layers.length === 1 ? layers[0] : layers };
+            }
+            return null;
+        };
+
+        const place = (root: Json, segments: string[], token: TokenJson) => {
+            let node = root;
+            for (const segment of segments.slice(0, -1)) {
+                const next = node[segment];
+                if (next && '$value' in next) return false;
+                node = (next as Json) || (node[segment] = {});
+            }
+            const last = segments[segments.length - 1];
+            if (node[last]) return false;
+            node[last] = token;
+            return true;
+        };
+        const skip = (prop: Prop) => {
+            if (cssOnly.indexOf(prop.name) === -1) cssOnly.push(prop.name);
+        };
+        const document = (collection: TokenCollection, mode?: string) => {
+            const root: Json = {};
+            for (const prop of collection.props) {
+                const value = mode && mode !== collection.defaultMode ? prop.modes.get(mode) || prop.def : prop.def;
+                const token = toToken(value.text, prop);
+                if (!token) {
+                    skip(prop);
+                    continue;
+                }
+                const placed = place(
+                    root,
+                    pathOf(collection, prop).split('.'),
+                    Object.assign(token, { $extensions: { pttrn: { css: prop.name, figma: prop.comment } } }),
+                );
+                if (!placed) skip(prop);
+            }
+            return root;
+        };
+        const json = (value: unknown) => `${JSON.stringify(value, null, 4)}\n`;
+
+        const manifestCollections: { [key: string]: unknown }[] = [];
+        for (const collection of tokenCollections) {
+            const entry: { [key: string]: unknown } = {
+                name: collection.name,
+                slug: collection.slug,
+                kind: collection.kind,
+            };
+            if (collection.attribute) {
+                entry.attribute = collection.attribute;
+                entry.modes = collection.modes;
+                entry.defaultMode = collection.defaultMode;
+            }
+            if (collection.theme) entry.theme = true;
+            if (collection.modes && collection.modes.length > 1) {
+                const files: { [mode: string]: string } = {};
+                for (const mode of collection.modes) {
+                    files[mode] = `${collection.slug}/${mode}.tokens.json`;
+                    tokenFiles.push({ name: `tokens/${files[mode]}`, text: json(document(collection, mode)) });
+                }
+                entry.files = files;
+            } else {
+                const file = `${collection.slug}.tokens.json`;
+                entry.file = file;
+                tokenFiles.push({ name: `tokens/${file}`, text: json(document(collection)) });
+            }
+            manifestCollections.push(entry);
+        }
+        tokenFiles.unshift({
+            name: 'tokens/manifest.json',
+            text: json({
+                source: {
+                    figmaFile: figma.root.name,
+                    exportedAt,
+                    exporter: 'pttrn Export Tokens',
+                    pluginVersion: PLUGIN_VERSION,
+                },
+                collections: manifestCollections,
+            }),
+        });
+    }
+
     const images = Array.from(imageFiles.values());
-    const generated = [
-        `Figma file: ${figma.root.name}`,
-        `Generated by pttrn Export Tokens on ${formatTimestamp(new Date())}`,
-    ];
+    const generated = [`Figma file: ${figma.root.name}`, `Generated by pttrn Export Tokens on ${exportedAt}`];
     const header = [
         ...generated,
         '',
@@ -886,6 +1101,19 @@ async function buildStylesheet(): Promise<{
             if (pick) header.push(`  ${element}${' '.repeat(width - element.length)}${pick.style}`);
         });
         header.push('', 'Every text style is also a class, for example .' + (classRules[0]?.className ?? 'body') + '.');
+    }
+
+    header.push(
+        '',
+        'Token files',
+        'The tokens/ folder in the download holds the same tokens as DTCG files: manifest.json plus one file',
+        'per collection, or per mode of a collection with several. @ptrn/styles builds its stylesheets from them.',
+    );
+    if (cssOnly.length) {
+        header.push(
+            `${cssOnly.length} ${cssOnly.length === 1 ? 'property has' : 'properties have'} no DTCG form and ${cssOnly.length === 1 ? 'is' : 'are'} in the stylesheets only:`,
+            ...listLines('  ', cssOnly),
+        );
     }
 
     if (images.length) {
@@ -957,6 +1185,8 @@ async function buildStylesheet(): Promise<{
             ),
         ),
         files,
+        tokenFiles,
+        tokens: props.length - cssOnly.length,
         themes: themeSet ? themeSet.keys.length + 1 : 0,
         skipped: Array.from(warnings),
         images,

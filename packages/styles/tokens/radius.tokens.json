@@ -1,0 +1,34 @@
+{
+    "radius": {
+        "usa": {
+            "radius": {
+                "none": {
+                    "$type": "dimension",
+                    "$value": {
+                        "value": 0,
+                        "unit": "px"
+                    },
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--usa-radius-none",
+                            "figma": "!-usa/radius/none"
+                        }
+                    }
+                },
+                "pill": {
+                    "$type": "dimension",
+                    "$value": {
+                        "value": 1000,
+                        "unit": "px"
+                    },
+                    "$extensions": {
+                        "pttrn": {
+                            "css": "--usa-radius-pill",
+                            "figma": "!-usa/radius/pill"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

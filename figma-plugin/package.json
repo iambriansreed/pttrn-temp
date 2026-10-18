@@ -1,8 +1,8 @@
 {
     "name": "ptrn-figma-plugin",
     "version": "0.0.1",
-    "license": "CC-BY-4.0",
-    "description": "Figma plugin that exports Pattern Design System tokens as a CSS stylesheet.",
+    "license": "MIT",
+    "description": "Figma plugin that exports Pattern Design System tokens as DTCG token files and CSS stylesheets.",
     "engines": {
         "node": ">=24"
     },
