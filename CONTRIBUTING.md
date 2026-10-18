@@ -17,15 +17,17 @@ npm run build   # icons, then react, then web. The docs site and the MCP server 
 npm run dev     # docs site at http://localhost:8055, after generating the component metadata
 ```
 
-| Script                 | What it does                                                        |
-| ---------------------- | ------------------------------------------------------------------- |
-| `npm run build`        | Builds the publishable packages in dependency order.                |
-| `npm run build:docs`   | Builds the docs site into `docs/dist`.                              |
-| `npm run build:plugin` | Builds the Figma plugin.                                            |
-| `npm run lint`         | ESLint, Stylelint and TypeScript in every workspace that has them.  |
-| `npm test`             | Every workspace's tests. Build first; several suites run on `dist`. |
-| `npm run pretty`       | Prettier over the repo.                                             |
-| `npx changeset`        | Records a release note for a package you changed (see Releases).    |
+| Script                   | What it does                                                                                               |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------- |
+| `npm run build`          | Builds the publishable packages in dependency order.                                                       |
+| `npm run build:docs`     | Builds the docs site into `docs/dist`.                                                                     |
+| `npm run build:plugin`   | Builds the Figma plugin.                                                                                   |
+| `npm run lint`           | ESLint, Stylelint and TypeScript in every workspace that has them.                                         |
+| `npm test`               | Every workspace's tests. Build first; several suites run on `dist`.                                        |
+| `npm run pretty`         | Prettier over the repo.                                                                                    |
+| `npm run check:pack`     | Dry-runs `npm pack` for every package and checks what would ship.                                          |
+| `npm run smoke:consumer` | Installs the packed tarballs into a throwaway project and renders a component (pass `-- 19` for React 19). |
+| `npx changeset`          | Records a release note for a package you changed (see Releases).                                           |
 
 ## Workflow
 
@@ -75,4 +77,4 @@ Open an issue with one of the templates: bug, component or token request, or imp
 
 ## Conduct and license
 
-Everyone here follows the [Code of Conduct](CODE_OF_CONDUCT.md). By contributing you agree your work is released under the repository [LICENSE](LICENSE); see [attribution.md](attribution.md) for where the code came from.
+Everyone here follows the [Code of Conduct](CODE_OF_CONDUCT.md). By contributing you agree your work is released under the repository [LICENSE](LICENSE) (MIT); see [NOTICE.md](NOTICE.md) for where the code came from.

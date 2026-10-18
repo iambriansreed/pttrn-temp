@@ -1,8 +1,8 @@
-# Attribution
+# Notice
 
-pttrn (Pattern Design System) is built from the **Bespoke Design System** (BSPK), created by [Brian S. Reed](https://github.com/iambriansreed) while at Anywhere Real Estate and released under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). This file is the attribution.
+pttrn (Pattern Design System) is released under the [MIT License](LICENSE). It is built from the **Bespoke Design System** (BSPK), created by [Brian S. Reed](https://github.com/iambriansreed) while at Anywhere Real Estate and released under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). This file is the attribution that license requires, and the notice for the third-party assets the packages include.
 
-Copyright 2025–2026 Anywhere Real Estate. Licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/); the full text is in [LICENSE](LICENSE). This notice appeared at the end of each original README and is kept here once.
+BSPK: Copyright 2025–2026 Anywhere Real Estate, licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). The material has been changed as described below.
 
 The original repositories were hosted at [github.com/Anywhererealestate](https://github.com/Anywhererealestate).
 
@@ -31,6 +31,6 @@ This project keeps the work usable on its own terms. It is not affiliated with, 
 
 ## Provenance of the assets
 
-- The `material` icon set is derived from [Material Symbols](https://fonts.google.com/icons), published by Google under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
+- The `material` icon set is derived from [Material Symbols](https://fonts.google.com/icons), published by Google under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0). A copy of that license ships with `@ptrn/icons` as `LICENSE-APACHE-2.0.txt`.
 - The `nowhere` icon set and the component library originate from BSPK. The original design tokens did too; they have been replaced by USWDS tokens.
 - The `Flag` component embeds the flag sprite from [world-flags-sprite](https://github.com/lafeber/world-flags-sprite), Copyright (c) 2012 Martijn Lafeber, 2018 Francescu Garoby, released under the MIT License. The MIT License notice is included here as the license requires: permission is granted, free of charge, to use, copy, modify, merge, publish, distribute, sublicense, and/or sell the Software, provided this copyright notice and permission notice are included in all copies or substantial portions of it. The Software is provided "as is", without warranty of any kind.

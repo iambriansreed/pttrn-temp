@@ -56,4 +56,4 @@ import { StylesProvider } from '@ptrn/react/StylesProvider';
 
 ## Attribution
 
-See [attribution.md](attribution.md) for where this code came from.
+pttrn is released under the [MIT License](LICENSE). See [NOTICE.md](NOTICE.md) for where this code came from and for the licenses of the third-party assets it includes.

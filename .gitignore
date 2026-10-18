@@ -32,3 +32,7 @@ tmp/
 !.env.example
 .claude/settings.local.json
 /plan.md
+
+# License files copied into each package by scripts/copy-license.mjs while packing
+packages/*/LICENSE
+packages/*/NOTICE.md
