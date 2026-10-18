@@ -36,13 +36,14 @@
         }
     },
     "scripts": {
-        "build": "tsx build.ts",
+        "build": "npm run check:css-vars && tsx build.ts",
         "newc": "tsx .scripts/new-component.ts",
         "lint": "eslint && tsc --noEmit && stylelint '**/*.scss'",
         "lint:fix": "eslint --fix",
         "test": "playwright test",
         "prepack": "node ../../scripts/copy-license.mjs",
-        "postpack": "node ../../scripts/copy-license.mjs --clean"
+        "postpack": "node ../../scripts/copy-license.mjs --clean",
+        "check:css-vars": "node ../../scripts/check-css-vars.mjs src"
     },
     "dependencies": {
         "lit": "^3.3.0"

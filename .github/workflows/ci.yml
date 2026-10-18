@@ -49,8 +49,7 @@ jobs:
             - run: npm run lint
             - run: npx tsx .scripts/tasks/lint-components.ts
               working-directory: packages/react
-            - run: npx tsx .scripts/check-css-vars.ts
-              working-directory: packages/react
+            - run: npm run check:css-vars --workspace @ptrn/react --workspace @ptrn/web
             - run: npx prettier --check .
             # The stylesheets and the token module in @ptrn/styles are built from tokens/ and committed; they must match.
             - name: Built token files match the committed ones

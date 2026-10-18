@@ -27,7 +27,7 @@
     },
     "scripts": {
         "sass": "npx sass --no-source-map --pkg-importer=node --silence-deprecation=mixed-decls src:dist",
-        "build": "npx tsx build.ts",
+        "build": "npm run check:css-vars && npx tsx build.ts",
         "lint:css": "npx stylelint '**/*.scss'",
         "lint:css:fix": "npx stylelint '**/*.scss' --fix",
         "lint": "eslint && tsc --noEmit && stylelint '**/*.scss'",
@@ -38,9 +38,10 @@
         "newc": "tsx .scripts/tasks/new-component.ts",
         "create:tests": "tsx .scripts/tasks/create-tests.ts",
         "clean": "tsx .scripts/clean.ts",
-        "pr-check": "npx tsx .scripts/tasks/lint-components.ts && npm run lint && npm run lint:css && npx tsx .scripts/check-css-vars.ts && npm run build && npm run test",
+        "pr-check": "npx tsx .scripts/tasks/lint-components.ts && npm run lint && npm run build && npm run test",
         "prepack": "node ../../scripts/copy-license.mjs",
-        "postpack": "node ../../scripts/copy-license.mjs --clean"
+        "postpack": "node ../../scripts/copy-license.mjs --clean",
+        "check:css-vars": "node ../../scripts/check-css-vars.mjs src --base src/styles/base.scss --base src/styles/_color-variants.scss"
     },
     "static-exports": {
         "./*": {
