@@ -1,20 +1,34 @@
-.*
-!.gitignore
-!.github
-!.nvmrc
-!.vscode
-!.prettierignore
-!.prettierrc
-!.scripts
-!.stylelint*
-node_modules
-dist
-tmp
+# Dependencies
+node_modules/
+
+# Build output (each package also ignores its own generated files)
+dist/
 *.tgz
+packages/react/types.json
+packages/mcp/data/
+docs/src/meta/*
+!docs/src/meta/README.md
+
+# Test output
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+coverage/
+
+# Logs and scratch
 *.log
-/test-results/
-/playwright-report/
-/blob-report/
-/playwright/.cache/
+tmp/
+.tmp/
+
+# Editors and OS
+.DS_Store
+.idea/
+*.swp
+
+# Local-only files
+.env
+.env.*
+!.env.example
 .claude/settings.local.json
-packages/mcp/data
+/plan.md
