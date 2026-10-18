@@ -10,6 +10,7 @@ A monorepo for the Pattern Design System: React components, Web Components, icon
 | [`packages/web`](packages/web)       | `@ptrn/web`         | The same components as framework-free Web Components (Lit). Accordion so far. |
 | [`packages/icons`](packages/icons)   | `@ptrn/icons`       | The icon set (material and custom `nowhere` icons).                           |
 | [`packages/styles`](packages/styles) | `@ptrn/styles`      | The USWDS design tokens and themes, plus the shared reset.                    |
+| [`packages/mcp`](packages/mcp)       | `@ptrn/mcp`         | MCP server for AI coding tools: components, tokens, icons and a validator.    |
 | [`docs`](docs)                       | `ptrn-docs`         | The documentation and demo site, built with the packages above.               |
 | [`figma-plugin`](figma-plugin)       | `ptrn-figma-plugin` | Figma plugin that exports design tokens for `@ptrn/styles`.                   |
 
@@ -18,6 +19,7 @@ A monorepo for the Pattern Design System: React components, Web Components, icon
 ```bash
 npm install @ptrn/react   # React components
 npm install @ptrn/web     # Web Components, no React needed
+claude mcp add pttrn -- npx -y @ptrn/mcp   # MCP server for AI coding tools
 ```
 
 Both take their design tokens from the `@ptrn/styles` stylesheets on the page (see [Theme](#theme)). No `.npmrc` or token is needed.
