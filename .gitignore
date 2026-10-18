@@ -16,6 +16,5 @@ tmp
 /playwright-report/
 /blob-report/
 /playwright/.cache/
-plan.md
 .claude/settings.local.json
 packages/mcp/data
