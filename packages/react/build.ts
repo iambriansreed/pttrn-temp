@@ -28,8 +28,6 @@ import packageData from './package.json';
 
 import { compilerOptions } from './tsconfig.json';
 
- 
-
 const exec = util.promisify(child_process.exec);
 const writeFile = util.promisify(fs.writeFile);
 const readDir = util.promisify(fs.readdir);
