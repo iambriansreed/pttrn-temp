@@ -78,11 +78,54 @@ const WEIGHTS: Record<string, number> = {
 
 const IMAGE_DIR = 'images';
 
-// Built for the USWDS Design Kit: this collection's modes are written as separate theme files, and everything else
-// goes in BASE_FILE. A file without this collection gets the single stylesheet only.
-const THEME_COLLECTION = 'USWDS Theme';
+// The theme collection's modes are written as separate theme files, and everything else goes in BASE_FILE. Built for
+// the USWDS Design Kit, so a collection with this name is the theme unless the panel picked another one (or none); the
+// choice is stored in the file, so it holds for everyone who runs the plugin there.
+const DEFAULT_THEME_COLLECTION = 'USWDS Theme';
+const THEME_SETTING = 'themeCollection';
+const NO_THEME = 'none';
 const BASE_FILE = 'tokens.css';
 const THEME_DIR = 'themes';
+
+/** A variable collection with several modes, offered in the panel as the theme collection. */
+interface ThemeOption {
+    id: string;
+    name: string;
+    modes: number;
+}
+
+async function themeOptions(): Promise<ThemeOption[]> {
+    const collections = await figma.variables.getLocalVariableCollectionsAsync();
+    return collections
+        .filter((collection) => collection.modes.length > 1)
+        .map((collection) => ({ id: collection.id, name: collection.name, modes: collection.modes.length }));
+}
+
+// The saved choice first, then the kit's collection, then any collection with "theme" in its name.
+function pickThemeCollection(options: ThemeOption[], saved: string): string | null {
+    if (saved === NO_THEME) return null;
+    if (saved && options.some((option) => option.id === saved)) return saved;
+    const option =
+        options.find((option) => option.name === DEFAULT_THEME_COLLECTION) ??
+        options.find((option) => /theme/i.test(option.name));
+    return option ? option.id : null;
+}
+
+function readThemeSetting() {
+    try {
+        return figma.root.getPluginData(THEME_SETTING);
+    } catch {
+        return '';
+    }
+}
+
+function saveThemeSetting(value: string) {
+    try {
+        figma.root.setPluginData(THEME_SETTING, value);
+    } catch {
+        // A view-only file cannot store plugin data; the choice still applies to this export.
+    }
+}
 
 const GRID_ALIGNMENTS = { MIN: 'start', MAX: 'end', CENTER: 'center', STRETCH: 'stretch' };
 
@@ -242,7 +285,7 @@ const yieldToUi = () => new Promise<void>((resolve) => setTimeout(resolve, 0));
 
 const send = (label: string, fraction: number) => figma.ui.postMessage({ type: 'EXPORT_PROGRESS', label, fraction });
 
-async function buildStylesheet(): Promise<{
+async function buildStylesheet(themeCollectionId: string | null): Promise<{
     css: string;
     files: CssFile[];
     tokenFiles: TokenFile[];
@@ -806,7 +849,7 @@ async function buildStylesheet(): Promise<{
 
         modeIndex.push({ attr: `[data-${attr}]`, values: [`${defaultKey} (default)`, ...keys] });
         scopedCollections.set(id, { attr, defaultKey, keys });
-        if (collection.name === THEME_COLLECTION) themeSet = { collection, attr, defaultKey, keys, own, outside };
+        if (collection.id === themeCollectionId) themeSet = { collection, attr, defaultKey, keys, own, outside };
 
         for (const key of keys) {
             const overrides = themed.map((prop) => ({ prop, value: prop.modes.get(key) ?? prop.def }));
@@ -894,7 +937,7 @@ async function buildStylesheet(): Promise<{
                 entry.attribute = `data-${scope.attr}`;
                 entry.modes = [scope.defaultKey].concat(scope.keys);
                 entry.defaultMode = scope.defaultKey;
-                if (collection.name === THEME_COLLECTION) entry.theme = true;
+                if (collection.id === themeCollectionId) entry.theme = true;
             }
             tokenCollections.push(entry);
         }
@@ -1195,7 +1238,14 @@ async function buildStylesheet(): Promise<{
     };
 }
 
-figma.ui.onmessage = async (message: { type?: string; height?: number }) => {
+interface UiMessage {
+    type?: string;
+    height?: number;
+    /** The theme collection to use: an id, null for none, or absent to use the saved or detected one. */
+    themeCollection?: string | null;
+}
+
+figma.ui.onmessage = async (message: UiMessage) => {
     if (message.type === 'RESIZE' && typeof message.height === 'number') {
         figma.ui.resize(WINDOW_WIDTH, Math.min(600, Math.max(100, Math.ceil(message.height))));
         return;
@@ -1204,10 +1254,23 @@ figma.ui.onmessage = async (message: { type?: string; height?: number }) => {
     if (message.type !== 'EXPORT') return;
 
     try {
-        const result = await buildStylesheet();
+        const options = await themeOptions();
+        let themeCollection: string | null;
+        if (message.themeCollection === undefined) {
+            themeCollection = pickThemeCollection(options, readThemeSetting());
+        } else {
+            themeCollection = options.some((option) => option.id === message.themeCollection)
+                ? (message.themeCollection as string)
+                : null;
+            saveThemeSetting(themeCollection ?? NO_THEME);
+        }
+
+        const result = await buildStylesheet(themeCollection);
         figma.ui.postMessage({
             type: 'EXPORT_RESULT',
             ...result,
+            themeOptions: options,
+            themeCollection,
             fileName: slug(figma.root.name) || 'tokens',
             imageDir: IMAGE_DIR,
             figmaFile: figma.root.name,

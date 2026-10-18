@@ -15,12 +15,12 @@ From Figma: **Plugins → Development → "Import Plugin from Manifest…"** and
 
 ## Theme files (USWDS Design Kit)
 
-The plugin is built for the USWDS Design Kit. When the file has a variable collection named `USWDS Theme` (`THEME_COLLECTION` in `src/code.ts`), the ZIP holds a split export in place of the single stylesheet:
+The plugin is built for the USWDS Design Kit. One variable collection with several modes is the theme collection: the one named `USWDS Theme` when the file has it, otherwise the first collection with "theme" in its name. The **Theme collection** menu on the result screen picks another one, or none; the choice is stored in the file (as plugin data), so it holds for everyone who runs the plugin there. With a theme collection the ZIP holds a split export in place of the single stylesheet:
 
 - `tokens.css`: everything except that collection (primitives, the other collections and their modes, element defaults and text style classes).
 - `themes/<mode>.css`, one per mode (`default.css`, `project-theme.css`, `project-theme-dark.css`): every variable of the collection with that mode's values, under `:root, [data-uswds-theme="<mode>"]`.
 
-Load `tokens.css`, then one theme file. Each theme file is complete, so it does not need `default.css` beside it. Each also sets `:root`, so when several are loaded the last one is the page default; load more than one only to switch part of the page with `data-uswds-theme`. **Copy CSS** still copies the single all-in-one stylesheet.
+Load `tokens.css`, then one theme file. Each theme file is complete, so it does not need `default.css` beside it. Each also sets `:root`, so when several are loaded the last one is the page default; load more than one only to switch part of the page with `data-uswds-theme`. **Copy CSS** still copies the single all-in-one stylesheet. With no theme collection, every multi-mode collection stays in the stylesheet as attribute-scoped blocks.
 
 ## Token files (DTCG)
 

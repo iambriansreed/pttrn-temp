@@ -11,6 +11,10 @@ interface ExportResult {
     tokenFiles: { name: string; text: string }[];
     tokens: number;
     themes: number;
+    /** Every variable collection with several modes; one of them can be the theme. */
+    themeOptions: { id: string; name: string; modes: number }[];
+    /** The collection whose modes became theme files, or null when the modes stayed in the stylesheet. */
+    themeCollection: string | null;
     skipped: string[];
     images: { name: string; bytes: Uint8Array }[];
     fileName: string;
@@ -108,6 +112,8 @@ function createZip(files: ZipFile[]) {
         imagesCell: '[data-images-cell]',
         images: '[data-images]',
         imagesLabel: '[data-images-label]',
+        themeSetting: '[data-theme-setting]',
+        themeSelect: '[data-theme-select]',
         download: '[data-download]',
         copy: '[data-copy]',
         feedback: '[data-feedback]',
@@ -174,12 +180,33 @@ function createZip(files: ZipFile[]) {
         fit();
     }
 
-    function start() {
+    // Without a theme collection the plugin uses the one saved in the file, or detects it.
+    function start(themeCollection?: string | null) {
         result = null;
         setProgress('Starting export', 0);
         feedback('');
         show('working');
-        parent.postMessage({ pluginMessage: { type: 'EXPORT' } }, '*');
+        const message: { type: string; themeCollection?: string | null } = { type: 'EXPORT' };
+        if (themeCollection !== undefined) message.themeCollection = themeCollection;
+        parent.postMessage({ pluginMessage: message }, '*');
+    }
+
+    function showThemeOptions({ themeOptions, themeCollection }: ExportResult) {
+        ui!.themeSetting.hidden = themeOptions.length === 0;
+        const select = ui!.themeSelect as HTMLSelectElement;
+        const none = document.createElement('option');
+        none.value = '';
+        none.textContent = 'None (modes stay in the stylesheet)';
+        select.replaceChildren(
+            none,
+            ...themeOptions.map((option) => {
+                const element = document.createElement('option');
+                element.value = option.id;
+                element.textContent = `${option.name} (${option.modes} modes)`;
+                return element;
+            }),
+        );
+        select.value = themeCollection ?? '';
     }
 
     // Figma's iframe often blocks the async clipboard API, so fall back to execCommand.
@@ -234,6 +261,7 @@ function createZip(files: ZipFile[]) {
         ui!.modesCell.hidden = next.modeAttributes === 0;
         ui!.themesCell.hidden = next.themes === 0;
         ui!.imagesCell.hidden = images === 0;
+        showThemeOptions(next);
 
         ui!.download.textContent =
             images || next.files.length || next.tokenFiles.length ? 'Download ZIP' : 'Download CSS';
@@ -294,8 +322,9 @@ function createZip(files: ZipFile[]) {
         }
     };
 
-    ui.retry.onclick = start;
-    ui.again.onclick = start;
+    ui.retry.onclick = () => start();
+    ui.again.onclick = () => start();
+    ui.themeSelect.onchange = () => start((ui!.themeSelect as HTMLSelectElement).value || null);
 
     window.onmessage = ({ data }) => {
         const message = data?.pluginMessage;

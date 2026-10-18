@@ -198,9 +198,31 @@
         background: var(--brand-hover);
     }
 
-    button:focus-visible {
+    button:focus-visible,
+    select:focus-visible {
         outline: 2px solid var(--brand);
         outline-offset: 2px;
+    }
+
+    /* Settings */
+    .setting {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .setting span {
+        color: var(--muted);
+    }
+
+    select {
+        height: 32px;
+        padding: 0 8px;
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        background: var(--bg);
+        color: var(--text);
+        font: inherit;
     }
 
     /* Messages */
@@ -353,6 +375,11 @@
                 <ul class="reasons" data-skipped-list></ul>
             </div>
         </div>
+
+        <label class="setting" data-theme-setting hidden>
+            <span>Theme collection, exported as one file per mode</span>
+            <select data-theme-select></select>
+        </label>
 
         <div class="actions">
             <button type="button" class="primary" data-download>Download CSS</button>
