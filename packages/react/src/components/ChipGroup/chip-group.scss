@@ -1,9 +1,9 @@
 [data-pttrn='chip-group'] {
     display: flex;
-    gap: var(--spacing-sizing-02);
+    gap: var(--usa-spacing-1);
     width: 100%;
     flex-flow: row wrap;
-    padding-bottom: var(--spacing-sizing-01);
+    padding-bottom: var(--usa-spacing-05);
 
     &:empty {
         display: none;

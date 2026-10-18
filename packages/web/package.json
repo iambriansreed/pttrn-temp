@@ -48,6 +48,7 @@
         "@eslint/js": "^9.39.1",
         "@playwright/test": "^1.50.1",
         "@ptrn/icons": "*",
+        "@ptrn/styles": "*",
         "@types/node": "^22.10.2",
         "esbuild": "^0.28.0",
         "eslint": "^9.39.1",

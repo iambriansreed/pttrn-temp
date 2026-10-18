@@ -6,37 +6,37 @@
 
     &[data-size='small'] {
         [data-star] {
-            width: var(--spacing-sizing-06);
-            height: var(--spacing-sizing-06);
+            width: var(--usa-spacing-3);
+            height: var(--usa-spacing-3);
         }
 
         svg {
-            width: var(--spacing-sizing-04);
-            height: var(--spacing-sizing-04);
+            width: var(--usa-spacing-2);
+            height: var(--usa-spacing-2);
         }
     }
 
     &[data-size='medium'] {
         [data-star] {
-            width: var(--spacing-sizing-08);
-            height: var(--spacing-sizing-08);
+            width: var(--usa-spacing-4);
+            height: var(--usa-spacing-4);
         }
 
         svg {
-            width: var(--spacing-sizing-06);
-            height: var(--spacing-sizing-06);
+            width: var(--usa-spacing-3);
+            height: var(--usa-spacing-3);
         }
     }
 
     &[data-size='large'] {
         [data-star] {
-            width: var(--spacing-sizing-10);
-            height: var(--spacing-sizing-10);
+            width: var(--usa-spacing-5);
+            height: var(--usa-spacing-5);
         }
 
         svg {
-            width: var(--spacing-sizing-08);
-            height: var(--spacing-sizing-08);
+            width: var(--usa-spacing-4);
+            height: var(--usa-spacing-4);
         }
     }
 
@@ -49,7 +49,7 @@
         align-items: center;
         justify-content: center;
         position: relative;
-        color: var(--surface-neutral-t3-low);
+        color: var(--theme-color-base-lighter);
 
         &:is(button) {
             cursor: pointer;
@@ -59,14 +59,14 @@
             }
 
             &:focus-visible {
-                outline: 1px solid var(--stroke-neutral-focus);
-                border-color: var(--stroke-neutral-focus);
+                outline: 1px solid var(--theme-global-focus-color);
+                border-color: var(--theme-global-focus-color);
                 margin-bottom: 1px;
             }
         }
 
         &[data-fill='full'] {
-            color: var(--status-warning);
+            color: var(--theme-color-warning-medium);
         }
 
         /* half star fill */
@@ -76,7 +76,7 @@
             overflow: hidden;
 
             [data-star] {
-                color: var(--status-warning);
+                color: var(--theme-color-warning-medium);
             }
         }
     }

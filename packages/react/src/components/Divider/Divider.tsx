@@ -22,9 +22,9 @@ export type DividerProps = {
      */
     padding?: boolean;
     /**
-     * The inset (margin) of the divider. The value is a number between 0 and 12, which corresponds to the spacing
-     * sizing variables defined in the theme. The inset is applied to the left and right sides of the divider when the
-     * orientation is horizontal, and to the top and bottom when the orientation is vertical.
+     * The inset (margin) of the divider. The value is a number between 0 and 12, in steps of the USWDS half unit
+     * (`--usa-spacing-05`, 4px). The inset is applied to the left and right sides of the divider when the orientation
+     * is horizontal, and to the top and bottom when the orientation is vertical.
      *
      * @default 0
      */
@@ -34,7 +34,7 @@ export type DividerProps = {
 const insetToVariable = (insetProp: number | string) => {
     const inset = Number(insetProp);
     if (inset === undefined || inset === null || inset < 1 || inset > 12) return '0px';
-    return `var(--spacing-sizing-${inset.toString().padStart(2, '0')})`;
+    return `calc(var(--usa-spacing-05) * ${inset})`;
 };
 
 /**

@@ -7,15 +7,7 @@ import { CommonProps } from '-/types/common';
 import { ColorVariant } from '-/utils/colorVariants';
 
 export type SizeVariant =
-    | 'large'
-    | 'medium'
-    | 'small'
-    | 'x-large'
-    | 'x-small'
-    | 'xx-large'
-    | 'xxx-large'
-    | 'xxxx-large'
-    | 'xxxxx-large';
+    'large' | 'medium' | 'small' | 'x-large' | 'x-small' | 'xx-large' | 'xxx-large' | 'xxxx-large' | 'xxxxx-large';
 
 export type AvatarProps = CommonProps<'disabled'> & {
     /**
@@ -36,9 +28,9 @@ export type AvatarProps = CommonProps<'disabled'> & {
     /**
      * The color of the avatar.
      *
-     * @default grey
+     * @default base
      */
-    color?: Exclude<ColorVariant, 'white'>;
+    color?: ColorVariant;
     /**
      * Customizable initials to display in the avatar limited to 2 characters.
      *
@@ -87,7 +79,7 @@ export type AvatarProps = CommonProps<'disabled'> & {
  *     import { Avatar } from '@ptrn/react/Avatar';
  *
  *     <Avatar
- *         color="blue"
+ *         color="info"
  *         showIcon
  *         image="/avatar-01.png"
  *         initials="AR"
@@ -106,7 +98,7 @@ export type AvatarProps = CommonProps<'disabled'> & {
  */
 export function Avatar({
     initials: initialsProp,
-    color = 'grey',
+    color = 'base',
     size = 'small',
     showIcon,
     image,

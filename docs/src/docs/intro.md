@@ -12,7 +12,7 @@ Interested in contributing to the Pattern Design System or have feedback about t
 npm install @ptrn/react
 ```
 
-The `@ptrn/react` package provides all React components, hooks, and utilities needed for development teams. It automatically includes all styles from `@ptrn/styles`, so you don't need to install `@ptrn/styles` separately. To apply styles, wrap your app with a <a href="/styles#style-providers">StyleProvider</a>. Explore the available components on the <a data-testid="components-link" href="/components">components page</a>.
+The `@ptrn/react` package provides all React components, hooks, and utilities needed for development teams. It automatically includes all styles from `@ptrn/styles`, so you don't need to install `@ptrn/styles` separately. To apply styles, render the <a href="/styles#style-providers">StylesProvider</a>. Explore the available components on the <a data-testid="components-link" href="/components">components page</a>.
 
 ## @ptrn/icons
 
@@ -28,7 +28,7 @@ The `@ptrn/icons` package provides a comprehensive set of icons for development 
 npm install @ptrn/styles
 ```
 
-The `@ptrn/styles` package is typically not used directly unless you are building with something other than React or need to access raw stylesheets and utilities. It contains all the foundational styles and utilities, based on the latest Pattern design tokens from Figma. You can browse the available stylesheets on the <a data-testid="styles-link" href="/style">styles page</a>.
+The `@ptrn/styles` package is typically not used directly unless you are building with something other than React or need to access raw stylesheets and utilities. It contains the USWDS design tokens and themes, exported from the USWDS Design Kit in Figma, and the shared reset. You can browse the available stylesheets on the <a data-testid="styles-link" href="/style">styles page</a>.
 
 ### Versioning
 

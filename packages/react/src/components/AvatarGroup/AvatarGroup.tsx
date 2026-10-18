@@ -12,8 +12,8 @@ export type AvatarGroupProps = CommonProps<'style'> & {
      * @example
      *     [
      *         { name: 'Fezzik', image: '/avatar-01.png' },
-     *         { name: 'Inigo Montoya', initials: 'IM', color: 'blue' },
-     *         { name: 'Miracle Max', initials: 'MM', color: 'green' },
+     *         { name: 'Inigo Montoya', initials: 'IM', color: 'info' },
+     *         { name: 'Miracle Max', initials: 'MM', color: 'success' },
      *         { name: 'Princess Buttercup', showIcon: true },
      *     ];
      *
@@ -54,7 +54,7 @@ export type AvatarGroupProps = CommonProps<'style'> & {
  *     import { AvatarGroup } from '@ptrn/react/AvatarGroup';
  *
  *     <AvatarGroup
- *         style={{ marginLeft: 'var(--spacing-sizing-12)' }}
+ *         style={{ marginLeft: 'var(--usa-spacing-6)' }}
  *         size="medium"
  *         max={4}
  *         variant="stacked"

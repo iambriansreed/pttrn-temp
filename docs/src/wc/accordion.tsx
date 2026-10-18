@@ -85,7 +85,7 @@ export const accordionWc: WebComponentDemo = {
     tag: 'ptrn-accordion',
     usage: USAGE,
     usageDescription:
-        'No React needed. Load the elements from the CDN as shown, or run `npm install @ptrn/web` and import the component you need. Also load a `@ptrn/styles` brand stylesheet on the page so the elements pick up the design tokens.',
+        'No React needed. Load the elements from the CDN as shown, or run `npm install @ptrn/web` and import the component you need. Also load the `@ptrn/styles` tokens and a theme on the page so the elements pick up the design tokens.',
     Wrapper: AccordionWc,
     toHtml: accordionToHtml,
 };

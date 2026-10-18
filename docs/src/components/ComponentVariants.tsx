@@ -84,7 +84,7 @@ export function ComponentVariants() {
 
                                 return (
                                     <div data-option-container key={`${prop.name}-${option}`}>
-                                        <Tag color="grey" label={String(option)} />
+                                        <Tag color="base" label={String(option)} />
                                         <div data-option-render>
                                             {(secondaryOverrides.length ? secondaryOverrides : [{}]).map(
                                                 (secondaryOverride, index) => (

@@ -73,7 +73,7 @@ export type ComponentExample<
      * The style of the wrapping component.
      *
      * @example
-     *     { width: '100%' },
+     *     {width: '100%'} ,
      */
     containerStyle?: React.CSSProperties | ((propState: Props) => React.CSSProperties);
     /**

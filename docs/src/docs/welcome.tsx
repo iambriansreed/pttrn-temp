@@ -32,6 +32,7 @@ import { TextareaField } from '@ptrn/react/TextareaField/TextareaField';
 import { TimePickerField } from '@ptrn/react/TimePickerField/TimePickerField';
 import { Tooltip } from '@ptrn/react/Tooltip/Tooltip';
 import { Txt } from '@ptrn/react/Txt/Txt';
+import { isDarkTheme } from '@ptrn/react/utils/uiContext';
 import { useEffect, useRef, useState } from 'react';
 import { Page } from 'src/components/Page';
 import { action } from 'src/utils/actions';
@@ -79,7 +80,7 @@ export function Welcome() {
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
-                    padding: 'var(--spacing-sizing-10)',
+                    padding: 'var(--usa-spacing-5)',
                     textAlign: 'center',
                 }}
             >
@@ -91,8 +92,8 @@ export function Welcome() {
                 <div
                     style={{
                         display: 'flex',
-                        gap: 'var(--spacing-sizing-06)',
-                        marginTop: 'var(--spacing-sizing-02)',
+                        gap: 'var(--usa-spacing-3)',
+                        marginTop: 'var(--usa-spacing-1)',
                         flexWrap: 'wrap',
                         justifyContent: 'center',
                     }}
@@ -101,14 +102,14 @@ export function Welcome() {
                     <Button as="a" href="/components" label="View Components" size="small" variant="secondary" />
                 </div>
             </section>
-            <section style={{ width: '100%', maxWidth: '1280px', padding: 'var(--spacing-sizing-10)' }}>
+            <section style={{ width: '100%', maxWidth: '1280px', padding: 'var(--usa-spacing-5)' }}>
                 <Grid columns={3} gap="24" minColumnWidth="300px">
                     <Card
                         style={{
                             display: 'flex',
                             flexDirection: 'column',
-                            gap: 'var(--spacing-sizing-04)',
-                            padding: 'var(--spacing-sizing-06)',
+                            gap: 'var(--usa-spacing-2)',
+                            padding: 'var(--usa-spacing-3)',
                             alignItems: 'flex-start',
                         }}
                         variant="outlined"
@@ -147,7 +148,7 @@ export function Welcome() {
                                     style={{ maxWidth: '90px' }}
                                 />
                             </Grid>
-                            <Grid columns={[4, 6]} gap="16">
+                            <Grid columns={[4, 6]} gap="16" style={{ alignItems: 'end' }}>
                                 <SelectField
                                     label="Expiration Month"
                                     size="small"
@@ -203,8 +204,8 @@ export function Welcome() {
                             style={{
                                 display: 'flex',
                                 flexDirection: 'column',
-                                gap: 'var(--spacing-sizing-04)',
-                                padding: 'var(--spacing-sizing-06)',
+                                gap: 'var(--usa-spacing-2)',
+                                padding: 'var(--usa-spacing-3)',
                                 alignItems: 'center',
                                 justifyContent: 'center',
                                 textAlign: 'center',
@@ -213,16 +214,16 @@ export function Welcome() {
                         >
                             <AvatarGroup
                                 items={[
-                                    { name: 'George Costanza', initials: 'GC', color: 'yellow' },
+                                    { name: 'George Costanza', initials: 'GC', color: 'warning' },
                                     { name: 'Alice Johnson', image: '/avatar-01.png' },
                                     { name: 'Bob Smith', image: '/avatar-02.png' },
                                     { name: 'Diana Prince', image: '/avatar-05.png' },
-                                    { name: 'Ethan Hunt', initials: 'EH', color: 'blue' },
+                                    { name: 'Ethan Hunt', initials: 'EH', color: 'info' },
                                     { name: 'Charlie Brown', image: '/avatar-03.png' },
                                     { name: 'Frank Underwood', image: '/avatar-04.png' },
-                                    { name: 'Fiona Glenanne', initials: 'FG', color: 'red' },
-                                    { name: 'Hannah Baker', initials: 'HB', color: 'purple' },
-                                    { name: 'Irene Adler', initials: 'IA', color: 'pink' },
+                                    { name: 'Fiona Glenanne', initials: 'FG', color: 'error' },
+                                    { name: 'Hannah Baker', initials: 'HB', color: 'accent-cool' },
+                                    { name: 'Irene Adler', initials: 'IA', color: 'secondary' },
                                 ]}
                                 max={5}
                                 size="medium"
@@ -236,7 +237,7 @@ export function Welcome() {
                             align="center"
                             direction="column"
                             gap="16"
-                            style={{ padding: 'var(--spacing-sizing-04)', alignContent: 'start' }}
+                            style={{ padding: 'var(--usa-spacing-2)', alignContent: 'start' }}
                         >
                             <ProgressBar completion={75} label="Uploading Files..." size="large" />
                             <Slider
@@ -251,11 +252,7 @@ export function Welcome() {
                                 size="small"
                                 {...stateProps<string>('search')}
                                 placeholder="Search..."
-                                trailing={
-                                    <Txt style={{ color: 'var(--foreground-neutral-on-surface-variant-03)' }}>
-                                        12 Results
-                                    </Txt>
-                                }
+                                trailing={<Txt style={{ color: 'var(--theme-color-base-medium)' }}>12 Results</Txt>}
                             />
                             <Input
                                 showClearButton={false}
@@ -301,14 +298,14 @@ export function Welcome() {
                         </div>
                     </Flex>
                     <Flex direction="column" gap="16">
-                        <Grid columns={[2, 1]} gap="16">
+                        <Grid columns={[1, 'auto']} gap="16">
                             <DatePickerField
                                 label="Destination Date"
                                 {...stateProps<string>('destination-date', '10/26/1985')}
                             />
                             <TimePickerField label="Time" {...stateProps<string>('destination-time', '01:21')} />
                         </Grid>
-                        <Grid columns={[2, 1]} gap="16">
+                        <Grid columns={[1, 'auto']} gap="16">
                             <DatePickerField
                                 label="Present Date"
                                 {...stateProps<string>('present-time', new Date().toLocaleDateString())}
@@ -325,7 +322,7 @@ export function Welcome() {
                                 )}
                             />
                         </Grid>
-                        <Grid columns={[2, 1]} gap="16">
+                        <Grid columns={[1, 'auto']} gap="16">
                             <DatePickerField
                                 label="Last Date Departed"
                                 {...stateProps<string>('last-time-departed', '10/26/1985')}
@@ -345,7 +342,7 @@ export function Welcome() {
                             value={(state['time-period'] as string) || 'present'}
                         />
                         <Menu
-                            style={{ zIndex: 'unset', padding: 'var(--spacing-sizing-02) var(--spacing-sizing-02)' }}
+                            style={{ zIndex: 'unset', padding: 'var(--usa-spacing-1) var(--usa-spacing-1)' }}
                             width="100%"
                         >
                             <ListItem
@@ -359,14 +356,14 @@ export function Welcome() {
                             <ListItem
                                 as="label"
                                 label="Dark mode"
-                                leading={theme === 'dark' ? <SvgDarkModeFill /> : <SvgDarkMode />}
+                                leading={isDarkTheme(theme) ? <SvgDarkModeFill /> : <SvgDarkMode />}
                                 trailing={
                                     <Switch
                                         aria-label="Toggle dark mode"
-                                        checked={theme === 'dark'}
+                                        checked={isDarkTheme(theme)}
                                         name="dark-mode"
                                         onChange={() => {
-                                            setTheme(theme === 'dark' ? 'light' : 'dark');
+                                            setTheme(isDarkTheme(theme) ? 'default' : 'project-theme-dark');
                                         }}
                                         value="dark-mode"
                                     />

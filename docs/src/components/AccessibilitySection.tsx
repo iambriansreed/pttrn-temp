@@ -50,7 +50,7 @@ export function AccessibilitySection({ context }: AccessibilitySectionProps) {
             {!results && <SkeletonText lines={3} variant="body-base" />}
 
             {results?.violations.length === 0 ? (
-                <p style={{ color: 'var(--status-success)' }}>No accessibility violations found.</p>
+                <p style={{ color: 'var(--theme-color-success-medium)' }}>No accessibility violations found.</p>
             ) : (
                 results?.violations.map((violation) => (
                     <div data-axe-violations key={violation.id}>

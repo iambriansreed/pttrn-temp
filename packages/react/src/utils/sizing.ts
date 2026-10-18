@@ -1,30 +1,30 @@
-export const SIZING_VALUES = [
-    '0',
-    '4',
-    '8',
-    '12',
-    '16',
-    '20',
-    '24',
-    '28',
-    '32',
-    '40',
-    '44',
-    '48',
-    '52',
-    '56',
-    '60',
-    '64',
-    '68',
-    '72',
-] as const;
+/** Pixel values on the USWDS spacing scale, each with the `--usa-spacing-*` token that holds it. */
+const USA_SPACING = {
+    '0': '0',
+    '4': '05',
+    '8': '1',
+    '12': '105',
+    '16': '2',
+    '20': '205',
+    '24': '3',
+    '32': '4',
+    '40': '5',
+    '48': '6',
+    '56': '7',
+    '64': '8',
+    '72': '9',
+    '80': '10',
+    '120': '15',
+} as const;
 
-export type SizingPixels = `${(typeof SIZING_VALUES)[number]}`;
+export const SIZING_VALUES = Object.keys(USA_SPACING) as SizingPixels[];
+
+export type SizingPixels = keyof typeof USA_SPACING;
 
 export function numToSizingVar(numStr?: string): string | undefined {
     if (numStr === undefined || ['auto', '0'].includes(numStr)) return numStr;
 
-    if (!SIZING_VALUES.includes(numStr as SizingPixels)) return undefined;
+    if (!(numStr in USA_SPACING)) return undefined;
 
-    return `var(--spacing-sizing-${(Number(numStr) / 4).toString().padStart(2, '0')})`;
+    return `var(--usa-spacing-${USA_SPACING[numStr as SizingPixels]})`;
 }

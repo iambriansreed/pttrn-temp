@@ -11,34 +11,34 @@
     }
 
     input:focus-visible {
-        outline: solid 2px var(--stroke-neutral-focus);
+        outline: solid 2px var(--theme-global-focus-color);
         isolation: isolate;
-        border-radius: var(--radius-sm);
+        border-radius: var(--theme-border-radius-md);
     }
 
     [data-pttrn='divider'] {
-        margin: 0 var(--spacing-sizing-02) 0 0;
+        margin: 0 var(--usa-spacing-1) 0 0;
     }
 
     [data-leading] {
         position: relative;
 
         [data-pttrn='button'] {
-            gap: var(--spacing-sizing-02);
-            padding: 0 var(--spacing-sizing-03);
+            gap: var(--usa-spacing-1);
+            padding: 0 var(--usa-spacing-105);
             min-height: 100%;
-            margin-right: var(--spacing-sizing-02);
+            margin-right: var(--usa-spacing-1);
             position: relative;
             z-index: 2;
 
             &::after {
                 content: '';
                 position: absolute;
-                top: var(--spacing-sizing-01);
-                bottom: var(--spacing-sizing-01);
+                top: var(--usa-spacing-05);
+                bottom: var(--usa-spacing-05);
                 right: 0;
                 width: 1px;
-                background-color: var(--stroke-neutral-base);
+                background-color: var(--theme-color-base-medium);
                 pointer-events: none;
             }
         }
@@ -47,7 +47,7 @@
     &[data-size='small'] {
         [data-leading] {
             [data-pttrn='button'] {
-                padding-left: var(--spacing-sizing-02);
+                padding-left: var(--usa-spacing-1);
             }
         }
     }

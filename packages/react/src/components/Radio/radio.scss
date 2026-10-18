@@ -1,7 +1,7 @@
 [data-pttrn='radio'] {
     display: block;
     position: relative;
-    width: var(--spacing-sizing-06);
+    width: var(--usa-spacing-3);
     aspect-ratio: 1/1;
     padding: 2px;
 
@@ -17,14 +17,14 @@
     }
 
     span {
-        --stroke: var(--stroke-neutral-base);
-        --inner: var(--foreground-brand-primary);
+        --stroke: var(--theme-color-base-medium);
+        --inner: var(--theme-color-primary-medium);
         --background: none;
 
         position: relative;
         z-index: 1;
         display: flex;
-        width: var(--spacing-sizing-05);
+        width: var(--usa-spacing-205);
         aspect-ratio: 1/1;
         border-radius: 50%;
         border: 2px solid var(--stroke);
@@ -40,28 +40,28 @@
             scale: 0.7;
             aspect-ratio: 1/1;
             background: var(--inner);
-            border-radius: var(--radius-full);
+            border-radius: var(--usa-radius-pill);
             opacity: 0;
         }
     }
 
     input[type='radio']:not(:disabled) {
         &:hover + span {
-            --background: var(--interactions-neutral-hover-opacity);
+            --background: var(--usa-color-black-transparent-10);
         }
 
         &:active + span {
-            --background: var(--interactions-neutral-press-opacity);
+            --background: var(--usa-color-black-transparent-20);
         }
 
         &[data-invalid] + span {
-            --stroke: var(--status-error);
-            --inner: var(--status-error);
+            --stroke: var(--theme-color-error-medium);
+            --inner: var(--theme-color-error-medium);
         }
     }
 
     input[type='radio']:checked + span {
-        --stroke: var(--stroke-brand-primary);
+        --stroke: var(--theme-color-primary-medium);
 
         &::before {
             opacity: 1;
@@ -72,8 +72,8 @@
         pointer-events: none;
 
         & + span {
-            --stroke: var(--stroke-neutral-interactions-disabled-light);
-            --inner: var(--foreground-neutral-disabled-on-surface);
+            --stroke: var(--theme-color-disabled-light);
+            --inner: var(--theme-color-disabled-dark);
         }
     }
 }

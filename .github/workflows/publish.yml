@@ -1,0 +1,81 @@
+name: Publish packages
+
+on:
+    push:
+        branches: [main]
+        paths:
+            - 'packages/styles/**'
+            - 'packages/icons/**'
+            - 'packages/react/**'
+            - 'packages/web/**'
+    workflow_dispatch:
+
+permissions:
+    contents: read
+
+concurrency:
+    group: publish
+    cancel-in-progress: false
+
+jobs:
+    publish:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+
+            - uses: actions/setup-node@v4
+              with:
+                  node-version-file: .nvmrc
+                  cache: npm
+                  registry-url: https://registry.npmjs.org
+
+            - run: npm ci
+
+            - run: npm run build
+
+            - run: npx playwright install --with-deps chromium
+
+            # packages/mcp/data is gitignored, so a clean checkout has no catalog for its tests. This also generates the docs meta it reads.
+            - run: npm run build:data --workspace @ptrn/mcp
+
+            - run: npm test
+
+            # Only these four are published, named on purpose (never a workspace glob): the docs site and the Figma
+            # plugin are private. A package whose files changed in this push must have a new version on npm, so a
+            # changed package that is already published fails the job. Unchanged packages are published only when
+            # their version is not on npm yet.
+            - name: Publish changed packages
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+                  EVENT: ${{ github.event_name }}
+                  BEFORE: ${{ github.event.before }}
+                  ZERO_SHA: '0000000000000000000000000000000000000000'
+              run: |
+                  failed=0
+                  for pkg in styles icons react web; do
+                      dir="packages/$pkg"
+                      name=$(node -p "require('./$dir/package.json').name")
+                      version=$(node -p "require('./$dir/package.json').version")
+
+                      changed=0
+                      if [ "$EVENT" = push ]; then
+                          if [ "$BEFORE" = "$ZERO_SHA" ] || ! git diff --quiet "$BEFORE" "$GITHUB_SHA" -- "$dir"; then
+                              changed=1
+                          fi
+                      fi
+
+                      if npm view "$name@$version" version >/dev/null 2>&1; then
+                          if [ "$changed" = 1 ]; then
+                              echo "::error::$dir changed, but $name@$version is already on npm. Bump the version in $dir/package.json."
+                              failed=1
+                          else
+                              echo "$name@$version is already on npm, skipping"
+                          fi
+                          continue
+                      fi
+
+                      npm publish --workspace "$name" --access public
+                  done
+                  exit "$failed"

@@ -14,10 +14,10 @@ npm install --peer @ptrn/icons react react-dom
 
 ## Usage
 
-Wrap your app with a styles provider to apply the theme:
+Render the styles provider once to load the USWDS tokens, themes and base styles:
 
 ```tsx
-import { StylesProviderNowhere } from '@ptrn/react/StylesProviderNowhere';
+import { StylesProvider } from '@ptrn/react/StylesProvider';
 ```
 
 ## Testing

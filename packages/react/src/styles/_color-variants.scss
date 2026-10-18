@@ -1,0 +1,12 @@
+// Sets --foreground and --background for each `data-color` variant, from the USWDS theme color families. Keep the
+// list in step with COLOR_VARIANTS in src/utils/colorVariants.ts.
+$variants: base, primary, secondary, accent-cool, accent-warm, info, success, warning, error;
+
+@mixin color-variants {
+    @each $variant in $variants {
+        &[data-color='#{$variant}'] {
+            --foreground: var(--theme-color-#{$variant}-darker);
+            --background: var(--theme-color-#{$variant}-lighter);
+        }
+    }
+}

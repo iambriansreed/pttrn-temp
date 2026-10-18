@@ -11,11 +11,7 @@ export function useEventListener<
     eventName: KH | KM | KW | string,
     handler: (
         event:
-            | Event
-            | HTMLElementEventMap[KH]
-            | MediaQueryListEventMap[KM]
-            | SVGElementEventMap[KH]
-            | WindowEventMap[KW],
+            Event | HTMLElementEventMap[KH] | MediaQueryListEventMap[KM] | SVGElementEventMap[KH] | WindowEventMap[KW],
     ) => void,
     element?: T,
     disabled?: boolean,

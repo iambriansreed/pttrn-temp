@@ -1,10 +1,9 @@
 import { AvatarGroupProps } from '.';
-import { COLOR_VARIANTS } from '-/utils/colorVariants';
 import { ComponentExample, Preset } from '-/utils/demo';
 
-const BLUE = COLOR_VARIANTS[4];
-const GREEN = COLOR_VARIANTS[5];
-const PURPLE = COLOR_VARIANTS[10];
+const BLUE = 'info' as const;
+const GREEN = 'success' as const;
+const PURPLE = 'accent-cool' as const;
 
 export const presets: Preset<AvatarGroupProps>[] = [
     {

@@ -1,7 +1,7 @@
 [data-pttrn='checkbox'] {
     display: block;
     position: relative;
-    width: var(--spacing-sizing-06);
+    width: var(--usa-spacing-3);
     aspect-ratio: 1/1;
     padding: 2px;
 
@@ -17,10 +17,10 @@
     }
 
     span {
-        --stroke: var(--stroke-neutral-base);
+        --stroke: var(--theme-color-base-medium);
         --inner: none;
         --background: none;
-        --color: var(--foreground-brand-on-primary);
+        --color: var(--usa-color-white);
 
         display: flex;
         width: 20px;
@@ -47,18 +47,18 @@
 
     input[type='checkbox']:not(:checked, :indeterminate, [disabled], [readOnly]) {
         &:hover + span {
-            background-color: var(--interactions-neutral-hover-opacity);
+            background-color: var(--usa-color-black-transparent-10);
         }
 
         &:active + span {
-            background-color: var(--interactions-neutral-press-opacity);
+            background-color: var(--usa-color-black-transparent-20);
         }
     }
 
     input[type='checkbox']:checked + span,
     input[type='checkbox']:indeterminate + span {
-        --stroke: var(--stroke-brand-primary);
-        --background: var(--surface-brand-primary);
+        --stroke: var(--theme-color-primary-medium);
+        --background: var(--theme-color-primary-medium);
     }
 
     input[type='checkbox'][disabled],
@@ -66,24 +66,24 @@
         cursor: not-allowed;
 
         & + span {
-            --stroke: var(--stroke-neutral-interactions-disabled-light);
+            --stroke: var(--theme-color-disabled-light);
         }
 
         &:is(:checked, :indeterminate) + span {
             --stroke: transparent;
-            --background: var(--interactions-disabled-opacity);
-            --color: var(--foreground-neutral-disabled-on-surface);
+            --background: var(--usa-color-black-transparent-10);
+            --color: var(--theme-color-disabled-dark);
         }
     }
 
     input[type='checkbox'][aria-invalid]:not([disabled], [readOnly]) {
         &:checked + span,
         &:indeterminate + span {
-            --background: var(--status-error);
+            --background: var(--theme-color-error-medium);
         }
 
         & + span {
-            --stroke: var(--status-error);
+            --stroke: var(--theme-color-error-medium);
         }
     }
 }

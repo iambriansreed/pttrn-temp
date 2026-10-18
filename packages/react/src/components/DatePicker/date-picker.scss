@@ -9,13 +9,13 @@
     }
 
     [data-pttrn='calendar-popup'] {
-        border-radius: var(--radius-lg);
-        box-shadow: var(--drop-shadow-float);
+        border-radius: var(--theme-border-radius-lg);
+        box-shadow: var(--card-shadow);
         z-index: var(--z-index-dropdown);
         width: fit-content;
     }
 
     [data-pttrn='inline-alert'] {
-        margin-top: var(--spacing-sizing-01);
+        margin-top: var(--usa-spacing-05);
     }
 }

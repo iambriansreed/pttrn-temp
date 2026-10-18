@@ -6,7 +6,7 @@ The packages this app relies on live in the same monorepo:
 
 - [`@ptrn/react`](../packages/react): The React component library.
 - [`@ptrn/icons`](../packages/icons): The icon set.
-- [`@ptrn/styles`](../packages/styles): The stylesheet and theme data.
+- [`@ptrn/styles`](../packages/styles): The USWDS design tokens and themes.
 
 ## Development
 

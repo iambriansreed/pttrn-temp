@@ -73,7 +73,7 @@ describe('src/stdio.integration.test.ts - ptrn-mcp over stdio', () => {
         const kinds = await call('get_tokens');
         assert.ok(kinds.kinds.some((k: { kind: string }) => k.kind === 'spacing'));
         const spacing = await call('get_tokens', { kind: 'spacing' });
-        assert.ok(spacing.tokens.some((t: { name: string }) => t.name === '--spacing-sizing-04'));
+        assert.ok(spacing.tokens.some((t: { name: string }) => t.name === '--usa-spacing-2'));
     });
 
     test('validate_code passes valid code and catches a bad prop value', async () => {

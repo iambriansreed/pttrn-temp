@@ -13,8 +13,8 @@ export const blockConfigs = (
                     actions={<Slot height={32} label="Page actions slot" width={372} />}
                     subHeader={
                         <>
-                            <Slot height="var(--spacing-sizing-06)" label="Slot component" width={200} />
-                            <Slot height="var(--spacing-sizing-06)" label="Slot component 2" width={200} />
+                            <Slot height="var(--usa-spacing-3)" label="Slot component" width={200} />
+                            <Slot height="var(--usa-spacing-3)" label="Slot component 2" width={200} />
                         </>
                     }
                     title="Dashboard"
@@ -25,7 +25,7 @@ export const blockConfigs = (
                     direction="column"
                     padding={['20', '20', '0']}
                     style={{
-                        background: 'var(--background-base)',
+                        background: 'var(--theme-page-background-color)',
                         width: '100%',
                     }}
                 >
@@ -34,7 +34,7 @@ export const blockConfigs = (
                         <div
                             data-page-actions-slot
                             style={{
-                                height: 'var(--spacing-sizing-08)',
+                                height: 'var(--usa-spacing-4)',
                                 width: 'auto',
                             }}
                         >
@@ -45,10 +45,10 @@ export const blockConfigs = (
                         align="end"
                         data-subheader
                         justify="space-between"
-                        style={{ height: 'var(--spacing-sizing-11)', width: '100%' }}
+                        style={{ height: 'calc(var(--usa-spacing-5) + var(--usa-spacing-05))', width: '100%' }}
                     >
-                        <Slot height="var(--spacing-sizing-06)" label="Slot component" width={200} />
-                        <Slot height="var(--spacing-sizing-06)" label="Slot component 2" width={200} />
+                        <Slot height="var(--usa-spacing-3)" label="Slot component" width={200} />
+                        <Slot height="var(--usa-spacing-3)" label="Slot component 2" width={200} />
                     </Flex>
                 </Flex>
             </BlockExample.Pattern>
@@ -64,13 +64,13 @@ export const blockConfigs = (
                     gap="20"
                     justify="space-between"
                     style={{
-                        background: 'var(--background-base)',
-                        padding: 'var(--spacing-sizing-05)',
+                        background: 'var(--theme-page-background-color)',
+                        padding: 'var(--usa-spacing-205)',
                         width: '100%',
                     }}
                 >
                     <Txt variant="heading-h3">Dashboard</Txt>
-                    <div data-page-actions-slot style={{ height: 'var(--spacing-sizing-08)', width: 'auto' }}>
+                    <div data-page-actions-slot style={{ height: 'var(--usa-spacing-4)', width: 'auto' }}>
                         <Slot height="100%" label="Page actions slot" width={372} />
                     </div>
                 </Flex>
@@ -91,8 +91,8 @@ export const blockConfigs = (
                 />
             </BlockExample.Component>
             <BlockExample.Pattern>
-                <Flex direction="column" style={{ background: 'var(--background-base)', width: '100%' }}>
-                    <div style={{ padding: 'var(--spacing-sizing-05) var(--spacing-sizing-05) 0' }}>
+                <Flex direction="column" style={{ background: 'var(--theme-page-background-color)', width: '100%' }}>
+                    <div style={{ padding: 'var(--usa-spacing-205) var(--usa-spacing-205) 0' }}>
                         <Breadcrumb
                             items={[
                                 { label: 'Home', href: '#' },
@@ -110,7 +110,7 @@ export const blockConfigs = (
                         style={{ width: '100%' }}
                     >
                         <Txt variant="heading-h3">Dashboard</Txt>
-                        <div data-page-actions-slot style={{ height: 'var(--spacing-sizing-08)', width: 'auto' }}>
+                        <div data-page-actions-slot style={{ height: 'var(--usa-spacing-4)', width: 'auto' }}>
                             <Slot height="100%" label="Page actions slot" width={372} />
                         </div>
                     </Flex>
@@ -136,13 +136,13 @@ export const blockConfigs = (
                     gap="20"
                     justify="space-between"
                     padding="20"
-                    style={{ background: 'var(--background-base)', width: '100%' }}
+                    style={{ background: 'var(--theme-page-background-color)', width: '100%' }}
                 >
                     <Flex align="center" gap="16">
                         <Avatar name="Brian Blake" size="xx-large" />
                         <Txt variant="heading-h3">Dashboard</Txt>
                     </Flex>
-                    <div data-page-actions-slot style={{ height: 'var(--spacing-sizing-08)', width: 'auto' }}>
+                    <div data-page-actions-slot style={{ height: 'var(--usa-spacing-4)', width: 'auto' }}>
                         <Slot height="100%" label="Page actions slot" width={372} />
                     </div>
                 </Flex>

@@ -2,7 +2,7 @@ import { ElementType } from 'react';
 
 import { SkeletonText } from '-/components/SkeletonText';
 import { ElementProps } from '-/types/common';
-import { TxtVariant } from '-/utils/txtVariants';
+import { TxtVariant, txtFont } from '-/utils/txtVariants';
 
 export type TxtProps<As extends ElementType = ElementType> = {
     /**
@@ -75,7 +75,7 @@ export function Txt<As extends ElementType = ElementType>({
             data-pttrn="txt"
             style={{
                 ...styleProp,
-                font: inherit ? undefined : `var(--${variant})`,
+                font: inherit ? undefined : txtFont(variant),
             }}
         >
             {content}

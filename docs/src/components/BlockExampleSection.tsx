@@ -9,7 +9,7 @@ export function BlockExampleSection({ name, component, pattern, index }: BlockCo
     const [value, setValue] = useState('component' as 'component' | 'pattern');
 
     return (
-        <Flex direction="column" full gap="16" style={{ margin: 'var(--spacing-sizing-10) 0' }}>
+        <Flex direction="column" full gap="16" style={{ margin: 'var(--usa-spacing-5) 0' }}>
             <Flex align="center" full justify="space-between">
                 <h3 id={kebabCase(`section-${name}`)}>{name}</h3>
                 <SegmentedControl

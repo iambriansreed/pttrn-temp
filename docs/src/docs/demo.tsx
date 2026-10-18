@@ -156,7 +156,7 @@ export function Demo() {
         <div style={{ background: '#fff', minHeight: '100vh', fontFamily: 'inherit' }}>
             <div
                 style={{
-                    background: 'var(--foreground-brand-primary-depth)',
+                    background: 'var(--theme-color-primary-darker)',
                 }}
             >
                 <div
@@ -166,7 +166,7 @@ export function Demo() {
                         alignItems: 'center',
                         justifyContent: 'space-between',
                         width: '100%',
-                        color: 'var(--foreground-brand-on-primary)',
+                        color: 'var(--usa-color-white)',
                         padding: '12px',
                     }}
                 >
@@ -177,7 +177,7 @@ export function Demo() {
                         icon={<SvgMenu />}
                         label="Menu"
                         iconOnly
-                        style={{ color: 'var(--foreground-brand-on-primary)' }}
+                        style={{ color: 'var(--usa-color-white)' }}
                         variant="tertiary"
                     />
                 </div>
@@ -187,8 +187,8 @@ export function Demo() {
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'start',
-                        borderTopLeftRadius: 'var(--radius-xlg)',
-                        borderTopRightRadius: 'var(--radius-xlg)',
+                        borderTopLeftRadius: 'var(--theme-border-radius-lg)',
+                        borderTopRightRadius: 'var(--theme-border-radius-lg)',
                         background: '#fff',
                     }}
                 >
@@ -242,7 +242,7 @@ export function Demo() {
                     ))}
                 </div>
             </div>
-            <div style={{ width: '100%', height: '8px', background: 'var(--surface-neutral-t2-lowest)' }} />
+            <div style={{ width: '100%', height: '8px', background: 'var(--theme-color-base-lightest)' }} />
             <div style={{ padding: 8 }}>
                 <div style={{ display: 'flex', alignItems: 'center', marginBottom: 8, height: 56 }}>
                     <Txt style={{ fontWeight: 600, flex: 1 }} variant="heading-h5">
@@ -268,7 +268,7 @@ export function Demo() {
                     ))}
                 </div>
             </div>
-            <div style={{ width: '100%', height: '8px', background: 'var(--surface-neutral-t2-lowest)' }} />
+            <div style={{ width: '100%', height: '8px', background: 'var(--theme-color-base-lightest)' }} />
             <div style={{ padding: 16 }}>
                 <Txt style={{ fontWeight: 600, marginBottom: 8 }} variant="heading-h6">
                     Your team
@@ -289,7 +289,7 @@ export function Demo() {
                     ))}
                 </div>
             </div>
-            <div style={{ padding: 16, fontSize: 14, background: 'var(--surface-neutral-t2-lowest)' }}>
+            <div style={{ padding: 16, fontSize: 14, background: 'var(--theme-color-base-lightest)' }}>
                 <ListItem href="#/terms-of-use" label="Terms of use" />
                 <ListItem href="#/privacy-notice" label="Privacy Notice" />
                 <ListItem
@@ -326,7 +326,7 @@ export default function HomeJourneyMobile() {
         <div style={{ background: '#fff', minHeight: '100vh', fontFamily: 'inherit' }}>
             <div
                 style={{
-                    background: 'var(--foreground-brand-primary-depth)',
+                    background: 'var(--theme-color-primary-darker)',
                 }}
             >
                 <div
@@ -336,7 +336,7 @@ export default function HomeJourneyMobile() {
                         alignItems: 'center',
                         justifyContent: 'space-between',
                         width: '100%',
-                        color: 'var(--foreground-brand-on-primary)',
+                        color: 'var(--usa-color-white)',
                         padding: '12px',
                     }}
                 >
@@ -347,7 +347,7 @@ export default function HomeJourneyMobile() {
                         icon={<SvgMenu />}
                         iconOnly
                         label="Menu"
-                        style={{ color: 'var(--foreground-brand-on-primary)' }}
+                        style={{ color: 'var(--usa-color-white)' }}
                         variant="tertiary"
                     />
                 </div>
@@ -357,8 +357,8 @@ export default function HomeJourneyMobile() {
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'start',
-                        borderTopLeftRadius: 'var(--radius-xlg)',
-                        borderTopRightRadius: 'var(--radius-xlg)',
+                        borderTopLeftRadius: 'var(--theme-border-radius-lg)',
+                        borderTopRightRadius: 'var(--theme-border-radius-lg)',
                         background: '#fff',
                     }}
                 >
@@ -419,7 +419,7 @@ export default function HomeJourneyMobile() {
                     ))}
                 </div>
             </div>
-            <div style={{ width: '100%', height: '8px', background: 'var(--surface-neutral-t2-lowest)' }} />
+            <div style={{ width: '100%', height: '8px', background: 'var(--theme-color-base-lightest)' }} />
             <div style={{ padding: 8 }}>
                 <div style={{ display: 'flex', alignItems: 'center', marginBottom: 8, height: 56 }}>
                     <Txt style={{ fontWeight: 600, flex: 1 }} variant="heading-h5">
@@ -445,7 +445,7 @@ export default function HomeJourneyMobile() {
                     ))}
                 </div>
             </div>
-            <div style={{ width: '100%', height: '8px', background: 'var(--surface-neutral-t2-lowest)' }} />
+            <div style={{ width: '100%', height: '8px', background: 'var(--theme-color-base-lightest)' }} />
             <div style={{ padding: 16 }}>
                 <Txt style={{ fontWeight: 600, marginBottom: 8 }} variant="heading-h6">
                     Your team
@@ -466,7 +466,7 @@ export default function HomeJourneyMobile() {
                     ))}
                 </div>
             </div>
-            <div style={{ padding: 16, fontSize: 14, background: 'var(--surface-neutral-t2-lowest)' }}>
+            <div style={{ padding: 16, fontSize: 14, background: 'var(--theme-color-base-lightest)' }}>
                 <ListItem href="#/terms-of-use" label="Terms of use" />
                 <ListItem href="#/privacy-notice" label="Privacy Notice" />
                 <ListItem

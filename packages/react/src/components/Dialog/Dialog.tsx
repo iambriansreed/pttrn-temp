@@ -71,7 +71,7 @@ export type DialogProps = CommonProps<'id' | 'owner'> &
  *             <>
  *                 <Button label="Open Dialog" onClick={() => setOpen(true)} />
  *                 <Dialog onClose={() => setOpen(false)} open={open}>
- *                     <div style={{ padding: 'var(--spacing-sizing-04)' }}>
+ *                     <div style={{ padding: 'var(--usa-spacing-2)' }}>
  *                         <Flex align="center" justify="space-between">
  *                             <h1>Dialog Title</h1>
  *                             <Button

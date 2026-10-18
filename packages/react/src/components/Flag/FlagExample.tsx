@@ -17,14 +17,14 @@ export const FlagExample: ComponentExample<FlagProps> = {
             title: 'All flags',
             description: 'Every flag in the sprite, by code.',
             content: ({ Component }) => (
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--spacing-sizing-04)' }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--usa-spacing-2)' }}>
                     {CODES.map((code) => (
                         <div
                             key={code}
                             style={{
                                 display: 'flex',
                                 alignItems: 'center',
-                                gap: 'var(--spacing-sizing-02)',
+                                gap: 'var(--usa-spacing-1)',
                                 width: 200,
                             }}
                         >

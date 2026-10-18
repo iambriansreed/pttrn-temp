@@ -75,7 +75,7 @@ export function searchIcons(catalog: Catalog, query: string, limit = 20) {
 export type GetTokensResult = {
     version: string;
     kinds?: { kind: string; count: number }[];
-    tokens?: { name: string; value: string; dark?: string; description: string }[];
+    tokens?: { name: string; value: string; themes?: Record<string, string>; description: string }[];
     truncated?: true;
     hint?: string;
 };
@@ -88,9 +88,9 @@ export function getTokens(catalog: Catalog, kind?: string): GetTokensResult {
     if (!kind) return { version: catalog.meta.version, kinds };
 
     const matching = catalog.tokens.filter((t) => t.kind === kind.toLowerCase());
-    const tokens = matching.slice(0, TOKENS_MAX).map(({ name, value, dark, description }) => {
+    const tokens = matching.slice(0, TOKENS_MAX).map(({ name, value, themes, description }) => {
         const shaped: NonNullable<GetTokensResult['tokens']>[number] = { name, value, description };
-        if (dark !== undefined) shaped.dark = dark;
+        if (themes !== undefined) shaped.themes = themes;
         return shaped;
     });
     const result: GetTokensResult = { version: catalog.meta.version, tokens };

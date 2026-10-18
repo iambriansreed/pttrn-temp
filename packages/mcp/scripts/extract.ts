@@ -63,13 +63,18 @@ export function extractIcons(aliases: RawIcon[]): Icon[] {
     }));
 }
 
-/** The body of the first rule whose selector is exactly `selector`. */
+/** The body of the first rule whose selector starts with `selector`. */
 function ruleBody(css: string, selector: string): string {
-    const start = css.indexOf(`${selector} {`);
+    const start = css.search(new RegExp(`^${selector.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}[^{]*\\{`, 'm'));
     if (start === -1) return '';
     const open = css.indexOf('{', start);
     const close = css.indexOf('\n}', open);
     return css.slice(open + 1, close === -1 ? undefined : close);
+}
+
+/** The group a token belongs to: the first word after the USWDS prefixes (`color`, `spacing`, `font`, `component`). */
+function tokenKind(name: string) {
+    return name.slice(2).replace(/^(general-usa-|spacing-usa-|usa-|theme-)/, '').split('-')[0];
 }
 
 /** Each declaration in a rule body, with the comment directly above it. */
@@ -92,18 +97,25 @@ function declarations(body: string): { name: string; value: string; description:
     return found;
 }
 
-/** Reads the light values from `:root` and the dark overrides from `[data-theme='dark']`. */
-export function extractTokens(css: string): Token[] {
-    const dark = new Map(declarations(ruleBody(css, "[data-theme='dark']")).map((d) => [d.name, d.value]));
-    return declarations(ruleBody(css, ':root')).map((d) => {
-        const token: Token = {
-            name: d.name,
-            kind: d.name.slice(2).split('-')[0],
-            value: d.value,
-            description: d.description,
-        };
-        const override = dark.get(d.name);
-        if (override !== undefined && override !== d.value) token.dark = override;
+/**
+ * Reads the tokens from `tokens.css` and each USWDS theme file (keyed by theme name). A theme token's value is its
+ * `default` value, and `themes` holds the other themes' values where they differ.
+ */
+export function extractTokens(tokensCss: string, themeCss: Record<string, string>): Token[] {
+    const themeValues = Object.fromEntries(
+        Object.entries(themeCss).map(([theme, css]) => [
+            theme,
+            new Map(declarations(ruleBody(css, ':where(:root)')).map((d) => [d.name, d])),
+        ]),
+    );
+    const { default: defaults = new Map(), ...others } = themeValues;
+    const base = declarations(ruleBody(tokensCss, ':root'));
+    return [...base, ...defaults.values()].map((d) => {
+        const token: Token = { name: d.name, kind: tokenKind(d.name), value: d.value, description: d.description };
+        for (const [theme, values] of Object.entries(others)) {
+            const value = values.get(d.name)?.value;
+            if (value !== undefined && value !== d.value) token.themes = { ...token.themes, [theme]: value };
+        }
         return token;
     });
 }

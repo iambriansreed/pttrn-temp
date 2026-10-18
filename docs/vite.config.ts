@@ -2,12 +2,15 @@ import { execSync } from 'child_process';
 import { resolve } from 'path';
 
 import react from '@vitejs/plugin-react';
+import { NodePackageImporter } from 'sass-embedded';
 import { defineConfig, loadEnv } from 'vite';
 import { run } from 'vite-plugin-run';
 
 const debouncedMetaBuild = debounceMetaOnChange();
 
-export default ({ mode }: { mode: string }) => {
+const REACT_SRC = resolve(__dirname, '../packages/react/src');
+
+export default ({ mode, command }: { mode: string; command: 'build' | 'serve' }) => {
     process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
 
     return defineConfig({
@@ -15,6 +18,9 @@ export default ({ mode }: { mode: string }) => {
             preprocessorOptions: {
                 scss: {
                     api: 'modern-compiler', // or "modern"
+                    // Resolves `@use 'pkg:@ptrn/styles/...'` in the React styles. Vite compiles with sass-embedded, so
+                    // the importer must come from it too; one from `sass` fails with "findFileUrl is not a function".
+                    importers: [new NodePackageImporter()],
                 },
             },
         },
@@ -65,19 +71,30 @@ export default ({ mode }: { mode: string }) => {
             emptyOutDir: true,
         },
         resolve: {
-            alias: {
-                src: '/src',
-                components: '/src/components',
-                utils: '/src/utils',
-                tests: '/tests',
-                // these are for local @ptrn/react development
-                '-/components': resolve(__dirname, '../packages/react/src/components'),
-                '-/hooks': resolve(__dirname, '../packages/react/src/hooks'),
-                '-/utils': resolve(__dirname, '../packages/react/src/utils'),
-                '-/constants': resolve(__dirname, '../packages/react/src/constants'),
-                '-/styles': resolve(__dirname, '../packages/react/src/styles'),
-                '-/types': resolve(__dirname, '../packages/react/src/types'),
-            },
+            alias: [
+                { find: 'src', replacement: '/src' },
+                { find: 'components', replacement: '/src/components' },
+                { find: 'utils', replacement: '/src/utils' },
+                { find: 'tests', replacement: '/tests' },
+                // In dev, @ptrn/react comes from its source so edits show up without a rebuild (the workspace link
+                // resolves the package's exports to dist). A build keeps using dist, so it tests the built package.
+                ...(command === 'serve'
+                    ? [
+                          {
+                              find: /^@ptrn\/react\/(constants|hooks|rtl|styles|types|utils)\/(.*)$/,
+                              replacement: `${REACT_SRC}/$1/$2`,
+                          },
+                          { find: /^@ptrn\/react\/(.*)$/, replacement: `${REACT_SRC}/components/$1` },
+                      ]
+                    : []),
+                // the aliases @ptrn/react uses inside its own source
+                { find: '-/components', replacement: `${REACT_SRC}/components` },
+                { find: '-/hooks', replacement: `${REACT_SRC}/hooks` },
+                { find: '-/utils', replacement: `${REACT_SRC}/utils` },
+                { find: '-/constants', replacement: `${REACT_SRC}/constants` },
+                { find: '-/styles', replacement: `${REACT_SRC}/styles` },
+                { find: '-/types', replacement: `${REACT_SRC}/types` },
+            ],
         },
     });
 };

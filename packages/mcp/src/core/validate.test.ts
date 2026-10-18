@@ -144,7 +144,7 @@ describe('validateCode: tokens', () => {
     test('flags a hardcoded hex color and names the matching token', () => {
         const [issue] = validateCode(catalog, `const s = { color: '#FFF' };`).issues;
         assert.equal(issue.rule, 'hardcoded-color');
-        assert.match(issue.fix ?? '', /var\(--surface-neutral\)/);
+        assert.match(issue.fix ?? '', /var\(--usa-color-white\)/);
     });
 
     test('flags a color inside a CSS string', () => {
@@ -158,7 +158,7 @@ describe('validateCode: tokens', () => {
     test('flags hardcoded spacing that has a token', () => {
         const [issue] = validateCode(catalog, `const s = <div style={{ padding: 16 }} />;`).issues;
         assert.equal(issue.rule, 'hardcoded-spacing');
-        assert.match(issue.fix ?? '', /var\(--spacing-sizing-04\)/);
+        assert.match(issue.fix ?? '', /var\(--usa-spacing-2\)/);
     });
 
     test('flags spacing written as a px string', () => {

@@ -88,12 +88,12 @@ export const presets: Preset<SelectProps>[] = [
                 {
                     value: 'a',
                     label: 'Package A',
-                    trailing: <Tag color="blue" label="Recommended" size="x-small" />,
+                    trailing: <Tag color="info" label="Recommended" size="x-small" />,
                 },
                 {
                     value: 'b',
                     label: 'Package B',
-                    trailing: <Tag color="green" label="Best Value" size="x-small" />,
+                    trailing: <Tag color="success" label="Best Value" size="x-small" />,
                 },
                 { value: 'c', label: 'Package C' },
                 { value: 'd', label: 'Package D' },

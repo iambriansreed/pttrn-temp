@@ -12,12 +12,12 @@
         pointer-events: all; /* allow pointer events on the dialog box */
         text-align: start;
         position: absolute;
-        box-shadow: var(--drop-shadow-float);
-        background: var(--surface-neutral-t1-base);
-        color: var(--foreground-neutral-on-surface);
-        max-height: calc(var(--height) - var(--spacing-sizing-24));
+        box-shadow: var(--card-shadow);
+        background: var(--theme-body-background-color);
+        color: var(--theme-body-text-color);
+        max-height: calc(var(--height) - calc(var(--usa-spacing-15) + var(--usa-spacing-3) + var(--usa-spacing-05)));
         z-index: 2;
-        width: calc(100% - var(--spacing-sizing-08));
+        width: calc(100% - var(--usa-spacing-4));
         animation-name: var(--box-animation-name);
         animation-duration: 0.5s;
         animation-iteration-count: 1;
@@ -57,7 +57,7 @@
         align-items: center;
 
         [data-dialog-box] {
-            border-radius: var(--radius-lg);
+            border-radius: var(--theme-border-radius-lg);
         }
     }
 
@@ -68,8 +68,8 @@
         align-items: end;
 
         [data-dialog-box] {
-            border-top-left-radius: var(--radius-lg);
-            border-top-right-radius: var(--radius-lg);
+            border-top-left-radius: var(--theme-border-radius-lg);
+            border-top-right-radius: var(--theme-border-radius-lg);
         }
     }
 
@@ -80,8 +80,8 @@
         align-items: start;
 
         [data-dialog-box] {
-            border-bottom-left-radius: var(--radius-lg);
-            border-bottom-right-radius: var(--radius-lg);
+            border-bottom-left-radius: var(--theme-border-radius-lg);
+            border-bottom-right-radius: var(--theme-border-radius-lg);
         }
     }
 
@@ -94,8 +94,8 @@
             max-height: unset;
             width: 280px;
             height: var(--height);
-            border-bottom-right-radius: var(--radius-lg);
-            border-top-right-radius: var(--radius-lg);
+            border-bottom-right-radius: var(--theme-border-radius-lg);
+            border-top-right-radius: var(--theme-border-radius-lg);
         }
     }
 
@@ -108,8 +108,8 @@
             max-height: unset;
             width: 280px;
             height: var(--height);
-            border-bottom-left-radius: var(--radius-lg);
-            border-top-left-radius: var(--radius-lg);
+            border-bottom-left-radius: var(--theme-border-radius-lg);
+            border-top-left-radius: var(--theme-border-radius-lg);
         }
     }
 
@@ -127,7 +127,7 @@
     @keyframes fade-in {
         0% {
             opacity: 0;
-            transform: translate(var(--spacing-sizing-01), var(--spacing-sizing-01));
+            transform: translate(var(--usa-spacing-05), var(--usa-spacing-05));
         }
 
         100% {

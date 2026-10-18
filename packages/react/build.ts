@@ -8,8 +8,8 @@
  *
  * 1. Compiles TypeScript files using `tsc`
  * 2. Processes SASS files using `npm run sass`.
- * 3. Copies styles from `@ptrn/styles` to a temporary directory.
- * 4. Creates importable CSS files for each @ptrn/styles brand.
+ * 3. Copies the font, token and theme stylesheets from `@ptrn/styles` into dist/styles.
+ * 4. Creates importable CSS files for them.
  * 5. Creates importable CSS files for each component.
  * 6. Translates import paths from aliases to relative paths.
  * 7. Moves the temporary build directory to the final distribution directory.
@@ -21,7 +21,6 @@ import child_process from 'child_process';
 import fs from 'fs';
 import path from 'path';
 import util from 'util';
-import { BRANDS } from '@ptrn/styles/brands';
 
 import packageData from './package.json';
 
@@ -50,14 +49,11 @@ async function main() {
 
     await exec('tsc --project ./tsconfig.build.json && npm run sass');
 
-    // copy the styles from @ptrn/styles to the temp styles directory
-    await Promise.all(
-        BRANDS.map(async ({ slug }) => {
-            const brandStylesPath = path.resolve(STYLES_SOURCE_DIR, `${slug}.css`);
-            if (fs.existsSync(brandStylesPath))
-                await exec(`cp ${brandStylesPath} ${path.resolve(distStylesPath, `${slug}.css`)}`);
-        }),
+    // copy the font, token and theme stylesheets from @ptrn/styles into dist/styles
+    await exec(
+        `cp ${path.resolve(STYLES_SOURCE_DIR, 'fonts.css')} ${path.resolve(STYLES_SOURCE_DIR, 'tokens.css')} ${distStylesPath}/`,
     );
+    await exec(`cp -R ${path.resolve(STYLES_SOURCE_DIR, 'themes')} ${distStylesPath}/`);
 
     await Promise.all([fileProcessing(), componentExports()]);
 
@@ -92,7 +88,7 @@ async function fileProcessing() {
                 newFileContent = cssImportsInjected(newFileContent);
 
                 // fix import paths for '@ptrn/styles. The css files are now in the dist/styles directory.
-                newFileContent = newFileContent.replace("import '@ptrn/styles/", "import '-/styles/");
+                newFileContent = newFileContent.replaceAll("import '@ptrn/styles/", "import '-/styles/");
 
                 // translate alias imports to relative paths
                 newFileContent = aliasToRelative(newFileContent, filePath);

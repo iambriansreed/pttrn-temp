@@ -1,0 +1,378 @@
+<style>
+    :root {
+        --bg: var(--figma-color-bg, #fff);
+        --surface: var(--figma-color-bg-secondary, #f5f5f5);
+        --text: var(--figma-color-text, #333);
+        --muted: var(--figma-color-text-secondary, #6b6b6b);
+        --border: var(--figma-color-border, #e6e6e6);
+        --brand: var(--figma-color-bg-brand, #0d99ff);
+        --brand-hover: var(--figma-color-bg-brand-hover, #0b87e0);
+        --on-brand: var(--figma-color-text-onbrand, #fff);
+        --hover: var(--figma-color-bg-hover, rgb(0 0 0 / 6%));
+        --success: var(--figma-color-icon-success, #14ae5c);
+        --warning: var(--figma-color-icon-warning, #f5a623);
+        --danger: var(--figma-color-text-danger, #f24822);
+        --radius: 6px;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    [hidden] {
+        display: none !important;
+    }
+
+    html,
+    body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font: 12px/16px Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+        overflow: hidden;
+    }
+
+    main {
+        padding: 16px 16px 20px;
+    }
+
+    section {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    h1,
+    p,
+    dl,
+    dd,
+    pre {
+        margin: 0;
+    }
+
+    h1 {
+        font-size: 13px;
+        line-height: 16px;
+        font-weight: 600;
+    }
+
+    .muted {
+        color: var(--muted);
+    }
+
+    .ellipsis {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    /* Progress */
+    .progress-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+    }
+
+    .progress-percent {
+        font-variant-numeric: tabular-nums;
+        color: var(--muted);
+    }
+
+    .bar {
+        height: 6px;
+        border-radius: 3px;
+        overflow: hidden;
+        background: var(--surface);
+        box-shadow: inset 0 0 0 1px var(--border);
+    }
+
+    .bar-fill {
+        width: 0;
+        height: 100%;
+        border-radius: 3px;
+        background: var(--brand);
+        transition: width 0.15s ease-out;
+    }
+
+    /* Result heading */
+    .result-head {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        min-width: 0;
+    }
+
+    .result-head > div {
+        min-width: 0;
+    }
+
+    .icon {
+        flex: none;
+        width: 24px;
+        height: 24px;
+    }
+
+    .icon-success {
+        color: var(--success);
+    }
+
+    .icon-danger {
+        color: var(--danger);
+    }
+
+    /* Stats */
+    .stats {
+        display: flex;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        background: var(--surface);
+    }
+
+    .stats > div {
+        flex: 1;
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: flex-start;
+        padding: 8px 12px;
+        min-width: 0;
+    }
+
+    .stats > div + div {
+        border-left: 1px solid var(--border);
+    }
+
+    .stats dd {
+        font-size: 16px;
+        line-height: 20px;
+        font-weight: 600;
+        font-variant-numeric: tabular-nums;
+    }
+
+    .stats dt {
+        font-size: 11px;
+        line-height: 16px;
+        color: var(--muted);
+        white-space: nowrap;
+    }
+
+    /* Buttons */
+    .actions {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    button {
+        height: 32px;
+        padding: 0 12px;
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        background: transparent;
+        color: var(--text);
+        font: inherit;
+        font-weight: 500;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: var(--hover);
+    }
+
+    button.primary {
+        border-color: transparent;
+        background: var(--brand);
+        color: var(--on-brand);
+    }
+
+    button.primary:hover {
+        background: var(--brand-hover);
+    }
+
+    button:focus-visible {
+        outline: 2px solid var(--brand);
+        outline-offset: 2px;
+    }
+
+    /* Messages */
+    .feedback {
+        min-height: 16px;
+        margin-top: -4px;
+        overflow: hidden;
+        color: var(--muted);
+        text-align: center;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .feedback.is-error {
+        color: var(--danger);
+    }
+
+    .note {
+        display: flex;
+        gap: 8px;
+        padding: 8px 12px;
+        border-radius: var(--radius);
+        background: color-mix(in srgb, var(--warning) 14%, transparent);
+        box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--warning) 40%, transparent);
+    }
+
+    .note svg {
+        flex: none;
+        width: 16px;
+        height: 16px;
+        color: var(--warning);
+    }
+
+    .note > div {
+        min-width: 0;
+    }
+
+    .reasons {
+        max-height: 140px;
+        margin: 6px 0 0;
+        padding-left: 16px;
+        overflow: auto;
+        color: var(--muted);
+        overflow-wrap: anywhere;
+    }
+
+    .reasons li + li {
+        margin-top: 4px;
+    }
+
+    button.link {
+        height: auto;
+        padding: 4px;
+        border: 0;
+        color: var(--muted);
+        text-decoration: underline;
+    }
+
+    button.link:hover {
+        background: transparent;
+        color: var(--text);
+    }
+
+    pre {
+        max-height: 120px;
+        overflow: auto;
+        padding: 8px 12px;
+        border-radius: var(--radius);
+        background: var(--surface);
+        box-shadow: inset 0 0 0 1px var(--border);
+        font: 11px/16px ui-monospace, 'SF Mono', Menlo, monospace;
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .bar-fill {
+            transition: none;
+        }
+    }
+</style>
+<main>
+    <section data-working aria-live="polite">
+        <div class="progress-head">
+            <span data-status>Starting export</span>
+            <span class="progress-percent" data-percent>0%</span>
+        </div>
+        <div
+            class="bar"
+            role="progressbar"
+            aria-label="Export progress"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="0"
+            data-progress
+        >
+            <div class="bar-fill" data-bar></div>
+        </div>
+        <p class="muted">Reading this file's variables and styles.</p>
+    </section>
+
+    <section data-complete aria-live="polite" hidden>
+        <div class="result-head">
+            <svg class="icon icon-success" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
+                <path
+                    d="M7.5 12.5l3 3 6-6.5"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+            </svg>
+            <div>
+                <h1>Export ready</h1>
+                <p class="muted ellipsis" data-file></p>
+            </div>
+        </div>
+
+        <dl class="stats">
+            <div>
+                <dt data-properties-label>properties</dt>
+                <dd data-properties>0</dd>
+            </div>
+            <div data-modes-cell>
+                <dt data-modes-label>mode sets</dt>
+                <dd data-modes>0</dd>
+            </div>
+            <div data-themes-cell>
+                <dt data-themes-label>themes</dt>
+                <dd data-themes>0</dd>
+            </div>
+            <div data-images-cell>
+                <dt data-images-label>images</dt>
+                <dd data-images>0</dd>
+            </div>
+        </dl>
+
+        <div class="note" data-skipped hidden>
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path
+                    d="M8 1.5l6.5 12h-13L8 1.5z"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linejoin="round"
+                />
+                <path d="M8 6.5v3M8 11.5v.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+            </svg>
+            <div>
+                <p data-skipped-text></p>
+                <ul class="reasons" data-skipped-list></ul>
+            </div>
+        </div>
+
+        <div class="actions">
+            <button type="button" class="primary" data-download>Download CSS</button>
+            <button type="button" data-copy>Copy CSS</button>
+            <button type="button" class="link" data-again>Export again</button>
+        </div>
+        <p class="feedback" role="status" data-feedback></p>
+
+    </section>
+
+    <section data-export-error role="alert" hidden>
+        <div class="result-head">
+            <svg class="icon icon-danger" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
+                <path d="M12 7v6M12 16.5v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            </svg>
+            <div>
+                <h1>Export failed</h1>
+                <p class="muted">Nothing was exported.</p>
+            </div>
+        </div>
+        <pre data-error-message></pre>
+        <div class="actions">
+            <button type="button" class="primary" data-retry>Try again</button>
+        </div>
+    </section>
+</main>
+<script src="ui.js"></script>

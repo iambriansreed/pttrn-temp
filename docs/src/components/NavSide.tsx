@@ -50,7 +50,7 @@ export const NavSide = () => {
                     setTimeout(() => window.location.reload(), 100);
                 }}
                 size="x-small"
-                style={{ margin: 'var(--spacing-sizing-02)' }}
+                style={{ margin: 'var(--usa-spacing-1)' }}
             />
         </nav>
     );

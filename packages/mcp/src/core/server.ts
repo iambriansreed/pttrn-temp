@@ -73,7 +73,7 @@ export function createServer(catalog: Catalog, guide: string): McpServer {
         {
             title: 'Get design tokens',
             description:
-                'Design tokens as CSS variables with light and dark values. Call with no kind to list the groups ' +
+                'USWDS design tokens as CSS variables, with their value in each theme. Call with no kind to list the groups ' +
                 '(colors, spacing, typography, surface, foreground, radius, shadows and more), then call again with ' +
                 'a kind. Use tokens instead of hardcoded colors and sizes.',
             inputSchema: { kind: z.string().optional().describe('A group from the list, for example "spacing".') },

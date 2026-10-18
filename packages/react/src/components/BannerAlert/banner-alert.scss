@@ -1,42 +1,42 @@
 [data-pttrn='banner-alert'] {
-    --color: var(--status-information);
-    --on-color: var(--status-on-information);
+    --color: var(--theme-color-info-dark);
+    --on-color: var(--theme-color-ink);
 
     display: flex;
     flex-direction: row;
     border: 2px solid var(--color);
-    border-radius: var(--radius-md);
-    background-color: var(--surface-neutral-t1-base);
+    border-radius: var(--theme-border-radius-lg);
+    background-color: var(--theme-body-background-color);
     width: 100%;
 
     &[data-variant='error'] {
-        --color: var(--status-error);
-        --on-color: var(--status-on-error);
+        --color: var(--theme-color-error-medium);
+        --on-color: var(--usa-color-white);
     }
 
     &[data-variant='success'] {
-        --color: var(--status-success);
-        --on-color: var(--status-on-success);
+        --color: var(--theme-color-success-medium);
+        --on-color: var(--usa-color-white);
     }
 
     &[data-variant='warning'] {
-        --color: var(--status-warning);
-        --on-color: var(--status-on-warning);
+        --color: var(--theme-color-warning-medium);
+        --on-color: var(--theme-color-ink);
     }
 
     &[data-elevated] {
-        box-shadow: var(--drop-shadow-raise);
+        box-shadow: 0 1px 2px 0 var(--usa-color-black-transparent-20);
     }
 
     [data-icon-bar] {
         flex: 1;
-        padding: var(--spacing-sizing-04) var(--spacing-sizing-03);
+        padding: var(--usa-spacing-2) var(--usa-spacing-105);
         background: var(--color);
         color: var(--on-color);
 
         svg {
-            width: var(--spacing-sizing-06);
-            height: var(--spacing-sizing-06);
+            width: var(--usa-spacing-3);
+            height: var(--usa-spacing-3);
         }
     }
 
@@ -44,24 +44,24 @@
         flex: 100%;
         display: flex;
         flex-direction: column;
-        padding: var(--spacing-sizing-02) var(--spacing-sizing-02) var(--spacing-sizing-02) var(--spacing-sizing-04);
+        padding: var(--usa-spacing-1) var(--usa-spacing-1) var(--usa-spacing-1) var(--usa-spacing-2);
 
         [data-header] {
             display: flex;
             flex-direction: row;
-            gap: var(--spacing-sizing-03);
-            height: var(--spacing-sizing-12);
+            gap: var(--usa-spacing-105);
+            height: var(--usa-spacing-6);
             align-items: center;
 
             span {
                 flex: 1;
                 display: flex;
                 align-items: center;
-                color: var(--foreground-neutral-on-surface);
-                font: var(--heading-h6);
+                color: var(--theme-body-text-color);
+                font: 500 var(--usa-font-size-sans-7) / 24px var(--usa-font-family-heading);
 
                 @media (any-pointer: coarse) {
-                    font: var(--heading-h6);
+                    font: 500 var(--usa-font-size-sans-7) / 24px var(--usa-font-family-heading);
                 }
             }
         }
@@ -69,11 +69,11 @@
         [data-body] {
             display: flex;
             flex-direction: column;
-            gap: var(--spacing-sizing-02);
-            padding: 0 var(--spacing-sizing-02) var(--spacing-sizing-02) 0;
+            gap: var(--usa-spacing-1);
+            padding: 0 var(--usa-spacing-1) var(--usa-spacing-1) 0;
 
             span {
-                font: var(--body-base);
+                font: 400 var(--usa-font-size-sans-5) / 24px var(--usa-font-family-body);
             }
 
             button {

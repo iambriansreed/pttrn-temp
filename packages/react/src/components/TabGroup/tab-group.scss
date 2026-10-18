@@ -4,31 +4,31 @@ ul[data-pttrn='tab-group'] {
 
     li {
         border: 0;
-        color: var(--foreground-neutral-on-surface-variant-02);
+        color: var(--theme-color-base-dark);
         background: none;
-        border-bottom: 1px solid var(--stroke-neutral-low);
+        border-bottom: 1px solid var(--theme-color-base-lighter);
         position: relative;
-        padding: 0 var(--spacing-sizing-04);
+        padding: 0 var(--usa-spacing-2);
 
         &:not([aria-disabled]) {
             &:active {
-                background: var(--interactions-neutral-press-opacity);
+                background: var(--usa-color-black-transparent-20);
             }
         }
 
         &[aria-disabled] {
-            color: var(--foreground-neutral-disabled-on-surface);
+            color: var(--theme-color-disabled-dark);
         }
 
         &[aria-selected='true'] {
-            color: var(--foreground-brand-primary);
+            color: var(--theme-color-primary-medium);
 
             &::after {
                 content: '';
                 display: block;
-                width: calc(100% - var(--spacing-sizing-04) * 2);
+                width: calc(100% - var(--usa-spacing-2) * 2);
                 height: 2px;
-                background-color: var(--stroke-brand-primary);
+                background-color: var(--theme-color-primary-medium);
                 bottom: -1px;
                 position: absolute;
                 border-top-right-radius: 2px;
@@ -36,14 +36,14 @@ ul[data-pttrn='tab-group'] {
             }
 
             svg {
-                color: var(--surface-brand-primary);
+                color: var(--theme-color-primary-medium);
             }
         }
     }
 
     &[data-show-trail][data-width='hug'] {
         width: 100%;
-        border-bottom: 1px solid var(--stroke-neutral-low);
+        border-bottom: 1px solid var(--theme-color-base-lighter);
 
         li {
             border-bottom: none;
@@ -52,7 +52,7 @@ ul[data-pttrn='tab-group'] {
 
     &:focus-within {
         li:not([aria-disabled])[data-active] {
-            background: var(--interactions-neutral-hover-opacity);
+            background: var(--usa-color-black-transparent-10);
         }
     }
 }

@@ -27,9 +27,9 @@ describe('src/core/catalog.test.ts - built catalog stays in sync', () => {
         assert.deepEqual(variant?.options, ['primary', 'secondary', 'tertiary']);
     });
 
-    test('groups tokens and carries dark values', () => {
+    test('groups tokens and carries their values in other themes', () => {
         assert.ok(catalog.tokens.some((t) => t.kind === 'spacing'));
-        assert.ok(catalog.tokens.some((t) => t.dark !== undefined));
+        assert.ok(catalog.tokens.some((t) => t.themes?.['project-theme-dark'] !== undefined));
     });
 
     test('is stamped with the design system version', () => {

@@ -13,6 +13,7 @@ import type { Catalog } from '../src/core/types.js';
 import { extractComponents, extractIcons, extractTokens, withoutStaleUsage } from './extract.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
+const stylesDir = path.resolve(root, 'packages/styles');
 const outDir = path.resolve(root, 'packages/mcp/data');
 const docsMeta = path.resolve(root, 'docs/src/meta/data.json');
 
@@ -32,7 +33,15 @@ const extracted: Catalog = {
     },
     components: extractComponents(readJson(docsMeta)),
     icons: extractIcons(readJson(path.resolve(root, 'packages/icons/icon-aliases.json'))),
-    tokens: extractTokens(fs.readFileSync(path.resolve(root, 'packages/styles/nowhere.css'), 'utf-8')),
+    tokens: extractTokens(
+        fs.readFileSync(path.resolve(stylesDir, 'tokens.css'), 'utf-8'),
+        Object.fromEntries(
+            fs
+                .readdirSync(path.resolve(stylesDir, 'themes'))
+                .filter((file) => file.endsWith('.css'))
+                .map((file) => [file.replace(/\.css$/, ''), fs.readFileSync(path.resolve(stylesDir, 'themes', file), 'utf-8')]),
+        ),
+    ),
 };
 
 const { catalog, dropped } = withoutStaleUsage(extracted);

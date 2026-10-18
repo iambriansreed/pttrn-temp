@@ -129,14 +129,12 @@ export function Select({
     const menuId = useMemo(() => `${id}-menu`, [id]);
 
     const { items, availableItems } = useMemo(() => {
-        const nextItems = optionsProp.map(
-            (item, index): SelectItem => ({
-                ...item,
-                id: `${id}-item-${index}`,
-                'aria-label': item.label,
-                'aria-selected': value == item.value,
-            }),
-        );
+        const nextItems = optionsProp.map((item, index): SelectItem => ({
+            ...item,
+            id: `${id}-item-${index}`,
+            'aria-label': item.label,
+            'aria-selected': value == item.value,
+        }));
 
         return { items: nextItems, availableItems: nextItems.filter((item) => !item.disabled) };
     }, [optionsProp, id, value]);

@@ -7,7 +7,7 @@ export const PopoverExample: ComponentExampleFn<PopoverProps> = ({ action }) => 
     render: ({ props, Component }) => {
         return (
             <>
-                <Txt style={{ marginBottom: `var(--spacing-sizing-02)` }}>Click for a Popover</Txt>
+                <Txt style={{ marginBottom: `var(--usa-spacing-1)` }}>Click for a Popover</Txt>
                 <Component {...props}>
                     {(triggerProps) => <Button label={`${props.placement}`} variant="secondary" {...triggerProps} />}
                 </Component>

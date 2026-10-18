@@ -1,11 +1,3 @@
-// @ptrn/react gets its reset from a global base stylesheet. A shadow root is not reached by page-level rules, so every
-// element `@use`s this to carry its own.
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
-
-[hidden] {
-    display: none !important;
-}
+// @ptrn/react gets the reset from a global base stylesheet. A shadow root is not reached by page-level rules, so every
+// element `@use`s this to carry its own. Both load the same file from @ptrn/styles.
+@forward 'pkg:@ptrn/styles/reset';

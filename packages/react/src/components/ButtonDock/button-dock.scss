@@ -4,8 +4,8 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    padding: var(--spacing-sizing-02) var(--spacing-sizing-04);
-    gap: var(--spacing-sizing-04);
+    padding: var(--usa-spacing-1) var(--usa-spacing-2);
+    gap: var(--usa-spacing-2);
 
     &[data-arrangement='fill'] {
         display: flex;
@@ -19,7 +19,7 @@
         justify-content: space-between;
 
         [data-pttrn='button'] {
-            min-width: var(--spacing-sizing-12);
+            min-width: var(--usa-spacing-6);
             justify-self: stretch;
         }
     }
@@ -29,8 +29,8 @@
         bottom: 0;
         right: 0;
         left: 0;
-        background: var(--surface-neutral-t1-base);
-        box-shadow: var(--drop-shadow-north);
+        background: var(--theme-body-background-color);
+        box-shadow: 0 -2px 8px -2px var(--usa-color-black-transparent-10);
         z-index: var(--z-index-button-dock);
     }
 }

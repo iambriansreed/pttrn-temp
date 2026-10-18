@@ -7,6 +7,7 @@ import { ExamplePlaceholder } from '@ptrn/react/ExamplePlaceholder';
 import { Input } from '@ptrn/react/Input';
 import { sendSnackbar } from '@ptrn/react/Snackbar';
 import { CodePlaygroundProps, DemoAction } from '@ptrn/react/utils/demo';
+import { isDarkTheme } from '@ptrn/react/utils/uiContext';
 import { themes } from 'prism-react-renderer';
 import React, { Suspense, useContext, useEffect, useState } from 'react';
 import { LiveProvider, LiveError, LivePreview, LiveEditor, LiveContext } from 'react-live';
@@ -70,7 +71,7 @@ export function CodePlayground({ defaultCode, defaultShowCode }: CodePlaygroundP
                             code={code}
                             language="typescript"
                             onChange={(newCode) => setCode(newCode)}
-                            theme={theme === 'dark' ? themes.vsDark : themes.vsLight}
+                            theme={isDarkTheme(theme) ? themes.vsDark : themes.vsLight}
                         />
                     </div>
                 )}
@@ -79,7 +80,7 @@ export function CodePlayground({ defaultCode, defaultShowCode }: CodePlaygroundP
                         label={showCode ? 'Hide code' : 'Edit code'}
                         onClick={() => setShowCode((p) => !p)}
                         size="x-small"
-                        style={{ borderRadius: 'var(--radius-full)' }}
+                        style={{ borderRadius: 'var(--usa-radius-pill)' }}
                         variant="secondary"
                     />
                     <Button

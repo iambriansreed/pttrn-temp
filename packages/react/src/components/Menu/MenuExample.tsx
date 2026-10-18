@@ -19,7 +19,7 @@ export const MenuExample: ComponentExampleFn<MenuProps & { style?: unknown; 'dat
 }) => ({
     render: ({ props, Component, setState }) => {
         return (
-            <Component {...props} style={{ padding: 'var(--spacing-sizing-02) var(--spacing-sizing-02)' }}>
+            <Component {...props} style={{ padding: 'var(--usa-spacing-1) var(--usa-spacing-1)' }}>
                 <ListItem
                     label="Michael Scott"
                     leading={<Avatar image="/avatar-01.png" name="Michael Scott" />}

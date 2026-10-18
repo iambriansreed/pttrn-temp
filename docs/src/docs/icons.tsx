@@ -11,6 +11,7 @@ import { Switch } from '@ptrn/react/Switch';
 import { ToggleOption } from '@ptrn/react/ToggleOption';
 import { useUIContext } from '@ptrn/react/hooks/useUIContext';
 import { cssWithVars } from '@ptrn/react/utils/cwv';
+import { isDarkTheme } from '@ptrn/react/utils/uiContext';
 import { Fragment, HTMLProps, ReactNode, useState } from 'react';
 import { Page } from 'components/Page';
 import { Syntax } from 'src/components/Syntax';
@@ -151,8 +152,8 @@ const CheckeredBackgroundContainer = ({ children, ...props }: HTMLProps<HTMLDivE
             style={{
                 ...props.style,
                 ...cssWithVars({
-                    '--background1': theme === 'dark' ? '#23272f' : '#fff',
-                    '--background2': theme === 'dark' ? '#2c2f38' : '#f3f3f3',
+                    '--background1': isDarkTheme(theme) ? '#23272f' : '#fff',
+                    '--background2': isDarkTheme(theme) ? '#2c2f38' : '#f3f3f3',
                 }),
             }}
         >

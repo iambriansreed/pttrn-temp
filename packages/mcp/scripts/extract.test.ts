@@ -5,34 +5,47 @@ import { fixture } from '../src/core/fixture.js';
 import { extractComponents, extractIcons, extractTokens, withoutStaleUsage } from './extract.js';
 
 describe('extractTokens', () => {
-    const css = `
-body { font-family: var(--typeface); }
+    const tokensCss = `
+/* header */
 :root {
-    /* Colors/Neutral/00 - Global (primitives) */
-    --colors-neutral-00: #000000;
-    /* Radius */
-    --radius-sm: 4px;
-}
-/* dark theme */
-[data-theme='dark'] {
-    --colors-neutral-00: #ffffff;
+    /* !-usa/spacing/2 */
+    --usa-spacing-2: 16px;
 }
 `;
+    const theme = (key: string, ink: string) => `
+/* header */
+:where(:root), [data-uswds-theme="${key}"] {
+    /* #-theme/color/ink */
+    --theme-color-ink: ${ink};
+    /* #-theme/border-radius/md */
+    --theme-border-radius-md: 4px;
+}
+`;
+    const themes = {
+        default: theme('default', 'var(--usa-color-gray-90)'),
+        'project-theme-dark': theme('project-theme-dark', 'var(--usa-color-white)'),
+    };
 
     test('reads each custom property with its comment and group', () => {
-        const tokens = extractTokens(css);
+        const tokens = extractTokens(tokensCss, themes);
         assert.deepEqual(tokens[0], {
-            name: '--colors-neutral-00',
-            kind: 'colors',
-            value: '#000000',
-            dark: '#ffffff',
-            description: 'Colors/Neutral/00 - Global (primitives)',
+            name: '--usa-spacing-2',
+            kind: 'spacing',
+            value: '16px',
+            description: '!-usa/spacing/2',
         });
     });
 
-    test('leaves dark unset when the dark theme does not override it', () => {
-        const radius = extractTokens(css).find((t) => t.name === '--radius-sm');
-        assert.equal(radius?.dark, undefined);
+    test('takes theme tokens from the default theme and adds the values that differ in the others', () => {
+        const ink = extractTokens(tokensCss, themes).find((t) => t.name === '--theme-color-ink');
+        assert.equal(ink?.kind, 'color');
+        assert.equal(ink?.value, 'var(--usa-color-gray-90)');
+        assert.deepEqual(ink?.themes, { 'project-theme-dark': 'var(--usa-color-white)' });
+    });
+
+    test('leaves themes unset when no other theme changes the token', () => {
+        const radius = extractTokens(tokensCss, themes).find((t) => t.name === '--theme-border-radius-md');
+        assert.equal(radius?.themes, undefined);
         assert.equal(radius?.value, '4px');
     });
 });

@@ -6,25 +6,25 @@
     [data-search-result] {
         padding: 0.5rem 0.5rem 1rem;
         cursor: pointer;
-        border-radius: var(--radius-sm);
+        border-radius: var(--theme-border-radius-md);
 
         span {
-            color: var(--foreground-brand-primary);
+            color: var(--theme-color-primary-medium);
         }
 
         &:hover {
             h5 {
-                color: var(--foreground-brand-primary);
+                color: var(--theme-color-primary-medium);
             }
 
-            background-color: var(--surface-brand-primary-highlight);
+            background-color: var(--theme-color-primary-lighter);
         }
 
         &[data-active] {
-            background-color: var(--surface-brand-primary-highlight);
+            background-color: var(--theme-color-primary-lighter);
 
             h5 {
-                color: var(--foreground-brand-primary);
+                color: var(--theme-color-primary-medium);
             }
         }
     }

@@ -6,10 +6,11 @@ Components so far: `ptrn-accordion`, `ptrn-accordion-item`.
 
 ## Use it from a CDN
 
-No build step. Load a `@ptrn/styles` brand stylesheet so the elements pick up the design tokens, then the elements.
+No build step. Load the `@ptrn/styles` tokens and a theme so the elements pick up the design tokens, then the elements.
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ptrn/styles/nowhere.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ptrn/styles/tokens.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ptrn/styles/themes/default.css" />
 <script type="module" src="https://cdn.jsdelivr.net/npm/@ptrn/web/dist/cdn/ptrn-web.min.js"></script>
 
 <ptrn-accordion>

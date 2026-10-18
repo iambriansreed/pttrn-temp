@@ -82,7 +82,13 @@ export function CheckboxGroup({
     const availableOptions = options.filter((o) => !o.disabled);
 
     return (
-        <div {...props} aria-describedby={ariaDescribedBy || undefined} data-pttrn="checkbox-group" id={id} role="group">
+        <div
+            {...props}
+            aria-describedby={ariaDescribedBy || undefined}
+            data-pttrn="checkbox-group"
+            id={id}
+            role="group"
+        >
             {selectAll && (
                 <CheckboxOption
                     aria-label={ALL_LABEL}

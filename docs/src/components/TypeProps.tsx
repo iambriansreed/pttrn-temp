@@ -84,7 +84,7 @@ export function TypeProps({
                     width: 'auto',
                     valign: 'top',
                     formatter: (row) => (
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-sizing-02)' }}>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--usa-spacing-1)' }}>
                             {row.name}
                         </div>
                     ),
@@ -95,7 +95,7 @@ export function TypeProps({
                     width: '1fr',
                     valign: 'top',
                     formatter: (row) => (
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-sizing-02)' }}>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--usa-spacing-1)' }}>
                             {row['description-type']}
                         </div>
                     ),
@@ -121,7 +121,7 @@ export function TypeProps({
                             <Txt as="div" variant="labels-small">
                                 {prop.name}
                             </Txt>
-                            {prop.required && <Tag color="red" label="required" size="x-small" />}
+                            {prop.required && <Tag color="error" label="required" size="x-small" />}
                         </>
                     ),
                     'description-type': (
@@ -130,7 +130,7 @@ export function TypeProps({
                             <div data-type-options>
                                 {prop.typeOptions?.map((o) => (
                                     <Tag
-                                        color="blue"
+                                        color="info"
                                         key={`${o}1`}
                                         label={o.toString()}
                                         size="x-small"
@@ -143,7 +143,7 @@ export function TypeProps({
                                     as="div"
                                     style={{
                                         fontStyle: 'italic',
-                                        color: 'var(--foreground-neutral-on-surface-variant-02)',
+                                        color: 'var(--theme-color-base-dark)',
                                     }}
                                     variant="labels-small"
                                 >{`Minimum: ${prop.minimum}`}</Txt>
@@ -153,7 +153,7 @@ export function TypeProps({
                                     as="div"
                                     style={{
                                         fontStyle: 'italic',
-                                        color: 'var(--foreground-neutral-on-surface-variant-02)',
+                                        color: 'var(--theme-color-base-dark)',
                                     }}
                                     variant="labels-small"
                                 >{`Maximum: ${prop.maximum}`}</Txt>
@@ -162,10 +162,10 @@ export function TypeProps({
                     ),
                     default:
                         typeof prop.libraryDefault === 'undefined' ? (
-                            <Tag color="yellow" label="None" size="x-small" variant="flat" />
+                            <Tag color="warning" label="None" size="x-small" variant="flat" />
                         ) : (
                             <Tag
-                                color="green"
+                                color="success"
                                 label={prop.libraryDefault != null ? prop.libraryDefault.toString() : ''}
                                 size="x-small"
                                 variant="flat"

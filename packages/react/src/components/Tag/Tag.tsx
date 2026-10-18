@@ -19,7 +19,7 @@ export type TagProps = {
     /**
      * The color of the tag.
      *
-     * @default grey
+     * @default base
      */
     color?: ColorVariant;
     /**
@@ -43,7 +43,7 @@ export type TagProps = {
  */
 export function Tag({
     label,
-    color = 'grey',
+    color = 'base',
     size = 'small',
     variant = 'flat',
     ...props

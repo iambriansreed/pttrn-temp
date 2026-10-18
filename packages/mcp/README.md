@@ -60,4 +60,4 @@ npm test             # unit tests, plus a real MCP client against the real serve
 npm run lint         # typecheck
 ```
 
-`build:data` reads `docs/src/meta/data.json` (generating it with `npm run meta` if it is missing), `packages/icons/icon-aliases.json` and `packages/styles/nowhere.css`. It runs `validate_code` over each docs usage example and does not serve any that disagree with their component's props, listing them so they can be fixed in the docs.
+`build:data` reads `docs/src/meta/data.json` (generating it with `npm run meta` if it is missing), `packages/icons/icon-aliases.json` and the `packages/styles` token and theme stylesheets. It runs `validate_code` over each docs usage example and does not serve any that disagree with their component's props, listing them so they can be fixed in the docs.

@@ -7,21 +7,21 @@
         display: block;
         z-index: 2;
         position: relative;
-        background-color: var(--surface-neutral-inverse);
-        border-radius: var(--radius-sm);
-        color: var(--foreground-neutral-on-inverse-surface);
-        box-shadow: var(--drop-shadow-float);
-        font: var(--labels-small);
-        padding: var(--spacing-sizing-01) var(--spacing-sizing-02);
+        background-color: var(--theme-color-ink);
+        border-radius: var(--theme-border-radius-md);
+        color: var(--theme-color-ink-reverse);
+        box-shadow: var(--card-shadow);
+        font: 500 var(--usa-font-size-sans-3) / 20px var(--usa-font-family-ui);
+        padding: var(--usa-spacing-05) var(--usa-spacing-1);
         border: none;
         transition: opacity 0.2s ease-in-out;
         max-width: 300px;
         word-wrap: break-word;
     }
 
-    --arrow-size: var(--spacing-sizing-01);
+    --arrow-size: var(--usa-spacing-05);
     --arrow-offset: calc(var(--arrow-size) * -2);
-    --arrow-color: var(--surface-neutral-inverse);
+    --arrow-color: var(--theme-color-ink);
 
     [data-arrow] {
         display: block;

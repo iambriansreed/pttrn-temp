@@ -1,0 +1,347 @@
+/**
+ * This script generates the SVG icons and React components from the material-design-icons repository and custom icons
+ * from the Pattern Design System. The script is run by executing the command `npm run build` and `npm run build f` to
+ * force the generation of the icon data.
+ *
+ * The script:
+ *
+ * 1. Reads the material folder to get the list of material icons to include.
+ * 2. Reads the nowhere folder to get the list of custom icons to include.
+ * 3. Cleans up and optimizes the SVG code for each icon.
+ * 4. Generates the SVG files for each icon.
+ * 5. Generates the React components for each icon.
+ * 6. Generates the SvgIcon component which is a lazy loaded component that renders the icon.
+ * 7. Generates the meta/index.ts file which contains the icon metadata.
+ * 8. Generates the index.ts file which exports the IconType and IconMeta types.
+ * 9. Runs prettier on the generated files.
+ * 10. Compiles the TypeScript files.
+ * 11. Copies the generated JavaScript and TypeScript files to the root directory.
+ * 12. Removes the src directory.
+ * 13. Creates a placeholder file in the src directory.
+ * 14. Outputs the completion message.
+ *
+ * $ npx tsx .scripts/build.ts
+ */
+import child_process, { execSync } from 'child_process';
+import fs from 'fs';
+import path from 'path';
+import { optimize } from 'svgo';
+import { transform } from '@svgr/core';
+import { ICON_SIZE, NOWHERE_PATH, MATERIAL_PATH } from './build-config';
+import { IconMeta, IconType } from './build-types';
+
+const exec = (...commands: string[]) =>
+    commands.forEach((command) => child_process.execSync(command, { stdio: 'inherit' }));
+
+export const makeComponentName = (fileName: string) => {
+    return fileName
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace('_fill1', 'Fill')
+        .replace(new RegExp(`_${ICON_SIZE}px.svg$`), '')
+        .replace(/.svg$/, '')
+        .replace(/[^a-zA-Z0-9]/g, ' ')
+        .replace(/(^\w{1})|(\s+\w{1})/g, (l) => l.toUpperCase())
+        .replace(/ /g, '');
+};
+
+export const makeTitle = (name: string) => {
+    return name
+        .replace('AZ', 'A-Z')
+        .replace(/([a-z])([A-Z])/g, '$1 $2')
+        .replace(/([A-Z])([A-Z][a-z])/g, '$1 $2');
+};
+
+type IconData = {
+    name: string;
+    code?: string;
+    filled: boolean;
+    type: IconType;
+    optimized?: string;
+    svg?: string;
+    fileSize: number;
+};
+
+const config: {
+    path: string;
+    type: IconType;
+    nameFromFileName: (fileName: string) => string;
+}[] = [
+    {
+        path: MATERIAL_PATH,
+        type: 'material',
+        nameFromFileName: makeComponentName,
+    },
+    {
+        path: NOWHERE_PATH,
+        type: 'nowhere',
+        nameFromFileName: makeComponentName,
+    },
+];
+
+function getIconData(): IconData[] {
+    let iconData = config.flatMap(({ path, nameFromFileName, type }) => {
+        return fs.readdirSync(path).flatMap((file): IconData[] => {
+            if (!file.endsWith('.svg')) return [];
+
+            const code = fs.readFileSync(path + '/' + file, 'utf-8');
+            const name = nameFromFileName(file);
+            const filled = file.endsWith(' filled.svg') || file.endsWith(' fill.svg') || file.endsWith('_fill.svg');
+
+            return [
+                {
+                    name,
+                    code,
+                    filled,
+                    type,
+                    fileSize: fs.statSync(path + '/' + file).size,
+                },
+            ];
+        });
+    });
+
+    iconData.sort((a, b) => a.name.localeCompare(b.name));
+
+    iconData = iconData.filter((icon, index, arr) => {
+        return !icon.filled || icon.code !== arr[index - 1]?.code;
+    });
+
+    return iconData;
+}
+
+function optimizeIcons(iconData: IconData[]) {
+    console.log('\noptimizing icons...');
+
+    iconData.forEach((icon) => {
+        icon.optimized = icon.optimized = optimize(icon.code!, {
+            multipass: true,
+            plugins: [
+                'removeDimensions',
+                'cleanupIds',
+                'removeUselessDefs',
+                'removeDesc',
+                'removeTitle',
+                'removeMetadata',
+                'removeRasterImages',
+                'removeScriptElement',
+                'removeStyleElement',
+                'removeXMLNS',
+                'removeXMLProcInst',
+                'removeXlink',
+                {
+                    name: 'convertColors',
+                    params: {
+                        currentColor: true,
+                    },
+                },
+                {
+                    name: 'prefixIds',
+                    params: {
+                        prefix: 'Svg' + icon.name,
+                    },
+                },
+            ],
+        }).data;
+
+        if (icon.type === 'material') icon.optimized = icon.optimized?.replace('<svg', '<svg fill="currentColor"');
+
+        icon.optimized = icon.optimized?.replace(
+            '<svg ',
+            `<svg data-pttrn-name="${icon.name}"${icon.filled ? ' data-filled="true" ' : ' '}data-type="${icon.type}" xmlns="http://www.w3.org/2000/svg" `,
+        );
+
+        //
+    });
+}
+
+function createSvgs(iconData: IconData[]) {
+    console.log('\ngenerating SVGs...');
+
+    iconData.forEach((icon) => {
+        if (!icon.optimized) {
+            console.log('no optimized code for', icon.type, icon.name);
+            return;
+        }
+
+        const filePath = path.join('./', icon.name + '.svg');
+
+        fs.writeFileSync(filePath, icon.optimized.toString());
+    });
+}
+
+function generateComponent(iconData: IconData[]) {
+    console.log('\ngenerating react components...');
+
+    iconData.sort((a, b) => a.name.localeCompare(b.name));
+
+    iconData.forEach((icon) => {
+        if (!icon.optimized) {
+            console.log('no optimized code for', icon.type, icon.name);
+            return;
+        }
+        const namedExport = `Svg${icon.name}`;
+
+        const svgrOutput = transform.sync(
+            icon.optimized,
+            {
+                plugins: ['@svgr/plugin-jsx'],
+                typescript: true,
+                exportType: 'named',
+                namedExport,
+            },
+            { componentName: namedExport },
+        );
+
+        fs.writeFileSync(
+            path.join('src', icon.name + '.tsx'),
+            svgrOutput
+                .replace('import * as React from "react";\n', '')
+                .replace('export {', `${namedExport}.pttrnName = 'Icon';\nexport {`)
+                .replace('{...props}', '{...props} width={width}')
+                .replace(
+                    'props: SVGProps<SVGSVGElement>',
+                    '{width = 24, ...props}: Omit<SVGProps<SVGSVGElement>,"height">',
+                ),
+        );
+    });
+
+    execSync(`mkdir -p ./src/SvgIcon`);
+
+    fs.writeFileSync(
+        path.join('src', 'SvgIcon/index.tsx'),
+        `
+import {
+  Suspense,
+  lazy,
+  type SVGProps,
+  type LazyExoticComponent,
+  type ComponentType,
+} from 'react';
+import type { IconName } from '../meta';
+
+const icons: Record<IconName, LazyExoticComponent<ComponentType>> = {
+  ${iconData.map(({ name }) => `'${name}': lazy(() => import('../${name}').then(({ Svg${name} }) => ({ default: Svg${name} }))),`).join('\n')}
+};
+
+/**
+ * Do not use in a production setting. This is for development and demo purposes only.
+ * Icons should be imported directly. \`import { SvgWork } from '@ptrn/icons/Work';\`
+ *
+ * @param name - The name of the icon to render.
+ * @param ...props - SVGProps to pass to the icon.
+ * @returns The lazy loaded icon SVG component.
+ */
+function SvgIcon({
+  name,
+  ...props
+}: {
+  name: IconName;
+} & Omit<SVGProps<SVGSVGElement>, 'height'>) {
+  const Svg = icons[name];
+  props.width = props.width || 24;
+
+if(!Svg) {
+    console.warn(\`Icon "\${name}" not found. Please check the icon name.\`);
+    return null;
+  }
+
+  return (<Suspense><Svg {...props} />
+    </Suspense>);
+}
+
+SvgIcon.pttrnName = 'Icon';
+
+export { SvgIcon };
+`,
+    );
+
+    fs.writeFileSync(path.join('src', 'index.ts'), `export * from './meta';`);
+
+    execSync(`mkdir -p ./src/meta`);
+
+    const iconNames = iconData.map((icon) => icon.name);
+
+    const previousMeta: IconMeta[] = fs.existsSync(path.join('icon-aliases.json'))
+        ? JSON.parse(fs.readFileSync(path.join('icon-aliases.json'), 'utf-8'))
+        : [];
+
+    const nextMeta = iconData.map((icon): IconMeta => {
+        const title = makeTitle(icon.name);
+
+        const variantFill =
+            !icon.name.endsWith('Fill') && iconNames.includes(icon.name + 'Fill') ? icon.name + 'Fill' : undefined;
+
+        const variantUnfilled =
+            icon.name.endsWith('Fill') && iconNames.includes(icon.name.replace(/Fill$/, ''))
+                ? icon.name.replace(/Fill$/, '')
+                : undefined;
+
+        const nextIcon: IconMeta = {
+            name: icon.name,
+            title,
+            type: icon.type,
+            variantFill,
+            variantUnfilled,
+        };
+
+        if (nextIcon.variantUnfilled) return nextIcon;
+
+        nextIcon.alias = previousMeta.find((previousIcon) => previousIcon.name === icon.name)?.alias || ''; // leave empty if not found
+
+        return nextIcon;
+    });
+
+    // icons without aliases
+    const missingAliases = nextMeta.filter((icon) => icon.alias === icon.title);
+
+    if (missingAliases.length > 0) {
+        console.warn(
+            `\n\nIcons without aliases (${missingAliases.length}): \n${missingAliases.map((icon) => `\n- ${icon.name}`)}`,
+        );
+    } else {
+        console.info('\n\nAll icons have aliases. :)');
+    }
+
+    fs.writeFileSync(
+        path.join('src', 'meta/index.ts'),
+        fs.readFileSync(path.resolve('.scripts', 'build-types.ts'), 'utf-8') +
+            `
+export type IconName = '${iconData.map((icon) => icon.name).join("' | '")}';
+
+export const meta: IconMeta[] = ${JSON.stringify(nextMeta)} as const;`,
+    );
+
+    fs.writeFileSync(path.join('icon-aliases.json'), JSON.stringify(nextMeta, null, 2));
+
+    exec(
+        `npx prettier --log-level silent --write ./src/*.tsx`,
+        `npx prettier --log-level silent --write ./src/*.ts`,
+        `npx prettier --log-level silent --write ./src/**/*.tsx`,
+        `npx prettier --log-level silent --write ./src/**/*.ts`,
+    );
+}
+
+(async () => {
+    execSync('rm -rf ./src/* && mkdir -p ./src');
+
+    // path checks
+    [MATERIAL_PATH, NOWHERE_PATH].forEach((path) => {
+        if (!fs.existsSync(path)) {
+            throw new Error(`path does not exist: ${path}`);
+        }
+    });
+
+    const iconData = getIconData();
+
+    optimizeIcons(iconData);
+
+    createSvgs(iconData);
+
+    generateComponent(iconData);
+
+    execSync(`npx tsc`, { stdio: 'inherit' });
+
+    execSync(`rm -rf src && mkdir -p src && touch ./src/index.ts`, { stdio: 'inherit' });
+
+    console.log('\ngeneration complete!');
+})();

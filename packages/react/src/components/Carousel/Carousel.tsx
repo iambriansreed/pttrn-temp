@@ -107,7 +107,7 @@ export function Carousel({
             role="region"
             style={cssWithVars({
                 ...style,
-                '--gap': gap ? `${gap}px` : 'var(--spacing-sizing-04)',
+                '--gap': gap ? `${gap}px` : 'var(--usa-spacing-2)',
                 '--item-width': widthValue,
             })}
         >

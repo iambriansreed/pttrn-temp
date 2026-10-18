@@ -1,17 +1,17 @@
 [data-pttrn='button'] {
     display: flex;
     flex-direction: row;
-    gap: var(--spacing-sizing-02);
+    gap: var(--usa-spacing-1);
     border: none;
     cursor: pointer;
     background: transparent;
     text-decoration: none;
     width: fit-content;
-    font-family: var(--typeface);
+    font-family: var(--usa-font-family-body);
 
     [data-touch-target] {
-        min-width: var(--spacing-sizing-12);
-        min-height: var(--spacing-sizing-12);
+        min-width: var(--usa-spacing-6);
+        min-height: var(--usa-spacing-6);
     }
 
     &[data-width='hug'] {
@@ -23,71 +23,71 @@
     }
 
     &[data-size='x-small'] {
-        font-size: var(--typography-size-xs);
-        line-height: var(--typography-line-height-lh-1);
-        height: var(--spacing-sizing-06);
-        min-width: var(--spacing-sizing-06);
-        gap: var(--spacing-sizing-02);
+        font-size: var(--usa-font-size-sans-1);
+        line-height: 16px;
+        height: var(--usa-spacing-3);
+        min-width: var(--usa-spacing-3);
+        gap: var(--usa-spacing-1);
 
         &:has([data-button-label]),
         &[data-override] {
-            padding: 0 var(--spacing-sizing-02);
+            padding: 0 var(--usa-spacing-1);
         }
 
         [data-button-icon] svg {
-            width: var(--spacing-sizing-04);
-            height: var(--spacing-sizing-04);
+            width: var(--usa-spacing-2);
+            height: var(--usa-spacing-2);
         }
     }
 
     &[data-size='small'] {
-        font-size: var(--typography-size-sm);
-        line-height: var(--typography-line-height-lh-2);
-        height: var(--spacing-sizing-08);
-        min-width: var(--spacing-sizing-08);
+        font-size: var(--usa-font-size-sans-3);
+        line-height: 20px;
+        height: var(--usa-spacing-4);
+        min-width: var(--usa-spacing-4);
 
         &:has([data-button-label]),
         &[data-override] {
-            padding: 6px var(--spacing-sizing-04);
+            padding: 6px var(--usa-spacing-2);
         }
 
         [data-button-icon] svg {
-            width: var(--spacing-sizing-05);
-            height: var(--spacing-sizing-05);
+            width: var(--usa-spacing-205);
+            height: var(--usa-spacing-205);
         }
     }
 
     &[data-size='medium'] {
-        font-size: var(--typography-size-base);
-        line-height: var(--typography-line-height-lh-2);
-        height: var(--spacing-sizing-10);
-        min-width: var(--spacing-sizing-10);
+        font-size: var(--usa-font-size-sans-5);
+        line-height: 20px;
+        height: var(--usa-spacing-5);
+        min-width: var(--usa-spacing-5);
 
         &:has([data-button-label]),
         &[data-override] {
-            padding: var(--spacing-sizing-02) var(--spacing-sizing-04);
+            padding: var(--usa-spacing-1) var(--usa-spacing-2);
         }
 
         [data-button-icon] svg {
-            width: var(--spacing-sizing-05);
-            height: var(--spacing-sizing-05);
+            width: var(--usa-spacing-205);
+            height: var(--usa-spacing-205);
         }
     }
 
     &[data-size='large'] {
-        font-size: var(--typography-size-bp-md);
-        line-height: var(--typography-line-height-lh-4);
-        height: var(--spacing-sizing-12);
-        min-width: var(--spacing-sizing-12);
+        font-size: var(--usa-font-size-sans-7);
+        line-height: 24px;
+        height: var(--usa-spacing-6);
+        min-width: var(--usa-spacing-6);
 
         &:has([data-button-label]),
         &[data-override] {
-            padding: var(--spacing-sizing-03) var(--spacing-sizing-04);
+            padding: var(--usa-spacing-105) var(--usa-spacing-2);
         }
 
         [data-button-icon] svg {
-            width: var(--spacing-sizing-06);
-            height: var(--spacing-sizing-06);
+            width: var(--usa-spacing-3);
+            height: var(--usa-spacing-3);
         }
     }
 
@@ -109,72 +109,72 @@
     }
 
     &[data-variant='primary'] {
-        --primary-background: var(--surface-brand-primary);
+        --primary-background: var(--theme-color-primary-medium);
 
         background-color: var(--primary-background);
-        color: var(--foreground-brand-on-primary);
+        color: var(--usa-color-white);
         border-radius: var(--button-border-radius);
 
         &[disabled] {
-            color: var(--foreground-neutral-disabled-on-surface);
-            background: var(--interactions-disabled-opacity);
+            color: var(--theme-color-disabled-dark);
+            background: var(--usa-color-black-transparent-10);
         }
 
         &:not([disabled]) {
             [data-pseudo='hover'] > &,
             &:hover {
                 background:
-                    linear-gradient(var(--interactions-brand-hover-opacity), var(--interactions-brand-hover-opacity)),
+                    linear-gradient(var(--usa-color-black-transparent-10), var(--usa-color-black-transparent-10)),
                     linear-gradient(var(--primary-background), var(--primary-background));
             }
 
             [data-pseudo='active'] > &,
             &:active {
                 background:
-                    linear-gradient(var(--interactions-brand-press-opacity), var(--interactions-brand-press-opacity)),
+                    linear-gradient(var(--usa-color-black-transparent-20), var(--usa-color-black-transparent-20)),
                     linear-gradient(var(--primary-background), var(--primary-background));
             }
 
             [data-pseudo='focus'] > &,
             &:focus-visible {
-                outline: solid 2px var(--stroke-neutral-focus);
+                outline: solid 2px var(--theme-global-focus-color);
                 isolation: isolate;
             }
         }
 
         &[data-destructive] {
             &:not([disabled]) {
-                --primary-background: var(--status-error);
+                --primary-background: var(--theme-color-error-medium);
 
-                color: var(--foreground-brand-on-primary);
+                color: var(--usa-color-white);
             }
         }
     }
 
     &[data-variant='secondary'] {
-        border: solid var(--button-border-width) var(--stroke-neutral-base);
+        border: solid var(--button-border-width) var(--theme-color-base-medium);
         border-radius: var(--button-border-radius);
-        color: var(--foreground-neutral-on-surface-variant-01);
+        color: var(--theme-color-base-dark);
 
         &[disabled] {
-            color: var(--foreground-neutral-disabled-on-surface);
-            border: solid var(--button-border-width) var(--stroke-neutral-disabled-light);
+            color: var(--theme-color-disabled-dark);
+            border: solid var(--button-border-width) var(--theme-color-disabled-light);
         }
 
         &:not([disabled]) {
             [data-pseudo='hover'] > &,
             &:hover {
-                background-color: var(--interactions-neutral-hover-opacity);
+                background-color: var(--usa-color-black-transparent-10);
             }
 
             [data-pseudo='active'] > &,
             &:active {
-                background-color: var(--interactions-neutral-press-opacity);
+                background-color: var(--usa-color-black-transparent-20);
             }
 
             [data-pseudo='focus'] > &,
             &:focus-visible {
-                outline: solid 2px var(--stroke-neutral-focus);
+                outline: solid 2px var(--theme-global-focus-color);
                 isolation: isolate;
             }
         }
@@ -182,41 +182,41 @@
         &[data-destructive] {
             &:not([disabled]) {
                 background: transparent;
-                color: var(--status-error);
-                border: solid var(--button-border-width) var(--status-error);
+                color: var(--theme-color-error-medium);
+                border: solid var(--button-border-width) var(--theme-color-error-medium);
             }
         }
     }
 
     &[data-variant='tertiary'] {
         background: transparent;
-        color: var(--foreground-neutral-on-surface-variant-01);
+        color: var(--theme-color-base-dark);
 
         &[disabled] {
-            color: var(--foreground-neutral-disabled-on-surface);
+            color: var(--theme-color-disabled-dark);
         }
 
         &:not([disabled]) {
             [data-pseudo='hover'] > &,
             &:hover {
-                background: var(--interactions-neutral-hover-opacity);
+                background: var(--usa-color-black-transparent-10);
             }
 
             [data-pseudo='active'] > &,
             &:active {
-                background: var(--interactions-neutral-press-opacity);
+                background: var(--usa-color-black-transparent-20);
             }
 
             [data-pseudo='focus'] > &,
             &:focus-visible {
-                outline: solid 2px var(--stroke-neutral-focus);
+                outline: solid 2px var(--theme-global-focus-color);
                 isolation: isolate;
             }
         }
 
         &[data-destructive] {
             &:not([disabled]) {
-                color: var(--status-error);
+                color: var(--theme-color-error-medium);
             }
         }
     }

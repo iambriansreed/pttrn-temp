@@ -15,24 +15,24 @@ ul[data-pttrn-utility='tab-list'] {
         --item-flex-grow: 1;
     }
 
-    --icon-size: var(--spacing-sizing-05);
-    --font: var(--labels-base);
-    --height: var(--spacing-sizing-10);
+    --icon-size: var(--usa-spacing-205);
+    --font: 500 var(--usa-font-size-sans-5) / 24px var(--usa-font-family-ui);
+    --height: var(--usa-spacing-5);
 
     &[data-size='small'] {
-        --font: var(--labels-small);
-        --height: var(--spacing-sizing-08);
-        --icon-size: var(--spacing-sizing-04);
+        --font: 500 var(--usa-font-size-sans-3) / 20px var(--usa-font-family-ui);
+        --height: var(--usa-spacing-4);
+        --icon-size: var(--usa-spacing-2);
     }
 
     &[data-size='large'] {
-        --font: var(--labels-large);
-        --height: var(--spacing-sizing-12);
-        --icon-size: var(--spacing-sizing-06);
+        --font: 500 var(--usa-font-size-sans-7) / 28px var(--usa-font-family-ui);
+        --height: var(--usa-spacing-6);
+        --icon-size: var(--usa-spacing-3);
     }
 
     &:has(:focus-visible) {
-        outline: 2px solid var(--stroke-neutral-focus);
+        outline: 2px solid var(--theme-global-focus-color);
         outline-offset: -1px;
         position: relative;
         z-index: var(--z-index-focus);
@@ -48,7 +48,7 @@ ul[data-pttrn-utility='tab-list'] {
         display: flex;
         flex-direction: row;
         align-items: center;
-        gap: var(--spacing-sizing-02);
+        gap: var(--usa-spacing-1);
         min-width: 0; /* Prevent overflow from long content */
 
         &[aria-disabled] {
@@ -72,11 +72,11 @@ ul[data-pttrn-utility='tab-list'] {
     &:not([data-pttrn]):focus-within {
         li:not([aria-disabled]) {
             &[data-active] {
-                background-color: var(--interactions-neutral-hover-opacity);
+                background-color: var(--usa-color-black-transparent-10);
             }
 
             &[aria-selected='true'] {
-                background-color: var(--surface-brand-primary-highlight);
+                background-color: var(--theme-color-primary-lighter);
             }
         }
     }

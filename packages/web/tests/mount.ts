@@ -2,7 +2,9 @@ import path from 'node:path';
 import type { Page } from '@playwright/test';
 
 export const BUNDLE = path.resolve(import.meta.dirname, '../dist/cdn/ptrn-web.min.js');
-const TOKENS = path.resolve(import.meta.dirname, '../../styles/nowhere.css');
+const TOKENS = ['tokens.css', 'themes/default.css'].map((file) =>
+    path.resolve(import.meta.dirname, '../../styles', file),
+);
 
 /**
  * Renders `html` in a blank page with the design tokens and the built CDN bundle loaded, the way a consumer with no
@@ -12,7 +14,7 @@ const TOKENS = path.resolve(import.meta.dirname, '../../styles/nowhere.css');
 export async function mount(page: Page, html: string) {
     const tags = [...new Set(html.match(/(?<=<)ptrn-[a-z0-9-]+/g) ?? [])];
     await page.setContent(html);
-    await page.addStyleTag({ path: TOKENS });
+    for (const file of TOKENS) await page.addStyleTag({ path: file });
     await page.addScriptTag({ path: BUNDLE, type: 'module' });
     await page.evaluate((names) => Promise.all(names.map((name) => customElements.whenDefined(name))), tags);
 }

@@ -6,11 +6,11 @@
         align-items: center;
         flex-flow: row wrap;
         list-style: none;
-        gap: var(--spacing-sizing-02);
+        gap: var(--usa-spacing-1);
 
         li {
             display: flex;
-            gap: var(--spacing-sizing-02);
+            gap: var(--usa-spacing-1);
         }
     }
 }

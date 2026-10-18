@@ -2,15 +2,15 @@
     width: fit-content;
     position: relative;
 
-    --border-color: var(--stroke-neutral-base);
-    --background: var(--surface-neutral-t1-base);
+    --border-color: var(--theme-color-base-medium);
+    --background: var(--theme-body-background-color);
     --color: unset;
 
     [data-digits] {
         display: flex;
         flex-direction: row;
         justify-content: center;
-        gap: var(--spacing-sizing-02);
+        gap: var(--usa-spacing-1);
         width: fit-content;
         position: relative;
 
@@ -19,7 +19,7 @@
             flex-direction: row;
             align-items: center;
             justify-content: center;
-            border-radius: var(--radius-sm);
+            border-radius: var(--theme-border-radius-md);
             border: 1px solid var(--border-color);
             flex-grow: 1;
             aspect-ratio: 1;
@@ -32,7 +32,7 @@
             color: var(--color);
 
             &:focus {
-                outline: solid 2px var(--stroke-neutral-focus);
+                outline: solid 2px var(--theme-global-focus-color);
                 isolation: isolate;
             }
         }
@@ -40,14 +40,14 @@
 
     &:hover:not(:focus-within) {
         --background:
-            linear-gradient(var(--interactions-hover-opacity), var(--interactions-hover-opacity)),
-            linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));
+            linear-gradient(var(--usa-color-black-transparent-10), var(--usa-color-black-transparent-10)),
+            linear-gradient(var(--theme-body-background-color), var(--theme-body-background-color));
     }
 
     &:active:not(:focus-within) {
         --background:
-            linear-gradient(var(--interactions-press-opacity), var(--interactions-press-opacity)),
-            linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));
+            linear-gradient(var(--usa-color-black-transparent-20), var(--usa-color-black-transparent-20)),
+            linear-gradient(var(--theme-body-background-color), var(--theme-body-background-color));
     }
 
     &:hover:focus-within {
@@ -57,41 +57,41 @@
     }
 
     &[data-readonly] {
-        --border-color: var(--stroke-neutral-disabled-light);
+        --border-color: var(--theme-color-disabled-light);
         --background:
-            linear-gradient(var(--interactions-disabled-opacity), var(--interactions-disabled-opacity)),
-            linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));
+            linear-gradient(var(--usa-color-black-transparent-10), var(--usa-color-black-transparent-10)),
+            linear-gradient(var(--theme-body-background-color), var(--theme-body-background-color));
     }
 
     &[data-disabled],
     &:has([data-main-input][disabled]) {
-        --border-color: var(--stroke-neutral-disabled-light);
+        --border-color: var(--theme-color-disabled-light);
         --background:
-            linear-gradient(var(--interactions-disabled-opacity), var(--interactions-disabled-opacity)),
-            linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));
-        --color: var(--foreground-neutral-disabled-on-surface);
+            linear-gradient(var(--usa-color-black-transparent-10), var(--usa-color-black-transparent-10)),
+            linear-gradient(var(--theme-body-background-color), var(--theme-body-background-color));
+        --color: var(--theme-color-disabled-dark);
     }
 
     &[data-invalid] {
-        --border-color: var(--status-error);
+        --border-color: var(--theme-color-error-medium);
     }
 
     &[data-size='small'] {
-        --width: var(--spacing-sizing-08);
-        --font: var(--subheader-medium);
-        --dot: var(--spacing-sizing-05);
+        --width: var(--usa-spacing-4);
+        --font: 400 var(--usa-font-size-sans-8) / 28px var(--usa-font-family-heading);
+        --dot: var(--usa-spacing-205);
     }
 
     &[data-size='medium'] {
-        --width: var(--spacing-sizing-10);
-        --font: var(--subheader-large);
-        --dot: var(--spacing-sizing-05);
+        --width: var(--usa-spacing-5);
+        --font: 400 var(--usa-font-size-sans-10) / 32px var(--usa-font-family-heading);
+        --dot: var(--usa-spacing-205);
     }
 
     &[data-size='large'] {
-        --width: var(--spacing-sizing-12);
-        --font: var(--subheader-x-large);
-        --dot: var(--spacing-sizing-06);
+        --width: var(--usa-spacing-6);
+        --font: 400 var(--usa-font-size-sans-11) / 36px var(--usa-font-family-heading);
+        --dot: var(--usa-spacing-3);
     }
 
     [data-secure-dots] {

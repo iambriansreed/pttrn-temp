@@ -43,6 +43,11 @@ interface Entry {
     name: string;
 }
 
+interface CssFile {
+    name: string;
+    css: string;
+}
+
 const WEIGHTS: Record<string, number> = {
     thin: 100,
     hairline: 100,
@@ -63,6 +68,12 @@ const WEIGHTS: Record<string, number> = {
 };
 
 const IMAGE_DIR = 'images';
+
+// Built for the USWDS Design Kit: this collection's modes are written as separate theme files, and everything else
+// goes in BASE_FILE. A file without this collection gets the single stylesheet only.
+const THEME_COLLECTION = 'USWDS Theme';
+const BASE_FILE = 'tokens.css';
+const THEME_DIR = 'themes';
 
 const GRID_ALIGNMENTS = { MIN: 'start', MAX: 'end', CENTER: 'center', STRETCH: 'stretch' };
 
@@ -224,6 +235,8 @@ const send = (label: string, fraction: number) => figma.ui.postMessage({ type: '
 
 async function buildStylesheet(): Promise<{
     css: string;
+    files: CssFile[];
+    themes: number;
     skipped: string[];
     images: ImageFile[];
     properties: number;
@@ -715,8 +728,19 @@ async function buildStylesheet(): Promise<{
 
     const usedAttrs = new Set<string>();
     const scoped = new Set<string>();
-    const scopeBlocks: string[] = [];
+    const scopeBlocks: { collectionId: string; css: string }[] = [];
     const modeIndex: { attr: string; values: string[] }[] = [];
+    let themeSet:
+        | {
+              collection: VariableCollection;
+              attr: string;
+              defaultKey: string;
+              keys: string[];
+              own: Prop[];
+              outside: Prop[];
+          }
+        | undefined;
+    const defaults = (list: Prop[]) => list.map((prop) => ({ prop, value: prop.def }));
 
     for (const id of collectionOrder) {
         const collection = collectionsInUse.get(id);
@@ -742,7 +766,6 @@ async function buildStylesheet(): Promise<{
         }
         const themedNames = new Set(themed.map((prop) => prop.name));
         const dependents = props.filter((prop) => active.has(prop.name) && !themedNames.has(prop.name));
-        const defaults = (list: Prop[]) => list.map((prop) => ({ prop, value: prop.def }));
 
         const base = slug(collection.name) || 'mode';
         let attr = base;
@@ -754,8 +777,12 @@ async function buildStylesheet(): Promise<{
         const defaultKey = slug(defaultMode?.name ?? '') || 'mode';
 
         own.forEach((prop) => scoped.add(prop.name));
-        scopeBlocks.push(block(`:root, ${selector(defaultKey)}`, defaults(own)));
-        if (dependents.length) scopeBlocks.push(block(selector(defaultKey), defaults(dependents)));
+        const push = (css: string) => scopeBlocks.push({ collectionId: id, css });
+        push(block(`:root, ${selector(defaultKey)}`, defaults(own)));
+        // The block above already declares this collection's own dependents, so only those from other collections
+        // need the default selector again.
+        const outside = dependents.filter((prop) => prop.collectionId !== id);
+        if (outside.length) push(block(selector(defaultKey), defaults(outside)));
 
         const keys: string[] = [];
         for (const mode of collection.modes) {
@@ -766,15 +793,16 @@ async function buildStylesheet(): Promise<{
         }
 
         modeIndex.push({ attr: `[data-${attr}]`, values: [`${defaultKey} (default)`, ...keys] });
+        if (collection.name === THEME_COLLECTION) themeSet = { collection, attr, defaultKey, keys, own, outside };
 
         for (const key of keys) {
             const overrides = themed.map((prop) => ({ prop, value: prop.modes.get(key) ?? prop.def }));
-            scopeBlocks.push(block(selector(key), overrides.concat(defaults(dependents))));
+            push(block(selector(key), overrides.concat(defaults(dependents))));
         }
     }
 
     const baseProps = props.filter((prop) => !scoped.has(prop.name));
-    const blocks = baseProps.length
+    const rootBlocks = baseProps.length
         ? [
               block(
                   ':root',
@@ -782,7 +810,7 @@ async function buildStylesheet(): Promise<{
               ),
           ]
         : [];
-    blocks.push(...scopeBlocks);
+    const ruleBlocks: string[] = [];
 
     const ELEMENTS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'small', 'code'];
     const picks = pickElements(textRules.filter((rule) => rule.decls.length));
@@ -790,23 +818,26 @@ async function buildStylesheet(): Promise<{
         `${comment(style)}\n${selector} {\n${decls.map((decl) => `    ${decl}`).join('\n')}\n}`;
 
     if (picks.size) {
-        blocks.push(comment('Element defaults, built from the text styles named in the header'));
+        ruleBlocks.push(comment('Element defaults, built from the text styles named in the header'));
         ELEMENTS.forEach((element) => {
             const pick = picks.get(element);
-            if (pick) blocks.push(textRule(element, pick));
+            if (pick) ruleBlocks.push(textRule(element, pick));
         });
     }
 
     const classRules = textRules.filter((rule) => rule.decls.length);
     if (classRules.length) {
-        blocks.push(comment('Text style classes'));
-        classRules.forEach((rule) => blocks.push(textRule(`.${rule.className}`, rule)));
+        ruleBlocks.push(comment('Text style classes'));
+        classRules.forEach((rule) => ruleBlocks.push(textRule(`.${rule.className}`, rule)));
     }
 
     const images = Array.from(imageFiles.values());
-    const header = [
+    const generated = [
         `Figma file: ${figma.root.name}`,
         `Generated by pttrn Export Tokens on ${formatTimestamp(new Date())}`,
+    ];
+    const header = [
+        ...generated,
         '',
         'Every Figma variable and style is a CSS custom property. The comment above each one',
         'holds its exact name in Figma.',
@@ -871,9 +902,62 @@ async function buildStylesheet(): Promise<{
         warnings.forEach((warning) => header.push(`  - ${warning}`));
     }
 
+    const stylesheet = (lines: string[], list: string[]) => `${blockComment(lines)}\n\n${list.join('\n\n')}\n`;
+    const files: CssFile[] = [];
+
+    if (themeSet) {
+        const { collection, attr, defaultKey, keys, own, outside } = themeSet;
+        const themeKeys = [defaultKey, ...keys];
+        const themeFiles = themeKeys.map((key) => `${THEME_DIR}/${key}.css`);
+
+        const baseHeader = header.concat(
+            '',
+            'Themes',
+            `The modes of "${collection.name}" ([data-${attr}]) are not in this file. Each one is a complete`,
+            'stylesheet of its own. Load this file first, then one of:',
+            '',
+            ...themeFiles.map((file) => `  ${file}`),
+            '',
+            'Each theme file also sets :root, so with several loaded the last one is the page default. A',
+            `data-${attr} attribute always wins over that, on <html> or on any element inside it.`,
+        );
+        const others = scopeBlocks.filter((scope) => scope.collectionId !== collection.id).map((scope) => scope.css);
+        files.push({ name: BASE_FILE, css: stylesheet(baseHeader, rootBlocks.concat(others, ruleBlocks)) });
+
+        // Unlike the blocks in the full stylesheet, a theme file holds every variable of the collection, so it works
+        // without the default mode loaded beside it. Aliases from other collections are redeclared as in those blocks.
+        themeKeys.forEach((key, i) => {
+            const values = own.map((prop) => ({
+                prop,
+                value: key === defaultKey ? prop.def : (prop.modes.get(key) ?? prop.def),
+            }));
+            const themeHeader = generated.concat(
+                '',
+                `The "${key}" mode of "${collection.name}"${key === defaultKey ? ' (its default)' : ''}, complete.`,
+                `Load ${BASE_FILE} first, then this file. It sets :root and [data-${attr}="${key}"].`,
+            );
+            // :where() takes :root's specificity to zero, so when every theme file is loaded, an attribute on <html>
+            // still beats the :root of whichever file came last.
+            files.push({
+                name: themeFiles[i],
+                css: stylesheet(themeHeader, [
+                    block(`:where(:root), [data-${attr}="${key}"]`, values.concat(defaults(outside))),
+                ]),
+            });
+        });
+    }
+
     send('Done', 1);
     return {
-        css: `${blockComment(header)}\n\n${blocks.join('\n\n')}\n`,
+        css: stylesheet(
+            header,
+            rootBlocks.concat(
+                scopeBlocks.map((scope) => scope.css),
+                ruleBlocks,
+            ),
+        ),
+        files,
+        themes: themeSet ? themeSet.keys.length + 1 : 0,
         skipped: Array.from(warnings),
         images,
         properties: props.length,

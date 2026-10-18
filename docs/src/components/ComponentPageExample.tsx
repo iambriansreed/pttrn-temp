@@ -64,7 +64,7 @@ export function ComponentPageExample() {
                         style={{
                             display: 'flex',
                             justifyContent: 'space-between',
-                            marginTop: 'var(--spacing-sizing-06)',
+                            marginTop: 'var(--usa-spacing-3)',
                         }}
                     >
                         <h2 title="Props">{component.name}Props</h2>
@@ -95,7 +95,7 @@ export function ComponentPageExample() {
                                                                 {(triggerProps) => (
                                                                     <Tag
                                                                         {...triggerProps}
-                                                                        color="blue"
+                                                                        color="info"
                                                                         label="Design Pattern"
                                                                         size="x-small"
                                                                     />

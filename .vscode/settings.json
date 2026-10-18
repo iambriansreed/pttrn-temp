@@ -11,5 +11,5 @@
     "javascript.suggest.paths": false,
     "eslint.workingDirectories": [{ "mode": "auto" }],
     "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
-    "cssVariables.lookupFiles": ["**/styles/**.scss", "node_modules/@ptrn/styles/nowhere.css"]
+    "cssVariables.lookupFiles": ["**/styles/**.scss", "packages/styles/**/*.css"]
 }

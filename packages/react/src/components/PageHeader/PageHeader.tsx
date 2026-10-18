@@ -45,8 +45,8 @@ export type PageHeaderProps = {
  *         actions={<Slot height={32} label="Page actions slot" width={372} />}
  *         subHeader={
  *             <>
- *                 <Slot height="var(--spacing-sizing-06)" label="Slot component" width={200} />
- *                 <Slot height="var(--spacing-sizing-06)" label="Slot component 2" width={200} />
+ *                 <Slot height="var(--usa-spacing-3)" label="Slot component" width={200} />
+ *                 <Slot height="var(--usa-spacing-3)" label="Slot component 2" width={200} />
  *             </>
  *         }
  *         title="Page Title"

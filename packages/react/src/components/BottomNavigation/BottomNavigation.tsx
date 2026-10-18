@@ -55,6 +55,12 @@ export type BottomNavigationProps = Pick<TabListProps, 'label' | 'onChange' | 'o
  */
 export function BottomNavigation({ mode = 'inline', variant = 'flat', ...tabListProps }: BottomNavigationProps) {
     return (
-        <TabList data-mode={mode} data-pttrn="bottom-navigation" data-variant={variant} size="large" {...tabListProps} />
+        <TabList
+            data-mode={mode}
+            data-pttrn="bottom-navigation"
+            data-variant={variant}
+            size="large"
+            {...tabListProps}
+        />
     );
 }

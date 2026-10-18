@@ -13,7 +13,7 @@
         "node": ">=24"
     },
     "scripts": {
-        "build": "npm run build --workspace @ptrn/styles && npm run build --workspace @ptrn/icons && npm run build --workspace @ptrn/react && npm run build --workspace @ptrn/web",
+        "build": "npm run build --workspace @ptrn/icons && npm run build --workspace @ptrn/react && npm run build --workspace @ptrn/web",
         "build:docs": "npm run build --workspace ptrn-docs",
         "build:plugin": "npm run build --workspace ptrn-figma-plugin",
         "dev:docs": "npm run dev --workspace ptrn-docs",

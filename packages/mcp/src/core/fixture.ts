@@ -59,8 +59,15 @@ export const fixture: Catalog = {
         },
     ],
     tokens: [
-        { name: '--spacing-sizing-04', kind: 'spacing', value: '16px', description: 'Spacing/sizing-04' },
-        { name: '--spacing-sizing-02', kind: 'spacing', value: '8px', description: 'Spacing/sizing-02' },
-        { name: '--surface-neutral', kind: 'surface', value: '#fff', dark: '#000', description: 'Surface' },
+        { name: '--usa-spacing-2', kind: 'spacing', value: '16px', description: '!-usa/spacing/2' },
+        { name: '--usa-spacing-1', kind: 'spacing', value: '8px', description: '!-usa/spacing/1' },
+        {
+            name: '--theme-color-ink',
+            kind: 'color',
+            value: 'var(--theme-color-base-darkest)',
+            themes: { 'project-theme-dark': 'var(--general-usa-color-white)' },
+            description: '#-theme/color/ink',
+        },
+        { name: '--usa-color-white', kind: 'color', value: 'rgb(255 255 255)', description: '!-usa/color/white' },
     ],
 };

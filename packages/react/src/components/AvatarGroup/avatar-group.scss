@@ -22,9 +22,9 @@
         }
 
         &[data-pttrn-owner='avatar-overflow'] {
-            --avatar-border: solid 1px var(--stroke-neutral-low);
+            --avatar-border: solid 1px var(--theme-color-base-lighter);
 
-            background-color: var(--surface-neutral-t1-base);
+            background-color: var(--theme-body-background-color);
         }
     }
 
@@ -32,15 +32,15 @@
         --avatar-border: none;
 
         [data-pttrn='avatar'] + [data-pttrn='avatar'] {
-            margin-left: var(--spacing-sizing-02);
+            margin-left: var(--usa-spacing-1);
         }
     }
 
     &[data-variant='stacked'] {
-        --avatar-border: solid 1px var(--stroke-neutral-low);
+        --avatar-border: solid 1px var(--theme-color-base-lighter);
 
         [data-pttrn='avatar'] + [data-pttrn='avatar'] {
-            margin-left: calc(var(--spacing-sizing-02) * -1);
+            margin-left: calc(var(--usa-spacing-1) * -1);
         }
     }
 }

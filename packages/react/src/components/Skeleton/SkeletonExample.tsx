@@ -44,6 +44,6 @@ const PROP_VARIANT_CHILDREN: Record<SkeletonVariant, SkeletonProps['children']> 
             Loaded
         </ExamplePlaceholder>
     ),
-    profile: <Avatar color="red" name="Bob Robertson" />,
+    profile: <Avatar color="error" name="Bob Robertson" />,
     thumbnail: <ExamplePlaceholder height="100px" width="100px" />,
 };

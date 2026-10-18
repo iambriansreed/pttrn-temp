@@ -2,9 +2,7 @@ node_modules
 dist
 package-lock.json
 packages/icons/assets
-packages/styles/tokens-export.json
-packages/styles/data
-packages/react/src/components/StylesProviderDemo/brandsCss.ts
-packages/react/src/components/StylesProviderDemo/exampleCss.ts
 packages/react/types.json
 docs/src/meta
+packages/styles/tokens.css
+packages/styles/themes

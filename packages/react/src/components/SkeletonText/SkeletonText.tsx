@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 
 import { cssWithVars } from '-/utils/cwv';
-import { TxtVariant } from '-/utils/txtVariants';
+import { TXT_STYLES, TxtVariant } from '-/utils/txtVariants';
 
 export type SkeletonTextProps = {
     /**
@@ -54,8 +54,8 @@ export function SkeletonText({ lines = 3, variant = 'body-base', children = null
             data-pttrn="skeleton-text"
             role="status"
             style={cssWithVars({
-                '--text-height': `var(--${variant}-size)`,
-                '--text-margin': `calc(var(--${variant}-line-height) - var(--${variant}-size))`,
+                '--text-height': TXT_STYLES[variant].size,
+                '--text-margin': `calc(${TXT_STYLES[variant].lineHeight} - ${TXT_STYLES[variant].size})`,
             })}
         >
             {[...Array(Math.max(1, lines || 0))].map((_, index) => (

@@ -1,0 +1,32 @@
+/*
+ * Reset shared by @ptrn/react and @ptrn/web.
+ *
+ * @ptrn/react loads it once for the page. A shadow root is not reached by page-level rules, so every @ptrn/web
+ * element includes it in its own stylesheet. Keep it to plain CSS with no nesting, so Sass can load it as is.
+ */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+ol {
+    list-style-position: inside;
+}
+
+[hidden],
+[data-hidden] {
+    display: none !important;
+}
+
+@media (prefers-reduced-motion) {
+    [data-animated] {
+        animation: none !important;
+    }
+}

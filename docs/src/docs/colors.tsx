@@ -1,42 +1,36 @@
-import { SvgCheck } from '@ptrn/icons/Check';
 import { SvgSearch } from '@ptrn/icons/Search';
 import { Button } from '@ptrn/react/Button';
 import { Input } from '@ptrn/react/Input';
 import { Select } from '@ptrn/react/Select';
 import { sendSnackbar } from '@ptrn/react/Snackbar/Manager';
 import { Table, TableColumn, TableRow } from '@ptrn/react/Table';
-import { META } from '@ptrn/styles/data/meta';
+import THEME_CSS from '@ptrn/styles/themes/default.css?raw';
+import TOKENS_CSS from '@ptrn/styles/tokens.css?raw';
 import { useMemo, useState } from 'react';
 import { Page } from 'src/components/Page';
 
-const COLOR_ROWS = META.filter(
-    (m) =>
-        m.type === 'token' &&
-        (m.cssValue?.toString().startsWith('#') || m.cssValues?.[0].value.toString().startsWith('#')),
-).map((color) => {
-    return {
-        ...color,
-        id: color.varName,
-        root: Boolean(color.cssValues?.every((v) => !v.modes.find((m) => m === 'dark'))) || Boolean(color.cssValue),
-    };
-});
+type ColorType = (typeof COLOR_TYPES)[number];
+
+const COLOR_TYPES = ['Theme', 'Primitive'] as const;
+
+/** Reads each color variable and the Figma name in the comment above it. Every theme file has the same variables. */
+function colorRows(css: string, type: ColorType) {
+    const rows = new Map<string, { id: string; tokenName: string; cssVariable: string; type: ColorType }>();
+    for (const [, tokenName, cssVariable, value] of css.matchAll(/\/\* ([^*]+) \*\/\s*(--[\w-]+):\s*([^;]+);/g)) {
+        const isColor = value.startsWith('rgb(') || /(^|-)color(-|$)/.test(cssVariable);
+        if (isColor && !rows.has(cssVariable)) rows.set(cssVariable, { id: cssVariable, tokenName, cssVariable, type });
+    }
+    return [...rows.values()];
+}
+
+const COLOR_ROWS = [...colorRows(THEME_CSS, 'Theme'), ...colorRows(TOKENS_CSS, 'Primitive')];
 
 type ColorTableRow = (typeof COLOR_ROWS)[number] & TableRow;
 
 const columns: TableColumn<ColorTableRow>[] = [
     {
         label: 'Name',
-        key: 'name',
-        formatter: (row: ColorTableRow) =>
-            row.description ? (
-                <div>
-                    {row.tokenName}
-                    <br />
-                    <small>{row.description}</small>
-                </div>
-            ) : (
-                row.tokenName
-            ),
+        key: 'tokenName',
         sort: 'string',
     },
     {
@@ -78,19 +72,12 @@ const columns: TableColumn<ColorTableRow>[] = [
         sort: 'string',
     },
     {
-        label: 'Root',
-        key: `root`,
-        sort: 'boolean',
-        formatter(row) {
-            return row.root ? <SvgCheck /> : '';
-        },
-        width: '60px',
+        label: 'Type',
+        key: 'type',
+        sort: 'string',
+        width: '100px',
     },
 ];
-
-type ColorType = (typeof COLOR_TYPES)[number];
-
-const COLOR_TYPES = ['Theme', 'Root'] as const;
 
 export function Colors() {
     const [filter, setFilter] = useState<{ search: string; type: ColorType | null }>({
@@ -103,13 +90,8 @@ export function Colors() {
             const matchesSearch =
                 filter.search === '' ||
                 color.tokenName.toLowerCase().includes(filter.search.toLowerCase()) ||
-                color.cssVariable.toLowerCase().includes(filter.search.toLowerCase()) ||
-                (color.description && color.description.toLowerCase().includes(filter.search.toLowerCase()));
-            const matchesType =
-                !filter.type ||
-                (filter.type === 'Theme' && color.cssValues?.some((v) => v.modes.find((m) => m === 'dark'))) ||
-                (filter.type === 'Root' &&
-                    (color.cssValues?.every((v) => !v.modes.find((m) => m === 'dark')) || Boolean(color.cssValue)));
+                color.cssVariable.toLowerCase().includes(filter.search.toLowerCase());
+            const matchesType = !filter.type || color.type === filter.type;
 
             return matchesSearch && matchesType;
         });
@@ -119,8 +101,8 @@ export function Colors() {
         <Page>
             <h2>Colors</h2>
             <p>
-                These include colors which have both dark and light variants (Theme) and colors with a single variant
-                (Root).
+                The USWDS colors from <code>@ptrn/styles</code>. Theme colors change with the USWDS theme; primitives are
+                the fixed palette they point at. Swatches show the current theme.
             </p>
             <div data-page-icons style={{ marginBottom: '16px' }}>
                 <div data-filters>

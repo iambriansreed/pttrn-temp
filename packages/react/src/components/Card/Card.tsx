@@ -29,7 +29,7 @@ export type CardProps = {
  * @example
  *     import { Card } from '@ptrn/react/card';
  *
- *     <Card variant="elevated" style={{ padding: 'var(--spacing-sizing-04)', maxWidth: '100%', width: '400px' }}>
+ *     <Card variant="elevated" style={{ padding: 'var(--usa-spacing-2)', maxWidth: '100%', width: '400px' }}>
  *         <h3>Card Title</h3>
  *         <p>This is some content inside the card.</p>
  *     </Card>;

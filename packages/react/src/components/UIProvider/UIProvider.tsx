@@ -24,7 +24,7 @@ export type UIProviderProps = {
  * @phase Utility
  */
 export function UIProvider({ children }: UIProviderProps) {
-    const [theme, setTheme] = useState<ColorTheme>('light');
+    const [theme, setTheme] = useState<ColorTheme>('default');
     // Keep track of device width to determine if we are in mobile, tablet, or desktop mode
 
     const [deviceWidth, setDeviceWidth] = useDebounceState(() => {
@@ -32,7 +32,7 @@ export function UIProvider({ children }: UIProviderProps) {
     }, 250);
 
     useIsomorphicEffect(() => {
-        document.documentElement.dataset.theme = theme;
+        document.documentElement.dataset.uswdsTheme = theme;
         document.documentElement.style.setProperty(
             '--scrollbar-width',
             `${window.innerWidth - document.documentElement.clientWidth}px`,

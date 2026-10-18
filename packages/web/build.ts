@@ -23,7 +23,10 @@ const scssPlugin: Plugin = {
     name: 'scss',
     setup(b) {
         b.onLoad({ filter: /\.scss$/ }, (args) => {
-            const { css, loadedUrls } = sass.compile(args.path, { style: 'compressed' });
+            const { css, loadedUrls } = sass.compile(args.path, {
+                style: 'compressed',
+                importers: [new sass.NodePackageImporter()],
+            });
             return {
                 contents: `import { unsafeCSS } from 'lit';\nexport default unsafeCSS(${JSON.stringify(css)});`,
                 loader: 'js',

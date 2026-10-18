@@ -1,27 +1,27 @@
 [data-pttrn='input-number'] {
     /* medium is the default size */
-    --font: var(--body-base);
-    --height: var(--spacing-sizing-10);
-    --svg-width: var(--spacing-sizing-05);
-    --color: var(--foreground-neutral-on-surface);
+    --font: 400 var(--usa-font-size-sans-5) / 24px var(--usa-font-family-body);
+    --height: var(--usa-spacing-5);
+    --svg-width: var(--usa-spacing-205);
+    --color: var(--theme-body-text-color);
 
     width: 100%;
     display: flex;
     flex-flow: row nowrap;
     font: var(--font);
     height: var(--height);
-    border: 1px solid var(--stroke-neutral-base);
-    border-radius: var(--radius-sm);
-    background: var(--surface-neutral-t1-base);
+    border: 1px solid var(--theme-color-base-medium);
+    border-radius: var(--theme-border-radius-md);
+    background: var(--theme-body-background-color);
 
     &:focus-within {
-        outline: solid 2px var(--stroke-neutral-focus);
+        outline: solid 2px var(--theme-global-focus-color);
         isolation: isolate;
     }
 
     [data-divider] {
         width: 1px;
-        background: var(--stroke-neutral-base);
+        background: var(--theme-color-base-medium);
         margin: 3px 0;
 
         /* account for border - 3(margin)  * 2 + 2(border) */
@@ -52,7 +52,7 @@
 
         &:disabled {
             cursor: not-allowed;
-            color: var(--foreground-neutral-disabled-on-surface);
+            color: var(--theme-color-disabled-dark);
         }
     }
 
@@ -62,7 +62,7 @@
         display: block;
         font: var(--font);
         text-align: center;
-        padding: 0 var(--spacing-sizing-03);
+        padding: 0 var(--usa-spacing-105);
         background: transparent;
         border: none;
         flex-grow: 1;
@@ -86,49 +86,49 @@
         input,
         button:not(:disabled) {
             &:hover {
-                background-color: var(--interactions-hover-opacity);
+                background-color: var(--usa-color-black-transparent-10);
             }
 
             &:active {
-                background-color: var(--interactions-press-opacity);
+                background-color: var(--usa-color-black-transparent-20);
             }
         }
 
         &[data-invalid] {
-            border-color: var(--status-error);
-            outline-color: var(--status-error);
+            border-color: var(--theme-color-error-medium);
+            outline-color: var(--theme-color-error-medium);
         }
     }
 
     &[data-disabled],
     &[data-readonly] {
-        --color: var(--foreground-neutral-disabled-on-surface);
+        --color: var(--theme-color-disabled-dark);
 
-        border-color: var(--stroke-neutral-disabled-light);
+        border-color: var(--theme-color-disabled-light);
         background:
-            linear-gradient(var(--interactions-disabled-opacity), var(--interactions-disabled-opacity)),
-            linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));
+            linear-gradient(var(--usa-color-black-transparent-10), var(--usa-color-black-transparent-10)),
+            linear-gradient(var(--theme-body-background-color), var(--theme-body-background-color));
 
         [data-divider] {
-            border-color: var(--stroke-neutral-disabled-light);
+            border-color: var(--theme-color-disabled-light);
         }
     }
 
     &[data-readonly] {
         input {
-            color: var(--foreground-neutral-on-surface) !important;
+            color: var(--theme-body-text-color) !important;
         }
     }
 
     &[data-size='small'] {
-        --font: var(--body-small);
-        --height: var(--spacing-sizing-08);
+        --font: 400 var(--usa-font-size-sans-3) / 20px var(--usa-font-family-body);
+        --height: var(--usa-spacing-4);
     }
 
     &[data-size='large'] {
-        --font: var(--body-large);
-        --height: var(--spacing-sizing-12);
-        --svg-width: var(--spacing-sizing-06);
+        --font: 400 var(--usa-font-size-sans-7) / 28px var(--usa-font-family-body);
+        --height: var(--usa-spacing-6);
+        --svg-width: var(--usa-spacing-3);
     }
 
     &[data-centered] {

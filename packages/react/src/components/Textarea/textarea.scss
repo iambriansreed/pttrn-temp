@@ -7,36 +7,36 @@
     display: grid;
     width: 100%;
     border: 1px solid var(--border-color);
-    border-radius: var(--radius-sm);
+    border-radius: var(--theme-border-radius-md);
     overflow: hidden;
-    color: var(--foreground-neutral-on-surface);
-    background-color: var(--surface-neutral-t1-base);
+    color: var(--theme-body-text-color);
+    background-color: var(--theme-body-background-color);
 
-    --border-color: var(--stroke-neutral-base);
+    --border-color: var(--theme-color-base-medium);
 
     /* &[data-size='medium'] */
-    --font: var(--body-base);
+    --font: 400 var(--usa-font-size-sans-5) / 24px var(--usa-font-family-body);
     --line-height: 20px;
-    --padding: var(--spacing-sizing-03);
+    --padding: var(--usa-spacing-105);
 
     &[data-size='small'] {
-        --font: var(--body-small);
+        --font: 400 var(--usa-font-size-sans-3) / 20px var(--usa-font-family-body);
         --line-height: 20px;
-        --padding: var(--spacing-sizing-02);
+        --padding: var(--usa-spacing-1);
     }
 
     &[data-size='large'] {
-        --font: var(--body-large);
+        --font: 400 var(--usa-font-size-sans-7) / 28px var(--usa-font-family-body);
         --line-height: 24px;
-        --padding: var(--spacing-sizing-03);
+        --padding: var(--usa-spacing-105);
     }
 
     &:has(textarea:focus-within) {
-        --border-color: var(--stroke-neutral-focus);
+        --border-color: var(--theme-global-focus-color);
     }
 
     &:has(textarea[aria-invalid]) {
-        --border-color: var(--status-error);
+        --border-color: var(--theme-color-error-medium);
     }
 
     [data-replicated-value] {
@@ -62,7 +62,7 @@
         text-wrap: break-word;
 
         &::placeholder {
-            color: var(--foreground-neutral-on-surface-variant-03);
+            color: var(--theme-color-base-medium);
         }
 
         resize: none;
@@ -73,44 +73,44 @@
 
     &:hover:not(:focus-within) {
         background:
-            linear-gradient(var(--interactions-hover-opacity), var(--interactions-hover-opacity)),
-            linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));
+            linear-gradient(var(--usa-color-black-transparent-10), var(--usa-color-black-transparent-10)),
+            linear-gradient(var(--theme-body-background-color), var(--theme-body-background-color));
     }
 
     &:active:not(:focus-within) {
         background:
-            linear-gradient(var(--interactions-press-opacity), var(--interactions-press-opacity)),
-            linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));
+            linear-gradient(var(--usa-color-black-transparent-20), var(--usa-color-black-transparent-20)),
+            linear-gradient(var(--theme-body-background-color), var(--theme-body-background-color));
     }
 
     &[data-readonly] {
-        --border-color: var(--stroke-neutral-disabled-light);
+        --border-color: var(--theme-color-disabled-light);
 
         background:
-            linear-gradient(var(--interactions-disabled-opacity), var(--interactions-disabled-opacity)),
-            linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));
+            linear-gradient(var(--usa-color-black-transparent-10), var(--usa-color-black-transparent-10)),
+            linear-gradient(var(--theme-body-background-color), var(--theme-body-background-color));
     }
 
     &[data-disabled],
     &:has([data-main-input][disabled]) {
-        --border-color: var(--stroke-neutral-disabled-light);
+        --border-color: var(--theme-color-disabled-light);
 
         background:
-            linear-gradient(var(--interactions-disabled-opacity), var(--interactions-disabled-opacity)),
-            linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));
+            linear-gradient(var(--usa-color-black-transparent-10), var(--usa-color-black-transparent-10)),
+            linear-gradient(var(--theme-body-background-color), var(--theme-body-background-color));
 
         & > * {
-            color: var(--foreground-neutral-disabled-on-surface);
+            color: var(--theme-color-disabled-dark);
         }
     }
 
     &[data-invalid] {
-        --border-color: var(--status-error);
+        --border-color: var(--theme-color-error-medium);
     }
 
     &:focus-within {
-        --border-color: var(--stroke-neutral-focus);
+        --border-color: var(--theme-global-focus-color);
 
-        outline: 1px solid var(--stroke-neutral-focus);
+        outline: 1px solid var(--theme-global-focus-color);
     }
 }

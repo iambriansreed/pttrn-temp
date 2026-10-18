@@ -12,13 +12,13 @@ export const DialogExample: ComponentExample<DialogProps> = {
             <>
                 <Button label={label} onClick={() => setState({ open: true })} />
                 <Component data-example-component {...props} id="exampleId" onClose={() => setState({ open: false })}>
-                    <div style={{ padding: 'var(--spacing-sizing-04)' }}>
+                    <div style={{ padding: 'var(--usa-spacing-2)' }}>
                         <Flex
                             align="center"
                             justify="space-between"
                             style={{
                                 width: '100%',
-                                marginBottom: 'var(--spacing-sizing-04)',
+                                marginBottom: 'var(--usa-spacing-2)',
                             }}
                         >
                             <h4>Dialog</h4>
@@ -50,8 +50,8 @@ export const DialogExample: ComponentExample<DialogProps> = {
                     <div
                         ref={(node) => (container.current = node || undefined)}
                         style={{
-                            border: '1px solid var(--stroke-neutral-base)',
-                            padding: 'var(--spacing-sizing-04)',
+                            border: '1px solid var(--theme-color-base-medium)',
+                            padding: 'var(--usa-spacing-2)',
                             minHeight: 200,
                             position: 'relative',
                             overflow: 'hidden',
@@ -64,12 +64,12 @@ export const DialogExample: ComponentExample<DialogProps> = {
                             open={open}
                             placement="right"
                         >
-                            <div style={{ padding: 'var(--spacing-sizing-04)' }}>
+                            <div style={{ padding: 'var(--usa-spacing-2)' }}>
                                 <Flex
                                     align="center"
                                     justify="space-between"
                                     style={{
-                                        marginBottom: 'var(--spacing-sizing-04)',
+                                        marginBottom: 'var(--usa-spacing-2)',
                                     }}
                                 >
                                     <h4>Contained</h4>
@@ -99,7 +99,7 @@ export const Usage = () => {
         <>
             <Button label="Open Dialog" onClick={() => setOpen(true)} />
             <Dialog onClose={() => setOpen(false)} open={open}>
-                <div style={{ padding: 'var(--spacing-sizing-04)' }}>
+                <div style={{ padding: 'var(--usa-spacing-2)' }}>
                     <Flex align="center" justify="space-between">
                         <h1>Dialog Title</h1>
                         <Button

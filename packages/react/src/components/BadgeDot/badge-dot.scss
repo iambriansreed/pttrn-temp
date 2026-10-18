@@ -7,18 +7,18 @@
     display: block;
     width: var(--size, 6px);
     height: var(--size, 6px);
-    border-radius: var(--radius-full);
+    border-radius: var(--usa-radius-pill);
     background-color: var(--background);
 
     &[data-color='primary'] {
-        --background: var(--foreground-brand-primary);
+        --background: var(--theme-color-primary-medium);
     }
 
     &[data-color='secondary'] {
-        --background: var(--foreground-brand-secondary);
+        --background: var(--theme-color-secondary-dark);
     }
 
     &[data-outline] {
-        border: var(--outline-width) solid var(--surface-neutral-t1-base);
+        border: var(--outline-width) solid var(--theme-body-background-color);
     }
 }

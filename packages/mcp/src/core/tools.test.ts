@@ -83,15 +83,21 @@ describe('getTokens', () => {
         const result = getTokens(fixture);
         assert.deepEqual(result.kinds, [
             { kind: 'spacing', count: 2 },
-            { kind: 'surface', count: 1 },
+            { kind: 'color', count: 2 },
         ]);
         assert.equal('tokens' in result, false);
     });
 
-    test('with a kind, returns that group with light and dark values', () => {
-        const result = getTokens(fixture, 'surface');
+    test('with a kind, returns that group with its values in other themes', () => {
+        const result = getTokens(fixture, 'color');
         assert.deepEqual(result.tokens, [
-            { name: '--surface-neutral', value: '#fff', dark: '#000', description: 'Surface' },
+            {
+                name: '--theme-color-ink',
+                value: 'var(--theme-color-base-darkest)',
+                themes: { 'project-theme-dark': 'var(--general-usa-color-white)' },
+                description: '#-theme/color/ink',
+            },
+            { name: '--usa-color-white', value: 'rgb(255 255 255)', description: '!-usa/color/white' },
         ]);
     });
 

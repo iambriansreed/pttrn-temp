@@ -19,7 +19,7 @@ export const LinkExample: ComponentExample<LinkProps> = {
                     width: '100%',
                     justifyContent: 'center',
                     background: props.variant === 'subtle-inverse' ? 'black' : '',
-                    minHeight: 'var(--spacing-sizing-24)',
+                    minHeight: 'calc(var(--usa-spacing-15) + var(--usa-spacing-3) + var(--usa-spacing-05))',
                 }}
             >
                 <Component {...props} />

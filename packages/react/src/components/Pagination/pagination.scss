@@ -3,15 +3,15 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: var(--spacing-sizing-01);
+    gap: var(--usa-spacing-05);
     flex: 1;
 
     [data-input-form] {
         display: contents;
 
         [data-pttrn='input'] {
-            max-width: var(--spacing-sizing-12);
-            margin-right: var(--spacing-sizing-01);
+            max-width: var(--usa-spacing-6);
+            margin-right: var(--usa-spacing-05);
 
             input {
                 text-align: center;
@@ -21,7 +21,7 @@
         span {
             display: block;
             white-space: nowrap;
-            font: var(--body-small);
+            font: 400 var(--usa-font-size-sans-3) / 20px var(--usa-font-family-body);
         }
     }
 

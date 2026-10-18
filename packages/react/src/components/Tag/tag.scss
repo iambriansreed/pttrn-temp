@@ -1,9 +1,11 @@
+@use '../../styles/color-variants';
+
 [data-pttrn='tag'] {
     display: inline-flex;
     align-items: center;
     position: relative;
-    padding: 0 var(--spacing-sizing-03);
-    border-radius: var(--radius-sm);
+    padding: 0 var(--usa-spacing-105);
+    border-radius: var(--theme-border-radius-md);
     color: var(--foreground) !important;
     background: var(--background);
     font: unset;
@@ -13,7 +15,7 @@
     width: fit-content;
 
     &[data-variant='pill'] {
-        border-radius: var(--radius-full);
+        border-radius: var(--usa-radius-pill);
     }
 
     &[data-variant='corner-wrap'] {
@@ -21,18 +23,16 @@
     }
 
     &[data-size='small'] {
-        font: var(--labels-small);
-        height: var(--spacing-sizing-08);
+        font: 500 var(--usa-font-size-sans-3) / 20px var(--usa-font-family-ui);
+        height: var(--usa-spacing-4);
     }
 
     &[data-size='x-small'] {
-        font: var(--labels-x-small);
-        height: var(--spacing-sizing-06);
+        font: 500 var(--usa-font-size-sans-1) / 16px var(--usa-font-family-ui);
+        height: var(--usa-spacing-3);
     }
 
-    &[data-color='white'] {
-        box-shadow: var(--drop-shadow-south);
-    }
+    @include color-variants.color-variants;
 
     [data-triangle] {
         position: absolute;

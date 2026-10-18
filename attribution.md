@@ -23,7 +23,8 @@ This project keeps the work usable on its own terms. It is not affiliated with, 
 
 - **Consolidated.** The separate repositories are now one npm workspace.
 - **Renamed.** BSPK is now pttrn, and the packages are published as `@ptrn/*`.
-- **One theme.** The nine real estate brand themes are removed. The remaining theme, formerly `anywhere`, is now `nowhere`, along with its icon set and `StylesProviderNowhere`.
+- **One theme.** The nine real estate brand themes are removed. The remaining theme, formerly `anywhere`, became `nowhere`, along with its icon set.
+- **USWDS tokens.** The `nowhere` theme and its design tokens were then removed too. The styles now use the USWDS design tokens, exported from the USWDS Design Kit in Figma.
 - **Country icons removed.** The `country` icon set (flags and currency symbols) was dropped. `InputPhone` shows no flags unless the consumer passes `renderFlag`.
 - **Third-party logos removed.** The `brand` icon set (payment networks, social platforms, app stores) was dropped.
 - **De-branded.** Organization URLs, internal domains, issue trackers and contact addresses are removed.
@@ -31,5 +32,5 @@ This project keeps the work usable on its own terms. It is not affiliated with, 
 ## Provenance of the assets
 
 - The `material` icon set is derived from [Material Symbols](https://fonts.google.com/icons), published by Google under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
-- The `nowhere` icon set, the component library, and the design tokens originate from BSPK.
+- The `nowhere` icon set and the component library originate from BSPK. The original design tokens did too; they have been replaced by USWDS tokens.
 - The `Flag` component embeds the flag sprite from [world-flags-sprite](https://github.com/lafeber/world-flags-sprite), Copyright (c) 2012 Martijn Lafeber, 2018 Francescu Garoby, released under the MIT License. The MIT License notice is included here as the license requires: permission is granted, free of charge, to use, copy, modify, merge, publish, distribute, sublicense, and/or sell the Software, provided this copyright notice and permission notice are included in all copies or substantial portions of it. The Software is provided "as is", without warranty of any kind.

@@ -158,7 +158,7 @@ export function SearchModal(props: DialogProps) {
                     },
                 })}
                 trailing={
-                    <Txt style={{ color: 'var(--colors-neutral-48)' }} variant="labels-x-small">
+                    <Txt style={{ color: 'var(--theme-color-base-medium)' }} variant="labels-x-small">
                         ESC
                     </Txt>
                 }
@@ -184,11 +184,11 @@ export function SearchModal(props: DialogProps) {
                                     style={{
                                         display: 'flex',
                                         justifyContent: 'space-between',
-                                        marginBottom: 'var(--spacing-sizing-02)',
+                                        marginBottom: 'var(--usa-spacing-1)',
                                     }}
                                 >
                                     <h5>{result.name}</h5>
-                                    <Tag color="grey" label={result.kind} size="x-small" />
+                                    <Tag color="base" label={result.kind} size="x-small" />
                                 </header>
 
                                 <div>

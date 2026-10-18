@@ -8,12 +8,12 @@
         flex-direction: row;
         width: 100%;
         align-items: center;
-        padding: var(--spacing-sizing-02) var(--spacing-sizing-04);
-        gap: var(--spacing-sizing-04);
+        padding: var(--usa-spacing-1) var(--usa-spacing-2);
+        gap: var(--usa-spacing-2);
     }
 
     [data-icon] {
-        padding: var(--spacing-sizing-02);
+        padding: var(--usa-spacing-1);
         width: fit-content;
         display: flex;
         flex: 0 0 auto;
@@ -28,17 +28,17 @@
 
     [data-file-name] {
         width: 100%;
-        font: var(--body-small);
+        font: 400 var(--usa-font-size-sans-3) / 20px var(--usa-font-family-body);
     }
 
     [data-file-details] {
-        color: var(--foreground-neutral-on-surface-variant-01);
-        font: var(--body-x-small);
+        color: var(--theme-color-base-dark);
+        font: 400 var(--usa-font-size-sans-1) / 16px var(--usa-font-family-body);
     }
 
     @media (width >= 640px) {
         [data-status] {
-            padding: 0 var(--spacing-sizing-18);
+            padding: 0 var(--usa-spacing-9);
         }
     }
 }

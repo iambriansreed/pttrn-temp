@@ -3,12 +3,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: var(--spacing-sizing-04);
+    gap: var(--usa-spacing-2);
     width: 100%;
-    padding: var(--spacing-sizing-04);
-    border: 1px dashed var(--stroke-neutral-base);
-    border-radius: var(--spacing-sizing-02);
-    background-color: var(--surface-neutral-t2-lowest);
+    padding: var(--usa-spacing-2);
+    border: 1px dashed var(--theme-color-base-medium);
+    border-radius: var(--usa-spacing-1);
+    background-color: var(--theme-color-base-lightest);
 }
 
 [data-pttrn-owner='file-upload'][data-file-entries] {

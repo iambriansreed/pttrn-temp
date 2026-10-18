@@ -42,7 +42,7 @@ export type CheckboxProps = Omit<FieldControlProps, 'onChange' | 'readOnly' | 'v
  *         return (
  *             <label
  *                 htmlFor="sample-checkbox"
- *                 style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-sizing-02)' }}
+ *                 style={{ display: 'flex', alignItems: 'center', gap: 'var(--usa-spacing-1)' }}
  *             >
  *                 <Checkbox
  *                     aria-label="Sample"

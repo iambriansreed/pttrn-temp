@@ -57,6 +57,13 @@ function normalizeHex(hex: string): string {
     return `#${body.length <= 4 ? [...body].map((c) => c + c).join('') : body}`;
 }
 
+/** A token value as a normalized hex color, for an opaque `#hex` or `rgb(r g b)` value. */
+function tokenHex(value: string): string | undefined {
+    if (value.startsWith('#')) return normalizeHex(value);
+    const rgb = value.match(/^rgb\((\d+) (\d+) (\d+)\)$/);
+    return rgb ? `#${rgb.slice(1).map((n) => Number(n).toString(16).padStart(2, '0')).join('')}` : undefined;
+}
+
 function attributeName(attribute: ts.JsxAttribute): string {
     return ts.isIdentifier(attribute.name) ? attribute.name.text : attribute.name.getText();
 }
@@ -104,7 +111,7 @@ export function validateCode(catalog: Catalog, code: string): ValidationResult {
     const iconNames = catalog.icons.map((i) => i.name);
     const icons = new Set(iconNames);
     const spacingTokens = catalog.tokens.filter((t) => t.kind === 'spacing');
-    const colorTokens = catalog.tokens.filter((t) => t.value.startsWith('#'));
+    const colorTokens = catalog.tokens.filter((t) => tokenHex(t.value) !== undefined);
 
     /** Local name to the pttrn component it was imported as. */
     const bound = new Map<string, Component>();
@@ -291,7 +298,7 @@ export function validateCode(catalog: Catalog, code: string): ValidationResult {
         for (const match of text.matchAll(HEX)) {
             const wanted = normalizeHex(match[0]);
             const names = colorTokens
-                .filter((t) => t.value.startsWith('#') && normalizeHex(t.value) === wanted)
+                .filter((t) => tokenHex(t.value) === wanted)
                 .slice(0, 3)
                 .map((t) => `var(${t.name})`);
             add(
@@ -301,7 +308,7 @@ export function validateCode(catalog: Catalog, code: string): ValidationResult {
                 `Hardcoded color ${match[0]} breaks theming and dark mode.`,
                 names.length > 0
                     ? `Use ${names.join(' or ')}.`
-                    : 'Use a --surface-*, --foreground-* or --stroke-* token. See get_tokens.',
+                    : 'Use a --theme-color-* token. See get_tokens.',
             );
         }
         for (const match of text.matchAll(FUNCTIONAL_COLOR)) {
@@ -310,7 +317,7 @@ export function validateCode(catalog: Catalog, code: string): ValidationResult {
                 'hardcoded-color',
                 'warning',
                 `Hardcoded ${match[0]}…) color breaks theming and dark mode.`,
-                'Use a --surface-*, --foreground-* or --stroke-* token. See get_tokens.',
+                'Use a --theme-color-* token. See get_tokens.',
             );
         }
         for (const match of text.matchAll(SPACING_IN_CSS)) {

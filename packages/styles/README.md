@@ -1,25 +1,40 @@
-# Pattern Styles
+# @ptrn/styles
 
-`@ptrn/styles` contains the stylesheet and theme data for the Pattern Design System.
+The pttrn design tokens, exported from the USWDS Design Kit in Figma, plus the reset that `@ptrn/react` and `@ptrn/web` share.
 
-## Installation
+| File                            | What it is                                                                                                      |
+| ------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `tokens.css`                    | Every token except the theme: the USWDS primitives, the font collections and their modes.                       |
+| `themes/default.css`            | The `default` USWDS theme, complete.                                                                            |
+| `themes/project-theme.css`      | The `project-theme` USWDS theme, complete.                                                                      |
+| `themes/project-theme-dark.css` | The `project-theme-dark` USWDS theme, complete.                                                                 |
+| `fonts.css`                     | Hand-written. Loads Public Sans, Merriweather and Roboto Mono from Google Fonts.                                |
+| `reset.css`                     | Hand-written. `@ptrn/react` loads it for the page, and each `@ptrn/web` element includes it in its shadow root. |
 
-```bash
-npm install @ptrn/styles
-```
+## Use it
 
-This package contains the `nowhere` stylesheet and theme data generated from the design tokens, plus the Node scripts that convert the raw tokens/variables into stylesheets. The Figma plugin used to export those tokens lives at the root of the monorepo in [`figma-plugin/`](../../figma-plugin).
-
-## Using the stylesheet
-
-The stylesheet consists of a set of CSS variables. Some color variables exist in both a light (default) and dark theme. The variables and classes mirror the tokens from Figma — you can search the stylesheet for the exact token name as it is included as a comment.
+Load the fonts and `tokens.css`, then one theme file:
 
 ```css
-@import '@ptrn/styles/nowhere.css';
+@import '@ptrn/styles/fonts.css';
+@import '@ptrn/styles/tokens.css';
+@import '@ptrn/styles/themes/default.css';
 ```
 
-To enable the dark theme add the `data-theme="dark"` attribute to your html or body tag.
+Each theme file sets `:root` and `[data-uswds-theme="<name>"]`, so the last one loaded is the page default. Load more than one only to switch part of the page with the `data-uswds-theme` attribute.
 
-### Tools
+From Sass, load a file with the Node package importer (`--pkg-importer=node`, or `new NodePackageImporter()` in the API):
 
-While building `@ptrn/react` we use the <a href="https://marketplace.visualstudio.com/items?itemName=vunguyentuan.vscode-css-variables">CSS Variable Autocomplete</a> Visual Studio Code extension. Once you add the CSS file to your project this plugin makes it a breeze to work with the variables.
+```scss
+@use 'pkg:@ptrn/styles/reset';
+```
+
+## Update the tokens
+
+`tokens.css` and `themes/` are generated. Do not edit them by hand.
+
+1. Build the Figma plugin: `npm run build --workspace ptrn-figma-plugin`.
+2. In the USWDS Design Kit file in Figma, run **Plugins → Development → pttrn Export Tokens** and click **Download ZIP**.
+3. Unzip it into this folder, replacing `tokens.css` and `themes/`.
+
+See [`figma-plugin/README.md`](../../figma-plugin/README.md) for what the export contains.

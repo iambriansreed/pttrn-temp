@@ -7,7 +7,6 @@
  */
 
 import { IconName } from '@ptrn/icons';
-import { BRANDS } from '@ptrn/styles/brands';
 import {
     JSXElementConstructor,
     ReactNode,
@@ -169,5 +168,3 @@ export type FieldControlProps<
      */
     'aria-errormessage'?: string;
 };
-
-export type Brand = (typeof BRANDS)[number]['slug'];

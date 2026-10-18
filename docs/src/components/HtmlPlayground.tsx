@@ -3,6 +3,7 @@ import { SvgRefresh } from '@ptrn/icons/Refresh';
 import { Button } from '@ptrn/react/Button/Button';
 import { Card } from '@ptrn/react/Card';
 import { sendSnackbar } from '@ptrn/react/Snackbar';
+import { isDarkTheme } from '@ptrn/react/utils/uiContext';
 import { themes } from 'prism-react-renderer';
 import { useEffect, useRef, useState } from 'react';
 import { Editor } from 'react-live';
@@ -56,7 +57,7 @@ export function HtmlPlayground({ defaultCode, defaultShowCode }: { defaultCode: 
                         code={code}
                         language="html"
                         onChange={setCode}
-                        theme={theme === 'dark' ? themes.vsDark : themes.vsLight}
+                        theme={isDarkTheme(theme) ? themes.vsDark : themes.vsLight}
                     />
                 </div>
             )}
@@ -65,7 +66,7 @@ export function HtmlPlayground({ defaultCode, defaultShowCode }: { defaultCode: 
                     label={showCode ? 'Hide code' : 'Edit code'}
                     onClick={() => setShowCode((previous) => !previous)}
                     size="x-small"
-                    style={{ borderRadius: 'var(--radius-full)' }}
+                    style={{ borderRadius: 'var(--usa-radius-pill)' }}
                     variant="secondary"
                 />
                 <Button

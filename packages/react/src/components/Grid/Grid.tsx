@@ -49,10 +49,11 @@ export type GridProps = {
 export function Grid({ columns = 1, children, gap, style, minColumnWidth = 'auto' }: GridProps) {
     let gridTemplateColumns = `repeat(auto-fit, minmax(${minColumnWidth}, 1fr))`;
 
-    // If columns is an array, map it to a string of fractions
+    // If columns is an array, map it to a string of fractions. A bare `fr` track never shrinks below its content's
+    // minimum width, so a wide input or label pushes the row past the container; `minmax(0, …)` keeps the ratio.
     if (Array.isArray(columns))
         gridTemplateColumns =
-            columns?.map((width) => (typeof width === 'string' ? width : `${width}fr`)).join(' ') || 'auto';
+            columns?.map((width) => (typeof width === 'string' ? width : `minmax(0, ${width}fr)`)).join(' ') || 'auto';
     // If columns is not an array, use the default repeat pattern
     else gridTemplateColumns = `repeat(${columns}, minmax(${minColumnWidth}, 1fr))`;
 

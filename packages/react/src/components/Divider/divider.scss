@@ -2,7 +2,7 @@
     /*! --inset: is set via inline style */
 
     display: flex;
-    background-color: var(--stroke-neutral-low);
+    background-color: var(--theme-color-base-lighter);
     align-self: stretch;
     place-content: stretch stretch;
     margin: 0;
@@ -14,14 +14,14 @@
     &,
     &[data-thickness='light'] {
         --line-thickness: 1px;
-        --padding: var(--spacing-sizing-02);
+        --padding: var(--usa-spacing-1);
     }
 
     &[data-thickness='heavy'] {
         --line-thickness: 2px;
-        --padding: var(--spacing-sizing-04);
+        --padding: var(--usa-spacing-2);
 
-        border-radius: var(--radius-full);
+        border-radius: var(--usa-radius-pill);
     }
 
     &, /* default */

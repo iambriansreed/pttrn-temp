@@ -2,9 +2,9 @@ import { ComponentPhase } from '-/types/meta';
 import { ColorVariant } from '-/utils/colorVariants';
 
 export const COMPONENT_PHASE_COLORS: Record<ComponentPhase, ColorVariant> = {
-    Backlog: 'grey',
-    Dev: 'blue',
-    UXReview: 'purple',
-    Stable: 'green',
-    Utility: 'magenta',
+    Backlog: 'base',
+    Dev: 'info',
+    UXReview: 'accent-cool',
+    Stable: 'success',
+    Utility: 'accent-warm',
 };

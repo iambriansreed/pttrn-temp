@@ -7,6 +7,8 @@ interface ZipFile {
 
 interface ExportResult {
     css: string;
+    files: { name: string; css: string }[];
+    themes: number;
     skipped: string[];
     images: { name: string; bytes: Uint8Array }[];
     fileName: string;
@@ -98,6 +100,9 @@ function createZip(files: ZipFile[]) {
         modesCell: '[data-modes-cell]',
         modes: '[data-modes]',
         modesLabel: '[data-modes-label]',
+        themesCell: '[data-themes-cell]',
+        themes: '[data-themes]',
+        themesLabel: '[data-themes-label]',
         imagesCell: '[data-images-cell]',
         images: '[data-images]',
         imagesLabel: '[data-images-label]',
@@ -220,12 +225,15 @@ function createZip(files: ZipFile[]) {
         ui!.propertiesLabel.textContent = plural(next.properties, 'property', 'properties');
         ui!.modes.textContent = String(next.modeAttributes);
         ui!.modesLabel.textContent = plural(next.modeAttributes, 'mode set', 'mode sets');
+        ui!.themes.textContent = String(next.themes);
+        ui!.themesLabel.textContent = plural(next.themes, 'theme', 'themes');
         ui!.images.textContent = String(images);
         ui!.imagesLabel.textContent = plural(images, 'image', 'images');
         ui!.modesCell.hidden = next.modeAttributes === 0;
+        ui!.themesCell.hidden = next.themes === 0;
         ui!.imagesCell.hidden = images === 0;
 
-        ui!.download.textContent = images ? 'Download ZIP' : 'Download CSS';
+        ui!.download.textContent = images || next.files.length ? 'Download ZIP' : 'Download CSS';
 
         const skipped = next.skipped.length;
         ui!.skipped.hidden = skipped === 0;
@@ -262,14 +270,17 @@ function createZip(files: ZipFile[]) {
         try {
             const cssFile = `${current.fileName}.css`;
 
-            if (current.images.length === 0) {
+            if (current.images.length === 0 && current.files.length === 0) {
                 download(new Blob([current.css], { type: 'text/css' }), cssFile);
                 feedback(`Downloaded ${shorten(cssFile)}`, false, `Downloaded ${cssFile}`);
                 return;
             }
 
+            // A split export ships the base and theme files in place of the single stylesheet.
+            const stylesheets = current.files.length ? current.files : [{ name: cssFile, css: current.css }];
+            const encoder = new TextEncoder();
             const files: ZipFile[] = [
-                { name: cssFile, data: new TextEncoder().encode(current.css) },
+                ...stylesheets.map(({ name, css }) => ({ name, data: encoder.encode(css) })),
                 ...current.images.map(({ name, bytes }) => ({ name: `${current.imageDir}/${name}`, data: bytes })),
             ];
             download(createZip(files), `${current.fileName}.zip`);

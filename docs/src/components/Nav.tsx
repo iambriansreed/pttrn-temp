@@ -6,6 +6,7 @@ import { Button } from '@ptrn/react/Button';
 import { Dialog } from '@ptrn/react/Dialog';
 import { Link } from '@ptrn/react/Link/Link';
 import { useUIContext } from '@ptrn/react/hooks/useUIContext';
+import { isDarkTheme } from '@ptrn/react/utils/uiContext';
 import { useEffect, useMemo, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { NavSide } from 'components/NavSide';
@@ -96,10 +97,10 @@ export function Nav() {
                 </div>
                 <div data-navbar-right="">
                     <Button
-                        icon={theme === 'light' ? <SvgDarkMode /> : <SvgDarkModeFill />}
+                        icon={isDarkTheme(theme) ? <SvgDarkModeFill /> : <SvgDarkMode />}
                         iconOnly
-                        label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
-                        onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+                        label={`Switch to ${isDarkTheme(theme) ? 'light' : 'dark'} mode`}
+                        onClick={() => setTheme(isDarkTheme(theme) ? 'default' : 'project-theme-dark')}
                         variant="secondary"
                     />
                     <Button

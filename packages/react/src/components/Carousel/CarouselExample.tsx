@@ -60,10 +60,9 @@ export const CarouselExample: ComponentExampleFn<CarouselProps & { slideCount: n
 function SlidePlaceholder({ number, onClick }: { number: number; onClick?: (message: string) => void }) {
     return (
         <div
-            data-color={COLOR_VARIANTS[(number + 3) % COLOR_VARIANTS.length]}
             style={{
-                backgroundColor: 'var(--background)',
-                color: 'var(--foreground)',
+                backgroundColor: `var(--theme-color-${COLOR_VARIANTS[(number + 3) % COLOR_VARIANTS.length]}-lighter)`,
+                color: `var(--theme-color-${COLOR_VARIANTS[(number + 3) % COLOR_VARIANTS.length]}-darker)`,
                 borderRadius: '8px',
                 minHeight: '180px',
                 padding: 20,

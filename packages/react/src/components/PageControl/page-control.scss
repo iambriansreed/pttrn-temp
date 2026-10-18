@@ -2,26 +2,26 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    border-radius: var(--radius-full);
-    border: 1px solid var(--stroke-neutral-low);
-    padding: var(--spacing-sizing-02);
-    gap: var(--spacing-sizing-02);
+    border-radius: var(--usa-radius-pill);
+    border: 1px solid var(--theme-color-base-lighter);
+    padding: var(--usa-spacing-1);
+    gap: var(--usa-spacing-1);
     width: fit-content;
-    background-color: var(--surface-neutral-t1-base);
+    background-color: var(--theme-body-background-color);
 
     [data-dot] {
-        background-color: var(--surface-neutral-t3-low);
-        border-radius: var(--radius-full);
-        width: var(--spacing-sizing-02);
-        height: var(--spacing-sizing-02);
+        background-color: var(--theme-color-base-lighter);
+        border-radius: var(--usa-radius-pill);
+        width: var(--usa-spacing-1);
+        height: var(--usa-spacing-1);
 
         &[data-active] {
-            background-color: var(--foreground-brand-primary);
+            background-color: var(--theme-color-primary-medium);
         }
 
         &[data-size='x-small'] {
-            width: var(--spacing-sizing-01);
-            height: var(--spacing-sizing-01);
+            width: var(--usa-spacing-05);
+            height: var(--usa-spacing-05);
         }
 
         &[data-size='small'] {
@@ -31,6 +31,6 @@
     }
 
     &[data-variant='floating'] {
-        box-shadow: var(--drop-shadow-float);
+        box-shadow: var(--card-shadow);
     }
 }

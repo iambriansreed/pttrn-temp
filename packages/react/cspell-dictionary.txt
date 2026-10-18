@@ -1,13 +1,8 @@
 pttrn
 ptrn
+USWDS
+uswds
 Backquote
-xxlg
-xxxlg
-xxxxlg
-tanzanite
-voilet
-Lato
-inversed
 MERIDIEMS
 falsey
 
@@ -22,26 +17,6 @@ Sisko
 Moines
 CARICOM
 Olimpic
-
-# BRANDS
-
-Better Homes & Garden
-better-homes-gardens
-Cartus
-cartus
-Century 21
-century-21
-Coldwell Banker
-coldwell-banker
-Corcoran
-corcoran
-Denali Boss
-denali-boss
-ERA
-era
-Sotheby's
-sothebys
-
 
 # ARIA
 aria-autocomplete

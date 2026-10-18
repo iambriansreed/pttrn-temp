@@ -1,25 +1,20 @@
 import { useUIContext } from '@ptrn/react/hooks/useUIContext';
-import { Brand } from '@ptrn/react/types/common';
 import { ColorTheme } from '@ptrn/react/utils/uiContext';
 import { createContext, useContext } from 'react';
 
 export const globalStateDefault: GlobalStateContext = {
-    brand: 'nowhere',
     showTouchTarget: false,
-    setBrand: () => {},
     setShowTouchTarget: () => {},
     resetGlobalState: () => {},
-    theme: 'dark',
+    theme: 'default',
 } as const;
 
 export type GlobalState = {
-    brand: Brand;
     showTouchTarget?: boolean;
     theme: ColorTheme;
 };
 
 export type GlobalStateContext = GlobalState & {
-    setBrand: (brand: Brand) => void;
     setShowTouchTarget: (showTouchTarget: boolean) => void;
     resetGlobalState: () => void;
 };

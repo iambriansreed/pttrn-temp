@@ -24,7 +24,7 @@
         "node": ">=22"
     },
     "scripts": {
-        "sass": "npx sass --no-source-map --silence-deprecation=mixed-decls src:dist",
+        "sass": "npx sass --no-source-map --pkg-importer=node --silence-deprecation=mixed-decls src:dist",
         "build": "npx tsx build.ts",
         "lint:css": "npx stylelint '**/*.scss'",
         "lint:css:fix": "npx stylelint '**/*.scss' --fix",
@@ -185,10 +185,8 @@
         "./Slider/*": "./dist/components/Slider/*.js",
         "./Snackbar": "./dist/components/Snackbar/index.js",
         "./Snackbar/*": "./dist/components/Snackbar/*.js",
-        "./StylesProviderDemo": "./dist/components/StylesProviderDemo/index.js",
-        "./StylesProviderDemo/*": "./dist/components/StylesProviderDemo/*.js",
-        "./StylesProviderNowhere": "./dist/components/StylesProviderNowhere/index.js",
-        "./StylesProviderNowhere/*": "./dist/components/StylesProviderNowhere/*.js",
+        "./StylesProvider": "./dist/components/StylesProvider/index.js",
+        "./StylesProvider/*": "./dist/components/StylesProvider/*.js",
         "./Switch": "./dist/components/Switch/index.js",
         "./Switch/*": "./dist/components/Switch/*.js",
         "./SwitchOption": "./dist/components/SwitchOption/index.js",

@@ -36,11 +36,12 @@ export type Icon = {
 export type Token = {
     /** CSS custom property, including the leading dashes. */
     name: string;
-    /** Group, the first word of the name (`colors`, `spacing`, `typography`). */
+    /** Group, the first word after the USWDS prefixes (`color`, `spacing`, `font`, `component`). */
     kind: string;
+    /** Value in the `default` USWDS theme (or the only value, for a token no theme changes). */
     value: string;
-    /** Value under `[data-theme='dark']`, when it differs. */
-    dark?: string;
+    /** Values in the other USWDS themes (`project-theme`, `project-theme-dark`), where they differ. */
+    themes?: Record<string, string>;
     description: string;
 };
 

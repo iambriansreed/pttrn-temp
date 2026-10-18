@@ -67,7 +67,7 @@ export function ComponentPage({ componentName }: { componentName: MetaComponentN
                             creating experiences across our product ecosystem."
                             header="Blocks"
                         >
-                            {(props) => <Tag {...props} color="grey" label="Block" variant="pill" />}
+                            {(props) => <Tag {...props} color="base" label="Block" variant="pill" />}
                         </Popover>
                     )}
                     {component.phase && <TagComponent component={{ phase: component.phase, name: component.phase }} />}
@@ -115,7 +115,7 @@ export function ComponentPage({ componentName }: { componentName: MetaComponentN
                             <div
                                 key={index}
                                 style={{
-                                    marginTop: 'var(--spacing-sizing-06)',
+                                    marginTop: 'var(--usa-spacing-3)',
                                 }}
                             >
                                 <h3 id={kebabCase(`Design-pattern-${preset.label}`)}>{preset.label}</h3>
@@ -142,7 +142,7 @@ export function ComponentPage({ componentName }: { componentName: MetaComponentN
                             display: 'flex',
                             justifyContent: 'space-between',
                             alignItems: 'center',
-                            marginTop: 'var(--spacing-sizing-06)',
+                            marginTop: 'var(--usa-spacing-3)',
                         }}
                     >
                         {component.showExample && (
@@ -263,7 +263,7 @@ function Section({
     return (
         <div
             style={{
-                marginTop: 'var(--spacing-sizing-06)',
+                marginTop: 'var(--usa-spacing-3)',
             }}
         >
             {title && <h3 id={kebabCase(`section-${title}`)}>{title}</h3>}

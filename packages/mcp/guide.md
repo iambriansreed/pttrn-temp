@@ -6,7 +6,7 @@ Follow this when generating UI. Look components up with `search_components` and 
 
 - Install `@ptrn/react`, `@ptrn/icons` and `@ptrn/styles`.
 - Render `<UIProvider>` once at the root of the app. It holds theme, responsive state and aria live messages, and components read from it.
-- Load the theme by rendering `<StylesProviderNowhere />` (from `@ptrn/react/StylesProviderNowhere`), or import `@ptrn/styles/nowhere.css` directly.
+- Load the styles by rendering `<StylesProvider />` (from `@ptrn/react/StylesProvider`), or import `@ptrn/styles/tokens.css` and one theme from `@ptrn/styles/themes/` directly.
 
 ## Imports
 
@@ -22,8 +22,8 @@ Follow this when generating UI. Look components up with `search_components` and 
 
 ## Tokens, not hardcoded values
 
-- Colors, spacing, radii, shadows and type sizes come from CSS variables: `var(--spacing-sizing-04)`, not `16px`; a `--surface-*` or `--foreground-*` variable, not `#fff`. Look them up with `get_tokens`.
-- Tokens have a light and a dark value and switch with `[data-theme='dark']`, so using them keeps dark mode working. A hardcoded color breaks it.
+- Colors, spacing, radii, shadows and type sizes come from the USWDS CSS variables: `var(--usa-spacing-2)`, not `16px`; a `--theme-color-*` variable, not `#fff`. Look them up with `get_tokens`.
+- Theme tokens change with the USWDS theme (`data-uswds-theme`, including `project-theme-dark`), so using them keeps every theme working. A hardcoded color breaks it.
 - Prefer a component prop over custom CSS. When custom CSS is unavoidable, use tokens in it.
 
 ## Accessibility

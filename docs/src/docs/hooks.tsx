@@ -20,7 +20,7 @@ export function Hooks() {
                     working with the components more efficient and consistent.
                 </p>
                 {hooks.map((hook, index) => (
-                    <div key={index} style={{ marginTop: 'var(--spacing-sizing-10)' }}>
+                    <div key={index} style={{ marginTop: 'var(--usa-spacing-5)' }}>
                         <h2>{hook.name}</h2>
                         <Markup>{hook.description}</Markup>
                         {hook.example && <Syntax code={hook.example} />}

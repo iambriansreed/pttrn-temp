@@ -9,7 +9,7 @@
     align-items: center;
     width: 100%;
     position: relative;
-    gap: var(--spacing-sizing-02);
+    gap: var(--usa-spacing-1);
 
     [data-items-container] {
         width: 100%;
@@ -31,6 +31,6 @@
     [data-controls] {
         display: flex;
         align-items: center;
-        gap: var(--spacing-sizing-02);
+        gap: var(--usa-spacing-1);
     }
 }

@@ -69,8 +69,8 @@ export function AvatarGroupOverflow({ items: itemsProp, overflow, size }: Avatar
                         style={{
                             ...floatingStyles,
                             ...scrollListItemsStyle(5, items.length),
-                            '--list-item-height': `var(--spacing-sizing-12)`,
-                            paddingRight: 'var(--spacing-sizing-04)',
+                            '--list-item-height': `var(--usa-spacing-6)`,
+                            paddingRight: 'var(--usa-spacing-2)',
                         }}
                         width="fit-content"
                     >

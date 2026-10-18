@@ -1,6 +1,7 @@
 /**
   * Base Styles
-  * This file is not generated or distributed through @ptrn/styles.
+  * The reset comes from @ptrn/styles, which @ptrn/web shares. This file adds what only
+  * @ptrn/react needs.
   * If not using a StylesProvider (recommended), this file should be imported first in the main stylesheet .
   * This file will contain only the most basic styles that are applied across all applications.
   * This file will NOT contain any component-specific styles.
@@ -8,22 +9,7 @@
   * This file will NOT contain any classes
 */
 
-@use './colors';
-
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-}
-
-ol {
-    list-style-position: inside;
-}
+@use 'pkg:@ptrn/styles/reset';
 
 :root {
     --z-index-snackbar: 1200;
@@ -36,16 +22,10 @@ ol {
     --z-index-fab: 800;
     --z-index-navbar: 700;
     --z-index-footer: 600;
-    --list-item-height: var(--spacing-sizing-13);
+    --list-item-height: calc(var(--usa-spacing-6) + var(--usa-spacing-05));
     --button-border-width: 1px;
     --button-border-type: solid;
-    --button-border-radius: var(--radius-sm);
-}
-
-@media (prefers-reduced-motion) {
-    [data-animated] {
-        animation: none !important;
-    }
+    --button-border-radius: var(--theme-border-radius-md);
 }
 
 html:has(body[data-pttrn]) {
@@ -63,9 +43,9 @@ html:has([data-pttrn='scrim']) {
 
 body[data-pttrn] {
     height: 100%;
-    font: var(--body-base);
-    background-color: var(--background-base);
-    color: var(--foreground-neutral-on-surface);
+    font: 400 var(--usa-font-size-sans-5) / 24px var(--usa-font-family-body);
+    background-color: var(--theme-page-background-color);
+    color: var(--theme-body-text-color);
     min-width: 343px;
 
     a:not([data-pttrn], [data-no-link]) {
@@ -154,8 +134,8 @@ body[data-pttrn] {
 
     [data-line] {
         width: 100%;
-        background: var(--foreground-neutral-skeleton-element);
-        border-radius: var(--radius-sm);
+        background: var(--theme-color-base-lighter);
+        border-radius: var(--theme-border-radius-md);
         height: var(--text-height);
     }
 
@@ -174,19 +154,19 @@ body[data-pttrn] {
     */
 
     animation: skeleton-pulse 1.5s infinite;
-    background: var(--foreground-neutral-skeleton-element);
+    background: var(--theme-color-base-lighter);
 
     &[data-variant='rectangular'],
     &[data-variant='photo'] {
-        min-width: var(--spacing-sizing-08);
-        min-height: var(--spacing-sizing-08);
+        min-width: var(--usa-spacing-4);
+        min-height: var(--usa-spacing-4);
         height: var(--height, var(--width));
         width: var(--width, var(--height));
-        border-radius: var(--radius-sm);
+        border-radius: var(--theme-border-radius-md);
     }
 
     &[data-variant='photo'] {
-        border-radius: var(--radius-md);
+        border-radius: var(--theme-border-radius-lg);
     }
 
     &[data-variant='circular'] {
@@ -197,14 +177,14 @@ body[data-pttrn] {
 
     &[data-variant='profile'] {
         border-radius: 100%;
-        width: var(--spacing-sizing-10);
+        width: var(--usa-spacing-5);
         aspect-ratio: 1/1;
     }
 
     &[data-variant='thumbnail'] {
-        width: var(--spacing-sizing-12);
-        height: var(--spacing-sizing-12);
-        border-radius: var(--radius-sm);
+        width: var(--usa-spacing-6);
+        height: var(--usa-spacing-6);
+        border-radius: var(--theme-border-radius-md);
     }
 }
 
@@ -224,114 +204,110 @@ body[data-pttrn] {
     }
 }
 
-[data-hidden] {
-    display: none !important;
-}
-
 [data-pttrn='link'] {
     @extend %link;
 
-    font: var(--labels-base);
+    font: 500 var(--usa-font-size-sans-5) / 24px var(--usa-font-family-ui);
 }
 
 %link {
-    color: var(--foreground-link-text-default);
+    color: var(--component-link-color);
     display: inline-flex;
     flex-direction: row;
     align-items: center;
-    gap: var(--spacing-sizing-01);
+    gap: var(--usa-spacing-05);
 
     &:not([disabled]) {
         &:hover,
         &[data-pseudo='hover'] {
-            color: var(--foreground-link-text-default-hovered);
+            color: var(--component-link-hover-color);
         }
 
         &:active,
         &[data-pseudo='active'] {
-            color: var(--foreground-link-text-default);
+            color: var(--component-link-color);
             filter: brightness(80%);
         }
 
         &:visited,
         &[data-pseudo='visited'] {
-            color: var(--foreground-link-text-default-visited);
+            color: var(--component-link-visited-color);
         }
     }
 
     &[disabled] {
         pointer-events: none;
         cursor: text;
-        color: var(--foreground-link-text-default-disabled);
+        color: var(--theme-color-disabled-dark);
     }
 
     &[data-subtle] {
         text-decoration: none;
-        color: var(--foreground-neutral-on-surface);
+        color: var(--theme-body-text-color);
 
         &:not([disabled]) {
             &:hover,
             &[data-pseudo='hover'] {
                 text-decoration: underline;
-                color: var(--foreground-link-text-subtle-hovered);
+                color: var(--theme-color-ink);
             }
 
             &:active,
             &[data-pseudo='active'] {
                 text-decoration: underline;
-                color: var(--foreground-link-text-subtle-pressed);
+                color: var(--theme-color-ink);
             }
 
             &:visited,
             &[data-pseudo='visited'] {
-                color: var(--foreground-neutral-on-surface);
+                color: var(--theme-body-text-color);
             }
         }
 
         &[disabled] {
             pointer-events: none;
-            color: var(--foreground-link-text-subtle-disabled);
+            color: var(--theme-color-disabled-dark);
         }
     }
 
     &[data-subtle-inverse] {
         text-decoration: none;
-        color: var(--foreground-neutral-inverse-on-surface);
+        color: var(--theme-color-ink-reverse);
 
         &:not([disabled]) {
             &:hover,
             &[data-pseudo='hover'] {
                 text-decoration: underline;
-                color: var(--foreground-link-text-subtle-inverse-hovered);
+                color: var(--component-link-reverse-hover-color);
             }
 
             &:active,
             &[data-pseudo='active'] {
                 text-decoration: underline;
-                color: var(--foreground-link-text-subtle-inverse-pressed);
+                color: var(--component-link-reverse-active-color);
             }
 
             &:visited,
             &[data-pseudo='visited'] {
-                color: var(--foreground-neutral-on-inverse-surface);
+                color: var(--theme-color-ink-reverse);
             }
         }
 
         &[disabled] {
             pointer-events: none;
-            color: var(--foreground-link-text-subtle-inversed-disabled);
+            color: var(--theme-color-disabled-light);
         }
     }
 
     &[data-size='large'] {
-        font: var(--labels-large);
+        font: 500 var(--usa-font-size-sans-7) / 28px var(--usa-font-family-ui);
     }
 
     &[data-size='small'] {
-        font: var(--labels-small);
+        font: 500 var(--usa-font-size-sans-3) / 20px var(--usa-font-family-ui);
     }
 
     svg {
-        width: var(--spacing-sizing-05);
+        width: var(--usa-spacing-205);
     }
 }

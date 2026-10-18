@@ -45,15 +45,15 @@ export function ExamplePlaceholder({
             data-pttrn-utility="example-placeholder"
             style={{
                 flexDirection: 'column',
-                gap: 'var(--spacing-sizing-01)',
+                gap: 'var(--usa-spacing-05)',
                 width: dimension(width),
                 height: dimension(height),
-                background: 'var(--surface-neutral-t3-low)',
+                background: 'var(--theme-color-base-lighter)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 textAlign: 'center',
-                font: 'var(--body-x-small)',
+                font: '400 var(--usa-font-size-sans-1)/16px var(--usa-font-family-body)',
                 ...props.style,
             }}
         >

@@ -69,10 +69,8 @@ export type ModalProps = Pick<
      * The call to action button to display in the footer of the modal.
      *
      * @example
-     *     {
-     *     label: 'Confirm',
-     *     onClick: () => action('Confirm clicked'),
-     *     }
+     *     {label: 'Confirm',
+     *     onClick: () => action('Confirm clicked'),}
      */
     callToAction?: ModalCallToAction;
     /**

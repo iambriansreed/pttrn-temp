@@ -7,9 +7,9 @@
     overflow: hidden;
     inset: 0;
     align-items: center;
-    gap: var(--spacing-sizing-02);
+    gap: var(--usa-spacing-1);
     pointer-events: none;
-    padding: var(--spacing-sizing-02);
+    padding: var(--usa-spacing-1);
 
     [data-snackbar-content] {
         pointer-events: auto;
@@ -17,16 +17,16 @@
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        border-radius: var(--radius-md);
-        padding: var(--spacing-sizing-02) var(--spacing-sizing-02) var(--spacing-sizing-02) var(--spacing-sizing-04);
-        gap: var(--spacing-sizing-03);
+        border-radius: var(--theme-border-radius-lg);
+        padding: var(--usa-spacing-1) var(--usa-spacing-1) var(--usa-spacing-1) var(--usa-spacing-2);
+        gap: var(--usa-spacing-105);
         width: 600px;
         box-shadow:
-            0 0 1px 0 var(--shadow-variant-05),
-            0 0 12px 0 var(--shadow-variant-03);
-        background-color: var(--surface-neutral-inverse);
-        color: var(--foreground-neutral-on-inverse-surface);
-        height: var(--spacing-sizing-14);
+            0 0 1px 0 var(--usa-color-black-transparent-30),
+            0 0 12px 0 var(--usa-color-black-transparent-20);
+        background-color: var(--theme-color-ink);
+        color: var(--theme-color-ink-reverse);
+        height: var(--usa-spacing-7);
 
         [data-snackbar-icon-text] {
             flex: 1 1 0; /* allow to grow and shrink, but not overflow */
@@ -35,15 +35,15 @@
             overflow: hidden;
             display: flex;
             align-items: center;
-            gap: var(--spacing-sizing-03);
+            gap: var(--usa-spacing-105);
         }
 
         [data-snackbar-icon] {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: var(--spacing-sizing-05);
-            height: var(--spacing-sizing-05);
+            width: var(--usa-spacing-205);
+            height: var(--usa-spacing-205);
         }
 
         [data-pttrn='button'][data-variant='tertiary'] {

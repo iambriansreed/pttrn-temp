@@ -39,7 +39,13 @@ export type InlineAlertProps = CommonProps<'owner'> & {
  */
 export function InlineAlert({ label, variant = 'informational', id, owner }: InlineAlertProps) {
     return (
-        <div data-pttrn="inline-alert" data-pttrn-owner={owner || undefined} data-variant={variant} id={id} role="alert">
+        <div
+            data-pttrn="inline-alert"
+            data-pttrn-owner={owner || undefined}
+            data-variant={variant}
+            id={id}
+            role="alert"
+        >
             {VARIANT_ICON[variant]}
             <Txt variant="body-small">{label}</Txt>
         </div>
