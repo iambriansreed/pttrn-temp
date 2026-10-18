@@ -85,15 +85,16 @@ export function reportMissingVariables(variables: Record<string, string>) {
             };
         });
 
-    const variableBeingSetRegex = /--[^:)]+:/g;
+    // a declaration: `--name:` at the start of a declaration, not a mention in a comment
+    const variableBeingSetRegex = /(?<![\w-])--[\w-]+(?=\s*:)/g;
     const variablesBeingUsedRegex = /var\(--[^)\s]+\)/g;
 
     const baseContent = fs.readFileSync(path.resolve(__dirname, '../src/styles/base.scss'), 'utf-8');
     const colorsContent = fs.readFileSync(path.resolve(__dirname, '../src/styles/_color-variants.scss'), 'utf-8');
 
     const variableBeingSetMatchesBase = [
-        ...(baseContent.match(variableBeingSetRegex)?.map((match) => match.replace(':', '')) || []),
-        ...(colorsContent.match(variableBeingSetRegex)?.map((match) => match.replace(':', '')) || []),
+        ...(baseContent.match(variableBeingSetRegex)?.map((match) => match.trim()) || []),
+        ...(colorsContent.match(variableBeingSetRegex)?.map((match) => match.trim()) || []),
     ];
 
     const missingVariables = srcFiles.flatMap(({ content, filePath }) => {
@@ -102,7 +103,7 @@ export function reportMissingVariables(variables: Record<string, string>) {
             ?.map((match) => match.replace(/var\((--[^)]+)\)/, '$1'));
         if (!variablesBeingUsedMatches) return [];
 
-        const variableBeingSetMatches = content.match(variableBeingSetRegex)?.map((match) => match.replace(':', ''));
+        const variableBeingSetMatches = content.match(variableBeingSetRegex)?.map((match) => match.trim());
 
         const missing = variablesBeingUsedMatches.filter((variable) => {
             // check if variable is

@@ -1,5 +1,5 @@
 import fs from 'fs/promises';
-import { kebabCase } from '.scripts/utils';
+import { kebabCase } from '../utils';
 
 /** Generates and writes a boilerplate component styles (sass) file for a component name and destination file path. */
 export const generateAndWriteStylesFile = async (componentName: string, filePath: string) => {
