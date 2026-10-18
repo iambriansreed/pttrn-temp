@@ -15,7 +15,10 @@
     [data-icons] {
         width: auto;
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(calc(var(--usa-spacing-15) + var(--usa-spacing-3) + var(--usa-spacing-05)), 1fr));
+        grid-template-columns: repeat(
+            auto-fill,
+            minmax(calc(var(--usa-spacing-15) + var(--usa-spacing-3) + var(--usa-spacing-05)), 1fr)
+        );
         margin-bottom: var(--usa-spacing-9);
 
         h3 {

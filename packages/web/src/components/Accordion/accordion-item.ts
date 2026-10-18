@@ -12,11 +12,11 @@ export type AccordionToggleDetail = { open: boolean };
 /**
  * One collapsible panel of a `ptrn-accordion`.
  *
+ * @fires ptrn-toggle - After the user opens or closes the panel. `detail.open` is the new state.
  * @element ptrn-accordion-item
  * @slot - The panel content.
  * @slot leading - Shown before the heading.
  * @slot trailing - Shown after the heading, before the arrow.
- * @fires ptrn-toggle - After the user opens or closes the panel. `detail.open` is the new state.
  */
 export class PtrnAccordionItem extends LitElement {
     static properties = {

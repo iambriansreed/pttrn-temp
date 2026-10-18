@@ -101,8 +101,8 @@ export function Colors() {
         <Page>
             <h2>Colors</h2>
             <p>
-                The USWDS colors from <code>@ptrn/styles</code>. Theme colors change with the USWDS theme; primitives are
-                the fixed palette they point at. Swatches show the current theme.
+                The USWDS colors from <code>@ptrn/styles</code>. Theme colors change with the USWDS theme; primitives
+                are the fixed palette they point at. Swatches show the current theme.
             </p>
             <div data-page-icons style={{ marginBottom: '16px' }}>
                 <div data-filters>

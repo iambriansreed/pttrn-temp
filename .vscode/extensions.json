@@ -13,6 +13,6 @@
         "streetsidesoftware.code-spell-checker",
         "stylelint.vscode-stylelint",
         "tyriar.sort-lines",
-        "vunguyentuan.vscode-css-variables",
-    ],
+        "vunguyentuan.vscode-css-variables"
+    ]
 }

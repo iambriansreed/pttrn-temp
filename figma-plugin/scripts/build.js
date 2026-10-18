@@ -10,7 +10,10 @@ function inlineUi() {
     if (!html.includes(PLACEHOLDER)) throw new Error(`src/ui.html must contain ${PLACEHOLDER}`);
 
     const script = readFileSync('ui.js', 'utf8').replace(/<\/script/gi, '<\\/script');
-    writeFileSync('ui.html', html.replace(PLACEHOLDER, () => `<script>\n${script}</script>`));
+    writeFileSync(
+        'ui.html',
+        html.replace(PLACEHOLDER, () => `<script>\n${script}</script>`),
+    );
 }
 
 if (process.argv.includes('--watch')) {

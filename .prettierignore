@@ -1,8 +1,37 @@
+# Generated or vendored files. Source files are formatted; run `npm run pretty`.
 node_modules
 dist
 package-lock.json
+*.tgz
+
+# Icon assets and the build output @ptrn/icons writes into its package root
 packages/icons/assets
-packages/react/types.json
-docs/src/meta
+packages/icons/*.js
+packages/icons/*.d.ts
+packages/icons/*.svg
+packages/icons/meta
+packages/icons/SvgIcon
+packages/icons/src
+
+# Design tokens exported from Figma
 packages/styles/tokens.css
 packages/styles/themes
+plans/*.css
+
+# Generated metadata and data
+docs/src/meta
+packages/react/types.json
+packages/mcp/data
+
+# Figma plugin build output
+figma-plugin/code.js
+figma-plugin/ui.js
+figma-plugin/ui.html
+
+# Playwright output
+test-results
+playwright-report
+blob-report
+
+# Planning documents keep their own formatting
+plans

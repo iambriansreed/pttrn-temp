@@ -39,7 +39,10 @@ const extracted: Catalog = {
             fs
                 .readdirSync(path.resolve(stylesDir, 'themes'))
                 .filter((file) => file.endsWith('.css'))
-                .map((file) => [file.replace(/\.css$/, ''), fs.readFileSync(path.resolve(stylesDir, 'themes', file), 'utf-8')]),
+                .map((file) => [
+                    file.replace(/\.css$/, ''),
+                    fs.readFileSync(path.resolve(stylesDir, 'themes', file), 'utf-8'),
+                ]),
         ),
     ),
 };

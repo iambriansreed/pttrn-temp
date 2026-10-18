@@ -61,7 +61,12 @@ function normalizeHex(hex: string): string {
 function tokenHex(value: string): string | undefined {
     if (value.startsWith('#')) return normalizeHex(value);
     const rgb = value.match(/^rgb\((\d+) (\d+) (\d+)\)$/);
-    return rgb ? `#${rgb.slice(1).map((n) => Number(n).toString(16).padStart(2, '0')).join('')}` : undefined;
+    return rgb
+        ? `#${rgb
+              .slice(1)
+              .map((n) => Number(n).toString(16).padStart(2, '0'))
+              .join('')}`
+        : undefined;
 }
 
 function attributeName(attribute: ts.JsxAttribute): string {
@@ -306,9 +311,7 @@ export function validateCode(catalog: Catalog, code: string): ValidationResult {
                 'hardcoded-color',
                 'warning',
                 `Hardcoded color ${match[0]} breaks theming and dark mode.`,
-                names.length > 0
-                    ? `Use ${names.join(' or ')}.`
-                    : 'Use a --theme-color-* token. See get_tokens.',
+                names.length > 0 ? `Use ${names.join(' or ')}.` : 'Use a --theme-color-* token. See get_tokens.',
             );
         }
         for (const match of text.matchAll(FUNCTIONAL_COLOR)) {

@@ -17,8 +17,8 @@ export function Stylesheets() {
 
             <h3 title="Style Providers">Providers</h3>
             <p>
-                If you are using <strong>@ptrn/react</strong> React components, render the style provider once. It
-                adds the tokens, every theme and the base styles to the page. <code>UIProvider</code> sets{' '}
+                If you are using <strong>@ptrn/react</strong> React components, render the style provider once. It adds
+                the tokens, every theme and the base styles to the page. <code>UIProvider</code> sets{' '}
                 <code>data-uswds-theme</code> from its <code>theme</code>.
             </p>
             <Syntax
@@ -36,8 +36,8 @@ createRoot(document.getElementById('root')!).render(
             <h3>Stylesheets</h3>
             <p>
                 Without <strong>@ptrn/react</strong>, load the stylesheets from the <code>@ptrn/styles</code> package:
-                the tokens, then one theme. Each theme file is complete, and each variable has its exact Figma name in
-                a comment above it.
+                the tokens, then one theme. Each theme file is complete, and each variable has its exact Figma name in a
+                comment above it.
             </p>
             <Syntax
                 code={`import '@ptrn/styles/reset.css';\nimport '@ptrn/styles/tokens.css';\nimport '@ptrn/styles/themes/default.css';`}

@@ -4,8 +4,8 @@ import { AccordionToggleDetail, PtrnAccordionItem } from './accordion-item';
 import styles from './accordion.scss';
 
 /**
- * A vertical stack of collapsible panels that allows customers to expand or collapse each panel individually to
- * reveal or hide their content.
+ * A vertical stack of collapsible panels that allows customers to expand or collapse each panel individually to reveal
+ * or hide their content.
  *
  * @element ptrn-accordion
  * @slot - `ptrn-accordion-item` elements.

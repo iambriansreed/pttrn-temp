@@ -73,7 +73,11 @@ export function ComponentPage({ componentName }: { componentName: MetaComponentN
                     {component.phase && <TagComponent component={{ phase: component.phase, name: component.phase }} />}
                 </Flex>
             </Flex>
-            <FrameworkTabs framework={isWebComponent ? 'web-component' : 'react'} hasWebComponent={!!webComponent} onChange={setFramework} />
+            <FrameworkTabs
+                framework={isWebComponent ? 'web-component' : 'react'}
+                hasWebComponent={!!webComponent}
+                onChange={setFramework}
+            />
             <ComponentProvider component={component}>
                 <article>
                     <Markup>{component.description}</Markup>

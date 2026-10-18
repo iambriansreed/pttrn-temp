@@ -11,16 +11,16 @@ import 'src/components/root.scss';
 export function Root() {
     return (
         <UIProvider>
-                <GlobalStateProvider>
-                    <Nav />
-                    <main data-main>
-                        <ErrorBoundary>
-                            <Outlet />
-                        </ErrorBoundary>
-                        <NavContents />
-                    </main>
-                    <SnackbarManager defaultTimeout={5000} />
-                </GlobalStateProvider>
-            </UIProvider>
+            <GlobalStateProvider>
+                <Nav />
+                <main data-main>
+                    <ErrorBoundary>
+                        <Outlet />
+                    </ErrorBoundary>
+                    <NavContents />
+                </main>
+                <SnackbarManager defaultTimeout={5000} />
+            </GlobalStateProvider>
+        </UIProvider>
     );
 }

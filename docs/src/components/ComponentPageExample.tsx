@@ -49,7 +49,9 @@ export function ComponentPageExample() {
                 <ErrorLogContext id={errorId}>
                     <CodeExample
                         accessibility
-                        code={framework === 'web-component' && webComponent ? { language: 'html', str: html } : undefined}
+                        code={
+                            framework === 'web-component' && webComponent ? { language: 'html', str: html } : undefined
+                        }
                         containerStyle={component.containerStyle}
                         data-main-example
                         data-show-touch-targets={showTouchTarget || undefined}

@@ -74,7 +74,10 @@ function ruleBody(css: string, selector: string): string {
 
 /** The group a token belongs to: the first word after the USWDS prefixes (`color`, `spacing`, `font`, `component`). */
 function tokenKind(name: string) {
-    return name.slice(2).replace(/^(general-usa-|spacing-usa-|usa-|theme-)/, '').split('-')[0];
+    return name
+        .slice(2)
+        .replace(/^(general-usa-|spacing-usa-|usa-|theme-)/, '')
+        .split('-')[0];
 }
 
 /** Each declaration in a rule body, with the comment directly above it. */

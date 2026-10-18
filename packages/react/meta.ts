@@ -522,8 +522,9 @@ async function createMeta() {
     const componentImport = (name: string) =>
         `${name}: React.lazy(() => import('@ptrn/react/${name}').then((module) => ({ default: module.${name} })))`;
 
-    const uiVersion = (JSON.parse(fs.readFileSync(path.resolve(rootPath, 'package.json'), 'utf-8')) as { version: string })
-        .version;
+    const uiVersion = (
+        JSON.parse(fs.readFileSync(path.resolve(rootPath, 'package.json'), 'utf-8')) as { version: string }
+    ).version;
 
     console.info(`${ORANGE}${mode} meta build.${RESET}`);
 

@@ -12,13 +12,13 @@ const hasPropTypeControl = (prop: TypePropertyDemo) => {
 
     return Boolean(
         type === 'icon' ||
-            type === 'multiline' ||
-            type === 'string' ||
-            type === 'string,boolean' ||
-            type === 'number' ||
-            type === 'boolean' ||
-            (Array.isArray(type) && type.join() === 'string,boolean') ||
-            prop.options,
+        type === 'multiline' ||
+        type === 'string' ||
+        type === 'string,boolean' ||
+        type === 'number' ||
+        type === 'boolean' ||
+        (Array.isArray(type) && type.join() === 'string,boolean') ||
+        prop.options,
     );
 };
 

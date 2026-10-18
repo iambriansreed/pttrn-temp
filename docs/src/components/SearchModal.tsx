@@ -13,9 +13,7 @@ import { TypeMeta, UtilityMeta } from 'src/meta';
 import { componentsMeta, typesMeta, utilitiesMeta } from 'src/meta/data.json';
 
 type Meta =
-    | (ComponentMeta & { kind: 'component' })
-    | (TypeMeta & { kind: 'type' })
-    | (UtilityMeta & { kind: 'utility' });
+    (ComponentMeta & { kind: 'component' }) | (TypeMeta & { kind: 'type' }) | (UtilityMeta & { kind: 'utility' });
 
 export type Result = {
     name: string;
