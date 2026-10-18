@@ -1,0 +1,14 @@
+name: Improvement
+description: A change to an existing component, the docs, the MCP server, or tooling.
+labels: [enhancement]
+body:
+    - type: textarea
+      id: change
+      attributes:
+          label: What should change and why
+      validations:
+          required: true
+    - type: textarea
+      id: alternatives
+      attributes:
+          label: Alternatives considered

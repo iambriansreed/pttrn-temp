@@ -1,10 +1,11 @@
 /* eslint-disable react/no-multi-comp */
+import Contributing from '../../CONTRIBUTING.md?raw';
+import Guidelines from '../../GUIDELINES.md?raw';
 import FigmaPlugin from '../../figma-plugin/README.md?raw';
 import { ComponentPage } from 'components/ComponentPage';
 import { Markdown } from 'components/Markdown.tsx';
 import { Page } from 'components/Page';
 import { Page404 } from 'components/Page404.tsx';
-import Contributing from 'src/docs/CONTRIBUTING.md?raw';
 import { Colors } from 'src/docs/colors';
 import { Components } from 'src/docs/components';
 import { Hooks } from 'src/docs/hooks';
@@ -80,6 +81,15 @@ export const routes: RouteLink[] = [
                     </Page>
                 ),
                 title: 'Contributing',
+            },
+            {
+                path: '/guidelines',
+                Component: () => (
+                    <Page>
+                        <Markdown md={Guidelines} />
+                    </Page>
+                ),
+                title: 'Guidelines',
             },
             {
                 path: '/colors',

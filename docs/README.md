@@ -26,4 +26,4 @@ To build the application run `npm run build --workspace ptrn-docs`. The applicat
 
 ### Contributing
 
-See the [Contributing Guide](src/docs/CONTRIBUTING.md).
+See the [Contributing Guide](../CONTRIBUTING.md).

@@ -1,0 +1,32 @@
+name: Component or token request
+description: Propose a new component, variant, or token.
+labels: [proposal]
+body:
+    - type: input
+      id: name
+      attributes:
+          label: Proposed name
+      validations:
+          required: true
+    - type: textarea
+      id: problem
+      attributes:
+          label: The problem it solves
+          description: Which products need it, what they build today instead, and why an existing component or composition does not cover it.
+      validations:
+          required: true
+    - type: textarea
+      id: api
+      attributes:
+          label: Proposed API
+          description: Props, slots, events, states. For a token, the tier (primitive, semantic, component) and the values per theme.
+    - type: textarea
+      id: a11y
+      attributes:
+          label: Accessibility requirements
+          description: Keyboard model, focus behavior, required labels, minimum target size, relevant ARIA pattern.
+    - type: input
+      id: design
+      attributes:
+          label: Design reference
+          placeholder: Figma link, USWDS component, or screenshot.

@@ -1,0 +1,37 @@
+name: Bug report
+description: Something renders, behaves, or reads wrong.
+labels: [bug]
+body:
+    - type: dropdown
+      id: package
+      attributes:
+          label: Package
+          options:
+              - '@ptrn/react'
+              - '@ptrn/web'
+              - '@ptrn/icons'
+              - '@ptrn/styles'
+              - '@ptrn/mcp'
+              - Figma plugin
+              - Docs site
+      validations:
+          required: true
+    - type: input
+      id: version
+      attributes:
+          label: Version
+          placeholder: 0.1.0
+      validations:
+          required: true
+    - type: textarea
+      id: what
+      attributes:
+          label: What happened
+          description: What you did, what you saw, and what you expected. A minimal reproduction (StackBlitz, CodeSandbox, or a snippet) gets the fastest fix.
+      validations:
+          required: true
+    - type: textarea
+      id: env
+      attributes:
+          label: Environment
+          placeholder: Browser and version, OS, framework version, assistive technology if relevant.
