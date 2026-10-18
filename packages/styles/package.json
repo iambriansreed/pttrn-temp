@@ -1,12 +1,14 @@
 {
     "name": "@ptrn/styles",
     "version": "0.0.1",
-    "license": "CC-BY-4.0",
+    "license": "MIT",
     "description": "pttrn design tokens (USWDS Design Kit) plus the reset shared by @ptrn/react and @ptrn/web.",
     "files": [
         "*.css",
         "themes",
-        "README.md"
+        "README.md",
+        "LICENSE",
+        "NOTICE.md"
     ],
     "sideEffects": [
         "*.css"
@@ -21,5 +23,21 @@
     },
     "engines": {
         "node": ">=22"
+    },
+    "scripts": {
+        "prepack": "node ../../scripts/copy-license.mjs",
+        "postpack": "node ../../scripts/copy-license.mjs --clean"
+    },
+    "exports": {
+        "./tokens.css": "./tokens.css",
+        "./fonts.css": "./fonts.css",
+        "./reset.css": "./reset.css",
+        "./reset": {
+            "sass": "./reset.css",
+            "style": "./reset.css",
+            "default": "./reset.css"
+        },
+        "./themes/*.css": "./themes/*.css",
+        "./package.json": "./package.json"
     }
 }

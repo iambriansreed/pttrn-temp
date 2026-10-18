@@ -1,19 +1,21 @@
 {
     "name": "@ptrn/react",
     "version": "0.0.1",
-    "license": "CC-BY-4.0",
+    "license": "MIT",
     "publishConfig": {
         "access": "public"
     },
     "type": "module",
     "files": [
         "dist",
-        "src",
+        "!dist/**/*Example.js",
+        "!dist/**/*Example.d.ts",
+        "!dist/**/*Example.css",
+        "!dist/**/*Example.css.js",
+        "!dist/components/ExamplePlaceholder",
         "README.md",
-        "meta.ts",
-        "build.ts",
-        "tsconfig.json",
-        "tsconfig.build.json"
+        "LICENSE",
+        "NOTICE.md"
     ],
     "repository": {
         "type": "git",
@@ -36,189 +38,729 @@
         "newc": "tsx .scripts/tasks/new-component.ts",
         "create:tests": "tsx .scripts/tasks/create-tests.ts",
         "clean": "tsx .scripts/clean.ts",
-        "pr-check": "npx tsx .scripts/tasks/lint-components.ts && npm run lint && npm run lint:css && npx tsx .scripts/check-css-vars.ts && npm run build && npm run test"
+        "pr-check": "npx tsx .scripts/tasks/lint-components.ts && npm run lint && npm run lint:css && npx tsx .scripts/check-css-vars.ts && npm run build && npm run test",
+        "prepack": "node ../../scripts/copy-license.mjs",
+        "postpack": "node ../../scripts/copy-license.mjs --clean"
     },
     "static-exports": {
-        "./*": "./dist/*.js"
+        "./*": {
+            "types": "./dist/*.d.ts",
+            "default": "./dist/*.js"
+        },
+        "./styles/*.css": "./dist/styles/*.css",
+        "./package.json": "./package.json"
     },
     "exports": {
-        "./*": "./dist/*.js",
-        "./Accordion": "./dist/components/Accordion/index.js",
-        "./Accordion/*": "./dist/components/Accordion/*.js",
-        "./Avatar": "./dist/components/Avatar/index.js",
-        "./Avatar/*": "./dist/components/Avatar/*.js",
-        "./AvatarGroup": "./dist/components/AvatarGroup/index.js",
-        "./AvatarGroup/*": "./dist/components/AvatarGroup/*.js",
-        "./Badge": "./dist/components/Badge/index.js",
-        "./Badge/*": "./dist/components/Badge/*.js",
-        "./BadgeDot": "./dist/components/BadgeDot/index.js",
-        "./BadgeDot/*": "./dist/components/BadgeDot/*.js",
-        "./BannerAlert": "./dist/components/BannerAlert/index.js",
-        "./BannerAlert/*": "./dist/components/BannerAlert/*.js",
-        "./BottomNavigation": "./dist/components/BottomNavigation/index.js",
-        "./BottomNavigation/*": "./dist/components/BottomNavigation/*.js",
-        "./Breadcrumb": "./dist/components/Breadcrumb/index.js",
-        "./Breadcrumb/*": "./dist/components/Breadcrumb/*.js",
-        "./Button": "./dist/components/Button/index.js",
-        "./Button/*": "./dist/components/Button/*.js",
-        "./ButtonDock": "./dist/components/ButtonDock/index.js",
-        "./ButtonDock/*": "./dist/components/ButtonDock/*.js",
-        "./Calendar": "./dist/components/Calendar/index.js",
-        "./Calendar/*": "./dist/components/Calendar/*.js",
-        "./Card": "./dist/components/Card/index.js",
-        "./Card/*": "./dist/components/Card/*.js",
-        "./Carousel": "./dist/components/Carousel/index.js",
-        "./Carousel/*": "./dist/components/Carousel/*.js",
-        "./Checkbox": "./dist/components/Checkbox/index.js",
-        "./Checkbox/*": "./dist/components/Checkbox/*.js",
-        "./CheckboxGroup": "./dist/components/CheckboxGroup/index.js",
-        "./CheckboxGroup/*": "./dist/components/CheckboxGroup/*.js",
-        "./CheckboxGroupField": "./dist/components/CheckboxGroupField/index.js",
-        "./CheckboxGroupField/*": "./dist/components/CheckboxGroupField/*.js",
-        "./CheckboxOption": "./dist/components/CheckboxOption/index.js",
-        "./CheckboxOption/*": "./dist/components/CheckboxOption/*.js",
-        "./Chip": "./dist/components/Chip/index.js",
-        "./Chip/*": "./dist/components/Chip/*.js",
-        "./ChipGroup": "./dist/components/ChipGroup/index.js",
-        "./ChipGroup/*": "./dist/components/ChipGroup/*.js",
-        "./DatePicker": "./dist/components/DatePicker/index.js",
-        "./DatePicker/*": "./dist/components/DatePicker/*.js",
-        "./DatePickerField": "./dist/components/DatePickerField/index.js",
-        "./DatePickerField/*": "./dist/components/DatePickerField/*.js",
-        "./Dialog": "./dist/components/Dialog/index.js",
-        "./Dialog/*": "./dist/components/Dialog/*.js",
-        "./Divider": "./dist/components/Divider/index.js",
-        "./Divider/*": "./dist/components/Divider/*.js",
-        "./EmptyState": "./dist/components/EmptyState/index.js",
-        "./EmptyState/*": "./dist/components/EmptyState/*.js",
-        "./ExamplePlaceholder": "./dist/components/ExamplePlaceholder/index.js",
-        "./ExamplePlaceholder/*": "./dist/components/ExamplePlaceholder/*.js",
-        "./Fab": "./dist/components/Fab/index.js",
-        "./Fab/*": "./dist/components/Fab/*.js",
-        "./Field": "./dist/components/Field/index.js",
-        "./Field/*": "./dist/components/Field/*.js",
-        "./FileUpload": "./dist/components/FileUpload/index.js",
-        "./FileUpload/*": "./dist/components/FileUpload/*.js",
-        "./FileUploadItem": "./dist/components/FileUploadItem/index.js",
-        "./FileUploadItem/*": "./dist/components/FileUploadItem/*.js",
-        "./Flag": "./dist/components/Flag/index.js",
-        "./Flag/*": "./dist/components/Flag/*.js",
-        "./Flex": "./dist/components/Flex/index.js",
-        "./Flex/*": "./dist/components/Flex/*.js",
-        "./Grid": "./dist/components/Grid/index.js",
-        "./Grid/*": "./dist/components/Grid/*.js",
-        "./Img": "./dist/components/Img/index.js",
-        "./Img/*": "./dist/components/Img/*.js",
-        "./InlineAlert": "./dist/components/InlineAlert/index.js",
-        "./InlineAlert/*": "./dist/components/InlineAlert/*.js",
-        "./Input": "./dist/components/Input/index.js",
-        "./Input/*": "./dist/components/Input/*.js",
-        "./InputField": "./dist/components/InputField/index.js",
-        "./InputField/*": "./dist/components/InputField/*.js",
-        "./InputNumber": "./dist/components/InputNumber/index.js",
-        "./InputNumber/*": "./dist/components/InputNumber/*.js",
-        "./InputNumberField": "./dist/components/InputNumberField/index.js",
-        "./InputNumberField/*": "./dist/components/InputNumberField/*.js",
-        "./InputPhone": "./dist/components/InputPhone/index.js",
-        "./InputPhone/*": "./dist/components/InputPhone/*.js",
-        "./InputPhoneField": "./dist/components/InputPhoneField/index.js",
-        "./InputPhoneField/*": "./dist/components/InputPhoneField/*.js",
-        "./Link": "./dist/components/Link/index.js",
-        "./Link/*": "./dist/components/Link/*.js",
-        "./ListItem": "./dist/components/ListItem/index.js",
-        "./ListItem/*": "./dist/components/ListItem/*.js",
-        "./Menu": "./dist/components/Menu/index.js",
-        "./Menu/*": "./dist/components/Menu/*.js",
-        "./Modal": "./dist/components/Modal/index.js",
-        "./Modal/*": "./dist/components/Modal/*.js",
-        "./OTPInput": "./dist/components/OTPInput/index.js",
-        "./OTPInput/*": "./dist/components/OTPInput/*.js",
-        "./OTPInputField": "./dist/components/OTPInputField/index.js",
-        "./OTPInputField/*": "./dist/components/OTPInputField/*.js",
-        "./PageControl": "./dist/components/PageControl/index.js",
-        "./PageControl/*": "./dist/components/PageControl/*.js",
-        "./PageHeader": "./dist/components/PageHeader/index.js",
-        "./PageHeader/*": "./dist/components/PageHeader/*.js",
-        "./Pagination": "./dist/components/Pagination/index.js",
-        "./Pagination/*": "./dist/components/Pagination/*.js",
-        "./Password": "./dist/components/Password/index.js",
-        "./Password/*": "./dist/components/Password/*.js",
-        "./PasswordField": "./dist/components/PasswordField/index.js",
-        "./PasswordField/*": "./dist/components/PasswordField/*.js",
-        "./Popover": "./dist/components/Popover/index.js",
-        "./Popover/*": "./dist/components/Popover/*.js",
-        "./Portal": "./dist/components/Portal/index.js",
-        "./Portal/*": "./dist/components/Portal/*.js",
-        "./ProgressBar": "./dist/components/ProgressBar/index.js",
-        "./ProgressBar/*": "./dist/components/ProgressBar/*.js",
-        "./ProgressCircle": "./dist/components/ProgressCircle/index.js",
-        "./ProgressCircle/*": "./dist/components/ProgressCircle/*.js",
-        "./ProgressionStepper": "./dist/components/ProgressionStepper/index.js",
-        "./ProgressionStepper/*": "./dist/components/ProgressionStepper/*.js",
-        "./ProgressionStepperBar": "./dist/components/ProgressionStepperBar/index.js",
-        "./ProgressionStepperBar/*": "./dist/components/ProgressionStepperBar/*.js",
-        "./Radio": "./dist/components/Radio/index.js",
-        "./Radio/*": "./dist/components/Radio/*.js",
-        "./RadioGroup": "./dist/components/RadioGroup/index.js",
-        "./RadioGroup/*": "./dist/components/RadioGroup/*.js",
-        "./RadioGroupField": "./dist/components/RadioGroupField/index.js",
-        "./RadioGroupField/*": "./dist/components/RadioGroupField/*.js",
-        "./RadioOption": "./dist/components/RadioOption/index.js",
-        "./RadioOption/*": "./dist/components/RadioOption/*.js",
-        "./Rating": "./dist/components/Rating/index.js",
-        "./Rating/*": "./dist/components/Rating/*.js",
-        "./Scrim": "./dist/components/Scrim/index.js",
-        "./Scrim/*": "./dist/components/Scrim/*.js",
-        "./SearchBar": "./dist/components/SearchBar/index.js",
-        "./SearchBar/*": "./dist/components/SearchBar/*.js",
-        "./SegmentedControl": "./dist/components/SegmentedControl/index.js",
-        "./SegmentedControl/*": "./dist/components/SegmentedControl/*.js",
-        "./Select": "./dist/components/Select/index.js",
-        "./Select/*": "./dist/components/Select/*.js",
-        "./SelectField": "./dist/components/SelectField/index.js",
-        "./SelectField/*": "./dist/components/SelectField/*.js",
-        "./Skeleton": "./dist/components/Skeleton/index.js",
-        "./Skeleton/*": "./dist/components/Skeleton/*.js",
-        "./SkeletonText": "./dist/components/SkeletonText/index.js",
-        "./SkeletonText/*": "./dist/components/SkeletonText/*.js",
-        "./Slider": "./dist/components/Slider/index.js",
-        "./Slider/*": "./dist/components/Slider/*.js",
-        "./Snackbar": "./dist/components/Snackbar/index.js",
-        "./Snackbar/*": "./dist/components/Snackbar/*.js",
-        "./StylesProvider": "./dist/components/StylesProvider/index.js",
-        "./StylesProvider/*": "./dist/components/StylesProvider/*.js",
-        "./Switch": "./dist/components/Switch/index.js",
-        "./Switch/*": "./dist/components/Switch/*.js",
-        "./SwitchOption": "./dist/components/SwitchOption/index.js",
-        "./SwitchOption/*": "./dist/components/SwitchOption/*.js",
-        "./TabGroup": "./dist/components/TabGroup/index.js",
-        "./TabGroup/*": "./dist/components/TabGroup/*.js",
-        "./Table": "./dist/components/Table/index.js",
-        "./Table/*": "./dist/components/Table/*.js",
-        "./TabList": "./dist/components/TabList/index.js",
-        "./TabList/*": "./dist/components/TabList/*.js",
-        "./Tag": "./dist/components/Tag/index.js",
-        "./Tag/*": "./dist/components/Tag/*.js",
-        "./Textarea": "./dist/components/Textarea/index.js",
-        "./Textarea/*": "./dist/components/Textarea/*.js",
-        "./TextareaField": "./dist/components/TextareaField/index.js",
-        "./TextareaField/*": "./dist/components/TextareaField/*.js",
-        "./TimePicker": "./dist/components/TimePicker/index.js",
-        "./TimePicker/*": "./dist/components/TimePicker/*.js",
-        "./TimePickerField": "./dist/components/TimePickerField/index.js",
-        "./TimePickerField/*": "./dist/components/TimePickerField/*.js",
-        "./ToggleOption": "./dist/components/ToggleOption/index.js",
-        "./ToggleOption/*": "./dist/components/ToggleOption/*.js",
-        "./Tooltip": "./dist/components/Tooltip/index.js",
-        "./Tooltip/*": "./dist/components/Tooltip/*.js",
-        "./TopNavigation": "./dist/components/TopNavigation/index.js",
-        "./TopNavigation/*": "./dist/components/TopNavigation/*.js",
-        "./Truncated": "./dist/components/Truncated/index.js",
-        "./Truncated/*": "./dist/components/Truncated/*.js",
-        "./Txt": "./dist/components/Txt/index.js",
-        "./Txt/*": "./dist/components/Txt/*.js",
-        "./UIProvider": "./dist/components/UIProvider/index.js",
-        "./UIProvider/*": "./dist/components/UIProvider/*.js"
+        "./*": {
+            "types": "./dist/*.d.ts",
+            "default": "./dist/*.js"
+        },
+        "./Accordion": {
+            "types": "./dist/components/Accordion/index.d.ts",
+            "default": "./dist/components/Accordion/index.js"
+        },
+        "./Accordion/*": {
+            "types": "./dist/components/Accordion/*.d.ts",
+            "default": "./dist/components/Accordion/*.js"
+        },
+        "./Avatar": {
+            "types": "./dist/components/Avatar/index.d.ts",
+            "default": "./dist/components/Avatar/index.js"
+        },
+        "./Avatar/*": {
+            "types": "./dist/components/Avatar/*.d.ts",
+            "default": "./dist/components/Avatar/*.js"
+        },
+        "./AvatarGroup": {
+            "types": "./dist/components/AvatarGroup/index.d.ts",
+            "default": "./dist/components/AvatarGroup/index.js"
+        },
+        "./AvatarGroup/*": {
+            "types": "./dist/components/AvatarGroup/*.d.ts",
+            "default": "./dist/components/AvatarGroup/*.js"
+        },
+        "./Badge": {
+            "types": "./dist/components/Badge/index.d.ts",
+            "default": "./dist/components/Badge/index.js"
+        },
+        "./Badge/*": {
+            "types": "./dist/components/Badge/*.d.ts",
+            "default": "./dist/components/Badge/*.js"
+        },
+        "./BadgeDot": {
+            "types": "./dist/components/BadgeDot/index.d.ts",
+            "default": "./dist/components/BadgeDot/index.js"
+        },
+        "./BadgeDot/*": {
+            "types": "./dist/components/BadgeDot/*.d.ts",
+            "default": "./dist/components/BadgeDot/*.js"
+        },
+        "./BannerAlert": {
+            "types": "./dist/components/BannerAlert/index.d.ts",
+            "default": "./dist/components/BannerAlert/index.js"
+        },
+        "./BannerAlert/*": {
+            "types": "./dist/components/BannerAlert/*.d.ts",
+            "default": "./dist/components/BannerAlert/*.js"
+        },
+        "./BottomNavigation": {
+            "types": "./dist/components/BottomNavigation/index.d.ts",
+            "default": "./dist/components/BottomNavigation/index.js"
+        },
+        "./BottomNavigation/*": {
+            "types": "./dist/components/BottomNavigation/*.d.ts",
+            "default": "./dist/components/BottomNavigation/*.js"
+        },
+        "./Breadcrumb": {
+            "types": "./dist/components/Breadcrumb/index.d.ts",
+            "default": "./dist/components/Breadcrumb/index.js"
+        },
+        "./Breadcrumb/*": {
+            "types": "./dist/components/Breadcrumb/*.d.ts",
+            "default": "./dist/components/Breadcrumb/*.js"
+        },
+        "./Button": {
+            "types": "./dist/components/Button/index.d.ts",
+            "default": "./dist/components/Button/index.js"
+        },
+        "./Button/*": {
+            "types": "./dist/components/Button/*.d.ts",
+            "default": "./dist/components/Button/*.js"
+        },
+        "./ButtonDock": {
+            "types": "./dist/components/ButtonDock/index.d.ts",
+            "default": "./dist/components/ButtonDock/index.js"
+        },
+        "./ButtonDock/*": {
+            "types": "./dist/components/ButtonDock/*.d.ts",
+            "default": "./dist/components/ButtonDock/*.js"
+        },
+        "./Calendar": {
+            "types": "./dist/components/Calendar/index.d.ts",
+            "default": "./dist/components/Calendar/index.js"
+        },
+        "./Calendar/*": {
+            "types": "./dist/components/Calendar/*.d.ts",
+            "default": "./dist/components/Calendar/*.js"
+        },
+        "./Card": {
+            "types": "./dist/components/Card/index.d.ts",
+            "default": "./dist/components/Card/index.js"
+        },
+        "./Card/*": {
+            "types": "./dist/components/Card/*.d.ts",
+            "default": "./dist/components/Card/*.js"
+        },
+        "./Carousel": {
+            "types": "./dist/components/Carousel/index.d.ts",
+            "default": "./dist/components/Carousel/index.js"
+        },
+        "./Carousel/*": {
+            "types": "./dist/components/Carousel/*.d.ts",
+            "default": "./dist/components/Carousel/*.js"
+        },
+        "./Checkbox": {
+            "types": "./dist/components/Checkbox/index.d.ts",
+            "default": "./dist/components/Checkbox/index.js"
+        },
+        "./Checkbox/*": {
+            "types": "./dist/components/Checkbox/*.d.ts",
+            "default": "./dist/components/Checkbox/*.js"
+        },
+        "./CheckboxGroup": {
+            "types": "./dist/components/CheckboxGroup/index.d.ts",
+            "default": "./dist/components/CheckboxGroup/index.js"
+        },
+        "./CheckboxGroup/*": {
+            "types": "./dist/components/CheckboxGroup/*.d.ts",
+            "default": "./dist/components/CheckboxGroup/*.js"
+        },
+        "./CheckboxGroupField": {
+            "types": "./dist/components/CheckboxGroupField/index.d.ts",
+            "default": "./dist/components/CheckboxGroupField/index.js"
+        },
+        "./CheckboxGroupField/*": {
+            "types": "./dist/components/CheckboxGroupField/*.d.ts",
+            "default": "./dist/components/CheckboxGroupField/*.js"
+        },
+        "./CheckboxOption": {
+            "types": "./dist/components/CheckboxOption/index.d.ts",
+            "default": "./dist/components/CheckboxOption/index.js"
+        },
+        "./CheckboxOption/*": {
+            "types": "./dist/components/CheckboxOption/*.d.ts",
+            "default": "./dist/components/CheckboxOption/*.js"
+        },
+        "./Chip": {
+            "types": "./dist/components/Chip/index.d.ts",
+            "default": "./dist/components/Chip/index.js"
+        },
+        "./Chip/*": {
+            "types": "./dist/components/Chip/*.d.ts",
+            "default": "./dist/components/Chip/*.js"
+        },
+        "./ChipGroup": {
+            "types": "./dist/components/ChipGroup/index.d.ts",
+            "default": "./dist/components/ChipGroup/index.js"
+        },
+        "./ChipGroup/*": {
+            "types": "./dist/components/ChipGroup/*.d.ts",
+            "default": "./dist/components/ChipGroup/*.js"
+        },
+        "./DatePicker": {
+            "types": "./dist/components/DatePicker/index.d.ts",
+            "default": "./dist/components/DatePicker/index.js"
+        },
+        "./DatePicker/*": {
+            "types": "./dist/components/DatePicker/*.d.ts",
+            "default": "./dist/components/DatePicker/*.js"
+        },
+        "./DatePickerField": {
+            "types": "./dist/components/DatePickerField/index.d.ts",
+            "default": "./dist/components/DatePickerField/index.js"
+        },
+        "./DatePickerField/*": {
+            "types": "./dist/components/DatePickerField/*.d.ts",
+            "default": "./dist/components/DatePickerField/*.js"
+        },
+        "./Dialog": {
+            "types": "./dist/components/Dialog/index.d.ts",
+            "default": "./dist/components/Dialog/index.js"
+        },
+        "./Dialog/*": {
+            "types": "./dist/components/Dialog/*.d.ts",
+            "default": "./dist/components/Dialog/*.js"
+        },
+        "./Divider": {
+            "types": "./dist/components/Divider/index.d.ts",
+            "default": "./dist/components/Divider/index.js"
+        },
+        "./Divider/*": {
+            "types": "./dist/components/Divider/*.d.ts",
+            "default": "./dist/components/Divider/*.js"
+        },
+        "./EmptyState": {
+            "types": "./dist/components/EmptyState/index.d.ts",
+            "default": "./dist/components/EmptyState/index.js"
+        },
+        "./EmptyState/*": {
+            "types": "./dist/components/EmptyState/*.d.ts",
+            "default": "./dist/components/EmptyState/*.js"
+        },
+        "./ExamplePlaceholder": {
+            "types": "./dist/components/ExamplePlaceholder/index.d.ts",
+            "default": "./dist/components/ExamplePlaceholder/index.js"
+        },
+        "./ExamplePlaceholder/*": {
+            "types": "./dist/components/ExamplePlaceholder/*.d.ts",
+            "default": "./dist/components/ExamplePlaceholder/*.js"
+        },
+        "./Fab": {
+            "types": "./dist/components/Fab/index.d.ts",
+            "default": "./dist/components/Fab/index.js"
+        },
+        "./Fab/*": {
+            "types": "./dist/components/Fab/*.d.ts",
+            "default": "./dist/components/Fab/*.js"
+        },
+        "./Field": {
+            "types": "./dist/components/Field/index.d.ts",
+            "default": "./dist/components/Field/index.js"
+        },
+        "./Field/*": {
+            "types": "./dist/components/Field/*.d.ts",
+            "default": "./dist/components/Field/*.js"
+        },
+        "./FileUpload": {
+            "types": "./dist/components/FileUpload/index.d.ts",
+            "default": "./dist/components/FileUpload/index.js"
+        },
+        "./FileUpload/*": {
+            "types": "./dist/components/FileUpload/*.d.ts",
+            "default": "./dist/components/FileUpload/*.js"
+        },
+        "./FileUploadItem": {
+            "types": "./dist/components/FileUploadItem/index.d.ts",
+            "default": "./dist/components/FileUploadItem/index.js"
+        },
+        "./FileUploadItem/*": {
+            "types": "./dist/components/FileUploadItem/*.d.ts",
+            "default": "./dist/components/FileUploadItem/*.js"
+        },
+        "./Flag": {
+            "types": "./dist/components/Flag/index.d.ts",
+            "default": "./dist/components/Flag/index.js"
+        },
+        "./Flag/*": {
+            "types": "./dist/components/Flag/*.d.ts",
+            "default": "./dist/components/Flag/*.js"
+        },
+        "./Flex": {
+            "types": "./dist/components/Flex/index.d.ts",
+            "default": "./dist/components/Flex/index.js"
+        },
+        "./Flex/*": {
+            "types": "./dist/components/Flex/*.d.ts",
+            "default": "./dist/components/Flex/*.js"
+        },
+        "./Grid": {
+            "types": "./dist/components/Grid/index.d.ts",
+            "default": "./dist/components/Grid/index.js"
+        },
+        "./Grid/*": {
+            "types": "./dist/components/Grid/*.d.ts",
+            "default": "./dist/components/Grid/*.js"
+        },
+        "./Img": {
+            "types": "./dist/components/Img/index.d.ts",
+            "default": "./dist/components/Img/index.js"
+        },
+        "./Img/*": {
+            "types": "./dist/components/Img/*.d.ts",
+            "default": "./dist/components/Img/*.js"
+        },
+        "./InlineAlert": {
+            "types": "./dist/components/InlineAlert/index.d.ts",
+            "default": "./dist/components/InlineAlert/index.js"
+        },
+        "./InlineAlert/*": {
+            "types": "./dist/components/InlineAlert/*.d.ts",
+            "default": "./dist/components/InlineAlert/*.js"
+        },
+        "./Input": {
+            "types": "./dist/components/Input/index.d.ts",
+            "default": "./dist/components/Input/index.js"
+        },
+        "./Input/*": {
+            "types": "./dist/components/Input/*.d.ts",
+            "default": "./dist/components/Input/*.js"
+        },
+        "./InputField": {
+            "types": "./dist/components/InputField/index.d.ts",
+            "default": "./dist/components/InputField/index.js"
+        },
+        "./InputField/*": {
+            "types": "./dist/components/InputField/*.d.ts",
+            "default": "./dist/components/InputField/*.js"
+        },
+        "./InputNumber": {
+            "types": "./dist/components/InputNumber/index.d.ts",
+            "default": "./dist/components/InputNumber/index.js"
+        },
+        "./InputNumber/*": {
+            "types": "./dist/components/InputNumber/*.d.ts",
+            "default": "./dist/components/InputNumber/*.js"
+        },
+        "./InputNumberField": {
+            "types": "./dist/components/InputNumberField/index.d.ts",
+            "default": "./dist/components/InputNumberField/index.js"
+        },
+        "./InputNumberField/*": {
+            "types": "./dist/components/InputNumberField/*.d.ts",
+            "default": "./dist/components/InputNumberField/*.js"
+        },
+        "./InputPhone": {
+            "types": "./dist/components/InputPhone/index.d.ts",
+            "default": "./dist/components/InputPhone/index.js"
+        },
+        "./InputPhone/*": {
+            "types": "./dist/components/InputPhone/*.d.ts",
+            "default": "./dist/components/InputPhone/*.js"
+        },
+        "./InputPhoneField": {
+            "types": "./dist/components/InputPhoneField/index.d.ts",
+            "default": "./dist/components/InputPhoneField/index.js"
+        },
+        "./InputPhoneField/*": {
+            "types": "./dist/components/InputPhoneField/*.d.ts",
+            "default": "./dist/components/InputPhoneField/*.js"
+        },
+        "./Link": {
+            "types": "./dist/components/Link/index.d.ts",
+            "default": "./dist/components/Link/index.js"
+        },
+        "./Link/*": {
+            "types": "./dist/components/Link/*.d.ts",
+            "default": "./dist/components/Link/*.js"
+        },
+        "./ListItem": {
+            "types": "./dist/components/ListItem/index.d.ts",
+            "default": "./dist/components/ListItem/index.js"
+        },
+        "./ListItem/*": {
+            "types": "./dist/components/ListItem/*.d.ts",
+            "default": "./dist/components/ListItem/*.js"
+        },
+        "./Menu": {
+            "types": "./dist/components/Menu/index.d.ts",
+            "default": "./dist/components/Menu/index.js"
+        },
+        "./Menu/*": {
+            "types": "./dist/components/Menu/*.d.ts",
+            "default": "./dist/components/Menu/*.js"
+        },
+        "./Modal": {
+            "types": "./dist/components/Modal/index.d.ts",
+            "default": "./dist/components/Modal/index.js"
+        },
+        "./Modal/*": {
+            "types": "./dist/components/Modal/*.d.ts",
+            "default": "./dist/components/Modal/*.js"
+        },
+        "./OTPInput": {
+            "types": "./dist/components/OTPInput/index.d.ts",
+            "default": "./dist/components/OTPInput/index.js"
+        },
+        "./OTPInput/*": {
+            "types": "./dist/components/OTPInput/*.d.ts",
+            "default": "./dist/components/OTPInput/*.js"
+        },
+        "./OTPInputField": {
+            "types": "./dist/components/OTPInputField/index.d.ts",
+            "default": "./dist/components/OTPInputField/index.js"
+        },
+        "./OTPInputField/*": {
+            "types": "./dist/components/OTPInputField/*.d.ts",
+            "default": "./dist/components/OTPInputField/*.js"
+        },
+        "./package.json": "./package.json",
+        "./PageControl": {
+            "types": "./dist/components/PageControl/index.d.ts",
+            "default": "./dist/components/PageControl/index.js"
+        },
+        "./PageControl/*": {
+            "types": "./dist/components/PageControl/*.d.ts",
+            "default": "./dist/components/PageControl/*.js"
+        },
+        "./PageHeader": {
+            "types": "./dist/components/PageHeader/index.d.ts",
+            "default": "./dist/components/PageHeader/index.js"
+        },
+        "./PageHeader/*": {
+            "types": "./dist/components/PageHeader/*.d.ts",
+            "default": "./dist/components/PageHeader/*.js"
+        },
+        "./Pagination": {
+            "types": "./dist/components/Pagination/index.d.ts",
+            "default": "./dist/components/Pagination/index.js"
+        },
+        "./Pagination/*": {
+            "types": "./dist/components/Pagination/*.d.ts",
+            "default": "./dist/components/Pagination/*.js"
+        },
+        "./Password": {
+            "types": "./dist/components/Password/index.d.ts",
+            "default": "./dist/components/Password/index.js"
+        },
+        "./Password/*": {
+            "types": "./dist/components/Password/*.d.ts",
+            "default": "./dist/components/Password/*.js"
+        },
+        "./PasswordField": {
+            "types": "./dist/components/PasswordField/index.d.ts",
+            "default": "./dist/components/PasswordField/index.js"
+        },
+        "./PasswordField/*": {
+            "types": "./dist/components/PasswordField/*.d.ts",
+            "default": "./dist/components/PasswordField/*.js"
+        },
+        "./Popover": {
+            "types": "./dist/components/Popover/index.d.ts",
+            "default": "./dist/components/Popover/index.js"
+        },
+        "./Popover/*": {
+            "types": "./dist/components/Popover/*.d.ts",
+            "default": "./dist/components/Popover/*.js"
+        },
+        "./Portal": {
+            "types": "./dist/components/Portal/index.d.ts",
+            "default": "./dist/components/Portal/index.js"
+        },
+        "./Portal/*": {
+            "types": "./dist/components/Portal/*.d.ts",
+            "default": "./dist/components/Portal/*.js"
+        },
+        "./ProgressBar": {
+            "types": "./dist/components/ProgressBar/index.d.ts",
+            "default": "./dist/components/ProgressBar/index.js"
+        },
+        "./ProgressBar/*": {
+            "types": "./dist/components/ProgressBar/*.d.ts",
+            "default": "./dist/components/ProgressBar/*.js"
+        },
+        "./ProgressCircle": {
+            "types": "./dist/components/ProgressCircle/index.d.ts",
+            "default": "./dist/components/ProgressCircle/index.js"
+        },
+        "./ProgressCircle/*": {
+            "types": "./dist/components/ProgressCircle/*.d.ts",
+            "default": "./dist/components/ProgressCircle/*.js"
+        },
+        "./ProgressionStepper": {
+            "types": "./dist/components/ProgressionStepper/index.d.ts",
+            "default": "./dist/components/ProgressionStepper/index.js"
+        },
+        "./ProgressionStepper/*": {
+            "types": "./dist/components/ProgressionStepper/*.d.ts",
+            "default": "./dist/components/ProgressionStepper/*.js"
+        },
+        "./ProgressionStepperBar": {
+            "types": "./dist/components/ProgressionStepperBar/index.d.ts",
+            "default": "./dist/components/ProgressionStepperBar/index.js"
+        },
+        "./ProgressionStepperBar/*": {
+            "types": "./dist/components/ProgressionStepperBar/*.d.ts",
+            "default": "./dist/components/ProgressionStepperBar/*.js"
+        },
+        "./Radio": {
+            "types": "./dist/components/Radio/index.d.ts",
+            "default": "./dist/components/Radio/index.js"
+        },
+        "./Radio/*": {
+            "types": "./dist/components/Radio/*.d.ts",
+            "default": "./dist/components/Radio/*.js"
+        },
+        "./RadioGroup": {
+            "types": "./dist/components/RadioGroup/index.d.ts",
+            "default": "./dist/components/RadioGroup/index.js"
+        },
+        "./RadioGroup/*": {
+            "types": "./dist/components/RadioGroup/*.d.ts",
+            "default": "./dist/components/RadioGroup/*.js"
+        },
+        "./RadioGroupField": {
+            "types": "./dist/components/RadioGroupField/index.d.ts",
+            "default": "./dist/components/RadioGroupField/index.js"
+        },
+        "./RadioGroupField/*": {
+            "types": "./dist/components/RadioGroupField/*.d.ts",
+            "default": "./dist/components/RadioGroupField/*.js"
+        },
+        "./RadioOption": {
+            "types": "./dist/components/RadioOption/index.d.ts",
+            "default": "./dist/components/RadioOption/index.js"
+        },
+        "./RadioOption/*": {
+            "types": "./dist/components/RadioOption/*.d.ts",
+            "default": "./dist/components/RadioOption/*.js"
+        },
+        "./Rating": {
+            "types": "./dist/components/Rating/index.d.ts",
+            "default": "./dist/components/Rating/index.js"
+        },
+        "./Rating/*": {
+            "types": "./dist/components/Rating/*.d.ts",
+            "default": "./dist/components/Rating/*.js"
+        },
+        "./Scrim": {
+            "types": "./dist/components/Scrim/index.d.ts",
+            "default": "./dist/components/Scrim/index.js"
+        },
+        "./Scrim/*": {
+            "types": "./dist/components/Scrim/*.d.ts",
+            "default": "./dist/components/Scrim/*.js"
+        },
+        "./SearchBar": {
+            "types": "./dist/components/SearchBar/index.d.ts",
+            "default": "./dist/components/SearchBar/index.js"
+        },
+        "./SearchBar/*": {
+            "types": "./dist/components/SearchBar/*.d.ts",
+            "default": "./dist/components/SearchBar/*.js"
+        },
+        "./SegmentedControl": {
+            "types": "./dist/components/SegmentedControl/index.d.ts",
+            "default": "./dist/components/SegmentedControl/index.js"
+        },
+        "./SegmentedControl/*": {
+            "types": "./dist/components/SegmentedControl/*.d.ts",
+            "default": "./dist/components/SegmentedControl/*.js"
+        },
+        "./Select": {
+            "types": "./dist/components/Select/index.d.ts",
+            "default": "./dist/components/Select/index.js"
+        },
+        "./Select/*": {
+            "types": "./dist/components/Select/*.d.ts",
+            "default": "./dist/components/Select/*.js"
+        },
+        "./SelectField": {
+            "types": "./dist/components/SelectField/index.d.ts",
+            "default": "./dist/components/SelectField/index.js"
+        },
+        "./SelectField/*": {
+            "types": "./dist/components/SelectField/*.d.ts",
+            "default": "./dist/components/SelectField/*.js"
+        },
+        "./Skeleton": {
+            "types": "./dist/components/Skeleton/index.d.ts",
+            "default": "./dist/components/Skeleton/index.js"
+        },
+        "./Skeleton/*": {
+            "types": "./dist/components/Skeleton/*.d.ts",
+            "default": "./dist/components/Skeleton/*.js"
+        },
+        "./SkeletonText": {
+            "types": "./dist/components/SkeletonText/index.d.ts",
+            "default": "./dist/components/SkeletonText/index.js"
+        },
+        "./SkeletonText/*": {
+            "types": "./dist/components/SkeletonText/*.d.ts",
+            "default": "./dist/components/SkeletonText/*.js"
+        },
+        "./Slider": {
+            "types": "./dist/components/Slider/index.d.ts",
+            "default": "./dist/components/Slider/index.js"
+        },
+        "./Slider/*": {
+            "types": "./dist/components/Slider/*.d.ts",
+            "default": "./dist/components/Slider/*.js"
+        },
+        "./Snackbar": {
+            "types": "./dist/components/Snackbar/index.d.ts",
+            "default": "./dist/components/Snackbar/index.js"
+        },
+        "./Snackbar/*": {
+            "types": "./dist/components/Snackbar/*.d.ts",
+            "default": "./dist/components/Snackbar/*.js"
+        },
+        "./styles/*.css": "./dist/styles/*.css",
+        "./StylesProvider": {
+            "types": "./dist/components/StylesProvider/index.d.ts",
+            "default": "./dist/components/StylesProvider/index.js"
+        },
+        "./StylesProvider/*": {
+            "types": "./dist/components/StylesProvider/*.d.ts",
+            "default": "./dist/components/StylesProvider/*.js"
+        },
+        "./Switch": {
+            "types": "./dist/components/Switch/index.d.ts",
+            "default": "./dist/components/Switch/index.js"
+        },
+        "./Switch/*": {
+            "types": "./dist/components/Switch/*.d.ts",
+            "default": "./dist/components/Switch/*.js"
+        },
+        "./SwitchOption": {
+            "types": "./dist/components/SwitchOption/index.d.ts",
+            "default": "./dist/components/SwitchOption/index.js"
+        },
+        "./SwitchOption/*": {
+            "types": "./dist/components/SwitchOption/*.d.ts",
+            "default": "./dist/components/SwitchOption/*.js"
+        },
+        "./TabGroup": {
+            "types": "./dist/components/TabGroup/index.d.ts",
+            "default": "./dist/components/TabGroup/index.js"
+        },
+        "./TabGroup/*": {
+            "types": "./dist/components/TabGroup/*.d.ts",
+            "default": "./dist/components/TabGroup/*.js"
+        },
+        "./Table": {
+            "types": "./dist/components/Table/index.d.ts",
+            "default": "./dist/components/Table/index.js"
+        },
+        "./Table/*": {
+            "types": "./dist/components/Table/*.d.ts",
+            "default": "./dist/components/Table/*.js"
+        },
+        "./TabList": {
+            "types": "./dist/components/TabList/index.d.ts",
+            "default": "./dist/components/TabList/index.js"
+        },
+        "./TabList/*": {
+            "types": "./dist/components/TabList/*.d.ts",
+            "default": "./dist/components/TabList/*.js"
+        },
+        "./Tag": {
+            "types": "./dist/components/Tag/index.d.ts",
+            "default": "./dist/components/Tag/index.js"
+        },
+        "./Tag/*": {
+            "types": "./dist/components/Tag/*.d.ts",
+            "default": "./dist/components/Tag/*.js"
+        },
+        "./Textarea": {
+            "types": "./dist/components/Textarea/index.d.ts",
+            "default": "./dist/components/Textarea/index.js"
+        },
+        "./Textarea/*": {
+            "types": "./dist/components/Textarea/*.d.ts",
+            "default": "./dist/components/Textarea/*.js"
+        },
+        "./TextareaField": {
+            "types": "./dist/components/TextareaField/index.d.ts",
+            "default": "./dist/components/TextareaField/index.js"
+        },
+        "./TextareaField/*": {
+            "types": "./dist/components/TextareaField/*.d.ts",
+            "default": "./dist/components/TextareaField/*.js"
+        },
+        "./TimePicker": {
+            "types": "./dist/components/TimePicker/index.d.ts",
+            "default": "./dist/components/TimePicker/index.js"
+        },
+        "./TimePicker/*": {
+            "types": "./dist/components/TimePicker/*.d.ts",
+            "default": "./dist/components/TimePicker/*.js"
+        },
+        "./TimePickerField": {
+            "types": "./dist/components/TimePickerField/index.d.ts",
+            "default": "./dist/components/TimePickerField/index.js"
+        },
+        "./TimePickerField/*": {
+            "types": "./dist/components/TimePickerField/*.d.ts",
+            "default": "./dist/components/TimePickerField/*.js"
+        },
+        "./ToggleOption": {
+            "types": "./dist/components/ToggleOption/index.d.ts",
+            "default": "./dist/components/ToggleOption/index.js"
+        },
+        "./ToggleOption/*": {
+            "types": "./dist/components/ToggleOption/*.d.ts",
+            "default": "./dist/components/ToggleOption/*.js"
+        },
+        "./Tooltip": {
+            "types": "./dist/components/Tooltip/index.d.ts",
+            "default": "./dist/components/Tooltip/index.js"
+        },
+        "./Tooltip/*": {
+            "types": "./dist/components/Tooltip/*.d.ts",
+            "default": "./dist/components/Tooltip/*.js"
+        },
+        "./TopNavigation": {
+            "types": "./dist/components/TopNavigation/index.d.ts",
+            "default": "./dist/components/TopNavigation/index.js"
+        },
+        "./TopNavigation/*": {
+            "types": "./dist/components/TopNavigation/*.d.ts",
+            "default": "./dist/components/TopNavigation/*.js"
+        },
+        "./Truncated": {
+            "types": "./dist/components/Truncated/index.d.ts",
+            "default": "./dist/components/Truncated/index.js"
+        },
+        "./Truncated/*": {
+            "types": "./dist/components/Truncated/*.d.ts",
+            "default": "./dist/components/Truncated/*.js"
+        },
+        "./Txt": {
+            "types": "./dist/components/Txt/index.d.ts",
+            "default": "./dist/components/Txt/index.js"
+        },
+        "./Txt/*": {
+            "types": "./dist/components/Txt/*.d.ts",
+            "default": "./dist/components/Txt/*.js"
+        },
+        "./UIProvider": {
+            "types": "./dist/components/UIProvider/index.d.ts",
+            "default": "./dist/components/UIProvider/index.js"
+        },
+        "./UIProvider/*": {
+            "types": "./dist/components/UIProvider/*.d.ts",
+            "default": "./dist/components/UIProvider/*.js"
+        }
     },
     "dependencies": {
         "@floating-ui/dom": "^1.6.13",
@@ -229,8 +771,8 @@
         "libphonenumber-js": "^1.12.9"
     },
     "peerDependencies": {
-        "react": "^18.3.1",
-        "react-dom": "^18.3.1"
+        "react": "^18.3.1 || ^19.0.0",
+        "react-dom": "^18.3.1 || ^19.0.0"
     },
     "devDependencies": {
         "@cspell/eslint-plugin": "^9.4.0",

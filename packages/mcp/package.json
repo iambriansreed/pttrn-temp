@@ -2,7 +2,7 @@
     "name": "@ptrn/mcp",
     "version": "0.0.1",
     "description": "MCP server for the pttrn design system: look up components, tokens and icons, and validate generated UI code.",
-    "license": "CC-BY-4.0",
+    "license": "MIT",
     "publishConfig": {
         "access": "public"
     },
@@ -11,7 +11,9 @@
         "dist",
         "data",
         "guide.md",
-        "README.md"
+        "README.md",
+        "LICENSE",
+        "NOTICE.md"
     ],
     "repository": {
         "type": "git",
@@ -36,7 +38,9 @@
         "build:data": "tsx scripts/build-data.ts",
         "build": "npm run build:data && tsc -p tsconfig.build.json",
         "lint": "tsc --noEmit",
-        "test": "tsx --test \"src/**/*.test.ts\" \"scripts/**/*.test.ts\""
+        "test": "tsx --test \"src/**/*.test.ts\" \"scripts/**/*.test.ts\"",
+        "prepack": "node ../../scripts/copy-license.mjs",
+        "postpack": "node ../../scripts/copy-license.mjs --clean"
     },
     "dependencies": {
         "@modelcontextprotocol/sdk": "^1.30.1",

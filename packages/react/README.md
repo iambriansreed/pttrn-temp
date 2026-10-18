@@ -12,6 +12,8 @@ npm install @ptrn/react
 npm install react react-dom
 ```
 
+Works with React 18.3 and React 19.
+
 ## Usage
 
 Render the styles provider once to load the USWDS tokens, themes and base styles:
@@ -32,4 +34,20 @@ To test a specific component
 
 ```bash
 npm run test -t <componentname>
+```
+
+## Styles
+
+Each component appends its own stylesheet to `<head>` the first time it is imported, so there is nothing to wire up
+beyond the `StylesProvider` (or the `@ptrn/styles` imports) for tokens and themes.
+
+To load the component CSS through your own pipeline instead (server rendering, a strict Content Security Policy),
+import the bundled stylesheet and opt out of injection on the root element:
+
+```tsx
+import '@ptrn/react/styles/components.css';
+```
+
+```html
+<html data-pttrn-styles="external"></html>
 ```

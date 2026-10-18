@@ -2,7 +2,7 @@
     "name": "@ptrn/web",
     "version": "0.0.1",
     "description": "pttrn Web Components: framework-free custom elements built with Lit.",
-    "license": "CC-BY-4.0",
+    "license": "MIT",
     "publishConfig": {
         "access": "public"
     },
@@ -10,7 +10,9 @@
     "sideEffects": true,
     "files": [
         "dist",
-        "README.md"
+        "README.md",
+        "LICENSE",
+        "NOTICE.md"
     ],
     "repository": {
         "type": "git",
@@ -38,7 +40,9 @@
         "newc": "tsx .scripts/new-component.ts",
         "lint": "eslint && tsc --noEmit && stylelint '**/*.scss'",
         "lint:fix": "eslint --fix",
-        "test": "playwright test"
+        "test": "playwright test",
+        "prepack": "node ../../scripts/copy-license.mjs",
+        "postpack": "node ../../scripts/copy-license.mjs --clean"
     },
     "dependencies": {
         "lit": "^3.3.0"

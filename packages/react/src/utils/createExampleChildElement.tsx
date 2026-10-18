@@ -1,5 +1,6 @@
 import { SvgContentCopy } from '@ptrn/icons/ContentCopy';
 import { SvgDiamond } from '@ptrn/icons/Diamond';
+import { ReactElement } from 'react';
 import { DemoAction, DemoSetState } from './demo';
 import { Avatar } from '-/components/Avatar';
 import { Button } from '-/components/Button';
@@ -23,7 +24,7 @@ export type ExampleChildElementProps = {
  * rendered to be determined by the example state.
  */
 export function createExampleChildElement({ exampleState, name, setState, action, id }: ExampleChildElementProps): {
-    element: JSX.Element | null;
+    element: ReactElement | null;
     componentName?: string;
 } {
     const componentName = exampleState[name];

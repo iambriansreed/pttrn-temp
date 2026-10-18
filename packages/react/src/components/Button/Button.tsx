@@ -1,5 +1,5 @@
 import './button.scss';
-import { AriaAttributes, ElementType, ReactNode, isValidElement } from 'react';
+import { AriaAttributes, ElementType, ReactElement, ReactNode, isValidElement } from 'react';
 import { Tooltip, TooltipTriggerProps } from '-/components/Tooltip';
 import { ButtonSize, CommonProps, ElementProps, SetRef } from '-/types/common';
 
@@ -115,7 +115,7 @@ export type ButtonProps<As extends ElementType = ElementType> = CommonProps<'ari
  */
 export function Button<As extends ElementType = ElementType>(
     props: AriaAttributes & ElementProps<ButtonProps<As>, As>,
-): JSX.Element {
+): ReactElement {
     const {
         size = 'medium',
         variant = 'primary',

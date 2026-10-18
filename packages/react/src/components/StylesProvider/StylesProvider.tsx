@@ -4,6 +4,7 @@ import '@ptrn/styles/themes/project-theme.css';
 import '@ptrn/styles/themes/project-theme-dark.css';
 import '@ptrn/styles/themes/default.css';
 import '-/styles/base.scss';
+import { ReactElement } from 'react';
 
 /**
  * Loads the USWDS fonts, design tokens, every USWDS theme and the base styles.
@@ -19,6 +20,6 @@ import '-/styles/base.scss';
  * @name StylesProvider
  * @phase Utility
  */
-export function StylesProvider(): JSX.Element | null {
+export function StylesProvider(): ReactElement | null {
     return null;
 }

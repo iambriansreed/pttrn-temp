@@ -1,4 +1,4 @@
-import { CSSProperties, isValidElement, ReactNode } from 'react';
+import { CSSProperties, isValidElement, ReactElement, ReactNode } from 'react';
 
 import { AlertVariant, DataProps } from '-/types/common';
 import { BlockConfig, ComponentMeta, TypeProperty } from '-/types/meta';
@@ -153,14 +153,14 @@ export type CodeExample = (
             };
             style?: CSSProperties;
         },
-) => JSX.Element;
+) => ReactElement;
 
 export type CodePlaygroundProps = {
     defaultCode: string;
     defaultShowCode?: boolean;
 };
 
-export type CodePlayground = (params: CodePlaygroundProps) => JSX.Element;
+export type CodePlayground = (params: CodePlaygroundProps) => ReactElement;
 
 export type PrettyParser = 'css' | 'estree' | 'html' | 'scss' | 'typescript';
 

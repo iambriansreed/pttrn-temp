@@ -29,6 +29,7 @@ import { optimize } from 'svgo';
 import { transform } from '@svgr/core';
 import { ICON_SIZE, NOWHERE_PATH, MATERIAL_PATH } from './build-config';
 import { IconMeta, IconType } from './build-types';
+import { addJsExtensions } from '../../../scripts/add-js-extensions.mjs';
 
 const exec = (...commands: string[]) =>
     commands.forEach((command) => child_process.execSync(command, { stdio: 'inherit' }));
@@ -340,6 +341,10 @@ export const meta: IconMeta[] = ${JSON.stringify(nextMeta)} as const;`,
     generateComponent(iconData);
 
     execSync(`npx tsc`, { stdio: 'inherit' });
+
+    // Node's ESM resolver needs explicit extensions on the emitted relative imports (`./meta`, `import('../360')`).
+    const rewritten = await addJsExtensions('.', { ignore: ['node_modules', 'assets', '.scripts', 'src'] });
+    console.log(`Added explicit .js extensions in ${rewritten} files`);
 
     execSync(`rm -rf src && mkdir -p src && touch ./src/index.ts`, { stdio: 'inherit' });
 
