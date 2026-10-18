@@ -1,0 +1,29 @@
+# Compares the USWDS primitives in @ptrn/styles with the token sources of the USWDS Core release recorded in
+# packages/styles/tokens/uswds.json, weekly and on demand. It fails when the comparison no longer matches the record:
+# a new difference between the Figma Design Kit and USWDS Core, or one that went away. A failure is a review, not a
+# fix: run `npm run tokens:check-uswds -- --write` in packages/styles after looking at the differences.
+#
+# To check a newer USWDS Core release: `npm run tokens:check-uswds -- --uswds <version> --write`.
+
+name: USWDS cross-check
+
+on:
+    schedule:
+        - cron: '17 6 * * 1'
+    workflow_dispatch:
+
+permissions:
+    contents: read
+
+jobs:
+    compare:
+        name: Compare the kit with USWDS Core
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version-file: .nvmrc
+                  cache: npm
+            - run: npm ci --ignore-scripts
+            - run: npm run tokens:check-uswds --workspace @ptrn/styles

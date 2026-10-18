@@ -32,7 +32,8 @@
         "tokens:import": "tsx scripts/css-to-dtcg.ts",
         "lint": "tsc --noEmit -p tsconfig.json",
         "prepack": "node ../../scripts/copy-license.mjs",
-        "postpack": "node ../../scripts/copy-license.mjs --clean"
+        "postpack": "node ../../scripts/copy-license.mjs --clean",
+        "tokens:check-uswds": "tsx scripts/uswds-check.ts"
     },
     "exports": {
         "./tokens.css": "./tokens.css",

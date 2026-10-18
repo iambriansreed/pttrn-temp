@@ -7,7 +7,7 @@ The tokens come from the USWDS Design Kit in Figma. The source of truth in this 
 
 | File                            | What it is                                                                                                                                                      |
 | ------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `tokens/`                       | The token source: `manifest.json` plus one DTCG file per collection, or per mode of a multi-mode collection.                                                    |
+| `tokens/`                       | The token source: `manifest.json` plus one DTCG file per collection, or per mode of a multi-mode collection. `uswds.json` records the USWDS Core cross-check.   |
 | `tokens.css`                    | Built. Every token except the theme: the USWDS primitives, the font collections and their modes.                                                                |
 | `themes/default.css`            | Built. The `default` USWDS theme, complete.                                                                                                                     |
 | `themes/project-theme.css`      | Built. The `project-theme` USWDS theme, complete.                                                                                                               |
@@ -75,5 +75,15 @@ style) use `string`, which is pttrn's extension of the type list.
 The ZIP also holds the stylesheets the plugin builds itself, so a consumer without this pipeline can still use the
 export directly. An export from an older plugin version that only produced CSS can be imported with
 `npm run tokens:import -- --from <folder with tokens.css and themes/>`.
+
+## Cross-check with USWDS Core
+
+The kit is the source of truth, but its primitives are meant to match the USWDS code. `npm run tokens:check-uswds`
+downloads the `@uswds/uswds` release recorded in `tokens/uswds.json` and compares every literal `usa.*` color,
+spacing and font-size token with USWDS Core's token sources. The record lists the release, the shared tokens that agree,
+the kit's own tokens (the proto, serif and mono type scales, the radii) and the known differences; today the kit's
+`red-cool` vivid grades differ from USWDS Core 3.14.0 by a point or two. The command, and the weekly
+`USWDS cross-check` workflow, fail when the comparison no longer matches the record. Review the change, then run
+`npm run tokens:check-uswds -- --write` to record it; `-- --uswds <version>` checks a newer release.
 
 See [`figma-plugin/README.md`](../../figma-plugin/README.md) for what the export contains.

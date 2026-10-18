@@ -17,6 +17,10 @@ Figma variables  →  pttrn Export Tokens  →  tokens/*.tokens.json  →  token
 Every token keeps its Figma name as a comment in the CSS and as `$extensions.pttrn.figma` in the token files, so a
 designer and an engineer searching for the same string land on the same thing.
 
+The primitives are meant to match the USWDS code. `npm run tokens:check-uswds` in `@ptrn/styles` compares them with
+the `@uswds/uswds` release recorded in `tokens/uswds.json`, and a weekly workflow repeats the check, so a drift between
+the Design Kit and USWDS Core is caught and reviewed rather than discovered in a component.
+
 ## Three tiers
 
 | Tier          | Prefix          | Example                                     | Who changes it                               |
