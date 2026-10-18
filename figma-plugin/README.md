@@ -42,3 +42,5 @@ To refresh `@ptrn/styles`, replace its `tokens/` folder with the one from the ZI
 ## Development
 
 `src/code.ts` is the plugin's main thread and `src/ui.ts` runs in the panel. `npm run build` compiles both to the plugin root and inlines the compiled `ui.js` into `ui.html` from `src/ui.html`, because Figma cannot load a `<script src>` from a plugin panel. `code.js`, `ui.js` and `ui.html` in the root are generated.
+
+`npm test` builds the plugin and runs the compiled `code.js` against a fake Figma document (`tests/figma.mjs`): a few variable collections with modes and aliases, and paint, effect and text styles. The tests check the stylesheets, the theme files and the DTCG token files it produces, and then build those token files with `@ptrn/styles` to prove the two agree. `npm run lint` runs ESLint (with Figma's plugin rules) and the TypeScript compiler.

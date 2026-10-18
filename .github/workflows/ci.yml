@@ -44,6 +44,7 @@ jobs:
                   cache: npm
             - run: npm ci
             - run: npm run build
+            - run: npm run build:plugin
             # The docs and the MCP package lint against generated metadata.
             - run: npm run build:data --workspace @ptrn/mcp
             - run: npm run lint
@@ -69,6 +70,8 @@ jobs:
             - run: npm run build:data --workspace @ptrn/mcp
             - run: npm test --workspace @ptrn/react
             - run: npm test --workspace @ptrn/mcp
+            # Runs the compiled Figma plugin against a fake file and builds its token files with @ptrn/styles.
+            - run: npm test --workspace ptrn-figma-plugin
 
     consumer:
         name: Consumer smoke test (React ${{ matrix.react }})

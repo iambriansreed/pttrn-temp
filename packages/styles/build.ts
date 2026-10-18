@@ -2,7 +2,10 @@
 /**
  * Builds the stylesheets and the typed token module from the DTCG token source in `tokens/`.
  *
- * Npx tsx build.ts
+ * Npx tsx build.ts [--tokens <dir>] [--out <dir>]
+ *
+ * Both default to this package: the token files in `tokens/` and the built files in the package root. The Figma
+ * plugin's tests point them at a temporary export to prove the plugin's token files build into its own stylesheets.
  *
  * Style Dictionary loads and validates the token files and resolves every reference; the formats below are pttrn's own,
  * because the stylesheets encode Figma's collections and modes as attribute-scoped blocks that no stock format
@@ -23,8 +26,14 @@ import StyleDictionary from 'style-dictionary';
 
 import { Collection, Manifest, valueToCss } from './scripts/dtcg.js';
 
+const args = process.argv.slice(2);
+const option = (name: string, fallback: string) => {
+    const index = args.indexOf(name);
+    return index >= 0 ? args[index + 1] : fallback;
+};
 const root = import.meta.dirname;
-const tokensDir = path.join(root, 'tokens');
+const tokensDir = path.resolve(root, option('--tokens', 'tokens'));
+const outDir = path.resolve(root, option('--out', '.'));
 const manifest: Manifest = JSON.parse(fs.readFileSync(path.join(tokensDir, 'manifest.json'), 'utf8'));
 
 type Value = { text: string; refs: string[] };
@@ -259,8 +268,8 @@ function main() {
         const stylesheet = (lines: string[], list: string[]) => `${blockComment(lines)}\n\n${list.join('\n\n')}\n`;
         const written: string[] = [];
         const write = (file: string, content: string) => {
-            fs.mkdirSync(path.dirname(path.join(root, file)), { recursive: true });
-            fs.writeFileSync(path.join(root, file), content);
+            fs.mkdirSync(path.dirname(path.join(outDir, file)), { recursive: true });
+            fs.writeFileSync(path.join(outDir, file), content);
             written.push(file);
         };
 
@@ -284,7 +293,7 @@ function main() {
             const others = scopeBlocks.filter((scope) => scope.collection !== collection).map((scope) => scope.css);
             write('tokens.css', stylesheet(baseHeader, rootBlocks.concat(others)));
 
-            fs.rmSync(path.join(root, 'themes'), { recursive: true, force: true });
+            fs.rmSync(path.join(outDir, 'themes'), { recursive: true, force: true });
             themeKeys.forEach((key, i) => {
                 const values = own.map((prop) => ({
                     prop,
