@@ -1,4 +1,5 @@
 import { IconName } from '@ptrn/icons';
+import { SvgIcon } from '@ptrn/icons/SvgIcon';
 import { clearSnackbar, sendSnackbar } from './Manager';
 import { Snackbar, SnackbarProps } from './Snackbar';
 import { Button } from '-/components/Button';
@@ -25,7 +26,10 @@ export const SnackbarExample: ComponentExample<SnackbarProps> = {
                         sendSnackbar({
                             ...props,
                             text: `Managed: ${props.text}`,
-                            icon: 'icon:icon-name' in props ? (props['icon:icon-name'] as IconName) : undefined,
+                            icon:
+                                'icon:icon-name' in props ? (
+                                    <SvgIcon name={props['icon:icon-name'] as IconName} />
+                                ) : undefined,
                         })
                     }
                 />

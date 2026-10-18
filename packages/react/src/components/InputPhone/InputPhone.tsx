@@ -1,5 +1,5 @@
 import './input-phone.scss';
-import { SvgIcon } from '@ptrn/icons/SvgIcon';
+import { SvgKeyboardArrowDown } from '@ptrn/icons/KeyboardArrowDown';
 import { AsYouType, getCountryCallingCode } from 'libphonenumber-js';
 import { ReactNode, useMemo, useRef, useState } from 'react';
 import { Button } from '-/components/Button';
@@ -218,7 +218,7 @@ export function InputPhone({
                         >
                             {renderFlag && <span aria-hidden>{renderFlag(countryCode)}</span>}
                             <span aria-hidden>{`+${callingCode}`}</span>
-                            <SvgIcon name="KeyboardArrowDown" />
+                            <SvgKeyboardArrowDown />
                         </Button>
                     }
                     name={name}

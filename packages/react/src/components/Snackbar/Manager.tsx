@@ -1,16 +1,16 @@
-import { IconName } from '@ptrn/icons';
-import { SvgIcon } from '@ptrn/icons/SvgIcon';
-import { useState } from 'react';
+import { ReactElement, useState } from 'react';
 import { SnackbarProps, Snackbar } from './Snackbar';
-import { PttrnIcon } from '-/types/common';
 import { createCustomEvent } from '-/utils/createCustomEvent';
 
 const CLEAR_EVENT = 'pttrn-snackbar-clear' as const;
 
-// make onClose optional
+/**
+ * The props `sendSnackbar` takes: a Snackbar without the ref, `onClose` optional, and the icon as a rendered element
+ * (`<SvgCheck />`), because the props travel through a DOM custom event.
+ */
 export type SendSnackbarProps = Omit<SnackbarProps, 'icon' | 'innerRef' | 'onClose'> & {
+    icon?: ReactElement;
     onClose?: SnackbarProps['onClose'];
-    icon?: PttrnIcon;
 };
 
 export type SnackbarManagerProps = {
@@ -48,7 +48,6 @@ export function SnackbarManager({ defaultTimeout = 5000 }: SnackbarManagerProps)
     return snackbarProps ? (
         <Snackbar
             {...snackbarProps}
-            icon={snackbarProps.icon ? <SvgIcon name={snackbarProps.icon as IconName} /> : undefined}
             onClose={() => {
                 setSnackbarProps(undefined);
                 snackbarProps?.onClose?.();

@@ -1,5 +1,6 @@
 import './pagination.scss';
-import { SvgIcon } from '@ptrn/icons/SvgIcon';
+import { SvgChevronLeft } from '@ptrn/icons/ChevronLeft';
+import { SvgChevronRight } from '@ptrn/icons/ChevronRight';
 import { AriaAttributes, useEffect, useState } from 'react';
 import { PageList } from './PageList';
 import { Button } from '-/components/Button';
@@ -88,7 +89,7 @@ export function Pagination({
         <span data-pttrn="pagination" role="group" {...ariaProps}>
             <Button
                 disabled={!inBounds(value - 1)}
-                icon={<SvgIcon name="ChevronLeft" />}
+                icon={<SvgChevronLeft />}
                 iconOnly
                 label={value === 1 ? 'First page' : `Previous page (${value - 1})`}
                 onClick={previousPage}
@@ -121,7 +122,7 @@ export function Pagination({
 
             <Button
                 disabled={!inBounds(value + 1)}
-                icon={<SvgIcon name="ChevronRight" />}
+                icon={<SvgChevronRight />}
                 iconOnly
                 label={value === numPages ? 'Last page' : `Next page (${value + 1})`}
                 onClick={nextPage}
