@@ -2,7 +2,7 @@
     "name": "pttrn",
     "private": true,
     "version": "0.0.1",
-    "license": "CC-BY-4.0",
+    "license": "MIT",
     "type": "module",
     "workspaces": [
         "packages/*",
@@ -24,7 +24,9 @@
         "pretty": "prettier --write .",
         "prepare": "husky",
         "changeset": "changeset",
-        "release": "npm run build && changeset publish"
+        "release": "npm run build && changeset publish",
+        "check:pack": "node scripts/check-pack.mjs",
+        "smoke:consumer": "node scripts/consumer-smoke.mjs"
     },
     "devDependencies": {
         "@changesets/cli": "^3.0.3",

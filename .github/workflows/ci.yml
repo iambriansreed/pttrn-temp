@@ -68,6 +68,25 @@ jobs:
             - run: npm test --workspace @ptrn/react
             - run: npm test --workspace @ptrn/mcp
 
+    consumer:
+        name: Consumer smoke test (React ${{ matrix.react }})
+        runs-on: ubuntu-latest
+        strategy:
+            fail-fast: false
+            matrix:
+                react: [18, 19]
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version-file: .nvmrc
+                  cache: npm
+            - run: npm ci
+            - run: npm run build
+            # Packs the publishable packages, installs the tarballs into a fresh project next to this React major,
+            # type-checks against the export maps and server-renders a component with react-dom/server.
+            - run: node scripts/consumer-smoke.mjs ${{ matrix.react }}
+
     web:
         name: Web Components (Playwright)
         runs-on: ubuntu-latest
@@ -152,10 +171,5 @@ jobs:
             - run: npm ci
             - run: npm run build
             - run: npm run build --workspace @ptrn/mcp
-            - name: Dry-run pack every publishable package
-              run: |
-                  for pkg in styles icons react web mcp; do
-                      echo "::group::@ptrn/$pkg"
-                      npm pack --dry-run --workspace "@ptrn/$pkg"
-                      echo "::endgroup::"
-                  done
+            - name: Check what every publishable package would ship
+              run: npm run check:pack
