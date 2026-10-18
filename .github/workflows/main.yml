@@ -1,0 +1,84 @@
+# Everything that happens on main: the quality gates (ci.yml), then the docs deploy and the release step.
+#
+# Release flow (changesets):
+#   - pending changesets exist: changesets/action opens or updates the "Version Packages" pull request;
+#   - no pending changesets (that PR was just merged): it publishes the bumped packages to npm.
+#
+# Publishing is gated behind the PTTRN_PUBLISH repository variable so nothing reaches npm until the first public
+# release is deliberate. Set PTTRN_PUBLISH=true (Settings > Secrets and variables > Actions > Variables) when that day
+# comes, and give the workflow an NPM_TOKEN secret or npm trusted publishing. The action also needs "Allow GitHub
+# Actions to create and approve pull requests" (Settings > Actions > General) to open the version PR.
+
+name: Main
+
+on:
+    push:
+        branches: [main]
+    workflow_dispatch:
+
+concurrency:
+    group: main
+    cancel-in-progress: false
+
+jobs:
+    ci:
+        name: CI
+        uses: ./.github/workflows/ci.yml
+        permissions:
+            contents: read
+
+    docs:
+        name: Deploy docs site
+        needs: ci
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+            pages: write
+            id-token: write
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version-file: .nvmrc
+                  cache: npm
+            - run: npm ci
+            - run: npm run build
+            - run: npm run build:docs
+            - uses: actions/configure-pages@v5
+            - uses: actions/upload-pages-artifact@v3
+              with:
+                  path: docs/dist
+            - id: deployment
+              uses: actions/deploy-pages@v4
+
+    release:
+        name: Version or publish
+        needs: ci
+        runs-on: ubuntu-latest
+        permissions:
+            contents: write
+            pull-requests: write
+            id-token: write
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+            - uses: actions/setup-node@v4
+              with:
+                  node-version-file: .nvmrc
+                  cache: npm
+                  registry-url: https://registry.npmjs.org
+            - run: npm ci
+            - uses: changesets/action@v1
+              with:
+                  version: npx changeset version
+                  publish: ${{ vars.PTTRN_PUBLISH == 'true' && 'npm run release' || '' }}
+                  title: 'chore(release): version packages'
+                  commit: 'chore(release): version packages'
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+                  NPM_CONFIG_PROVENANCE: true

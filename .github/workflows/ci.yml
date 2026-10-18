@@ -1,0 +1,161 @@
+# Quality gates. Runs on every pull request, and on every push to main through main.yml, which deploys the docs and
+# runs the release step only after these pass. These jobs are the required status checks on main.
+
+name: CI
+
+on:
+    pull_request:
+    workflow_call:
+
+permissions:
+    contents: read
+
+concurrency:
+    group: ci-${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+    FORCE_COLOR: 1
+
+jobs:
+    commits:
+        name: Commit messages
+        if: github.event_name == 'pull_request'
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+            - uses: actions/setup-node@v4
+              with:
+                  node-version-file: .nvmrc
+                  cache: npm
+            - run: npm ci --ignore-scripts
+            - run: npx commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
+
+    lint:
+        name: Lint and typecheck
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version-file: .nvmrc
+                  cache: npm
+            - run: npm ci
+            - run: npm run build
+            # The docs and the MCP package lint against generated metadata.
+            - run: npm run build:data --workspace @ptrn/mcp
+            - run: npm run lint
+            - run: npx tsx .scripts/tasks/lint-components.ts
+              working-directory: packages/react
+            - run: npx tsx .scripts/check-css-vars.ts
+              working-directory: packages/react
+            - run: npx prettier --check .
+
+    unit:
+        name: Unit tests
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version-file: .nvmrc
+                  cache: npm
+            - run: npm ci
+            - run: npm run build
+            - run: npm run build:data --workspace @ptrn/mcp
+            - run: npm test --workspace @ptrn/react
+            - run: npm test --workspace @ptrn/mcp
+
+    web:
+        name: Web Components (Playwright)
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version-file: .nvmrc
+                  cache: npm
+            - run: npm ci
+            - run: npm run build
+            - run: npx playwright install --with-deps chromium
+            - run: npm test --workspace @ptrn/web
+            - uses: actions/upload-artifact@v4
+              if: failure()
+              with:
+                  name: playwright-web
+                  path: packages/web/playwright-report
+                  retention-days: 7
+
+    docs:
+        name: Docs site (Playwright)
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version-file: .nvmrc
+                  cache: npm
+            - run: npm ci
+            - run: npm run build
+            - run: npm run build:docs
+            - run: npx playwright install --with-deps chromium
+            - run: npm test --workspace ptrn-docs
+            - uses: actions/upload-artifact@v4
+              if: failure()
+              with:
+                  name: playwright-docs
+                  path: docs/playwright-report
+                  retention-days: 7
+
+    accessibility:
+        name: Accessibility matrix (${{ matrix.theme }})
+        runs-on: ubuntu-latest
+        # Reports but does not block yet: the matrix found real violations on day one (AvatarGroup, Field, InlineAlert
+        # in every theme, and the docs demo background in the dark theme). Remove continue-on-error and make these
+        # jobs required once those are fixed; the job must never be skipped or quarantined.
+        continue-on-error: true
+        strategy:
+            fail-fast: false
+            matrix:
+                theme: [default, project-theme, project-theme-dark]
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version-file: .nvmrc
+                  cache: npm
+            - run: npm ci
+            - run: npm run build
+            - run: npm run build:docs
+            - run: npx playwright install --with-deps chromium
+            - run: npm run test:a11y --workspace ptrn-docs
+              env:
+                  PTTRN_THEME: ${{ matrix.theme }}
+            - uses: actions/upload-artifact@v4
+              if: failure()
+              with:
+                  name: a11y-${{ matrix.theme }}
+                  path: docs/playwright-report
+                  retention-days: 7
+
+    pack:
+        name: Package contents
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version-file: .nvmrc
+                  cache: npm
+            - run: npm ci
+            - run: npm run build
+            - run: npm run build --workspace @ptrn/mcp
+            - name: Dry-run pack every publishable package
+              run: |
+                  for pkg in styles icons react web mcp; do
+                      echo "::group::@ptrn/$pkg"
+                      npm pack --dry-run --workspace "@ptrn/$pkg"
+                      echo "::endgroup::"
+                  done
