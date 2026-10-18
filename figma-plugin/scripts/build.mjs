@@ -1,6 +1,8 @@
-const { execFileSync } = require('node:child_process');
-const { readFileSync, writeFileSync } = require('node:fs');
-const ts = require('typescript');
+import { execFileSync } from 'node:child_process';
+import { readFileSync, writeFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+
+import ts from 'typescript';
 
 const { version } = JSON.parse(readFileSync('package.json', 'utf8'));
 
@@ -44,9 +46,8 @@ if (process.argv.includes('--watch')) {
     };
     ts.createWatchProgram(host);
 } else {
-    execFileSync(process.execPath, [require.resolve('typescript/bin/tsc'), '-p', 'tsconfig.json'], {
-        stdio: 'inherit',
-    });
+    const tsc = fileURLToPath(import.meta.resolve('typescript/bin/tsc'));
+    execFileSync(process.execPath, [tsc, '-p', 'tsconfig.json'], { stdio: 'inherit' });
     stampVersion();
     inlineUi();
 }
