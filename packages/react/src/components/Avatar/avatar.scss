@@ -138,7 +138,7 @@
     }
 
     &:focus:not(:active, [aria-disabled]) {
-        outline: 2px solid var(--theme-global-focus-color);
-        outline-offset: -2px;
+        outline: var(--usa-spacing-2px) solid var(--theme-global-focus-color);
+        outline-offset: calc(-1 * var(--usa-spacing-2px));
     }
 }

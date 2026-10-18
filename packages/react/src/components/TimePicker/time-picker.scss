@@ -4,7 +4,7 @@
     display: flex;
     flex-flow: row;
     background-color: var(--theme-body-background-color);
-    border: solid 1px var(--border-color);
+    border: solid var(--usa-spacing-1px) var(--border-color);
     height: var(--field-height);
     border-radius: var(--theme-border-radius-md);
     padding: 0 0 0 var(--field-padding, var(--usa-spacing-1));
@@ -102,7 +102,7 @@
         margin-left: auto;
 
         &:focus {
-            outline-offset: -4px;
+            outline-offset: calc(-1 * var(--usa-spacing-05));
             border-radius: var(--theme-border-radius-lg);
         }
     }
@@ -111,7 +111,7 @@
     &[data-open] {
         --border-color: var(--theme-global-focus-color);
 
-        outline: 1px solid var(--theme-global-focus-color);
+        outline: var(--usa-spacing-1px) solid var(--theme-global-focus-color);
     }
 }
 
@@ -159,13 +159,13 @@
             }
 
             &:focus {
-                outline: 2px solid var(--theme-global-focus-color);
+                outline: var(--usa-spacing-2px) solid var(--theme-global-focus-color);
                 border-radius: var(--theme-border-radius-md);
 
                 span[data-active] {
                     background: var(--usa-color-black-transparent-10);
-                    outline: 2px solid var(--usa-color-black-transparent-10);
-                    outline-offset: -2px;
+                    outline: var(--usa-spacing-2px) solid var(--usa-color-black-transparent-10);
+                    outline-offset: calc(-1 * var(--usa-spacing-2px));
 
                     &[aria-selected='true'] {
                         background: var(--theme-color-primary-medium);

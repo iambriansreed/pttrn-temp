@@ -3,7 +3,7 @@
 
     width: 332px;
     box-sizing: border-box;
-    border: 1px solid var(--theme-color-base-lighter);
+    border: var(--usa-spacing-1px) solid var(--theme-color-base-lighter);
     background-color: var(--theme-body-background-color);
     box-shadow: var(--card-shadow);
     border-radius: var(--theme-border-radius-lg);

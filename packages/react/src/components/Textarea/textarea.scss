@@ -6,7 +6,7 @@
 
     display: grid;
     width: 100%;
-    border: 1px solid var(--border-color);
+    border: var(--usa-spacing-1px) solid var(--border-color);
     border-radius: var(--theme-border-radius-md);
     overflow: hidden;
     color: var(--theme-body-text-color);
@@ -111,6 +111,6 @@
     &:focus-within {
         --border-color: var(--theme-global-focus-color);
 
-        outline: 1px solid var(--theme-global-focus-color);
+        outline: var(--usa-spacing-1px) solid var(--theme-global-focus-color);
     }
 }

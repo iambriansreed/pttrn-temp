@@ -3,7 +3,7 @@
     flex-direction: row;
     align-items: center;
     border-radius: var(--usa-radius-pill);
-    border: 1px solid var(--theme-color-base-lighter);
+    border: var(--usa-spacing-1px) solid var(--theme-color-base-lighter);
     padding: var(--usa-spacing-1);
     gap: var(--usa-spacing-1);
     width: fit-content;

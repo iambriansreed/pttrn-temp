@@ -5,7 +5,7 @@
     overflow: hidden;
 
     &[data-variant='outlined'] {
-        border: solid 1px var(--theme-color-base-lighter);
+        border: solid var(--usa-spacing-1px) var(--theme-color-base-lighter);
     }
 
     &[data-variant='elevated'] {

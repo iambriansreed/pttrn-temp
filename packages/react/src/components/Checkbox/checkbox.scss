@@ -3,7 +3,7 @@
     position: relative;
     width: var(--usa-spacing-3);
     aspect-ratio: 1/1;
-    padding: 2px;
+    padding: var(--usa-spacing-2px);
 
     input[type='checkbox'] {
         position: absolute;
@@ -26,8 +26,8 @@
         width: 20px;
         aspect-ratio: 1/1;
         cursor: pointer;
-        border-radius: 2px;
-        border: 2px solid var(--stroke);
+        border-radius: var(--usa-spacing-2px);
+        border: var(--usa-spacing-2px) solid var(--stroke);
         align-items: center;
         flex-direction: column;
         justify-content: center;

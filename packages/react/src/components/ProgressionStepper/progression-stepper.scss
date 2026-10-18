@@ -43,7 +43,7 @@
                     height: var(--circle-width);
                     border-radius: 50%;
                     background-color: none;
-                    border: 2px solid var(--inactive-background-color);
+                    border: var(--usa-spacing-2px) solid var(--inactive-background-color);
                     font: 500 var(--usa-font-size-sans-7) / 28px var(--usa-font-family-ui);
 
                     svg {
@@ -90,7 +90,7 @@
 
                 [data-circle] {
                     background-color: var(--active-background-color);
-                    border: 1px solid var(--active-background-color);
+                    border: var(--usa-spacing-1px) solid var(--active-background-color);
                     color: var(--active-foreground-color);
 
                     span {

@@ -59,9 +59,9 @@
             }
 
             &:focus-visible {
-                outline: 1px solid var(--theme-global-focus-color);
+                outline: var(--usa-spacing-1px) solid var(--theme-global-focus-color);
                 border-color: var(--theme-global-focus-color);
-                margin-bottom: 1px;
+                margin-bottom: var(--usa-spacing-1px);
             }
         }
 

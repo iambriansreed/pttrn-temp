@@ -10,12 +10,12 @@
     flex-flow: row nowrap;
     font: var(--font);
     height: var(--height);
-    border: 1px solid var(--theme-color-base-medium);
+    border: var(--usa-spacing-1px) solid var(--theme-color-base-medium);
     border-radius: var(--theme-border-radius-md);
     background: var(--theme-body-background-color);
 
     &:focus-within {
-        outline: solid 2px var(--theme-global-focus-color);
+        outline: solid var(--usa-spacing-2px) var(--theme-global-focus-color);
         isolation: isolate;
     }
 

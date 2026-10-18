@@ -40,7 +40,7 @@
         position: absolute;
         background: var(--theme-color-base-lighter);
         height: var(--usa-spacing-05);
-        border-radius: 2px;
+        border-radius: var(--usa-spacing-2px);
         left: 0;
         right: 0;
         cursor: pointer;
@@ -50,14 +50,14 @@
         position: absolute;
         height: var(--usa-spacing-05);
         background-color: var(--theme-color-primary-medium);
-        border-radius: 2px;
+        border-radius: var(--usa-spacing-2px);
         left: 0;
         cursor: pointer;
     }
 
     [data-slider-knob] {
         position: absolute;
-        border: 1px solid var(--theme-color-base-lighter);
+        border: var(--usa-spacing-1px) solid var(--theme-color-base-lighter);
         border-radius: 50%;
         width: var(--usa-spacing-2);
         height: var(--usa-spacing-2);
@@ -68,7 +68,7 @@
     }
 
     [data-slider-knob]:focus-visible {
-        outline: 2px solid var(--theme-global-focus-color);
+        outline: var(--usa-spacing-2px) solid var(--theme-global-focus-color);
     }
 
     [data-interval-dot] {

@@ -6,7 +6,7 @@
     gap: var(--usa-spacing-2);
     width: 100%;
     padding: var(--usa-spacing-2);
-    border: 1px dashed var(--theme-color-base-medium);
+    border: var(--usa-spacing-1px) dashed var(--theme-color-base-medium);
     border-radius: var(--usa-spacing-1);
     background-color: var(--theme-color-base-lightest);
 }

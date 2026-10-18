@@ -36,12 +36,12 @@
 
     [data-triangle] {
         position: absolute;
-        bottom: -12px;
+        bottom: calc(-1 * var(--usa-spacing-105));
         right: 0;
         width: 0;
         height: 0;
         border-style: solid;
-        border-width: 12px 12px 0 0;
+        border-width: var(--usa-spacing-105) var(--usa-spacing-105) 0 0;
         border-color: var(--foreground) transparent transparent transparent;
         transform: rotate(0deg);
     }

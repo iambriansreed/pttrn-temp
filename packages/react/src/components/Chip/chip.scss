@@ -6,7 +6,7 @@
     font: 500 var(--usa-font-size-sans-3) / 20px var(--usa-font-family-ui);
     color: var(--theme-color-base-dark);
     background-color: var(--theme-body-background-color);
-    border: 1px solid var(--theme-color-base-lighter);
+    border: var(--usa-spacing-1px) solid var(--theme-color-base-lighter);
     border-radius: var(--theme-border-radius-md);
     padding: 0 var(--usa-spacing-105);
 
@@ -40,7 +40,7 @@
         }
 
         &:focus {
-            outline: 1px solid var(--theme-global-focus-color);
+            outline: var(--usa-spacing-1px) solid var(--theme-global-focus-color);
             border-color: var(--theme-global-focus-color);
         }
     }

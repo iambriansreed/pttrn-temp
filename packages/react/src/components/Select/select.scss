@@ -24,7 +24,7 @@
     flex-shrink: 0;
     text-align: left;
     font: var(--select-font);
-    border: 1px solid var(--select-border-color);
+    border: var(--usa-spacing-1px) solid var(--select-border-color);
     border-radius: var(--theme-border-radius-md);
     background: var(--select-background);
     padding: 0 var(--select-padding);
@@ -80,8 +80,8 @@
         &:focus-within {
             --select-border-color: var(--theme-global-focus-color);
 
-            border-width: 1px;
-            outline: 1px solid var(--theme-global-focus-color);
+            border-width: var(--usa-spacing-1px);
+            outline: var(--usa-spacing-1px) solid var(--theme-global-focus-color);
         }
 
         &:hover {

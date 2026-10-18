@@ -20,7 +20,7 @@
             align-items: center;
             justify-content: center;
             border-radius: var(--theme-border-radius-md);
-            border: 1px solid var(--border-color);
+            border: var(--usa-spacing-1px) solid var(--border-color);
             flex-grow: 1;
             aspect-ratio: 1;
             width: var(--width);
@@ -32,7 +32,7 @@
             color: var(--color);
 
             &:focus {
-                outline: solid 2px var(--theme-global-focus-color);
+                outline: solid var(--usa-spacing-2px) var(--theme-global-focus-color);
                 isolation: isolate;
             }
         }

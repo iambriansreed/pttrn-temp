@@ -87,9 +87,9 @@
         }
 
         &:has(:focus-visible) {
-            outline: 2px solid var(--theme-global-focus-color);
+            outline: var(--usa-spacing-2px) solid var(--theme-global-focus-color);
             border-color: var(--theme-global-focus-color);
-            margin-bottom: 1px;
+            margin-bottom: var(--usa-spacing-1px);
         }
 
         [data-content] {
@@ -101,7 +101,7 @@
         display: block;
         height: 1px;
         width: calc(100% - var(--usa-spacing-2));
-        margin: -1px var(--usa-spacing-1) 0;
+        margin: calc(-1 * var(--usa-spacing-1px)) var(--usa-spacing-1) 0;
         background-color: var(--border-bottom-color);
     }
 }

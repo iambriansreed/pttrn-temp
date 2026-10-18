@@ -26,7 +26,7 @@
     &[data-size='x-small'] {
         --size: var(--usa-spacing-205);
 
-        padding: 2px var(--usa-spacing-05);
+        padding: var(--usa-spacing-2px) var(--usa-spacing-05);
     }
 
     &[data-variant='notification'] {
@@ -37,6 +37,6 @@
     }
 
     &[data-surface-border] {
-        border: 2px solid var(--theme-body-background-color);
+        border: var(--usa-spacing-2px) solid var(--theme-body-background-color);
     }
 }

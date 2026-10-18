@@ -109,7 +109,7 @@
 
     [data-pseudo='focus'] > &,
     &:focus-visible {
-        outline: solid 2px var(--theme-global-focus-color);
+        outline: solid var(--usa-spacing-2px) var(--theme-global-focus-color);
         isolation: isolate;
     }
 
