@@ -1,5 +1,49 @@
 /*
- * Loads the default USWDS font families from Google Fonts: Public Sans (sans, body, heading and ui), Merriweather
- * (serif) and Roboto Mono (mono). The tokens name these families but do not load them. Hand-written.
+ * Loads the default USWDS font families from this package's dependencies, so the fonts ship with your application
+ * instead of being fetched from Google at runtime: Public Sans (sans, body, heading and ui), Merriweather (serif)
+ * and Roboto Mono (mono), in the weights and styles the Google Fonts request used to load. The tokens name these
+ * families but do not load them. Hand-written.
+ *
+ * The bare specifiers resolve through a bundler (Vite, webpack, Next.js). For a page without one, link
+ * fonts.google.css instead.
  */
-@import url('https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+@import '@fontsource/public-sans/100.css';
+@import '@fontsource/public-sans/200.css';
+@import '@fontsource/public-sans/300.css';
+@import '@fontsource/public-sans/400.css';
+@import '@fontsource/public-sans/500.css';
+@import '@fontsource/public-sans/600.css';
+@import '@fontsource/public-sans/700.css';
+@import '@fontsource/public-sans/800.css';
+@import '@fontsource/public-sans/900.css';
+@import '@fontsource/public-sans/100-italic.css';
+@import '@fontsource/public-sans/200-italic.css';
+@import '@fontsource/public-sans/300-italic.css';
+@import '@fontsource/public-sans/400-italic.css';
+@import '@fontsource/public-sans/500-italic.css';
+@import '@fontsource/public-sans/600-italic.css';
+@import '@fontsource/public-sans/700-italic.css';
+@import '@fontsource/public-sans/800-italic.css';
+@import '@fontsource/public-sans/900-italic.css';
+@import '@fontsource/merriweather/300.css';
+@import '@fontsource/merriweather/400.css';
+@import '@fontsource/merriweather/700.css';
+@import '@fontsource/merriweather/900.css';
+@import '@fontsource/merriweather/300-italic.css';
+@import '@fontsource/merriweather/400-italic.css';
+@import '@fontsource/merriweather/700-italic.css';
+@import '@fontsource/merriweather/900-italic.css';
+@import '@fontsource/roboto-mono/100.css';
+@import '@fontsource/roboto-mono/200.css';
+@import '@fontsource/roboto-mono/300.css';
+@import '@fontsource/roboto-mono/400.css';
+@import '@fontsource/roboto-mono/500.css';
+@import '@fontsource/roboto-mono/600.css';
+@import '@fontsource/roboto-mono/700.css';
+@import '@fontsource/roboto-mono/100-italic.css';
+@import '@fontsource/roboto-mono/200-italic.css';
+@import '@fontsource/roboto-mono/300-italic.css';
+@import '@fontsource/roboto-mono/400-italic.css';
+@import '@fontsource/roboto-mono/500-italic.css';
+@import '@fontsource/roboto-mono/600-italic.css';
+@import '@fontsource/roboto-mono/700-italic.css';

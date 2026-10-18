@@ -5,16 +5,17 @@ The pttrn design tokens and the reset that `@ptrn/react` and `@ptrn/web` share.
 The tokens come from the USWDS Design Kit in Figma. The source of truth in this package is `tokens/`, a set of
 [DTCG](https://www.designtokens.org/) token files the Figma plugin exports; everything else here is built from them.
 
-| File                            | What it is                                                                                                      |
-| ------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `tokens/`                       | The token source: `manifest.json` plus one DTCG file per collection, or per mode of a multi-mode collection.    |
-| `tokens.css`                    | Built. Every token except the theme: the USWDS primitives, the font collections and their modes.                |
-| `themes/default.css`            | Built. The `default` USWDS theme, complete.                                                                     |
-| `themes/project-theme.css`      | Built. The `project-theme` USWDS theme, complete.                                                               |
-| `themes/project-theme-dark.css` | Built. The `project-theme-dark` USWDS theme, complete.                                                          |
-| `tokens.js`, `tokens.d.ts`      | Built. Every token with its CSS name, Figma name, type, value and mode values, typed, for tooling and the docs. |
-| `fonts.css`                     | Hand-written. Loads Public Sans, Merriweather and Roboto Mono from Google Fonts.                                |
-| `reset.css`                     | Hand-written. `@ptrn/react` loads it for the page, and each `@ptrn/web` element includes it in its shadow root. |
+| File                            | What it is                                                                                                                                                      |
+| ------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `tokens/`                       | The token source: `manifest.json` plus one DTCG file per collection, or per mode of a multi-mode collection.                                                    |
+| `tokens.css`                    | Built. Every token except the theme: the USWDS primitives, the font collections and their modes.                                                                |
+| `themes/default.css`            | Built. The `default` USWDS theme, complete.                                                                                                                     |
+| `themes/project-theme.css`      | Built. The `project-theme` USWDS theme, complete.                                                                                                               |
+| `themes/project-theme-dark.css` | Built. The `project-theme-dark` USWDS theme, complete.                                                                                                          |
+| `tokens.js`, `tokens.d.ts`      | Built. Every token with its CSS name, Figma name, type, value and mode values, typed, for tooling and the docs.                                                 |
+| `fonts.css`                     | Hand-written. Loads Public Sans, Merriweather and Roboto Mono from this package's `@fontsource` dependencies, so the fonts ship with your app. Needs a bundler. |
+| `fonts.google.css`              | Hand-written. The same families from Google Fonts, for a page without a bundler.                                                                                |
+| `reset.css`                     | Hand-written. `@ptrn/react` loads it for the page, and each `@ptrn/web` element includes it in its shadow root.                                                 |
 
 ## Use it
 
