@@ -1,9 +1,8 @@
 import './slider.scss';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { SliderIntervalDots } from './SliderIntervalDots';
 import { useNormalizeSliderValue } from './useNormalizeSliderValue';
 import { Txt } from '-/components/Txt';
-import { useControlledState } from '-/hooks/useControlledState';
 import { CommonPropsLibrary } from '-/types/common';
 
 export type SliderValue = number | [number, number];
@@ -111,7 +110,13 @@ export function Slider<V = SliderValue>({
     name,
     formatNumber: formatNumberProp,
 }: SliderProps<V>) {
-    const [value, onChange] = useControlledState<V>((valueProp || min) as V, onChangeProp);
+    // The value prop drives the slider; the internal copy only covers a render before the parent catches up.
+    const [internalValue, setInternalValue] = useState<V>((valueProp || min) as V);
+    const value = (valueProp === undefined || valueProp === null ? internalValue : valueProp) as V;
+    const onChange = (next: V) => {
+        setInternalValue(next);
+        onChangeProp?.(next);
+    };
 
     const formatNumber: SliderProps<V>['formatNumber'] = (rawValue, context) =>
         formatNumberProp?.(rawValue, context) || rawValue.toString();
@@ -218,28 +223,8 @@ export function Slider<V = SliderValue>({
                 <Txt data-value-label>{displayValue}</Txt>
             </div>
             <div data-slider-parent>
-                <div
-                    aria-disabled={disabled || undefined}
-                    aria-label={label}
-                    aria-readonly={readOnly || undefined}
-                    aria-valuemax={max}
-                    aria-valuemin={min}
-                    aria-valuenow={val0}
-                    aria-valuetext={displayValue}
-                    data-slider-body
-                    onClick={handleTrackClick}
-                    onKeyDown={(e) => {
-                        if (disabled || readOnly) return;
-                        if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
-                            if (!isRange) {
-                                handleKnobKeyDown(0)(e as React.KeyboardEvent<HTMLDivElement>);
-                            }
-                        }
-                    }}
-                    ref={sliderRef}
-                    role="slider"
-                    tabIndex={disabled ? -1 : 0}
-                >
+                {/* The knobs are the sliders and take the keyboard; the track only takes pointer clicks. */}
+                <div aria-hidden="true" data-slider-body onClick={handleTrackClick} ref={sliderRef}>
                     <div data-slider-background />
                     <div
                         data-slider-fill
@@ -254,7 +239,9 @@ export function Slider<V = SliderValue>({
                 </div>
                 {isRange && (
                     <div
+                        aria-disabled={disabled || undefined}
                         aria-label={`${label} start`}
+                        aria-readonly={readOnly || undefined}
                         aria-valuemax={max}
                         aria-valuemin={min}
                         aria-valuenow={val0}
@@ -268,11 +255,13 @@ export function Slider<V = SliderValue>({
                     />
                 )}
                 <div
+                    aria-disabled={disabled || undefined}
                     aria-label={isRange ? `${label} end` : label}
+                    aria-readonly={readOnly || undefined}
                     aria-valuemax={max}
                     aria-valuemin={min}
                     aria-valuenow={val1}
-                    aria-valuetext={val1?.toString()}
+                    aria-valuetext={isRange ? val1?.toString() : displayValue}
                     data-slider-knob
                     onKeyDown={handleKnobKeyDown(isRange ? 1 : 0)}
                     onMouseDown={handleKnobMouseDown(isRange ? 1 : 0)}

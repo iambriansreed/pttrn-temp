@@ -9,19 +9,23 @@ export const generateAndWriteTestFile = async (componentName: string, filePath: 
 export const generateTestFile = (componentName: string) => {
     return `import { ${componentName} } from './${componentName}';
 import { presets } from './${componentName}Example';
+import { spec } from './spec';
 import { hasNoBasicA11yIssues } from '-/rtl/hasNoBasicA11yIssues';
-import { render } from '-/rtl/util';
+import { describeBehaviors } from '-/rtl/spec';
+import { render, screen } from '-/rtl/util';
 
-describe('${componentName} (RTL)', () => {
-    presets.forEach((preset) => {
-        it(\`has no basic a11y issues - \${preset.label}\`, hasNoBasicA11yIssues(<${componentName} {...preset.propState} />));
-    });
+// One test per behavior in spec.ts. A behavior without a test fails, and so does a test the spec does not list.
+describeBehaviors(spec, {
+    renders: () => {
+        render(<${componentName} {...presets[0].propState} />);
 
-    it('renders', () => {
-        const { getByText } = render(<${componentName} {...presets[0].propState} />);
-
-        expect(getByText('whoop there it is')).toBeInTheDocument();
-    });
+        expect(screen.getByText('whoop there it is')).toBeInTheDocument();
+    },
+    'axe-clean': async () => {
+        for (const preset of presets) {
+            await hasNoBasicA11yIssues(<${componentName} {...preset.propState} />)();
+        }
+    },
 });
 
 `;

@@ -18,7 +18,7 @@ export type TextareaProps = CommonProps<'size'> &
         /**
          * The minimum number of rows that the textarea will show.
          *
-         * @default 3
+         * @default 4
          * @minimum 3
          * @maximum 10
          */
@@ -39,8 +39,7 @@ export type TextareaProps = CommonProps<'size'> &
  * A component that allows users to input large amounts of text that could span multiple lines.
  *
  * This component gives you a textarea HTML element that automatically adjusts its height to match the length of the
- * content within maximum and minimum rows. A character counter when a maxLength is set to show the number of characters
- * remaining below the limit.
+ * content within maximum and minimum rows. maxLength is enforced by the element itself.
  *
  * For a more complete example with field usage, see the TextareaField component.
  *

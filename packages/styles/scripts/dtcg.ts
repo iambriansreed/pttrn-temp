@@ -36,6 +36,8 @@ export type Manifest = {
         exporter: string;
         pluginVersion?: string;
         importedBy?: string;
+        /** A mode file that a script writes from another, rather than Figma. */
+        derived?: string;
     };
     collections: Collection[];
 };

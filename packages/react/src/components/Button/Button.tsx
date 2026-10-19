@@ -142,12 +142,16 @@ export function Button<As extends ElementType = ElementType>(
     // if tooltip text is not provided and iconOnly is true, tooltip text should be label
     const tooltip = tooltipProp || (iconOnly ? label : undefined);
 
-    const button = (triggerProps: TooltipTriggerProps) => (
+    const button = ({ 'aria-labelledby': tooltipId, ...triggerProps }: TooltipTriggerProps) => (
         <As
             type={As === 'button' ? 'button' : undefined}
             {...containerProps}
             {...triggerProps}
+            // The tooltip names an icon-only button (its text is the label) unless the consumer gave an aria-label, and
+            // describes a button with a visible label.
+            aria-describedby={(!iconOnly && tooltipId) || containerProps['aria-describedby'] || undefined}
             aria-label={ariaLabel || label}
+            aria-labelledby={iconOnly && !ariaLabel ? tooltipId : undefined}
             data-destructive={destructive || undefined}
             data-pttrn="button"
             data-pttrn-owner={owner || undefined}

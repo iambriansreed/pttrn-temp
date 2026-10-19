@@ -50,6 +50,8 @@ jobs:
             - run: npm run lint
             - run: npx tsx .scripts/tasks/lint-components.ts
               working-directory: packages/react
+            # Every component spec is consistent with the React suite and, where one exists, the Web Component suite.
+            - run: npm run lint:specs --workspace @ptrn/react
             - run: npm run check:css-vars --workspace @ptrn/react --workspace @ptrn/web
             - run: npx prettier --check .
             # The stylesheets and the token module in @ptrn/styles are built from tokens/ and committed; they must match.
@@ -136,10 +138,8 @@ jobs:
     accessibility:
         name: Accessibility matrix (${{ matrix.theme }})
         runs-on: ubuntu-latest
-        # Reports but does not block yet: the matrix found real violations on day one (AvatarGroup, Field, InlineAlert
-        # in every theme, and the docs demo background in the dark theme). Remove continue-on-error and make these
-        # jobs required once those are fixed; the job must never be skipped or quarantined.
-        continue-on-error: true
+        # Blocking since every theme passed: a violation in any theme fails the run. Fix the component or the token,
+        # never skip, quarantine or retry the row.
         strategy:
             fail-fast: false
             matrix:
@@ -162,6 +162,44 @@ jobs:
               with:
                   name: a11y-${{ matrix.theme }}
                   path: docs/playwright-report
+                  retention-days: 7
+
+    visual:
+        name: Visual regression (${{ matrix.theme }})
+        runs-on: ubuntu-latest
+        strategy:
+            fail-fast: false
+            matrix:
+                theme: [default, project-theme, project-theme-dark]
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version-file: .nvmrc
+                  cache: npm
+            - run: npm ci
+            - run: npm run build
+            - run: npm run build:docs
+            - run: npx playwright install --with-deps chromium
+            # Every component's main example, and the Web Component tab where one exists, against the baselines in
+            # docs/tests/visual/__screenshots__. A change is reviewed and the baselines updated with the
+            # "Update visual baselines" workflow, never by loosening the comparison.
+            - run: npm run test:visual --workspace ptrn-docs
+              env:
+                  PTTRN_THEME: ${{ matrix.theme }}
+            - uses: actions/upload-artifact@v4
+              if: failure()
+              with:
+                  name: visual-${{ matrix.theme }}
+                  path: docs/playwright-report
+                  retention-days: 7
+            # The screenshots this run took, named like the baselines (*-actual.png): after an intended change, these
+            # are the new baselines, rendered on the platform the comparison runs on.
+            - uses: actions/upload-artifact@v4
+              if: failure()
+              with:
+                  name: visual-actual-${{ matrix.theme }}
+                  path: docs/test-results/**/*-actual.png
                   retention-days: 7
 
     pack:

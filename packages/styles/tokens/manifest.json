@@ -3,7 +3,8 @@
         "figmaFile": "USWDS Design Kit Beta (Community)",
         "exportedAt": "October 4, 2026 at 11:17 PM (UTC-04:00)",
         "exporter": "pttrn Export Tokens",
-        "importedBy": "scripts/css-to-dtcg.ts from tokens.css and themes/*.css"
+        "importedBy": "scripts/css-to-dtcg.ts from tokens.css and themes/*.css",
+        "derived": "uswds-theme/project-theme-dark.tokens.json by scripts/derive-dark-theme.ts from uswds-theme/project-theme.tokens.json"
     },
     "collections": [
         {

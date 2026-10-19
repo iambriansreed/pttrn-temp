@@ -88,6 +88,7 @@ export function Popover({
     const id = useId();
     const [show, setShow] = useState(false);
     const arrowRef = useRef<HTMLElement | null>(null);
+    const panelRef = useRef<HTMLDivElement | null>(null);
 
     const { elements, floatingStyles, middlewareData } = useFloating({
         placement: placement,
@@ -98,8 +99,9 @@ export function Popover({
         refWidth,
     });
 
+    // The trigger counts as inside: its own click toggles the popover, so a mousedown on it must not close it first.
     useOutsideClick({
-        elements: [elements.floating],
+        elements: [elements.floating, elements.reference],
         callback: () => setShow(false),
         disabled: !show,
     });
@@ -127,7 +129,7 @@ export function Popover({
                 <Portal>
                     <FocusTrap
                         focusTrapOptions={{
-                            fallbackFocus: () => elements.floating || document.body,
+                            fallbackFocus: () => panelRef.current || document.body,
                             clickOutsideDeactivates: true,
                         }}
                     >
@@ -136,12 +138,14 @@ export function Popover({
                             data-pttrn="popover"
                             id={id}
                             ref={(node) => {
+                                panelRef.current = node;
                                 elements.setFloating(node);
                                 elements.setReference(
                                     document.querySelector<HTMLElement>(`[aria-describedby="${id}"]`),
                                 );
                             }}
                             style={{ ...floatingStyles, ...props.style }}
+                            tabIndex={-1}
                         >
                             <header>
                                 <Txt variant="heading-h6">{header}</Txt>

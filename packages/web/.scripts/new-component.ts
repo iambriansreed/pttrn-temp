@@ -4,7 +4,8 @@
  * $ npm run newc -- Badge
  *
  * Creates `src/components/Badge/{badge.ts,badge.scss,index.ts}` and `tests/badge.spec.ts`, and adds the export to
- * `src/index.ts`. Then follow the checklist in CONTRIBUTING.md.
+ * `src/index.ts`. The React component must already have a `spec.ts`: the test registers its behaviors, and the lint
+ * fails a Web Component whose React counterpart has no spec. Then follow the checklist in CONTRIBUTING.md.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -18,11 +19,19 @@ if (!name || !/^[A-Z][A-Za-z0-9]*$/.test(name)) {
 }
 
 const kebab = name.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
-const tag = `ptrn-${kebab}`;
+const tag = `pttrn-${kebab}`;
 const dir = path.join(root, 'src/components', name);
 
 if (fs.existsSync(dir)) {
     console.error(`${path.relative(root, dir)} already exists.`);
+    process.exit(1);
+}
+
+const specFile = path.resolve(root, '../react/src/components', name, 'spec.ts');
+if (!fs.existsSync(specFile)) {
+    console.error(
+        `${path.relative(root, specFile)} does not exist. Write the React component's spec first; the Web Component is tested against it.`,
+    );
     process.exit(1);
 }
 
@@ -70,21 +79,30 @@ write(path.join(dir, 'index.ts'), `export * from './${kebab}';\n`);
 write(
     path.join(root, `tests/${kebab}.spec.ts`),
     `import AxeBuilder from '@axe-core/playwright';
-import { expect, test } from '@playwright/test';
+import { expect } from '@playwright/test';
+import { spec } from '../../react/src/components/${name}/spec';
 import { mount } from './mount';
+import { describeBehaviors } from './spec';
 
-test.describe('${tag}', () => {
-    test('renders its content', async ({ page }) => {
-        await mount(page, '<${tag}>Content</${tag}>');
+// Mirror the presets in the React component's example file, so both implementations are held to the same cases.
+const PRESETS = {
+    Default: '<${tag}>Content</${tag}>',
+};
+
+// One test per behavior in the React component's spec.ts. A behavior without a test fails, and so does a test the spec
+// does not list.
+describeBehaviors(spec, {
+    renders: async ({ page }) => {
+        await mount(page, PRESETS.Default);
         await expect(page.getByText('Content')).toBeVisible();
-    });
-
-    // Mirror the presets in the React component's example file, so both implementations are held to the same cases.
-    test('has no basic a11y issues', async ({ page }) => {
-        await mount(page, '<${tag}>Content</${tag}>');
-        const results = await new AxeBuilder({ page }).include('${tag}').analyze();
-        expect(results.violations).toEqual([]);
-    });
+    },
+    'axe-clean': async ({ page }) => {
+        for (const html of Object.values(PRESETS)) {
+            await mount(page, html);
+            const results = await new AxeBuilder({ page }).include('${tag}').analyze();
+            expect(results.violations).toEqual([]);
+        }
+    },
 });
 `,
 );

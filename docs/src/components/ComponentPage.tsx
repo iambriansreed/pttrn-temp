@@ -18,6 +18,7 @@ import { CodePlayground } from 'src/components/CodePlayground';
 import { FrameworkTabs } from 'src/components/FrameworkTabs';
 import { HtmlPlayground } from 'src/components/HtmlPlayground';
 import { Page } from 'src/components/Page';
+import { SpecSection } from 'src/components/SpecSection';
 import { TagComponent } from 'src/components/TagComponent';
 import { components, MetaComponentName } from 'src/meta';
 import { DemoComponent } from 'src/types';
@@ -180,6 +181,7 @@ export function ComponentPage({ componentName }: { componentName: MetaComponentN
                         </>
                     )}
                     {!isWebComponent && component.showExample && component.variants !== false && <ComponentVariants />}
+                    {component.spec && <SpecSection name={component.name} spec={component.spec} />}
                     {(isWebComponent ? [] : component.sections)
                         ?.filter((s) => !s.location || s.location === 'afterDemo')
                         .map(({ content: Content, title }, index) => (

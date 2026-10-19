@@ -182,7 +182,7 @@
         &[data-destructive] {
             &:not([disabled]) {
                 background: transparent;
-                color: var(--theme-color-error-medium);
+                color: var(--theme-color-error-dark);
                 border: solid var(--button-border-width) var(--theme-color-error-medium);
             }
         }
@@ -216,7 +216,7 @@
 
         &[data-destructive] {
             &:not([disabled]) {
-                color: var(--theme-color-error-medium);
+                color: var(--theme-color-error-dark);
             }
         }
     }

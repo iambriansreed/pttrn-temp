@@ -106,6 +106,7 @@ export function Pagination({
                     }}
                 >
                     <Input
+                        aria-label="Page number"
                         name="page-number"
                         onBlur={() => submitInputChange()}
                         onChange={setInputValue}

@@ -29,7 +29,7 @@
             "types": "./dist/index.d.ts",
             "default": "./dist/index.js"
         },
-        "./cdn": "./dist/cdn/ptrn-web.min.js",
+        "./cdn": "./dist/cdn/pttrn-web.min.js",
         "./Accordion": {
             "types": "./dist/components/Accordion/index.d.ts",
             "default": "./dist/components/Accordion/index.js"

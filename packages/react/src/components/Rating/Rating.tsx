@@ -1,6 +1,8 @@
 import './rating.scss';
 import { SvgStarFill } from '@ptrn/icons/StarFill';
+import { useRef } from 'react';
 import { useControlledState } from '-/hooks/useControlledState';
+import { handleKeyDown } from '-/utils/handleKeyDown';
 
 export type RatingSize = 'large' | 'medium' | 'small';
 export type RatingProps = {
@@ -47,6 +49,14 @@ const iconWidths: Record<RatingSize, number> = {
  */
 export function Rating({ size = 'medium', value: valueProp, onChange: onChangeProp }: RatingProps) {
     const [value, onChange] = useControlledState(valueProp, onChangeProp);
+    const group = useRef<HTMLDivElement>(null);
+    // The star that holds the choice: 3 for a value of 3, 5 for 4.5, none before a choice is made.
+    const chosenStar = value === undefined ? 0 : Math.ceil(value);
+    const choose = (star: number) => {
+        const next = Math.min(MAX_STARS, Math.max(1, star));
+        onChange(next);
+        group.current?.querySelectorAll<HTMLButtonElement>(':scope > [data-star]')[next - 1]?.focus();
+    };
 
     if (!onChangeProp)
         return (
@@ -79,11 +89,12 @@ export function Rating({ size = 'medium', value: valueProp, onChange: onChangePr
             aria-label={value ? `${value} out of ${MAX_STARS} stars` : 'Select a star rating'}
             data-pttrn="rating"
             data-size={size}
+            ref={group}
             role="radiogroup"
         >
             {Array.from({ length: MAX_STARS }, (_, index) => {
                 const fill = getFill(index + 1, value);
-                const selected = value !== undefined && Math.floor(value) === index;
+                const selected = chosenStar === index + 1;
                 return (
                     <button
                         aria-checked={selected}
@@ -92,8 +103,18 @@ export function Rating({ size = 'medium', value: valueProp, onChange: onChangePr
                         data-star
                         key={index}
                         onClick={() => onChange?.(index + 1)}
+                        // The arrows move the choice as in any radio group; before a choice, the first star is the tab stop.
+                        onKeyDown={handleKeyDown(
+                            {
+                                ArrowRight: () => choose(chosenStar + 1),
+                                ArrowDown: () => choose(chosenStar + 1),
+                                ArrowLeft: () => choose(chosenStar - 1),
+                                ArrowUp: () => choose(chosenStar - 1),
+                            },
+                            { preventDefault: true },
+                        )}
                         role="radio"
-                        tabIndex={selected ? 0 : -1}
+                        tabIndex={(chosenStar ? selected : index === 0) ? 0 : -1}
                         type="button"
                     >
                         <SvgStarFill width={iconWidths[size]} />
