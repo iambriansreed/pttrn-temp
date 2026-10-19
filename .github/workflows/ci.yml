@@ -138,10 +138,8 @@ jobs:
     accessibility:
         name: Accessibility matrix (${{ matrix.theme }})
         runs-on: ubuntu-latest
-        # Reports but does not block yet: the matrix found real violations on day one (AvatarGroup, Field, InlineAlert
-        # in every theme, and the docs demo background in the dark theme). Remove continue-on-error and make these
-        # jobs required once those are fixed; the job must never be skipped or quarantined.
-        continue-on-error: true
+        # Blocking since every theme passed: a violation in any theme fails the run. Fix the component or the token,
+        # never skip, quarantine or retry the row.
         strategy:
             fail-fast: false
             matrix:
