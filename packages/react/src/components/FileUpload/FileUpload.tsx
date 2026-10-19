@@ -248,37 +248,36 @@ function useMergedFileEntries({
     fileEntries: FileEntry[];
 }) {
     useEffect(() => {
-        // merge new files with existing ones
-        const nextFileEntries: (FileEntry & { updated?: boolean })[] = [...fileEntries];
+        // Merge the files prop into the entries. The change is tracked here, not on the entries: a flag stored on an
+        // entry would survive into the next pass and set state forever.
+        const nextFileEntries: FileEntry[] = [...fileEntries];
+        let changed = false;
 
-        // first check if there are any changes to existing file entries
         files.forEach((file) => {
             const existingEntryIndex = fileEntries.findIndex((entry) => entry.id === file.id);
 
             if (existingEntryIndex !== -1) {
-                const updated =
-                    fileEntries[existingEntryIndex].status !== file.status ||
-                    fileEntries[existingEntryIndex].progress !== file.progress ||
-                    fileEntries[existingEntryIndex].errorMessage !== file.errorMessage;
-
-                if (updated)
+                const existing = fileEntries[existingEntryIndex];
+                if (
+                    existing.status !== file.status ||
+                    existing.progress !== file.progress ||
+                    existing.errorMessage !== file.errorMessage
+                ) {
                     nextFileEntries[existingEntryIndex] = {
-                        ...fileEntries[existingEntryIndex],
+                        ...existing,
                         status: file.status,
                         progress: file.progress || 0,
                         errorMessage: file.errorMessage,
-                        updated,
                     };
-
+                    changed = true;
+                }
                 return;
             }
 
-            nextFileEntries.push({
-                ...file,
-                updated: true,
-            });
+            nextFileEntries.push({ ...file });
+            changed = true;
         });
 
-        if (nextFileEntries.some((entry) => entry.updated)) setFileEntries(nextFileEntries);
+        if (changed) setFileEntries(nextFileEntries);
     }, [fileEntries, files, setFileEntries]);
 }

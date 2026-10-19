@@ -40,7 +40,7 @@ export const spec: ComponentSpec = {
     ],
     accessibility: {
         roles: 'The zone is a plain container with no role: the title and subtitle are text and the icon is aria-hidden. The native file input is hidden and driven by Browse, a native button. Each listed file has a progressbar whose aria-valuenow is its progress, or an alert with its error; when the only file has failed the zone announces that alert too.',
-        labels: 'Browse is named by its label and each cancel button by cancelButtonLabel ("Cancel" by default) through its tooltip; the progress bar is named by its percentage. The accept list is never read aloud, so name the accepted types and the size limit in uploadSubtitle.',
+        labels: 'Browse is named by its label and each cancel button by cancelButtonLabel ("Cancel" by default) followed by its file name; the progress bar is named by its percentage. The accept list is never read aloud, so name the accepted types and the size limit in uploadSubtitle.',
         focus: 'Native focus on the Browse button and on each cancel button; the hidden input is not in the tab order. Nothing moves focus. Dragging is a pointer-only shortcut, with Browse as the alternative.',
         targetSize: 44,
     },
@@ -90,6 +90,11 @@ export const spec: ComponentSpec = {
             id: 'cancel',
             description:
                 'Each item has a cancel button named by cancelButtonLabel that calls onCancel with the file name.',
+        },
+        {
+            id: 'tracks-files-prop',
+            description:
+                'A new files prop updates the status and progress of the entries it names and adds the ones it adds, without remounting.',
         },
         { id: 'axe-clean', description: 'Every preset passes axe-core, as does a list with a failed file.' },
     ],

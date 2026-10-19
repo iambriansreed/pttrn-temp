@@ -234,15 +234,31 @@ describeBehaviors(spec, {
         const onCancel = jest.fn();
         const { rerender } = render(<Subject files={[UPLOADING]} onCancel={onCancel} />);
 
-        await user.click(screen.getByRole('button', { name: 'Cancel' }));
+        await user.click(screen.getByRole('button', { name: 'Cancel photo.png' }));
         expect(onCancel).toHaveBeenCalledWith({ fileName: 'photo.png' });
 
         rerender(<Subject cancelButtonLabel="Remove" files={[UPLOADING]} onCancel={onCancel} />);
-        expect(screen.queryByRole('button', { name: 'Cancel' })).not.toBeInTheDocument();
-        screen.getByRole('button', { name: 'Remove' }).focus();
+        expect(screen.queryByRole('button', { name: /^Cancel/ })).not.toBeInTheDocument();
+        screen.getByRole('button', { name: 'Remove photo.png' }).focus();
         await user.keyboard('{Enter}');
         expect(onCancel).toHaveBeenCalledTimes(2);
         expect(onCancel).toHaveBeenLastCalledWith({ fileName: 'photo.png' });
+    },
+    'tracks-files-prop': () => {
+        const { rerender } = render(<Subject files={[UPLOADING]} />);
+        expect(screen.getByRole('progressbar', { name: '40%' })).toBeInTheDocument();
+
+        rerender(<Subject files={[{ ...UPLOADING, progress: 80 }]} />);
+        expect(screen.getByRole('progressbar', { name: '80%' })).toHaveAttribute('aria-valuenow', '80');
+        expect(items()).toHaveLength(1);
+
+        rerender(<Subject files={[{ ...UPLOADING, status: 'complete', progress: 100 }, COMPLETE]} />);
+        expect(items()).toHaveLength(2);
+        expect(items().map((item) => item.textContent)).toEqual([
+            expect.stringContaining('done.pdf'),
+            expect.stringContaining('photo.png'),
+        ]);
+        expect(screen.getAllByRole('progressbar', { name: '100%' })).toHaveLength(2);
     },
     'axe-clean': async () => {
         for (const preset of presets) {
