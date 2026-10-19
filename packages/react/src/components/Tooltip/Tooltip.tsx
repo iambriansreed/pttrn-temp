@@ -85,7 +85,12 @@ export function Tooltip({ placement = 'top', label, children, disabled = false, 
                         id={id}
                         ref={(node) => {
                             elements.setFloating(node);
-                            elements.setReference(document.querySelector<HTMLElement>(`[aria-labelledby="${id}"]`));
+                            // The trigger carries the id as its label, or as its description when it has a visible label.
+                            elements.setReference(
+                                document.querySelector<HTMLElement>(
+                                    `[aria-labelledby="${id}"], [aria-describedby="${id}"]`,
+                                ),
+                            );
                         }}
                         role="tooltip"
                         style={floatingStyles}

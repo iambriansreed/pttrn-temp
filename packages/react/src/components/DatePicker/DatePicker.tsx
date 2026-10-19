@@ -88,8 +88,9 @@ export function DatePicker({
         refWidth: false,
     });
 
+    // The field (with its toggle) counts as inside: the toggle's own click closes the calendar.
     useOutsideClick({
-        elements: [elements.floating],
+        elements: [elements.floating, elements.reference],
         callback: () => setCalendarVisible(false),
         disabled: !calendarVisible,
     });

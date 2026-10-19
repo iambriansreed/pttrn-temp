@@ -65,6 +65,12 @@ export type AvatarProps = CommonProps<'disabled'> & {
      */
     hideTooltip?: boolean;
     /**
+     * Lets keyboard users reach a non-clickable avatar so its tooltip can show. A clickable avatar is always focusable.
+     *
+     * @default false
+     */
+    focusable?: boolean;
+    /**
      * The function to call when the avatar is clicked.
      *
      * @type () => void
@@ -104,55 +110,63 @@ export function Avatar({
     image,
     name,
     hideTooltip = false,
+    focusable = false,
     onClick,
     disabled = false,
     ...props
 }: AvatarProps) {
-    const children = useMemo(() => {
-        if (image) return <img alt={name} aria-hidden={true} src={image} />;
-
-        if (showIcon)
-            return (
-                <span aria-hidden={true} data-icon>
-                    <SvgPerson />
-                </span>
-            );
-
-        let initials = initialsProp;
-
-        if (name && !initials)
-            initials = name
-                .split(' ')
-                .map((word) => word.charAt(0))
-                .slice(0, 2)
-                .join('')
-                .toUpperCase();
-
-        if (initials)
-            return (
-                <span aria-hidden={true} data-initials>
-                    {initials.slice(0, 2)}
-                </span>
-            );
-
-        return null;
+    // Up to two initials, given or taken from the first two words of the name; none when an image or the icon shows.
+    const initials = useMemo(() => {
+        if (image || showIcon) return undefined;
+        const fromName = name
+            ? name
+                  .split(' ')
+                  .map((word) => word.charAt(0))
+                  .slice(0, 2)
+                  .join('')
+                  .toUpperCase()
+            : '';
+        return (initialsProp || fromName).slice(0, 2) || undefined;
     }, [name, showIcon, image, initialsProp]);
+
+    let children = null;
+    if (image) children = <img alt={name} aria-hidden={true} src={image} />;
+    else if (showIcon)
+        children = (
+            <span aria-hidden={true} data-icon>
+                <SvgPerson />
+            </span>
+        );
+    else if (initials)
+        children = (
+            <span aria-hidden={true} data-initials>
+                {initials}
+            </span>
+        );
 
     if (!children) return null;
 
-    const avatar = (triggerProps: TooltipTriggerProps) => (
+    const interactive = Boolean(onClick);
+    // A clickable avatar that shows initials carries them in its name (WCAG 2.5.3, Label in Name), so a speech user
+    // can say what they see; its tooltip then describes it instead of naming it. Otherwise the tooltip is the name.
+    const initialsInName = interactive && Boolean(initials);
+    const label = initialsInName ? `${initials}, ${name}` : name;
+
+    const avatar = ({ 'aria-labelledby': tooltipId, ...triggerProps }: TooltipTriggerProps) => (
         <div
             {...props}
             {...triggerProps}
+            aria-describedby={initialsInName ? tooltipId : undefined}
             aria-disabled={disabled || undefined}
-            aria-label={name}
+            aria-label={label}
+            aria-labelledby={initialsInName ? undefined : tooltipId}
             aria-roledescription="person"
             data-color={color}
             data-pttrn="avatar"
             data-size={size}
             onClickCapture={disabled ? undefined : onClick}
-            role={onClick ? 'button' : 'img'}
-            tabIndex={onClick && !disabled ? 0 : undefined}
+            role={interactive ? 'button' : 'img'}
+            tabIndex={interactive ? (disabled ? undefined : 0) : focusable ? 0 : undefined}
         >
             {children}
         </div>

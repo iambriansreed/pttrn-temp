@@ -1,5 +1,6 @@
 import { SvgChevronRight } from '@ptrn/icons/ChevronRight';
 import { SvgMoreHoriz } from '@ptrn/icons/MoreHoriz';
+import { useEffect } from 'react';
 import { Button } from '-/components/Button';
 import { ListItem } from '-/components/ListItem';
 import { Menu } from '-/components/Menu';
@@ -12,40 +13,25 @@ import { scrollListItemsStyle, ScrollListItemsStyleProps } from '-/utils/scrollL
 import { useIds } from '-/utils/useIds';
 
 export type BreadcrumbItem = {
-    /**
-     * The label of the breadcrumb item.
-     *
-     * @example
-     *     Page 1
-     *
-     * @required
-     */
+    /** The text of the crumb. */
     label: string;
-    /**
-     * The href of the breadcrumb item.
-     *
-     * @example
-     *     https://github.com/pttrn/pttrn
-     *
-     * @required
-     */
+    /** Where the crumb leads. */
     href: string;
 };
 
 export type BreadcrumbDropdownProps = ScrollListItemsStyleProps & {
+    /** The pages folded into the menu. */
     items: BreadcrumbItem[];
+    /** The id of the breadcrumb, which the menu id derives from. */
     id: string;
 };
 
 /**
- * The BreadcrumbDropdown component is used to display a dropdown menu within a breadcrumb navigation.
- *
- * @name BreadcrumbDropdown
- * @parent Breadcrumb
+ * The folded middle of a long trail: a menu button that lists the hidden pages as links. Focus moves into the menu
+ * while it is open, the arrows move it, and Escape returns it to the button.
  */
 export function BreadcrumbDropdown({ items: itemsProp, id, scrollLimit }: BreadcrumbDropdownProps) {
     const menuId = `${id}-menu`;
-
     const items = useIds(`breadcrumb-${id}`, itemsProp);
 
     const { activeElementId, setActiveElementId, arrowKeyCallbacks } = useArrowNavigation({
@@ -61,57 +47,47 @@ export function BreadcrumbDropdown({ items: itemsProp, id, scrollLimit }: Breadc
         refWidth: false,
     });
 
+    // A click outside, or tabbing away, closes the menu.
     useOutsideClick({
         elements: [elements.floating, elements.reference],
         callback: () => closeMenu(),
         disabled: !open,
+        handleTabs: true,
     });
 
-    const spaceEnter = () => {
-        if (!open) {
-            elements.reference?.click();
-            return;
-        }
-        if (activeElementId) getElementById(activeElementId)?.click();
+    // Focus follows the active item while the menu is open. The menu mounts one render after it opens, so the first
+    // attempt may find nothing and a retry on the next tick lands it.
+    useEffect(() => {
+        if (!activeElementId) return undefined;
+        const focusActive = () => getElementById(activeElementId)?.focus();
+        focusActive();
+        const retry = setTimeout(focusActive, 0);
+        return () => clearTimeout(retry);
+    }, [activeElementId]);
+
+    const closeAndRefocus = () => {
+        closeMenu();
+        elements.reference?.focus();
     };
+
+    const label = `${items.length} more pages`;
 
     return (
         <li>
             <Button
-                aria-activedescendant={open ? activeElementId || undefined : undefined}
                 aria-controls={open ? menuId : undefined}
                 aria-expanded={open}
-                aria-haspopup="listbox"
-                aria-owns={menuId}
+                aria-haspopup="menu"
                 icon={<SvgMoreHoriz />}
                 iconOnly
                 innerRef={elements.setReference}
-                label={`Access to ${items.length} pages`}
-                name={`${name}-country-code`}
-                onClick={(event) => {
-                    const nextOpen = !open;
-                    if (nextOpen) {
-                        setActiveElementId(items[0]?.id || null);
-                    } else {
-                        setActiveElementId(null);
-                    }
-                    event.preventDefault();
-                }}
-                onKeyDown={handleKeyDown(
-                    {
-                        ...arrowKeyCallbacks,
-                        ArrowDown: (event) => {
-                            if (!open) spaceEnter();
-                            arrowKeyCallbacks.ArrowDown?.(event);
-                        },
-                        Space: spaceEnter,
-                        Enter: spaceEnter,
-                        Escape: closeMenu,
-                        'Ctrl+Option+Space': spaceEnter,
+                label={`Show ${label}`}
+                onClick={() => (open ? closeMenu() : setActiveElementId(items[0]?.id))}
+                onKeyDown={handleKeyDown({
+                    ArrowDown: () => {
+                        if (!open) setActiveElementId(items[0]?.id);
                     },
-                    { preventDefault: true, stopPropagation: true },
-                )}
-                role="combobox"
+                })}
                 size="small"
                 variant="tertiary"
             />
@@ -119,7 +95,14 @@ export function BreadcrumbDropdown({ items: itemsProp, id, scrollLimit }: Breadc
                 <Menu
                     id={menuId}
                     innerRef={elements.setFloating}
-                    label="Expanded breadcrumb"
+                    label={label}
+                    onKeyDown={handleKeyDown(
+                        {
+                            ...arrowKeyCallbacks,
+                            Escape: closeAndRefocus,
+                        },
+                        { preventDefault: true, stopPropagation: true },
+                    )}
                     owner="Breadcrumb"
                     role="menu"
                     style={{
@@ -136,7 +119,7 @@ export function BreadcrumbDropdown({ items: itemsProp, id, scrollLimit }: Breadc
                             role="menuitem"
                             {...item}
                             active={activeElementId === item.id}
-                            tabIndex={-1}
+                            tabIndex={activeElementId === item.id ? 0 : -1}
                         />
                     ))}
                 </Menu>

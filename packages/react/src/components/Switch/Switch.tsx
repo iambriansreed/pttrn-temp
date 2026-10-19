@@ -55,6 +55,7 @@ export function Switch({ checked = false, disabled = false, ...props }: SwitchPr
                 checked={!!checked}
                 disabled={disabled || undefined}
                 onChange={(event) => props.onChange(!!event.target.checked, event)}
+                role="switch"
                 type="checkbox"
             />
             <span aria-hidden />

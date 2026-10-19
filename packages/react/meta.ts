@@ -14,7 +14,15 @@ import { fileURLToPath } from 'url';
 
 import * as TJS from 'typescript-json-schema';
 
-import { ComponentMeta, TypeProperty, UtilityMeta, TypeMeta, ComponentPhase, BlockConfig } from './src/types/meta';
+import {
+    ComponentMeta,
+    TypeProperty,
+    UtilityMeta,
+    TypeMeta,
+    ComponentPhase,
+    BlockConfig,
+    ComponentSpec,
+} from './src/types/meta';
 
 const COMPONENT_PHASE_ORDER: ComponentPhase[] = [
     'Utility', // Utility components are not tracked in the progress
@@ -157,6 +165,17 @@ const componentFiles = fs.readdirSync(componentsDir, { withFileTypes: true, enco
 
 type ComponentFile = (typeof componentFiles)[0];
 
+/** The component's behavior specification, when it has a `spec.ts`. */
+async function loadSpec(dir: string, name: string): Promise<ComponentSpec | undefined> {
+    const specPath = path.join(dir, 'spec.ts');
+    if (!fs.existsSync(specPath)) return undefined;
+    const module = (await import(specPath)) as { spec?: ComponentSpec };
+    if (!module.spec || module.spec.name !== name) {
+        throw new Error(`${name}/spec.ts must export \`spec\` with name "${name}"`);
+    }
+    return module.spec;
+}
+
 function generateComponentMeta({
     filePath: componentFile,
     content,
@@ -261,6 +280,9 @@ function generateTypes() {
         if (!f.isFile()) return [];
 
         if (!f.name.endsWith('.tsx') && !f.name.endsWith('.ts')) return [];
+
+        // The test helpers in rtl/ use Jest globals, which this program does not know.
+        if (f.parentPath.split(path.sep).includes('rtl')) return [];
 
         const filePath = path.resolve(f.parentPath, f.name);
 
@@ -496,6 +518,11 @@ async function createMeta() {
                 dependencies: m.dependencies?.filter((d) => arr.find((c) => c.name === d)),
             };
         });
+
+    for (const component of componentsMeta) {
+        const file = componentFiles.find((f) => f.name === component.name);
+        if (file) component.spec = await loadSpec(file.dir, component.name);
+    }
 
     componentsMeta.sort((a, b) => a.name.localeCompare(b.name));
 

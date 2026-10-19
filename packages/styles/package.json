@@ -28,7 +28,8 @@
         "node": ">=22"
     },
     "scripts": {
-        "build": "tsx build.ts",
+        "build": "tsx build.ts --derive-dark",
+        "tokens:derive-dark": "tsx scripts/derive-dark-theme.ts",
         "tokens:import": "tsx scripts/css-to-dtcg.ts",
         "lint": "tsc --noEmit -p tsconfig.json",
         "prepack": "node ../../scripts/copy-license.mjs",

@@ -141,7 +141,7 @@ export function Snackbar({
                         fallbackFocus: () => boxRef.current!,
                     }}
                 >
-                    <div data-snackbar-content key={id} role="alert">
+                    <div data-snackbar-content key={id} ref={boxRef} role="alert" tabIndex={-1}>
                         <div data-snackbar-icon-text>
                             {!!icon && isValidElement(icon) && (
                                 <span aria-hidden={true} data-snackbar-icon>

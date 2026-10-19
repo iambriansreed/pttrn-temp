@@ -55,8 +55,9 @@ export type InputProps = CommonProps<'owner' | 'size'> &
     };
 
 /**
- * An input that allows users to enter text, numbers or symbols in a singular line. This is a utility element and is not
- * intended to be used directly but rather through the Input, and other components.
+ * An input that allows users to enter text, numbers or symbols in a singular line.
+ *
+ * The input needs a name: a Field whose controlId matches its id, or an aria-label.
  *
  * @example
  *     import { Input } from '@ptrn/react/Input';
@@ -86,7 +87,7 @@ export function Input({
     size = DEFAULT.size,
     value = DEFAULT.value,
     name,
-    'aria-label': ariaLabel = 'Input',
+    'aria-label': ariaLabel,
     inputRef,
     required = false,
     placeholder,
@@ -134,7 +135,7 @@ export function Input({
                 aria-describedby={ariaDescribedBy || undefined}
                 aria-errormessage={ariaErrorMessage || undefined}
                 aria-invalid={invalid || undefined}
-                aria-label={ariaLabel}
+                aria-label={ariaLabel || undefined}
                 autoComplete={autoComplete}
                 data-main-input
                 disabled={disabled || undefined}

@@ -76,11 +76,15 @@ export function Fab<As extends ElementType = ElementType>(props: AriaAttributes 
     // ignore iconOnly=true if there is no icon
     const iconOnly = iconOnlyProp === true && !!icon;
 
-    const button = (triggerProps: TooltipTriggerProps) => (
+    // An icon-only Fab is named by its tooltip (the label), as a Button is. With a visible label, the tooltip describes the
+    // Fab instead, so the name stays the text people can see and say.
+    const button = ({ 'aria-labelledby': tooltipId, ...triggerProps }: TooltipTriggerProps) => (
         <As
             {...otherProps}
             {...triggerProps}
+            aria-describedby={!iconOnly ? tooltipId : undefined}
             aria-label={ariaLabel || label}
+            aria-labelledby={iconOnly && !ariaLabel ? tooltipId : undefined}
             data-container={container}
             data-placement={placement}
             data-position={container === 'page' ? 'fixed' : 'absolute'}

@@ -14,6 +14,7 @@ export function PageList({ numPages, onChange, value }: PageListProps) {
         const page = index + 1;
         return (
             <Button
+                aria-current={value === page ? 'page' : undefined}
                 aria-label={`Page ${page}`}
                 key={page}
                 label={String(page)}
