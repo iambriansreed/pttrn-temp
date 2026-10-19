@@ -59,6 +59,8 @@ export type DialogProps = CommonProps<'id' | 'owner'> &
  *
  * The Modal component is a higher-level component built on top of Dialog that includes standard dialog UI and behavior.
  *
+ * The dialog needs an accessible name: pass `aria-labelledby` with the id of its heading, or `aria-label`.
+ *
  * Also known as: Tray, Drawer, Flyout, Sheet
  *
  * @example
@@ -70,10 +72,10 @@ export type DialogProps = CommonProps<'id' | 'owner'> &
  *         return (
  *             <>
  *                 <Button label="Open Dialog" onClick={() => setOpen(true)} />
- *                 <Dialog onClose={() => setOpen(false)} open={open}>
+ *                 <Dialog aria-labelledby="dialog-title" onClose={() => setOpen(false)} open={open}>
  *                     <div style={{ padding: 'var(--usa-spacing-2)' }}>
  *                         <Flex align="center" justify="space-between">
- *                             <h1>Dialog Title</h1>
+ *                             <h1 id="dialog-title">Dialog Title</h1>
  *                             <Button
  *                                 icon={<SvgClose />}
  *                                 iconOnly
@@ -105,6 +107,10 @@ export function Dialog({
     owner,
     container,
     disableFocusTrap,
+    'aria-label': ariaLabel,
+    'aria-labelledby': ariaLabelledBy,
+    'aria-describedby': ariaDescribedBy,
+    'aria-description': ariaDescription,
     ...containerProps
 }: ElementProps<DialogProps, 'div'>) {
     const id = useId(idProp);
@@ -141,12 +147,20 @@ export function Dialog({
                             fallbackFocus: () => boxRef.current!,
                         }}
                     >
+                        {/* aria-description is an ARIA 1.3 global property that the lint's ARIA data does not know yet. */}
+                        {/* eslint-disable-next-line jsx-a11y/role-supports-aria-props */}
                         <div
+                            aria-describedby={ariaDescribedBy}
+                            aria-description={ariaDescription}
+                            aria-label={ariaLabel}
+                            aria-labelledby={ariaLabelledBy}
+                            aria-modal="true"
                             data-dialog-box
                             data-width-full={widthFull}
                             ref={(node) => {
                                 boxRef.current = node;
                             }}
+                            role="dialog"
                             tabIndex={-1}
                         >
                             {children}

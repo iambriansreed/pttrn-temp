@@ -3,6 +3,8 @@ import { TS_EXT_TO_TREAT_AS_ESM, ESM_TS_TRANSFORM_PATTERN } from 'ts-jest';
 
 const config: Config = {
     testEnvironment: 'jsdom',
+    // Only *.test files are suites; a component's spec.ts is data the suites import.
+    testMatch: ['**/*.test.[jt]s?(x)'],
     extensionsToTreatAsEsm: [...TS_EXT_TO_TREAT_AS_ESM],
     transform: {
         [ESM_TS_TRANSFORM_PATTERN]: [
@@ -18,6 +20,8 @@ const config: Config = {
         '-/hooks/(.*)': '<rootDir>/src/hooks/$1',
         '-/utils/(.*)': '<rootDir>/src/utils/$1',
         '-/rtl/(.*)': '<rootDir>/src/rtl/$1',
+        '-/types/(.*)': '<rootDir>/src/types/$1',
+        '-/constants/(.*)': '<rootDir>/src/constants/$1',
         '\\.(css|scss)$': 'identity-obj-proxy',
     },
     testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/dist/', 'tests'],

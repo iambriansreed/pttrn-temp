@@ -10,15 +10,15 @@ import styles from './accordion-item.scss';
 export type AccordionToggleDetail = { open: boolean };
 
 /**
- * One collapsible panel of a `ptrn-accordion`.
+ * One collapsible panel of a `pttrn-accordion`.
  *
- * @fires ptrn-toggle - After the user opens or closes the panel. `detail.open` is the new state.
- * @element ptrn-accordion-item
+ * @fires pttrn-toggle - After the user opens or closes the panel. `detail.open` is the new state.
+ * @element pttrn-accordion-item
  * @slot - The panel content.
  * @slot leading - Shown before the heading.
  * @slot trailing - Shown after the heading, before the arrow.
  */
-export class PtrnAccordionItem extends LitElement {
+export class PttrnAccordionItem extends LitElement {
     static properties = {
         heading: { type: String },
         subtitle: { type: String },
@@ -41,8 +41,8 @@ export class PtrnAccordionItem extends LitElement {
     declare _hasLeading: boolean;
     declare _hasTrailing: boolean;
 
-    private readonly _headerId = uniqueId('ptrn-accordion-header');
-    private readonly _contentId = uniqueId('ptrn-accordion-content');
+    private readonly _headerId = uniqueId('pttrn-accordion-header');
+    private readonly _contentId = uniqueId('pttrn-accordion-content');
 
     constructor() {
         super();
@@ -57,7 +57,7 @@ export class PtrnAccordionItem extends LitElement {
     private _toggle() {
         if (this.disabled) return;
         this.open = !this.open;
-        emit<AccordionToggleDetail>(this, 'ptrn-toggle', { open: this.open });
+        emit<AccordionToggleDetail>(this, 'pttrn-toggle', { open: this.open });
     }
 
     private _onSlotChange(event: Event, key: '_hasLeading' | '_hasTrailing') {
@@ -98,10 +98,10 @@ export class PtrnAccordionItem extends LitElement {
     }
 }
 
-define('ptrn-accordion-item', PtrnAccordionItem);
+define('pttrn-accordion-item', PttrnAccordionItem);
 
 declare global {
     interface HTMLElementTagNameMap {
-        'ptrn-accordion-item': PtrnAccordionItem;
+        'pttrn-accordion-item': PttrnAccordionItem;
     }
 }

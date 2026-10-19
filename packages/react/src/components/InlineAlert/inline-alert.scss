@@ -1,3 +1,4 @@
+// Text uses the 60-grade status tones: they hold 4.5:1 on white and on base-lightest, where the medium tones fall short.
 [data-pttrn='inline-alert'] {
     display: flex;
     align-items: start;
@@ -10,16 +11,16 @@
     }
 
     &[data-variant='error'] {
-        color: var(--theme-color-error-medium);
+        color: var(--theme-color-error-dark);
 
-        --first-tone: var(--theme-color-error-medium);
+        --first-tone: var(--theme-color-error-dark);
         --second-tone: var(--theme-color-ink);
     }
 
     &[data-variant='success'] {
-        color: var(--theme-color-success-medium);
+        color: var(--theme-color-success-darker);
 
-        --first-tone: var(--theme-color-success-medium);
+        --first-tone: var(--theme-color-success-darker);
         --second-tone: var(--usa-color-white);
     }
 
@@ -31,9 +32,9 @@
     }
 
     &[data-variant='informational'] {
-        color: var(--theme-color-info-dark);
+        color: var(--theme-color-info-darker);
 
-        --first-tone: var(--theme-color-info-dark);
+        --first-tone: var(--theme-color-info-darker);
         --second-tone: var(--theme-color-ink);
     }
 

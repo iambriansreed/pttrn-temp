@@ -7,20 +7,20 @@ import { version as webVersion } from '../../../packages/web/package.json';
 import { WebComponentDemo } from 'src/wc/types';
 
 /**
- * The custom elements as React components. Typing them as components (rather than adding `ptrn-*` to the global JSX
+ * The custom elements as React components. Typing them as components (rather than adding `pttrn-*` to the global JSX
  * namespace) keeps the tags out of the types the React package is checked against. An HTML boolean attribute is
  * "present or not", so pass `''` for on and `undefined` for off, never `false` (React 18 would write `open="false"`,
  * which still counts as present).
  */
-const PtrnAccordion = 'ptrn-accordion' as unknown as ComponentType<any>;
-const PtrnAccordionItem = 'ptrn-accordion-item' as unknown as ComponentType<any>;
+const PttrnAccordion = 'pttrn-accordion' as unknown as ComponentType<any>;
+const PttrnAccordionItem = 'pttrn-accordion-item' as unknown as ComponentType<any>;
 
-/** The React demo state (`items`, `singleOpen`) rendered as the `ptrn-accordion` element tree. */
+/** The React demo state (`items`, `singleOpen`) rendered as the `pttrn-accordion` element tree. */
 function AccordionWc({ items = [], singleOpen = true }: Partial<AccordionProps>) {
     return (
-        <PtrnAccordion multiple={singleOpen ? undefined : ''}>
+        <PttrnAccordion multiple={singleOpen ? undefined : ''}>
             {items.map(({ id, title, subtitle, leading, trailing, isOpen, disabled, children }, index) => (
-                <PtrnAccordionItem
+                <PttrnAccordionItem
                     disabled={disabled ? '' : undefined}
                     heading={title}
                     key={id ?? index}
@@ -30,9 +30,9 @@ function AccordionWc({ items = [], singleOpen = true }: Partial<AccordionProps>)
                     {leading && <span slot="leading">{leading}</span>}
                     {children}
                     {trailing && <span slot="trailing">{trailing}</span>}
-                </PtrnAccordionItem>
+                </PttrnAccordionItem>
             ))}
-        </PtrnAccordion>
+        </PttrnAccordion>
     );
 }
 
@@ -55,35 +55,35 @@ function accordionToHtml({ items = [], singleOpen = true }: Partial<AccordionPro
                 disabled && 'disabled',
             ].filter(Boolean);
             return [
-                `<ptrn-accordion-item ${attrs.join(' ')}>`,
+                `<pttrn-accordion-item ${attrs.join(' ')}>`,
                 leading && `<span slot="leading">${nodeToHtml(leading)}</span>`,
                 nodeToHtml(children),
                 trailing && `<span slot="trailing">${nodeToHtml(trailing)}</span>`,
-                '</ptrn-accordion-item>',
+                '</pttrn-accordion-item>',
             ]
                 .filter(Boolean)
                 .join('\n');
         })
         .join('\n');
 
-    return `<ptrn-accordion${singleOpen ? '' : ' multiple'}>\n${itemsHtml}\n</ptrn-accordion>`;
+    return `<pttrn-accordion${singleOpen ? '' : ' multiple'}>\n${itemsHtml}\n</pttrn-accordion>`;
 }
 
-const USAGE = `<script type="module" src="https://cdn.jsdelivr.net/npm/@ptrn/web@${webVersion}/dist/cdn/ptrn-web.min.js"></script>
+const USAGE = `<script type="module" src="https://cdn.jsdelivr.net/npm/@ptrn/web@${webVersion}/dist/cdn/pttrn-web.min.js"></script>
 
 <div style="width: 400px">
-    <ptrn-accordion>
-        <ptrn-accordion-item heading="Lawrence Welk" subtitle="The Champagne Music Maker">
+    <pttrn-accordion>
+        <pttrn-accordion-item heading="Lawrence Welk" subtitle="The Champagne Music Maker">
             Lawrence Welk was an American accordionist, bandleader, and television impresario, who hosted The Lawrence Welk Show from 1951 to 1982.
-        </ptrn-accordion-item>
-        <ptrn-accordion-item heading="Myron Floren" subtitle="The Happy Norwegian">
+        </pttrn-accordion-item>
+        <pttrn-accordion-item heading="Myron Floren" subtitle="The Happy Norwegian">
             Myron Floren was an American accordionist best known as the featured accordionist on The Lawrence Welk Show.
-        </ptrn-accordion-item>
-    </ptrn-accordion>
+        </pttrn-accordion-item>
+    </pttrn-accordion>
 </div>`;
 
 export const accordionWc: WebComponentDemo = {
-    tag: 'ptrn-accordion',
+    tag: 'pttrn-accordion',
     usage: USAGE,
     usageDescription:
         'No React needed. Load the elements from the CDN as shown, or run `npm install @ptrn/web` and import the component you need. Also load the `@ptrn/styles` tokens and a theme on the page so the elements pick up the design tokens.',

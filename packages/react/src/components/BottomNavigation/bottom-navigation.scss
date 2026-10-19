@@ -31,7 +31,7 @@ ul[data-pttrn-utility='tab-list'][data-pttrn='bottom-navigation'] {
         }
 
         &[aria-selected='true'] {
-            color: var(--theme-color-primary-medium);
+            color: var(--theme-color-primary-dark);
         }
 
         &[aria-selected='true']::after {
@@ -41,7 +41,7 @@ ul[data-pttrn-utility='tab-list'][data-pttrn='bottom-navigation'] {
             width: var(--usa-spacing-3);
             height: 2px;
             border-radius: 0 0 var(--usa-spacing-2px) var(--usa-spacing-2px);
-            background-color: var(--theme-color-primary-medium);
+            background-color: var(--theme-color-primary-dark);
         }
 
         &[aria-disabled='true'] {

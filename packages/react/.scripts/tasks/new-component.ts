@@ -13,6 +13,7 @@ import path from 'path';
 
 import { generateAndWriteComponentFile } from '.scripts/lib/generateComponentFile';
 import { generateAndWriteExampleFile } from '.scripts/lib/generateExampleFile';
+import { generateAndWriteSpecFile } from '.scripts/lib/generateSpecFile';
 import { generateAndWriteStylesFile } from '.scripts/lib/generateStylesFile';
 import { generateAndWriteTestFile } from '.scripts/lib/generateTestFile';
 import { getComponentsDir } from '.scripts/lib/getComponentsDir';
@@ -81,6 +82,8 @@ async function writeComponentFiles(componentName: string, componentDirectoryPath
     const slug = kebabCase(componentName);
     const componentStyleFilePath = path.join(componentDirectoryPath, `${slug}.scss`);
     await generateAndWriteStylesFile(componentName, componentStyleFilePath);
+
+    await generateAndWriteSpecFile(componentName, path.join(componentDirectoryPath, 'spec.ts'));
 
     const componentTestFilePath = path.join(componentDirectoryPath, `${componentName}.rtl.test.tsx`);
     await generateAndWriteTestFile(componentName, componentTestFilePath);
