@@ -47,7 +47,7 @@
         "store": "^2.0.12"
     },
     "devDependencies": {
-        "@cspell/eslint-plugin": "^9.4.0",
+        "@cspell/eslint-plugin": "^10.4.0",
         "@eslint/css": "^0.14.1",
         "@eslint/js": "^9.39.1",
         "@playwright/test": "^1.50.1",
