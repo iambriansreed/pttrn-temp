@@ -52,7 +52,7 @@ describeBehaviors(spec, {
     clickable: async () => {
         const user = userEvent.setup();
         const onClick = jest.fn();
-        render(<Avatar name="Andre Giant" onClick={onClick} showIcon={false} />);
+        render(<Avatar name="Andre Giant" onClick={onClick} showIcon />);
 
         const button = screen.getByRole('button', { name: 'Andre Giant' });
         expect(button).toHaveAttribute('tabindex', '0');
@@ -62,7 +62,7 @@ describeBehaviors(spec, {
     disabled: async () => {
         const user = userEvent.setup();
         const onClick = jest.fn();
-        render(<Avatar disabled name="Andre Giant" onClick={onClick} showIcon={false} />);
+        render(<Avatar disabled name="Andre Giant" onClick={onClick} showIcon />);
 
         const button = screen.getByRole('button', { name: 'Andre Giant' });
         expect(button).toHaveAttribute('aria-disabled', 'true');
@@ -78,7 +78,23 @@ describeBehaviors(spec, {
         rerender(<Avatar hideTooltip name="Andre Giant" showIcon={false} />);
         expect(document.querySelector('[role="tooltip"]')).toBeNull();
     },
+    'label-in-name': () => {
+        render(<Avatar name="Andre Giant" onClick={() => {}} showIcon={false} />);
+
+        const button = screen.getByRole('button', { name: 'AG, Andre Giant' });
+        const tooltip = document.querySelector('[role="tooltip"]') as HTMLElement;
+        expect(button).toHaveAttribute('aria-describedby', tooltip.id);
+        expect(button).not.toHaveAttribute('aria-labelledby');
+        expect(button).toHaveAccessibleDescription('Andre Giant');
+    },
+    focusable: () => {
+        render(<Avatar focusable name="Andre Giant" showIcon={false} />);
+
+        expect(screen.getByRole('img', { name: 'Andre Giant' })).toHaveAttribute('tabindex', '0');
+        expect(screen.queryByRole('button')).not.toBeInTheDocument();
+    },
     'axe-clean': async () => {
         for (const preset of presets) await hasNoBasicA11yIssues(<Avatar {...preset.propState} />)();
+        await hasNoBasicA11yIssues(<Avatar name="Andre Giant" onClick={() => {}} showIcon={false} />)();
     },
 });

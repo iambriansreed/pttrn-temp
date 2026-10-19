@@ -7,8 +7,8 @@ export const spec: ComponentSpec = {
         { part: 'group', description: 'The row, stacked (overlapping) or spread, in one size.' },
         {
             part: 'avatars',
-            role: 'button',
-            description: 'Up to max avatars, each focusable so its name can be read from the tooltip.',
+            role: 'img',
+            description: 'Up to max avatars, each a focusable image so its name can be read from the tooltip.',
         },
         {
             part: 'overflow button',
@@ -31,7 +31,7 @@ export const spec: ComponentSpec = {
         { keys: ['Escape'], description: 'Closes the menu and returns focus to the button.' },
     ],
     accessibility: {
-        roles: 'Each avatar is a button named after its person. The overflow control is a button with aria-haspopup menu, aria-expanded and aria-controls naming the menu; the menu is role menu with menuitems.',
+        roles: 'Each avatar is an image named after its person, in the tab order so its tooltip can show, and not a button because it does nothing. The overflow control is a button with aria-haspopup menu, aria-expanded and aria-controls naming the menu; the menu is role menu with menuitems.',
         labels: 'The overflow button\'s visible "+N" is part of its name ("+N more avatars"). The menu is labelled "N more avatars".',
         focus: 'Opening the menu moves focus to its first item; Escape returns it to the button; clicking outside or tabbing away closes the menu.',
         targetSize: 44,

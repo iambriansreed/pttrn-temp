@@ -17,13 +17,13 @@ export const spec: ComponentSpec = {
         { part: 'tooltip', description: 'The name, shown on hover and focus unless hideTooltip.' },
     ],
     keyboard: [
-        { keys: ['Tab'], description: 'Reaches a clickable avatar.' },
+        { keys: ['Tab'], description: 'Reaches a clickable avatar, or a focusable one.' },
         { keys: ['Enter', 'Space'], description: 'Activate a clickable avatar.' },
     ],
     accessibility: {
-        roles: 'Role img with the role description "person", or role button when clickable. A disabled clickable avatar is aria-disabled and out of the tab order. The image, icon and initials are aria-hidden.',
-        labels: 'The name is the accessible name through aria-label, and the tooltip text.',
-        focus: 'Only a clickable, enabled avatar is in the tab order.',
+        roles: 'Role img with the role description "person", or role button when clickable. A disabled clickable avatar is aria-disabled and out of the tab order. A focusable avatar keeps role img but joins the tab order so its tooltip can show. The image, icon and initials are aria-hidden.',
+        labels: 'The name is the accessible name: through the tooltip (aria-labelledby) while one shows, else through aria-label. A clickable avatar that shows initials is named "<initials>, <name>" and described by its tooltip, so the visible initials are part of the name (WCAG 2.5.3).',
+        focus: 'A clickable, enabled avatar is in the tab order; a non-clickable one only with focusable.',
         targetSize: 44,
     },
     behaviors: [
@@ -45,6 +45,15 @@ export const spec: ComponentSpec = {
                 'A disabled clickable avatar is aria-disabled, out of the tab order and does not call onClick.',
         },
         { id: 'tooltip', description: 'The name is a tooltip unless hideTooltip.' },
+        {
+            id: 'label-in-name',
+            description:
+                'A clickable avatar showing initials is named "<initials>, <name>" and its tooltip describes it.',
+        },
+        {
+            id: 'focusable',
+            description: 'focusable puts a non-clickable avatar in the tab order as an image, not a button.',
+        },
         { id: 'axe-clean', description: 'Every preset passes axe-core.' },
     ],
 };

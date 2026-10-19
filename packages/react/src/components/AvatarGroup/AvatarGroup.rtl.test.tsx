@@ -25,17 +25,20 @@ describeBehaviors(spec, {
     'renders-avatars': () => {
         render(<AvatarGroup items={PEOPLE.slice(0, 3)} />);
 
-        PEOPLE.slice(0, 3).forEach(({ name }) => expect(screen.getByRole('button', { name })).toBeInTheDocument());
+        PEOPLE.slice(0, 3).forEach(({ name }) =>
+            expect(screen.getByRole('img', { name })).toHaveAttribute('tabindex', '0'),
+        );
         expect(screen.queryByRole('button', { name: /more avatars/ })).not.toBeInTheDocument();
     },
     'overflow-button': () => {
         render(<AvatarGroup items={PEOPLE} max={4} />);
 
-        expect(screen.getAllByRole('button')).toHaveLength(5);
+        expect(screen.getAllByRole('img')).toHaveLength(4);
+        expect(screen.getAllByRole('button')).toHaveLength(1);
         expect(overflow()).toHaveAccessibleName('+2 more avatars');
         expect(overflow()).toHaveAttribute('aria-haspopup', 'menu');
         expect(overflow()).toHaveAttribute('aria-expanded', 'false');
-        expect(screen.queryByRole('button', { name: 'Westley' })).not.toBeInTheDocument();
+        expect(screen.queryByRole('img', { name: 'Westley' })).not.toBeInTheDocument();
     },
     'opens-menu': async () => {
         const user = userEvent.setup();
