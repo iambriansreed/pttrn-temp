@@ -777,7 +777,7 @@
         "react-dom": "^18.3.1 || ^19.0.0"
     },
     "devDependencies": {
-        "@cspell/eslint-plugin": "^9.4.0",
+        "@cspell/eslint-plugin": "^10.4.0",
         "@eslint/css": "^0.14.1",
         "@eslint/js": "^9.39.1",
         "@jest/globals": "^30.2.0",
