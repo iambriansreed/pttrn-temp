@@ -73,7 +73,7 @@ async function main() {
     await build({
         ...shared,
         entryPoints: [path.join(root, 'src/index.ts')],
-        outfile: path.join(dist, 'cdn/ptrn-web.min.js'),
+        outfile: path.join(dist, 'cdn/pttrn-web.min.js'),
         minify: true,
     });
 

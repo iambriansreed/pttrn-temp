@@ -1,16 +1,16 @@
 import { LitElement, html } from 'lit';
 import { define } from '../../utils/define';
-import { AccordionToggleDetail, PtrnAccordionItem } from './accordion-item';
+import { AccordionToggleDetail, PttrnAccordionItem } from './accordion-item';
 import styles from './accordion.scss';
 
 /**
  * A vertical stack of collapsible panels that allows customers to expand or collapse each panel individually to reveal
  * or hide their content.
  *
- * @element ptrn-accordion
- * @slot - `ptrn-accordion-item` elements.
+ * @element pttrn-accordion
+ * @slot - `pttrn-accordion-item` elements.
  */
-export class PtrnAccordion extends LitElement {
+export class PttrnAccordion extends LitElement {
     static properties = {
         multiple: { type: Boolean, reflect: true },
     };
@@ -23,13 +23,13 @@ export class PtrnAccordion extends LitElement {
     constructor() {
         super();
         this.multiple = false;
-        this.addEventListener('ptrn-toggle', (event) => this._onToggle(event as CustomEvent<AccordionToggleDetail>));
+        this.addEventListener('pttrn-toggle', (event) => this._onToggle(event as CustomEvent<AccordionToggleDetail>));
     }
 
     private _onToggle(event: CustomEvent<AccordionToggleDetail>) {
-        const item = event.target as PtrnAccordionItem;
+        const item = event.target as PttrnAccordionItem;
         if (this.multiple || !event.detail.open || item.parentElement !== this) return;
-        this.querySelectorAll<PtrnAccordionItem>(':scope > ptrn-accordion-item').forEach((other) => {
+        this.querySelectorAll<PttrnAccordionItem>(':scope > pttrn-accordion-item').forEach((other) => {
             if (other !== item) other.open = false;
         });
     }
@@ -39,10 +39,10 @@ export class PtrnAccordion extends LitElement {
     }
 }
 
-define('ptrn-accordion', PtrnAccordion);
+define('pttrn-accordion', PttrnAccordion);
 
 declare global {
     interface HTMLElementTagNameMap {
-        'ptrn-accordion': PtrnAccordion;
+        'pttrn-accordion': PttrnAccordion;
     }
 }
