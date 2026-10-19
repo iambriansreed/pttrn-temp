@@ -86,7 +86,7 @@ export function BannerAlert({
 }: ElementProps<BannerAlertProps, 'div'>) {
     return (
         <div data-elevated={elevated || undefined} data-pttrn="banner-alert" data-variant={variant} role="alert">
-            <div data-icon-bar>
+            <div aria-hidden data-icon-bar>
                 {variant === 'error' && <SvgErrorFill />}
                 {variant === 'informational' && <SvgInfoFill />}
                 {variant === 'success' && <SvgCheckCircleFill />}

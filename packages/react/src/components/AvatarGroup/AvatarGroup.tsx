@@ -93,7 +93,7 @@ export function AvatarGroup({ items, size = 'small', max: maxProp = 5, variant =
         <div data-max={max} data-pttrn="avatar-group" data-size={size} data-variant={variant} style={style}>
             <div data-wrap>
                 {items.slice(0, max).map((item, index) => (
-                    <Avatar key={index} {...item} onClick={() => {}} size={size} />
+                    <Avatar key={index} {...item} focusable size={size} />
                 ))}
                 {overflowItems.length > 0 && (
                     <AvatarGroupOverflow items={overflowItems} overflow={overflowItems.length} size={size} />

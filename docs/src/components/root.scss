@@ -1,3 +1,9 @@
+// Surfaces the docs paint themselves. Examples sit on the page background so components are scanned and screenshot in
+// the context they ship into; secondary surfaces (code, quotes, backdrops) tint toward ink in light and dark themes alike.
+:root[data-uswds-theme$='-dark'] {
+    --docs-surface: var(--theme-color-base-darker);
+}
+
 [data-uswds-theme] {
     color-scheme: light;
 }
@@ -73,6 +79,7 @@ p {
 }
 
 :root {
+    --docs-surface: var(--theme-color-base-lightest);
     --left-nav-width: 260px;
     --nav-contents-width: 200px;
     --navbar-height: var(--usa-spacing-7);
@@ -190,7 +197,7 @@ p {
         border-bottom: solid 1px var(--theme-color-base-lighter);
         padding: var(--usa-spacing-2);
         position: relative; // for absolute children
-        background-color: var(--theme-color-base-lightest);
+        background-color: var(--theme-body-background-color);
     }
 
     [data-error] {
@@ -212,7 +219,7 @@ p {
         border-bottom: solid 1px var(--theme-color-base-lighter);
 
         span:hover {
-            background-color: var(--theme-color-base-lightest);
+            background-color: var(--docs-surface);
         }
     }
 
@@ -235,7 +242,7 @@ p {
     border-top-left-radius: var(--theme-border-radius-lg);
     border-top-right-radius: var(--theme-border-radius-lg);
     position: relative;
-    background-color: var(--theme-color-base-lightest);
+    background-color: var(--theme-body-background-color);
 
     [data-pttrn='tab-group'] {
         background: var(--theme-body-background-color);
@@ -523,7 +530,7 @@ section[data-variants] {
     }
 
     pre code.hljs {
-        background-color: var(--theme-color-base-lightest) !important;
+        background-color: var(--docs-surface) !important;
         font-size: 14px;
     }
 
@@ -552,7 +559,7 @@ section[data-variants] {
     [data-backdrop] {
         position: absolute;
         inset: 0;
-        background: var(--theme-color-base-lightest);
+        background: var(--docs-surface);
         opacity: 0.75;
         z-index: -1;
     }
@@ -761,7 +768,7 @@ body[data-pttrn-code-demo] {
     }
 
     blockquote {
-        background-color: var(--theme-color-base-lightest);
+        background-color: var(--docs-surface);
         padding: 0.75rem 1.5rem;
         margin: 1.5rem 0;
         border-left: 6px solid var(--theme-color-primary-medium);

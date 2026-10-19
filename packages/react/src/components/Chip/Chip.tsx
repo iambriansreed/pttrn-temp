@@ -74,7 +74,7 @@ export function Chip({
     flat = false,
     disabled = false,
     label,
-    selected = false,
+    selected,
     leadingIcon,
     onClick,
     trailingIcon,
@@ -82,6 +82,8 @@ export function Chip({
 }: ChipProps) {
     return (
         <button
+            // A chip whose selection is managed is a toggle; one without the prop is a plain action.
+            aria-pressed={selected === undefined ? undefined : selected}
             data-disabled={disabled || undefined}
             data-flat={flat || undefined}
             data-pttrn="chip"
@@ -89,6 +91,7 @@ export function Chip({
             data-touch-target-parent
             disabled={disabled}
             onClick={disabled ? undefined : onClick}
+            type="button"
         >
             {isValidElement(leadingIcon) && (
                 <span aria-hidden="true" data-chip-icon>

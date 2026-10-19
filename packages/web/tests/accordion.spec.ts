@@ -8,28 +8,28 @@ const CONTENT = ['Content one', 'Content two', 'Content three'];
 
 /** Three sections, with per-section attributes, so each test states only what it changes. */
 const accordion = (attributes: string[] = [], root = '') =>
-    `<ptrn-accordion ${root}>${CONTENT.map(
+    `<pttrn-accordion ${root}>${CONTENT.map(
         (content, index) =>
-            `<ptrn-accordion-item heading="Section ${index + 1}" ${attributes[index] ?? ''}><p>${content}</p></ptrn-accordion-item>`,
-    ).join('')}</ptrn-accordion>`;
+            `<pttrn-accordion-item heading="Section ${index + 1}" ${attributes[index] ?? ''}><p>${content}</p></pttrn-accordion-item>`,
+    ).join('')}</pttrn-accordion>`;
 
 /** Mirrors the presets in `packages/react/src/components/Accordion/AccordionExample.tsx`. */
 const PRESETS = {
     Default: `
-        <ptrn-accordion>
-            <ptrn-accordion-item heading="Section 1" subtitle="Subtitle"><p>${CONTENT[0]}</p></ptrn-accordion-item>
-            <ptrn-accordion-item heading="Section 2">
+        <pttrn-accordion>
+            <pttrn-accordion-item heading="Section 1" subtitle="Subtitle"><p>${CONTENT[0]}</p></pttrn-accordion-item>
+            <pttrn-accordion-item heading="Section 2">
                 <span slot="leading">Lead</span>
                 <p>${CONTENT[1]}</p>
                 <span slot="trailing">Trailing</span>
-            </ptrn-accordion-item>
-            <ptrn-accordion-item heading="Section 3"><p>${CONTENT[2]}</p></ptrn-accordion-item>
-        </ptrn-accordion>`,
+            </pttrn-accordion-item>
+            <pttrn-accordion-item heading="Section 3"><p>${CONTENT[2]}</p></pttrn-accordion-item>
+        </pttrn-accordion>`,
     '1 disabled': accordion(['', 'disabled']),
     '1 disabled and open (but not showing)': accordion(['', 'disabled open']),
 };
 
-test.describe('ptrn-accordion', () => {
+test.describe('pttrn-accordion', () => {
     test('renders its sections', async ({ page }) => {
         await mount(page, PRESETS.Default);
         await expect(page.getByRole('button', { name: 'Section 2' })).toBeVisible();
@@ -43,12 +43,12 @@ test.describe('ptrn-accordion', () => {
         await expect(page.getByText('Trailing')).toBeVisible();
     });
 
-    test('fires ptrn-toggle with the new state', async ({ page }) => {
+    test('fires pttrn-toggle with the new state', async ({ page }) => {
         await mount(page, accordion());
         const events = await page.evaluate(async () => {
             const seen: boolean[] = [];
-            document.addEventListener('ptrn-toggle', (e) => seen.push((e as CustomEvent).detail.open));
-            const button = document.querySelector('ptrn-accordion-item')!.shadowRoot!.querySelector('button')!;
+            document.addEventListener('pttrn-toggle', (e) => seen.push((e as CustomEvent).detail.open));
+            const button = document.querySelector('pttrn-accordion-item')!.shadowRoot!.querySelector('button')!;
             button.click();
             button.click();
             return seen;
@@ -58,7 +58,7 @@ test.describe('ptrn-accordion', () => {
 
     test('reflects open and disabled as attributes', async ({ page }) => {
         await mount(page, accordion());
-        const item = page.locator('ptrn-accordion-item').first();
+        const item = page.locator('pttrn-accordion-item').first();
         await page.getByRole('button', { name: 'Section 1' }).click();
         await expect(item).toHaveAttribute('open', '');
         await item.evaluate((el) => ((el as HTMLElement & { disabled: boolean }).disabled = true));
@@ -156,7 +156,7 @@ describeBehaviors(spec, {
         await header.click();
         await expect(header).toHaveAttribute('aria-expanded', 'true');
         const relationship = await page.evaluate(() => {
-            const item = document.querySelector('ptrn-accordion-item')!;
+            const item = document.querySelector('pttrn-accordion-item')!;
             const button = item.shadowRoot!.querySelector('button')!;
             const panel = item.shadowRoot!.getElementById(button.getAttribute('aria-controls')!);
             return { found: !!panel, isContent: panel?.hasAttribute('data-content') };
@@ -167,7 +167,7 @@ describeBehaviors(spec, {
         for (const html of Object.values(PRESETS)) {
             await mount(page, html);
             // Scoped to the component, like the React suite, so page-level rules (title, lang, landmarks) do not apply.
-            const results = await new AxeBuilder({ page }).include('ptrn-accordion').analyze();
+            const results = await new AxeBuilder({ page }).include('pttrn-accordion').analyze();
             expect(results.violations).toEqual([]);
         }
     },
