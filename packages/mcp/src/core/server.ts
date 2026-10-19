@@ -48,7 +48,8 @@ export function createServer(catalog: Catalog, guide: string): McpServer {
             title: 'Get component',
             description:
                 'Returns one component: description, every prop with type, allowed values and default, the import ' +
-                'path, dependencies and a usage example when one exists. Read this before using a component.',
+                'path, dependencies, a usage example when one exists, and its behavior spec (anatomy, keyboard ' +
+                'model, accessibility requirements, tested behaviors) when it has one. Read this before using a component.',
             inputSchema: { name: z.string().describe('Component name, for example "Button".') },
             annotations: readOnly,
         },
