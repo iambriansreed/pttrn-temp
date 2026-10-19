@@ -61,7 +61,8 @@ function SlidePlaceholder({ number, onClick }: { number: number; onClick?: (mess
     return (
         <div
             style={{
-                backgroundColor: `var(--theme-color-${COLOR_VARIANTS[(number + 3) % COLOR_VARIANTS.length]}-lighter)`,
+                // The lightest tone keeps 50 grades between the slide and any text on it, in the dark theme too.
+                backgroundColor: `var(--theme-color-${COLOR_VARIANTS[(number + 3) % COLOR_VARIANTS.length]}-lightest)`,
                 color: `var(--theme-color-${COLOR_VARIANTS[(number + 3) % COLOR_VARIANTS.length]}-darker)`,
                 borderRadius: '8px',
                 minHeight: '180px',
