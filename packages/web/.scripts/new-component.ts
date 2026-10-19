@@ -3,9 +3,11 @@
  *
  * $ npm run newc -- Badge
  *
- * Creates `src/components/Badge/{badge.ts,badge.scss,index.ts}` and `tests/badge.spec.ts`, and adds the export to
- * `src/index.ts`. The React component must already have a `spec.ts`: the test registers its behaviors, and the lint
- * fails a Web Component whose React counterpart has no spec. Then follow the checklist in CONTRIBUTING.md.
+ * Creates `src/components/Badge/{badge.ts,badge.scss,index.ts}` and `tests/badge.spec.ts`, adds the export to
+ * `src/index.ts` and `package.json`, and registers the component in the docs (`docs/src/wc/badge.tsx`, `index.ts`,
+ * `names.ts`) with a generic demo wrapper to refine. The React component must already have a `spec.ts`: the test
+ * registers its behaviors, and the lint fails a Web Component whose React counterpart has no spec. Then follow the
+ * checklist in CONTRIBUTING.md.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -35,6 +37,55 @@ if (!fs.existsSync(specFile)) {
     process.exit(1);
 }
 
+/** The docs demo file the scaffold writes; `__NAME__`, `__TAG__` and `__CAMEL__` are filled in. */
+const DEMO_TEMPLATE = `import '@ptrn/web/__NAME__';
+import { __NAME__Props } from '@ptrn/react/__NAME__';
+import { ComponentType, ReactNode } from 'react';
+import { version as webVersion } from '../../../packages/web/package.json';
+import { WebComponentDemo } from 'src/wc/types';
+
+/** The element as a React component for the demo. A boolean attribute is '' for on and undefined for off. */
+const Pttrn__NAME__ = '__TAG__' as unknown as ComponentType<any>;
+
+const escapeAttr = (value: string) => value.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+
+/** Primitive demo props become attributes; booleans are present or absent. Map slots and item arrays by hand below. */
+const attributes = (props: Record<string, unknown>) =>
+    Object.fromEntries(
+        Object.entries(props)
+            .filter(([key, value]) => key !== 'children' && ['string', 'number', 'boolean'].includes(typeof value))
+            .filter(([, value]) => value !== false && value !== '')
+            .map(([key, value]) => [key.replace(/[A-Z]/g, (c) => \`-\${c.toLowerCase()}\`), value === true ? '' : value]),
+    );
+
+/** The React demo state (the props table) rendered as the element. */
+function __NAME__Wc({ children, ...props }: Partial<__NAME__Props> & { children?: ReactNode }) {
+    return <Pttrn__NAME__ {...attributes(props)}>{children}</Pttrn__NAME__>;
+}
+
+/** The HTML a Web Component user writes for the current demo state. */
+function __CAMEL__ToHtml({ children, ...props }: Record<string, unknown>) {
+    const attrs = Object.entries(attributes(props)).map(([key, value]) =>
+        value === '' ? key : \`\${key}="\${escapeAttr(String(value))}"\`,
+    );
+    const inner = typeof children === 'string' || typeof children === 'number' ? String(children) : '';
+    return \`<__TAG__\${attrs.length ? \` \${attrs.join(' ')}\` : ''}>\${inner}</__TAG__>\`;
+}
+
+const USAGE = \`<script type="module" src="https://cdn.jsdelivr.net/npm/@ptrn/web@\${webVersion}/dist/cdn/pttrn-web.min.js"></script>
+
+<__TAG__>Content</__TAG__>\`;
+
+export const __CAMEL__Wc: WebComponentDemo = {
+    tag: '__TAG__',
+    usage: USAGE,
+    usageDescription:
+        'No React needed. Load the elements from the CDN as shown, or run \`npm install @ptrn/web\` and import the component you need. Also load the \`@ptrn/styles\` tokens and a theme on the page so the elements pick up the design tokens.',
+    Wrapper: __NAME__Wc,
+    toHtml: __CAMEL__ToHtml,
+};
+`;
+
 const write = (file: string, contents: string) => {
     fs.mkdirSync(path.dirname(file), { recursive: true });
     fs.writeFileSync(file, contents);
@@ -53,7 +104,7 @@ import styles from './${kebab}.scss';
  * @element ${tag}
  * @slot - The content.
  */
-export class Ptrn${name} extends LitElement {
+export class Pttrn${name} extends LitElement {
     static properties = {};
 
     static styles = styles;
@@ -63,11 +114,11 @@ export class Ptrn${name} extends LitElement {
     }
 }
 
-define('${tag}', Ptrn${name});
+define('${tag}', Pttrn${name});
 
 declare global {
     interface HTMLElementTagNameMap {
-        '${tag}': Ptrn${name};
+        '${tag}': Pttrn${name};
     }
 }
 `,
@@ -113,6 +164,61 @@ const current = fs.readFileSync(indexFile, 'utf-8');
 if (!current.includes(line)) fs.writeFileSync(indexFile, current + line);
 console.log('updated src/index.ts');
 
+// The package export, `@ptrn/web/<Name>`.
+const packageFile = path.join(root, 'package.json');
+const pkg = JSON.parse(fs.readFileSync(packageFile, 'utf-8')) as { exports: Record<string, unknown> };
+if (!pkg.exports[`./${name}`]) {
+    pkg.exports[`./${name}`] = {
+        types: `./dist/components/${name}/index.d.ts`,
+        default: `./dist/components/${name}/index.js`,
+    };
+    fs.writeFileSync(packageFile, `${JSON.stringify(pkg, null, 4)}\n`);
+    console.log('updated package.json exports');
+}
+
+// The docs registration: a demo file with a generic wrapper, the registry entry and the name list. The Web Component
+// tab shows as soon as these exist, so refine the wrapper (slots, item children) before shipping.
+const camel = name.charAt(0).toLowerCase() + name.slice(1);
+const docsWc = path.resolve(root, '../../docs/src/wc');
+const demoFile = path.join(docsWc, `${kebab}.tsx`);
+if (!fs.existsSync(demoFile)) {
+    write(
+        demoFile,
+        DEMO_TEMPLATE.replaceAll('__NAME__', name).replaceAll('__TAG__', tag).replaceAll('__CAMEL__', camel),
+    );
+
+    const registry = path.join(docsWc, 'index.ts');
+    const lines = fs.readFileSync(registry, 'utf-8').split('\n');
+    const isWcImport = (text: string) => /^import .* from 'src\/wc\//.test(text);
+    const first = lines.findIndex(isWcImport);
+    let last = first;
+    while (isWcImport(lines[last + 1])) last += 1;
+    const imports = [...lines.slice(first, last + 1), `import { ${camel}Wc } from 'src/wc/${kebab}';`].sort((a, b) =>
+        a.slice(a.indexOf(" from '")).localeCompare(b.slice(b.indexOf(" from '"))),
+    );
+    lines.splice(first, last - first + 1, ...imports);
+    // Keep the registry entries in name order.
+    const open = lines.findIndex((text) => text.startsWith('export const webComponents'));
+    let close = open + 1;
+    while (!lines[close].startsWith('};')) close += 1;
+    const entries = [...lines.slice(open + 1, close), `    ${name}: ${camel}Wc,`].sort();
+    lines.splice(open + 1, close - open - 1, ...entries);
+    fs.writeFileSync(registry, lines.join('\n'));
+
+    const namesFile = path.join(docsWc, 'names.ts');
+    const names = fs.readFileSync(namesFile, 'utf-8');
+    const listed = [...names.matchAll(/'([A-Za-z0-9]+)'/g)].map((match) => match[1]);
+    const updated = [...new Set([...listed, name])].sort();
+    fs.writeFileSync(
+        namesFile,
+        names.replace(
+            /webComponents: string\[\] = \[[\s\S]*?\];/,
+            `webComponents: string[] = [${updated.map((entry) => `'${entry}'`).join(', ')}];`,
+        ),
+    );
+    console.log(`registered ${name} in docs/src/wc (index.ts, names.ts)`);
+}
+
 console.log(`
-Next: fill in the element, then work through the checklist in CONTRIBUTING.md.
-The docs tab stays disabled until the component is registered in docs/src/wc/index.ts.`);
+Next: fill in the element and its tests, refine docs/src/wc/${kebab}.tsx (slots, item children, the HTML generator),
+then work through the checklist in CONTRIBUTING.md.`);

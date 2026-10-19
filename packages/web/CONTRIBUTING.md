@@ -8,17 +8,17 @@ Copy this list into the pull request and check each box as it is verified.
 
 1. **Read the spec, or write it.** The React component's `spec.ts` is the contract: its behaviors are the tests you will write. If the React component has none yet, write it there first (and register its behaviors in the React suite); the scaffold refuses to run without one.
 2. **Map the API.** Write a table of React prop to attribute, slot or event (the Accordion table in `plans/web-components.md` is the model). Get design and UX engineering to review it before writing the element.
-3. **Scaffold.** `npm run newc -- <Name>` (the React component name, for example `TabGroup`).
+3. **Scaffold.** `npm run newc -- <Name>` (the React component name, for example `TabGroup`). It writes the element, its stylesheet, the test, the `src/index.ts` and `package.json` exports, and a docs demo file with a generic wrapper, and registers the name in the docs.
 4. **Build the element and its styles.** Copy the rules from the React SCSS. Start the stylesheet with `@use '../../styles/reset';`.
 5. **Write the tests.** `describeBehaviors(spec, …)` in `tests/<name>.spec.ts` with one test per behavior id, mirroring the presets in the React component's example file, plus element-specific cases (events, reflected attributes) and an axe run scoped to the element. `npm run build && npm test`. `npm run lint:specs` in `@ptrn/react` checks that the suite exists and uses the spec.
-6. **Register it in the docs.** Add `docs/src/wc/<name>.tsx` (usage HTML, the demo wrapper that turns the React demo state into the element, and the HTML generator), one line in `docs/src/wc/index.ts` and the name in `docs/src/wc/names.ts`. The Web Component tab stays disabled until this exists.
+6. **Finish the docs demo.** The scaffold registered `docs/src/wc/<name>.tsx` with a wrapper that turns primitive demo props into attributes. Map what it cannot guess (slots, item arrays, events) in the wrapper and the HTML generator, and write the usage HTML. The Elements table on the page comes from the Custom Elements Manifest, so document attributes, events and slots in the element's JSDoc (`@slot`, `@fires`, `@csspart`) and property declarations, not in the docs.
 7. **Look at it.** Build the docs and compare the React and Web Component tabs at the same preset: same width, same heights, same states. Then `npm run test:visual:update` in the docs (on Linux) adds the Web Component tab to the visual baselines; commit the new screenshots.
 8. **Ship it.** `npm run lint`, `npm run build` at the root, then update the component list in `README.md`.
 
 ## Conventions
 
-- **Tag and class.** `pttrn-<kebab-name>`, class `Ptrn<Name>`, registered with `define()` so loading twice is safe.
-- **Properties.** Declare them in `static properties` and initialize them in the constructor (no class fields: `useDefineForClassFields` is off so Lit's accessors are not shadowed). Reflect state that CSS or consumers select on (`open`, `disabled`).
+- **Tag and class.** `pttrn-<kebab-name>`, class `Pttrn<Name>`, registered with `define()` so loading twice is safe.
+- **Properties.** Declare them in `static properties` and initialize them in the constructor (no class fields: `useDefineForClassFields` is off so Lit's accessors are not shadowed). Reflect state that CSS or consumers select on (`open`, `disabled`). Internal state starts with `_` and declares `state: true`; it never becomes an attribute and the manifest leaves it out.
 - **Booleans.** An HTML boolean attribute is present or absent, so it cannot default to true. When the React prop defaults to true, name the Web Component attribute for the opposite (`singleOpen` is `multiple`).
 - **Reserved names.** Do not reuse a global HTML attribute for a different meaning. `title` is the native tooltip, so the accordion uses `heading`. Check `hidden`, `label`, `type`, `role`, `slot` and `id` before naming one.
 - **`ReactNode` props are slots.** `children` is the default slot, and `leading`, `trailing`, `icon` and similar are named slots. Track empty slots with `slotchange` when the wrapper should disappear.
