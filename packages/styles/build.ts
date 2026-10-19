@@ -25,6 +25,7 @@ import path from 'node:path';
 import StyleDictionary from 'style-dictionary';
 
 import { Collection, Manifest, valueToCss } from './scripts/dtcg.js';
+import { deriveDarkTheme } from './scripts/derive-dark-theme.js';
 
 const args = process.argv.slice(2);
 const option = (name: string, fallback: string) => {
@@ -34,6 +35,11 @@ const option = (name: string, fallback: string) => {
 const root = import.meta.dirname;
 const tokensDir = path.resolve(root, option('--tokens', 'tokens'));
 const outDir = path.resolve(root, option('--out', '.'));
+// The package build derives the dark theme from the light one first (see scripts/derive-dark-theme.ts). A plain
+// `tsx build.ts` leaves every mode as exported, which is what the Figma plugin's round-trip test checks.
+if (args.includes('--derive-dark') && !deriveDarkTheme(tokensDir)) {
+    throw new Error(`--derive-dark needs the project-theme and project-theme-dark files under ${tokensDir}`);
+}
 const manifest: Manifest = JSON.parse(fs.readFileSync(path.join(tokensDir, 'manifest.json'), 'utf8'));
 
 type Value = { text: string; refs: string[] };
