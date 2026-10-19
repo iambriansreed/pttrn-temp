@@ -92,7 +92,7 @@
                     }
                 },
                 "ink-reverse": {
-                    "$value": "{uswds-theme.theme.color.base.darkest}",
+                    "$value": "{color.usa.color.gray.90}",
                     "$extensions": {
                         "pttrn": {
                             "css": "--theme-color-ink-reverse",
@@ -102,7 +102,7 @@
                 },
                 "base": {
                     "lightest": {
-                        "$value": "{color.usa.color.gray.5}",
+                        "$value": "{color.usa.color.gray.80}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-base-lightest",
@@ -111,7 +111,7 @@
                         }
                     },
                     "lighter": {
-                        "$value": "{general.usa.color.gray.10}",
+                        "$value": "{color.usa.color.gray.70}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-base-lighter",
@@ -120,7 +120,7 @@
                         }
                     },
                     "light": {
-                        "$value": "{general.usa.color.gray.30}",
+                        "$value": "{color.usa.color.gray.60}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-base-light",
@@ -129,7 +129,7 @@
                         }
                     },
                     "medium": {
-                        "$value": "{general.usa.color.gray.50}",
+                        "$value": "{color.usa.color.gray.40}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-base-medium",
@@ -138,7 +138,7 @@
                         }
                     },
                     "dark": {
-                        "$value": "{color.usa.color.gray.60}",
+                        "$value": "{color.usa.color.gray.30}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-base-dark",
@@ -147,7 +147,7 @@
                         }
                     },
                     "darker": {
-                        "$value": "{general.usa.color.gray.80}",
+                        "$value": "{color.usa.color.gray.20}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-base-darker",
@@ -156,7 +156,7 @@
                         }
                     },
                     "darkest": {
-                        "$value": "{color.usa.color.gray.90}",
+                        "$value": "{color.usa.color.gray.5}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-base-darkest",
@@ -167,7 +167,7 @@
                 },
                 "primary": {
                     "lightest": {
-                        "$value": "{general.usa.color.blue-warm.5}",
+                        "$value": "{general.usa.color.blue-warm.80}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-primary-lightest",
@@ -176,7 +176,7 @@
                         }
                     },
                     "lighter": {
-                        "$value": "{general.usa.color.blue-warm.20}",
+                        "$value": "{general.usa.color.blue-warm.70v}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-primary-lighter",
@@ -185,7 +185,7 @@
                         }
                     },
                     "light": {
-                        "$value": "{color.usa.color.blue-warm.30v}",
+                        "$value": "{color.usa.color.blue-warm.60}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-primary-light",
@@ -212,7 +212,7 @@
                         }
                     },
                     "dark": {
-                        "$value": "{color.usa.color.blue-warm.60}",
+                        "$value": "{color.usa.color.blue-warm.30v}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-primary-dark",
@@ -221,7 +221,7 @@
                         }
                     },
                     "darker": {
-                        "$value": "{general.usa.color.blue-warm.70}",
+                        "$value": "{general.usa.color.blue-warm.20}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-primary-darker",
@@ -230,7 +230,7 @@
                         }
                     },
                     "darkest": {
-                        "$value": "{general.usa.color.blue-warm.80}",
+                        "$value": "{general.usa.color.blue-warm.5}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-primary-darkest",
@@ -241,7 +241,7 @@
                 },
                 "secondary": {
                     "lightest": {
-                        "$value": "{color.usa.color.gold.5}",
+                        "$value": "{general.usa.color.gold.80}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-secondary-lightest",
@@ -250,7 +250,7 @@
                         }
                     },
                     "lighter": {
-                        "$value": "{general.usa.color.gold.10}",
+                        "$value": "{general.usa.color.gold.70}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-secondary-lighter",
@@ -259,7 +259,7 @@
                         }
                     },
                     "light": {
-                        "$value": "{color.usa.color.gold.30}",
+                        "$value": "{general.usa.color.gold.60}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-secondary-light",
@@ -286,7 +286,7 @@
                         }
                     },
                     "dark": {
-                        "$value": "{general.usa.color.gold.60}",
+                        "$value": "{color.usa.color.gold.30}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-secondary-dark",
@@ -295,7 +295,7 @@
                         }
                     },
                     "darker": {
-                        "$value": "{general.usa.color.gold.70}",
+                        "$value": "{general.usa.color.gold.10}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-secondary-darker",
@@ -304,7 +304,7 @@
                         }
                     },
                     "darkest": {
-                        "$value": "{general.usa.color.gold.80}",
+                        "$value": "{color.usa.color.gold.5}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-secondary-darkest",
@@ -315,7 +315,7 @@
                 },
                 "accent-cool": {
                     "lightest": {
-                        "$value": "{general.usa.color.mint.5v}",
+                        "$value": "{color.usa.color.mint.80}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-accent-cool-lightest",
@@ -324,7 +324,7 @@
                         }
                     },
                     "lighter": {
-                        "$value": "{color.usa.color.mint.20}",
+                        "$value": "{color.usa.color.mint.70}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-accent-cool-lighter",
@@ -333,7 +333,7 @@
                         }
                     },
                     "light": {
-                        "$value": "{color.usa.color.mint.30}",
+                        "$value": "{color.usa.color.mint.60}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-accent-cool-light",
@@ -360,7 +360,7 @@
                         }
                     },
                     "dark": {
-                        "$value": "{color.usa.color.mint.60}",
+                        "$value": "{color.usa.color.mint.30}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-accent-cool-dark",
@@ -369,7 +369,7 @@
                         }
                     },
                     "darker": {
-                        "$value": "{color.usa.color.mint.70}",
+                        "$value": "{color.usa.color.mint.20}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-accent-cool-darker",
@@ -378,7 +378,7 @@
                         }
                     },
                     "darkest": {
-                        "$value": "{color.usa.color.mint.80}",
+                        "$value": "{color.usa.color.mint.5v}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-accent-cool-darkest",
@@ -389,7 +389,7 @@
                 },
                 "accent-warm": {
                     "lightest": {
-                        "$value": "{general.usa.color.indigo.5}",
+                        "$value": "{general.usa.color.indigo.80}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-accent-warm-lightest",
@@ -398,7 +398,7 @@
                         }
                     },
                     "lighter": {
-                        "$value": "{general.usa.color.indigo.10}",
+                        "$value": "{color.usa.color.indigo.70v}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-accent-warm-lighter",
@@ -407,7 +407,7 @@
                         }
                     },
                     "light": {
-                        "$value": "{color.usa.color.indigo.40v}",
+                        "$value": "{color.usa.color.indigo.60v}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-accent-warm-light",
@@ -434,7 +434,7 @@
                         }
                     },
                     "dark": {
-                        "$value": "{color.usa.color.indigo.60v}",
+                        "$value": "{color.usa.color.indigo.40v}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-accent-warm-dark",
@@ -443,7 +443,7 @@
                         }
                     },
                     "darker": {
-                        "$value": "{general.usa.color.indigo.70v}",
+                        "$value": "{general.usa.color.indigo.10}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-accent-warm-darker",
@@ -452,7 +452,7 @@
                         }
                     },
                     "darkest": {
-                        "$value": "{general.usa.color.indigo.80}",
+                        "$value": "{general.usa.color.indigo.5}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-accent-warm-darkest",
@@ -463,7 +463,7 @@
                 },
                 "info": {
                     "lightest": {
-                        "$value": "{color.usa.color.cyan.5}",
+                        "$value": "{color.usa.color.cyan.80}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-info-lightest",
@@ -472,7 +472,7 @@
                         }
                     },
                     "lighter": {
-                        "$value": "{general.usa.color.cyan.20}",
+                        "$value": "{general.usa.color.cyan.70}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-info-lighter",
@@ -481,7 +481,7 @@
                         }
                     },
                     "light": {
-                        "$value": "{general.usa.color.cyan.30v}",
+                        "$value": "{general.usa.color.cyan.60v}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-info-light",
@@ -499,7 +499,7 @@
                         }
                     },
                     "dark": {
-                        "$value": "{general.usa.color.cyan.60v}",
+                        "$value": "{general.usa.color.cyan.30v}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-info-dark",
@@ -508,7 +508,7 @@
                         }
                     },
                     "darker": {
-                        "$value": "{general.usa.color.cyan.70}",
+                        "$value": "{general.usa.color.cyan.20}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-info-darker",
@@ -517,7 +517,7 @@
                         }
                     },
                     "darkest": {
-                        "$value": "{color.usa.color.cyan.80}",
+                        "$value": "{color.usa.color.cyan.5}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-info-darkest",
@@ -528,7 +528,7 @@
                 },
                 "success": {
                     "lightest": {
-                        "$value": "{general.usa.color.green-cool.5}",
+                        "$value": "{color.usa.color.green-cool.80}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-success-lightest",
@@ -537,7 +537,7 @@
                         }
                     },
                     "lighter": {
-                        "$value": "{general.usa.color.green-cool.20v}",
+                        "$value": "{general.usa.color.green-cool.70v}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-success-lighter",
@@ -546,7 +546,7 @@
                         }
                     },
                     "light": {
-                        "$value": "{general.usa.color.green-cool.40v}",
+                        "$value": "{general.usa.color.green-cool.60v}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-success-light",
@@ -564,7 +564,7 @@
                         }
                     },
                     "dark": {
-                        "$value": "{general.usa.color.green-cool.60v}",
+                        "$value": "{general.usa.color.green-cool.40v}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-success-dark",
@@ -573,7 +573,7 @@
                         }
                     },
                     "darker": {
-                        "$value": "{general.usa.color.green-cool.70v}",
+                        "$value": "{general.usa.color.green-cool.20v}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-success-darker",
@@ -582,7 +582,7 @@
                         }
                     },
                     "darkest": {
-                        "$value": "{color.usa.color.green-cool.80}",
+                        "$value": "{general.usa.color.green-cool.5}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-success-darkest",
@@ -593,7 +593,7 @@
                 },
                 "warning": {
                     "lightest": {
-                        "$value": "{color.usa.color.yellow.5}",
+                        "$value": "{general.usa.color.yellow.80}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-warning-lightest",
@@ -602,7 +602,7 @@
                         }
                     },
                     "lighter": {
-                        "$value": "{color.usa.color.yellow.20v}",
+                        "$value": "{general.usa.color.yellow.70}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-warning-lighter",
@@ -611,7 +611,7 @@
                         }
                     },
                     "light": {
-                        "$value": "{general.usa.color.yellow.30v}",
+                        "$value": "{color.usa.color.yellow.60}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-warning-light",
@@ -629,7 +629,7 @@
                         }
                     },
                     "dark": {
-                        "$value": "{color.usa.color.yellow.60}",
+                        "$value": "{general.usa.color.yellow.30v}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-warning-dark",
@@ -638,7 +638,7 @@
                         }
                     },
                     "darker": {
-                        "$value": "{general.usa.color.yellow.70}",
+                        "$value": "{color.usa.color.yellow.20v}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-warning-darker",
@@ -647,7 +647,7 @@
                         }
                     },
                     "darkest": {
-                        "$value": "{general.usa.color.yellow.80}",
+                        "$value": "{color.usa.color.yellow.5}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-warning-darkest",
@@ -658,7 +658,7 @@
                 },
                 "error": {
                     "lightest": {
-                        "$value": "{color.usa.color.red.10}",
+                        "$value": "{general.usa.color.red.80v}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-error-lightest",
@@ -667,7 +667,7 @@
                         }
                     },
                     "lighter": {
-                        "$value": "{general.usa.color.red.20}",
+                        "$value": "{general.usa.color.red.70v}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-error-lighter",
@@ -676,7 +676,7 @@
                         }
                     },
                     "light": {
-                        "$value": "{color.usa.color.red.30v}",
+                        "$value": "{color.usa.color.red.60v}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-error-light",
@@ -694,7 +694,7 @@
                         }
                     },
                     "dark": {
-                        "$value": "{color.usa.color.red.60v}",
+                        "$value": "{general.usa.color.red.30}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-error-dark",
@@ -703,7 +703,7 @@
                         }
                     },
                     "darker": {
-                        "$value": "{general.usa.color.red.70v}",
+                        "$value": "{general.usa.color.red.20}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-error-darker",
@@ -712,7 +712,7 @@
                         }
                     },
                     "darkest": {
-                        "$value": "{general.usa.color.red.80v}",
+                        "$value": "{color.usa.color.red.10}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-error-darkest",
@@ -743,7 +743,7 @@
                 },
                 "disabled": {
                     "lightest": {
-                        "$value": "{color.usa.color.black-transparent.10}",
+                        "$value": "{color.usa.color.white-transparent.10}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-disabled-lightest",
@@ -752,7 +752,7 @@
                         }
                     },
                     "lighter": {
-                        "$value": "{general.usa.color.black-transparent.30}",
+                        "$value": "{color.usa.color.white-transparent.20}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-disabled-lighter",
@@ -761,7 +761,7 @@
                         }
                     },
                     "light": {
-                        "$value": "{color.usa.color.black-transparent.40}",
+                        "$value": "{color.usa.color.white-transparent.40}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-disabled-light",
@@ -770,7 +770,7 @@
                         }
                     },
                     "medium": {
-                        "$value": "{general.usa.color.black-transparent.50}",
+                        "$value": "{color.usa.color.white-transparent.50}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-disabled-medium",
@@ -779,7 +779,7 @@
                         }
                     },
                     "dark": {
-                        "$value": "{color.usa.color.white-transparent.30}",
+                        "$value": "{color.usa.color.black-transparent.30}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-disabled-dark",
@@ -788,7 +788,7 @@
                         }
                     },
                     "darker": {
-                        "$value": "{color.usa.color.white-transparent.20}",
+                        "$value": "{color.usa.color.black-transparent.20}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-disabled-darker",
@@ -797,7 +797,7 @@
                         }
                     },
                     "darkest": {
-                        "$value": "{color.usa.color.white-transparent.10}",
+                        "$value": "{color.usa.color.black-transparent.10}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--theme-color-disabled-darkest",
@@ -1223,7 +1223,7 @@
                     }
                 },
                 "text-color-on-dark": {
-                    "$value": "{uswds-theme.theme.color.base.darkest}",
+                    "$value": "{general.usa.color.white}",
                     "$extensions": {
                         "pttrn": {
                             "css": "--theme-page-text-color-on-dark",
@@ -1343,7 +1343,7 @@
                 },
                 "button": {
                     "background-color": {
-                        "$value": "{uswds-theme.theme.color.base.darker}",
+                        "$value": "{uswds-theme.theme.color.primary.light}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--component-accordion-button-background-color",
@@ -1652,7 +1652,7 @@
                 },
                 "padding": {
                     "$type": "string",
-                    "$value": "String value",
+                    "$value": "medium",
                     "$extensions": {
                         "pttrn": {
                             "css": "--component-button-padding",
@@ -1662,7 +1662,7 @@
                 },
                 "size": {
                     "$type": "string",
-                    "$value": "String value",
+                    "$value": "medium",
                     "$extensions": {
                         "pttrn": {
                             "css": "--component-button-size",
@@ -1794,7 +1794,7 @@
                     }
                 },
                 "border-width": {
-                    "$value": "{spacing.usa.spacing.2px}",
+                    "$value": "{spacing.usa.spacing.0}",
                     "$extensions": {
                         "pttrn": {
                             "css": "--component-card-border-width",
@@ -2039,7 +2039,7 @@
                     }
                 },
                 "primary-link-color": {
-                    "$value": "{color.usa.color.white}",
+                    "$value": "{uswds-theme.theme.color.ink-reverse}",
                     "$extensions": {
                         "pttrn": {
                             "css": "--component-identifier-primary-link-color",
@@ -2187,7 +2187,7 @@
                     }
                 },
                 "error-background-color": {
-                    "$value": "{color.usa.color.white}",
+                    "$value": "{uswds-theme.theme.color.ink-reverse}",
                     "$extensions": {
                         "pttrn": {
                             "css": "--component-input-error-background-color",
@@ -2288,7 +2288,7 @@
                     }
                 },
                 "active-color": {
-                    "$value": "{color.usa.color.black}",
+                    "$value": "{uswds-theme.theme.color.ink}",
                     "$extensions": {
                         "pttrn": {
                             "css": "--component-link-active-color",
@@ -2297,7 +2297,7 @@
                     }
                 },
                 "visited-color": {
-                    "$value": "{color.usa.color.violet.70v}",
+                    "$value": "{color.usa.color.violet.30v}",
                     "$extensions": {
                         "pttrn": {
                             "css": "--component-link-visited-color",
@@ -2306,7 +2306,7 @@
                     }
                 },
                 "reverse-color": {
-                    "$value": "{uswds-theme.theme.color.primary.light}",
+                    "$value": "{color.usa.color.blue-warm.30v}",
                     "$extensions": {
                         "pttrn": {
                             "css": "--component-link-reverse-color",
@@ -2315,7 +2315,7 @@
                     }
                 },
                 "reverse-hover-color": {
-                    "$value": "{uswds-theme.theme.color.primary.lighter}",
+                    "$value": "{general.usa.color.blue-warm.20}",
                     "$extensions": {
                         "pttrn": {
                             "css": "--component-link-reverse-hover-color",
@@ -2467,7 +2467,7 @@
                 },
                 "counter": {
                     "background-color": {
-                        "$value": "{color.usa.color.white}",
+                        "$value": "{uswds-theme.theme.color.ink-reverse}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--component-process-list-counter-background-color",
@@ -2512,7 +2512,7 @@
                         }
                     },
                     "gap-color": {
-                        "$value": "{color.usa.color.white}",
+                        "$value": "{uswds-theme.theme.color.ink-reverse}",
                         "$extensions": {
                             "pttrn": {
                                 "css": "--component-process-list-counter-gap-color",
@@ -2685,7 +2685,7 @@
             },
             "step-indicator": {
                 "background-color": {
-                    "$value": "{color.usa.color.white}",
+                    "$value": "{uswds-theme.theme.color.ink-reverse}",
                     "$extensions": {
                         "pttrn": {
                             "css": "--component-step-indicator-background-color",
@@ -2839,7 +2839,7 @@
             },
             "summary-box": {
                 "border-color": {
-                    "$value": "{uswds-theme.theme.color.info.medium}",
+                    "$value": "{uswds-theme.theme.color.info.dark}",
                     "$extensions": {
                         "pttrn": {
                             "css": "--component-summary-box-border-color",
@@ -2848,7 +2848,7 @@
                     }
                 },
                 "background-color": {
-                    "$value": "{uswds-theme.theme.color.info.darkest}",
+                    "$value": "{uswds-theme.theme.color.info.lightest}",
                     "$extensions": {
                         "pttrn": {
                             "css": "--component-summary-box-background-color",

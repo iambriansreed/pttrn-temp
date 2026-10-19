@@ -17,13 +17,13 @@ Copy this list into the pull request and check each box as it is verified.
 
 ## Conventions
 
-- **Tag and class.** `ptrn-<kebab-name>`, class `Ptrn<Name>`, registered with `define()` so loading twice is safe.
+- **Tag and class.** `pttrn-<kebab-name>`, class `Ptrn<Name>`, registered with `define()` so loading twice is safe.
 - **Properties.** Declare them in `static properties` and initialize them in the constructor (no class fields: `useDefineForClassFields` is off so Lit's accessors are not shadowed). Reflect state that CSS or consumers select on (`open`, `disabled`).
 - **Booleans.** An HTML boolean attribute is present or absent, so it cannot default to true. When the React prop defaults to true, name the Web Component attribute for the opposite (`singleOpen` is `multiple`).
 - **Reserved names.** Do not reuse a global HTML attribute for a different meaning. `title` is the native tooltip, so the accordion uses `heading`. Check `hidden`, `label`, `type`, `role`, `slot` and `id` before naming one.
 - **`ReactNode` props are slots.** `children` is the default slot, and `leading`, `trailing`, `icon` and similar are named slots. Track empty slots with `slotchange` when the wrapper should disappear.
-- **Arrays of objects become child elements.** `items=[{...}]` becomes repeated `ptrn-<name>-item` children.
-- **Events.** `emit(this, 'ptrn-<name>', detail)` from `src/utils/emit.ts` (bubbles and composed). Fire only for user-driven changes, not when a property is set from code.
+- **Arrays of objects become child elements.** `items=[{...}]` becomes repeated `pttrn-<name>-item` children.
+- **Events.** `emit(this, 'pttrn-<name>', detail)` from `src/utils/emit.ts` (bubbles and composed). Fire only for user-driven changes, not when a property is set from code.
 - **Accessibility.** Keep the button and the panel it controls in the same shadow root, because `aria-controls` and `aria-labelledby` cannot cross a shadow boundary.
 - **Icons.** Import the raw file from `@ptrn/icons` (`import arrow from '@ptrn/icons/KeyboardArrowDown.svg'`) and render it with `unsafeSVG`. The build inlines it.
 - **Styles.** Tokens are CSS custom properties, so they inherit into the shadow root. Never hard-code a value the React SCSS reads from a token.

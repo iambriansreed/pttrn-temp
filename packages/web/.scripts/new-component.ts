@@ -19,7 +19,7 @@ if (!name || !/^[A-Z][A-Za-z0-9]*$/.test(name)) {
 }
 
 const kebab = name.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
-const tag = `ptrn-${kebab}`;
+const tag = `pttrn-${kebab}`;
 const dir = path.join(root, 'src/components', name);
 
 if (fs.existsSync(dir)) {
