@@ -24,12 +24,14 @@
     },
     "main": "./dist/index.js",
     "types": "./dist/index.d.ts",
+    "customElements": "dist/custom-elements.json",
     "exports": {
         ".": {
             "types": "./dist/index.d.ts",
             "default": "./dist/index.js"
         },
         "./cdn": "./dist/cdn/pttrn-web.min.js",
+        "./custom-elements.json": "./dist/custom-elements.json",
         "./Accordion": {
             "types": "./dist/components/Accordion/index.d.ts",
             "default": "./dist/components/Accordion/index.js"
@@ -50,6 +52,7 @@
     },
     "devDependencies": {
         "@axe-core/playwright": "^4.10.1",
+        "@custom-elements-manifest/analyzer": "^0.11.0",
         "@eslint/js": "^9.39.1",
         "@playwright/test": "^1.50.1",
         "@ptrn/icons": "*",

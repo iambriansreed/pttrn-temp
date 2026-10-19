@@ -4,6 +4,7 @@
  * 1. One ESM file per entry (the package index and each component), with `lit` left external so bundlers dedupe it.
  * 2. One self-contained minified bundle for `<script type="module">` use with no build step.
  * 3. Type declarations from tsc.
+ * 4. The Custom Elements Manifest, read by the docs, editors and the MCP server.
  *
  * `.scss` imports compile to a Lit stylesheet and `.svg` imports (from `@ptrn/icons`) inline as strings.
  *
@@ -78,6 +79,9 @@ async function main() {
     });
 
     execSync('npx tsc -p tsconfig.json --emitDeclarationOnly', { cwd: root, stdio: 'inherit' });
+
+    // 4. The Custom Elements Manifest (dist/custom-elements.json), see custom-elements-manifest.config.mjs.
+    execSync('npx cem analyze', { cwd: root, stdio: 'inherit' });
 
     console.log(`\x1b[32mpttrn web components build completed successfully (${(Date.now() - start) / 1000}s)\x1b[0m`);
 }

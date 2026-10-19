@@ -35,6 +35,13 @@ import '@ptrn/web/Accordion'; // registers pttrn-accordion and pttrn-accordion-i
 
 Importing a component registers its elements, and loading a module twice is safe. Import from `@ptrn/web` to register everything. Bundlers get one ES module per component with `lit` left external so it is deduplicated.
 
+## The Custom Elements Manifest
+
+The build writes `dist/custom-elements.json`, a [Custom Elements Manifest](https://custom-elements-manifest.open-wc.org)
+of every element: tags, attributes, properties, events, slots and CSS parts, from the element sources. `package.json`
+points to it through `customElements`, so editors with manifest support autocomplete the tags, the docs site renders its
+Elements tables from it, and tooling can import it as `@ptrn/web/custom-elements.json`.
+
 ## Accordion
 
 | Element                | Attribute or slot | Notes                                                                        |
