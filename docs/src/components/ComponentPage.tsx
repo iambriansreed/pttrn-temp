@@ -13,6 +13,7 @@ import { ComponentVariants } from 'components/ComponentVariants';
 import { Markup } from 'components/Markup';
 import { Syntax } from 'components/Syntax';
 import { TypeProps } from 'components/TypeProps';
+import { WebComponentApi } from 'components/WebComponentApi';
 import { CodeExample } from 'src/components/CodeExample';
 import { CodePlayground } from 'src/components/CodePlayground';
 import { FrameworkTabs } from 'src/components/FrameworkTabs';
@@ -87,6 +88,7 @@ export function ComponentPage({ componentName }: { componentName: MetaComponentN
                             <h3>Basic usage</h3>
                             {!!webComponent.usageDescription && <Markup>{webComponent.usageDescription}</Markup>}
                             <HtmlPlayground defaultCode={webComponent.usage} />
+                            <WebComponentApi tag={webComponent.tag} />
                         </>
                     )}
                     {!isWebComponent && !component.hideUsage && component.usage && (
