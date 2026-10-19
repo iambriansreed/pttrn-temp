@@ -195,6 +195,14 @@ jobs:
                   name: visual-${{ matrix.theme }}
                   path: docs/playwright-report
                   retention-days: 7
+            # The screenshots this run took, named like the baselines (*-actual.png): after an intended change, these
+            # are the new baselines, rendered on the platform the comparison runs on.
+            - uses: actions/upload-artifact@v4
+              if: failure()
+              with:
+                  name: visual-actual-${{ matrix.theme }}
+                  path: docs/test-results/**/*-actual.png
+                  retention-days: 7
 
     pack:
         name: Package contents
