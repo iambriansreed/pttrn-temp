@@ -16,7 +16,7 @@
         "build": "vite-node ./.scripts/build.ts",
         "meta": "vite-node ./.scripts/meta.ts",
         "dev": "vite-node ./.scripts/dev.ts",
-        "lint": "eslint && tsc --noemit",
+        "lint": "eslint && tsc -b",
         "lint:fix": "eslint --fix",
         "lint:css": "npx stylelint '**/*.scss'",
         "lint:css:fix": "npx stylelint '**/*.scss' --fix",
