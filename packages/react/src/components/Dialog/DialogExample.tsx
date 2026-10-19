@@ -11,7 +11,13 @@ export const DialogExample: ComponentExample<DialogProps> = {
         return (
             <>
                 <Button label={label} onClick={() => setState({ open: true })} />
-                <Component data-example-component {...props} id="exampleId" onClose={() => setState({ open: false })}>
+                <Component
+                    aria-labelledby="exampleId-title"
+                    data-example-component
+                    {...props}
+                    id="exampleId"
+                    onClose={() => setState({ open: false })}
+                >
                     <div style={{ padding: 'var(--usa-spacing-2)' }}>
                         <Flex
                             align="center"
@@ -21,7 +27,7 @@ export const DialogExample: ComponentExample<DialogProps> = {
                                 marginBottom: 'var(--usa-spacing-2)',
                             }}
                         >
-                            <h4>Dialog</h4>
+                            <h4 id="exampleId-title">Dialog</h4>
                             <Button
                                 icon={<SvgClose />}
                                 iconOnly
@@ -59,6 +65,7 @@ export const DialogExample: ComponentExample<DialogProps> = {
                     >
                         <Button label="Open Dialog" onClick={() => setOpen(true)} />
                         <Dialog
+                            aria-labelledby="contained-dialog-title"
                             container={container.current}
                             onClose={() => setOpen(false)}
                             open={open}
@@ -72,7 +79,7 @@ export const DialogExample: ComponentExample<DialogProps> = {
                                         marginBottom: 'var(--usa-spacing-2)',
                                     }}
                                 >
-                                    <h4>Contained</h4>
+                                    <h4 id="contained-dialog-title">Contained</h4>
                                     <Button
                                         icon={<SvgClose />}
                                         iconOnly
@@ -98,10 +105,10 @@ export const Usage = () => {
     return (
         <>
             <Button label="Open Dialog" onClick={() => setOpen(true)} />
-            <Dialog onClose={() => setOpen(false)} open={open}>
+            <Dialog aria-labelledby="dialog-title" onClose={() => setOpen(false)} open={open}>
                 <div style={{ padding: 'var(--usa-spacing-2)' }}>
                     <Flex align="center" justify="space-between">
-                        <h1>Dialog Title</h1>
+                        <h1 id="dialog-title">Dialog Title</h1>
                         <Button
                             icon={<SvgClose />}
                             iconOnly
