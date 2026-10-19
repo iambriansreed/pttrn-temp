@@ -62,6 +62,9 @@ export function FileUploadItem({
                     <span data-file-details>{subText}</span>
                 </div>
                 <Button
+                    // Each item in a list has a cancel button; the name says which file it cancels, starting with the
+                    // visible tooltip text so voice control still matches it.
+                    aria-label={`${onCancelToolTip || 'Cancel'} ${fileName}`}
                     icon={<SvgDelete />}
                     iconOnly
                     label={onCancelToolTip || 'Cancel'}

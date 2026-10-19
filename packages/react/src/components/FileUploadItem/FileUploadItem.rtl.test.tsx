@@ -21,12 +21,14 @@ const Subject = (props: Partial<FileUploadItemProps>) => (
 
 const item = () => document.querySelector('[data-pttrn="file-upload-item"]') as HTMLElement;
 const details = () => item().querySelector('[data-file-details]') as HTMLElement;
-const cancelButton = (name = 'Cancel') => screen.getByRole('button', { name });
+// The button names its file, after the visible tooltip text.
+const cancelButton = (label = 'Cancel') => screen.getByRole('button', { name: `${label} holiday-photo.png` });
 // The progress element is named by its label, the rounded percentage.
 const progressbar = (name: string) => screen.getByRole('progressbar', { name });
 // The tooltip names the cancel button. It shows on focus and is positioned a tick later; waiting for it keeps that
 // update inside act.
-const tooltipOf = (button: HTMLElement) => document.getElementById(button.getAttribute('aria-labelledby') as string);
+const tooltipOf = (button: HTMLElement) =>
+    document.getElementById(button.getAttribute('data-tooltip-trigger') as string);
 const tooltipShown = (button: HTMLElement) =>
     waitFor(() => expect(tooltipOf(button)).toHaveStyle({ pointerEvents: 'auto' }));
 
@@ -122,10 +124,12 @@ describeBehaviors(spec, {
     },
     'cancel-label': () => {
         const { rerender } = render(<Subject cancelButtonLabel="Remove" />);
-        expect(screen.queryByRole('button', { name: 'Cancel' })).not.toBeInTheDocument();
+        expect(screen.queryByRole('button', { name: /^Cancel/ })).not.toBeInTheDocument();
         const button = cancelButton('Remove');
         expect(tooltipOf(button)).toHaveAttribute('role', 'tooltip');
         expect(tooltipOf(button)).toHaveTextContent('Remove');
+        // The name comes from aria-label, so the tooltip is not also the label.
+        expect(button).not.toHaveAttribute('aria-labelledby');
 
         rerender(<Subject cancelButtonLabel="" />);
         expect(cancelButton('Cancel')).toBeInTheDocument();

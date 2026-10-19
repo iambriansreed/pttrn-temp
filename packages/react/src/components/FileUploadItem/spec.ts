@@ -24,7 +24,7 @@ export const spec: ComponentSpec = {
             part: 'cancel button',
             role: 'button',
             description:
-                'A large tertiary icon-only button named by cancelButtonLabel, "Cancel" by default; calls onCancel with the file name.',
+                'A large tertiary icon-only button whose tooltip is cancelButtonLabel, "Cancel" by default, and whose name adds the file: "Cancel holiday-photo.png". Calls onCancel with the file name.',
         },
         {
             part: 'progress',
@@ -45,7 +45,7 @@ export const spec: ComponentSpec = {
     ],
     accessibility: {
         roles: 'The container has no role. The status line holds a native progress element, role progressbar with aria-valuenow at the rounded progress and aria-busy until it reaches 100, or, when status is error, an alert that announces the message when it appears. The cancel button is a native button; both icons are aria-hidden.',
-        labels: 'The name and details are text. The progress bar is named by its percentage alone and the cancel button by cancelButtonLabel through its tooltip and aria-label, so neither says which file it belongs to; a list of items relies on reading order for that.',
+        labels: 'The name and details are text. The cancel button is named by cancelButtonLabel followed by the file name, so each button in a list says which file it cancels and the name still starts with the visible tooltip text. The progress bar is named by its percentage and follows the file name in reading order.',
         focus: 'Native focus on the cancel button only; nothing moves focus. The alert and the progress bar are never focusable.',
         targetSize: 44,
         motion: 'Only the progress fill animates, through ProgressBar: its width over 0.3s. Nothing else moves.',
@@ -70,11 +70,14 @@ export const spec: ComponentSpec = {
             description:
                 'status error replaces the progressbar with an error alert holding errorMessage, or the default message.',
         },
-        { id: 'cancel', description: 'The cancel button, "Cancel" by default, calls onCancel with the file name.' },
+        {
+            id: 'cancel',
+            description: 'The cancel button, named "Cancel <file name>" by default, calls onCancel with the file name.',
+        },
         {
             id: 'cancel-label',
             description:
-                'cancelButtonLabel names the cancel button and its tooltip; an empty label falls back to "Cancel".',
+                'cancelButtonLabel is the tooltip and starts the button name; an empty label falls back to "Cancel".',
         },
         { id: 'keyboard', description: 'Tab reaches the cancel button alone, and Enter or Space calls onCancel.' },
         { id: 'icon-decorative', description: 'The file icon and the button icon render aria-hidden.' },

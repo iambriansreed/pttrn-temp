@@ -9,7 +9,10 @@ export type TooltipTriggerProps = {
     onMouseLeave?: () => void;
     onFocus?: () => void;
     onBlur?: () => void;
+    /** The tooltip names the trigger by default. A trigger with its own name drops this and keeps the anchor below. */
     'aria-labelledby'?: string;
+    /** The tooltip's id. The tooltip finds its trigger by it, so positioning never depends on how the trigger is named. */
+    'data-tooltip-trigger'?: string;
 };
 
 export type TooltipProps = {
@@ -76,6 +79,7 @@ export function Tooltip({ placement = 'top', label, children, disabled = false, 
                 onFocus: () => setShow(true),
                 onBlur: () => setShow(false),
                 'aria-labelledby': id,
+                'data-tooltip-trigger': id,
             })}
             {label && (
                 <Portal>
@@ -85,11 +89,8 @@ export function Tooltip({ placement = 'top', label, children, disabled = false, 
                         id={id}
                         ref={(node) => {
                             elements.setFloating(node);
-                            // The trigger carries the id as its label, or as its description when it has a visible label.
                             elements.setReference(
-                                document.querySelector<HTMLElement>(
-                                    `[aria-labelledby="${id}"], [aria-describedby="${id}"]`,
-                                ),
+                                document.querySelector<HTMLElement>(`[data-tooltip-trigger="${id}"]`),
                             );
                         }}
                         role="tooltip"
