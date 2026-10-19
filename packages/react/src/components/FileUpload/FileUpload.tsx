@@ -5,6 +5,7 @@ import { Button } from '-/components/Button';
 import { FileUploadItem, FileUploadItemProps } from '-/components/FileUploadItem';
 import { InlineAlert } from '-/components/InlineAlert';
 import { Txt } from '-/components/Txt';
+import { useId } from '-/hooks/useId';
 import { DEFAULT_ERROR_MESSAGE, FileEntry, FileUploadStatus, MimeType } from '-/utils/fileUploads';
 import { randomString } from '-/utils/random';
 
@@ -105,6 +106,7 @@ export function FileUpload({
     cancelButtonLabel = 'Cancel',
 }: FileUploadProps) {
     const fileInputRef = useRef<HTMLInputElement>(null);
+    const inputId = useId();
     const maxFileSizeMB = maxFileSize * MB;
     const [fileEntries, setFileEntries] = useState<FileEntry[]>(files || []);
 
@@ -191,13 +193,13 @@ export function FileUpload({
                 onDragOver={dragAndDrop ? handleDrag('over') : undefined}
                 onDrop={dragAndDrop ? handleDrop : undefined}
             >
-                <SvgCloudUpload />
+                <SvgCloudUpload aria-hidden />
                 <Txt variant="body-large">{title}</Txt>
                 <Txt variant="body-small">{uploadSubtitle}</Txt>
                 <input
                     accept={acceptedFileTypes?.join(', ')}
                     hidden
-                    id="temp-id"
+                    id={inputId}
                     multiple={multipleFiles}
                     onChange={handleFileChange}
                     ref={fileInputRef}

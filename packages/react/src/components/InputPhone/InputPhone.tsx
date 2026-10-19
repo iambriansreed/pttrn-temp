@@ -140,7 +140,8 @@ export function InputPhone({
 
     const spaceEnter = () => {
         if (!open) {
-            elements.reference?.click();
+            // The floating reference is the Input container, not this button, so open the list directly.
+            setActiveElementId(items[0]?.id || null);
             return;
         }
         if (activeElementId) getElementById(activeElementId)?.click();
@@ -237,10 +238,10 @@ export function InputPhone({
             {open && (
                 <Menu
                     aria-autocomplete={undefined}
-                    aria-label="Select country code"
                     as="div"
                     id={menuId}
                     innerRef={elements.setFloating}
+                    label="Select country code"
                     onClickCapture={() => {
                         // Prevent the menu from closing when clicking inside it
                         // maintain focus on the select control

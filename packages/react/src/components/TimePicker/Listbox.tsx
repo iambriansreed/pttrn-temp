@@ -35,7 +35,7 @@ export function TimePickerListbox({ options, selectedValue, type: kind, onSelect
 
     return (
         <div
-            //aria-activedescendant={activeElementId || undefined}
+            aria-activedescendant={activeElementId || undefined}
             aria-label={`Select ${kind}`}
             data-pttrn="time-picker-listbox"
             data-scroll-column={kind}

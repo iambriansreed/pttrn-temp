@@ -55,7 +55,7 @@ export function FileUploadItem({
         <div data-pttrn="file-upload-item">
             <div data-row>
                 <div data-icon>
-                    <SvgDraft />
+                    <SvgDraft aria-hidden />
                 </div>
                 <div data-info>
                     <Truncated data-file-name>{fileName}</Truncated>

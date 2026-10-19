@@ -113,7 +113,11 @@ export function TimePicker({
         [elements?.reference, open],
     );
 
-    useOutsideClick({ elements: [elements.floating], callback: () => setOpen(false), disabled: !open });
+    // The toggle is a span, so it guards disabled and read-only itself and answers Enter and Space like a button.
+    const toggleOpen = () => {
+        if (disabled || readOnly) return;
+        setOpen(!open);
+    };
 
     const { hourOptions, minuteOptions, meridiemOptions } = useMemo(
         () => ({
@@ -142,6 +146,13 @@ export function TimePicker({
         meridiem?: HTMLElement | null;
     } | null>(null);
     const buttonRef = useRef<HTMLElement | null>(null);
+
+    // A press on the toggle is not an outside click, or it would close the popup and the click reopen it.
+    useOutsideClick({
+        elements: [elements.floating, buttonRef.current],
+        callback: () => setOpen(false),
+        disabled: !open,
+    });
 
     const [firstField, setFirstField] = useState<HTMLElement | null>(null);
 
@@ -208,8 +219,9 @@ export function TimePicker({
                 />
                 <Button
                     aria-controls={open ? menuId : undefined}
+                    aria-disabled={disabled || readOnly || undefined}
                     aria-expanded={open}
-                    aria-haspopup="listbox"
+                    aria-haspopup="dialog"
                     as="span"
                     disabled={disabled || readOnly}
                     icon={<SvgSchedule />}
@@ -218,21 +230,26 @@ export function TimePicker({
                         buttonRef.current = node;
                     }}
                     label={`${open ? 'Close' : 'Open'} Time Picker`}
-                    onClick={() => setOpen(!open)}
+                    onClick={toggleOpen}
+                    onKeyDown={handleKeyDown({ Enter: toggleOpen, Space: toggleOpen }, { preventDefault: true })}
                     role="combobox"
+                    tabIndex={disabled || readOnly ? -1 : 0}
                     variant="tertiary"
                 />
             </div>
             {open && (
                 <Portal>
                     <Menu
+                        aria-modal="true"
                         id={menuId}
                         innerRef={(node) => {
                             if (!node) return;
                             elements.setFloating(node as HTMLElement);
                         }}
                         label="Select time"
+                        onKeyDown={handleKeyDown({ Escape: () => setOpen(false) })}
                         owner="time-picker"
+                        role="dialog"
                         style={floatingStyles}
                         width="fit-content"
                     >

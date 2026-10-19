@@ -30,9 +30,8 @@ export function TableFooter({
             </div>
             <div data-sr-only id={`${id}-pagination-description`}>
                 <p>
-                    The buttons inside this control allow you to paginate through the data in the table above,
-                    {pageSize}
-                    rows at a time.
+                    The buttons inside this control allow you to paginate through the data in the table above,{' '}
+                    {pageSize} rows at a time.
                 </p>
             </div>
             <Pagination

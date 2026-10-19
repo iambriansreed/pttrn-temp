@@ -52,6 +52,7 @@ export type CalendarProps = {
 export function Calendar({ id, value: valueProp, onChange, focusTrap = false }: CalendarProps) {
     const baseId = useId(id);
     const gridId = `${baseId}-grid`;
+    const titleId = `${baseId}-title`;
     const generateOptionId = useMemo(() => optionIdGenerator(baseId), [baseId]);
 
     const firstButtonRef = useRef<HTMLButtonElement | null>(null);
@@ -113,7 +114,9 @@ export function Calendar({ id, value: valueProp, onChange, focusTrap = false }: 
                     size="large"
                     variant="tertiary"
                 />
-                <span data-title>{format(activeDate, 'MMMM yyyy')}</span>
+                <span data-title id={titleId}>
+                    {format(activeDate, 'MMMM yyyy')}
+                </span>
                 <Button
                     icon={<SvgChevronRight />}
                     iconOnly={true}
@@ -132,7 +135,8 @@ export function Calendar({ id, value: valueProp, onChange, focusTrap = false }: 
                     variant="tertiary"
                 />
             </div>
-            <table role="grid">
+            {/* The month title names the grid, so assistive technology reads the month before the days. */}
+            <table aria-labelledby={titleId} role="grid">
                 <thead>
                     <tr>
                         <th abbr="Sunday" scope="col">
