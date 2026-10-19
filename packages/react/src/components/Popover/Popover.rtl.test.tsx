@@ -15,6 +15,11 @@ const base: PopoverProps = {
 
 const trigger = () => screen.getByRole('button', { name: 'Toggle popover' });
 const panel = () => document.querySelector('[data-pttrn="popover"]');
+// The panel is positioned a tick after it mounts: role queries skip it and it refuses pointer events until then.
+const open = async (user: ReturnType<typeof userEvent.setup>) => {
+    await user.click(trigger());
+    await waitFor(() => expect(panel()).toHaveStyle({ pointerEvents: 'auto' }));
+};
 
 describe('Popover (RTL)', () => {
     it('renders', () => {
@@ -46,9 +51,8 @@ describeBehaviors(spec, {
         const user = userEvent.setup();
         render(<Popover {...base} />);
 
-        await user.click(trigger());
-        // The panel is positioned a tick after it mounts, and role queries skip it until it is visible.
-        await user.click(await screen.findByRole('button', { name: 'Close' }));
+        await open(user);
+        await user.click(screen.getByRole('button', { name: 'Close' }));
         await waitFor(() => expect(panel()).toBeNull());
     },
     'outside-click-closes': async () => {
@@ -89,8 +93,8 @@ describeBehaviors(spec, {
             />,
         );
 
-        await user.click(trigger());
-        await user.click(await screen.findByRole('button', { name: 'Primary' }));
+        await open(user);
+        await user.click(screen.getByRole('button', { name: 'Primary' }));
         await user.click(screen.getByRole('button', { name: 'Secondary' }));
         expect(primary).toHaveBeenCalledTimes(1);
         expect(secondary).toHaveBeenCalledTimes(1);
