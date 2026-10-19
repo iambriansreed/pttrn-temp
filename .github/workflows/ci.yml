@@ -23,10 +23,10 @@ jobs:
         if: github.event_name == 'pull_request'
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v7
               with:
                   fetch-depth: 0
-            - uses: actions/setup-node@v4
+            - uses: actions/setup-node@v7
               with:
                   node-version-file: .nvmrc
                   cache: npm
@@ -37,8 +37,8 @@ jobs:
         name: Lint and typecheck
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v4
-            - uses: actions/setup-node@v4
+            - uses: actions/checkout@v7
+            - uses: actions/setup-node@v7
               with:
                   node-version-file: .nvmrc
                   cache: npm
@@ -62,8 +62,8 @@ jobs:
         name: Unit tests
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v4
-            - uses: actions/setup-node@v4
+            - uses: actions/checkout@v7
+            - uses: actions/setup-node@v7
               with:
                   node-version-file: .nvmrc
                   cache: npm
@@ -83,8 +83,8 @@ jobs:
             matrix:
                 react: [18, 19]
         steps:
-            - uses: actions/checkout@v4
-            - uses: actions/setup-node@v4
+            - uses: actions/checkout@v7
+            - uses: actions/setup-node@v7
               with:
                   node-version-file: .nvmrc
                   cache: npm
@@ -98,8 +98,8 @@ jobs:
         name: Web Components (Playwright)
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v4
-            - uses: actions/setup-node@v4
+            - uses: actions/checkout@v7
+            - uses: actions/setup-node@v7
               with:
                   node-version-file: .nvmrc
                   cache: npm
@@ -107,7 +107,7 @@ jobs:
             - run: npm run build
             - run: npx playwright install --with-deps chromium
             - run: npm test --workspace @ptrn/web
-            - uses: actions/upload-artifact@v4
+            - uses: actions/upload-artifact@v7
               if: failure()
               with:
                   name: playwright-web
@@ -118,8 +118,8 @@ jobs:
         name: Docs site (Playwright)
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v4
-            - uses: actions/setup-node@v4
+            - uses: actions/checkout@v7
+            - uses: actions/setup-node@v7
               with:
                   node-version-file: .nvmrc
                   cache: npm
@@ -128,7 +128,7 @@ jobs:
             - run: npm run build:docs
             - run: npx playwright install --with-deps chromium
             - run: npm test --workspace ptrn-docs
-            - uses: actions/upload-artifact@v4
+            - uses: actions/upload-artifact@v7
               if: failure()
               with:
                   name: playwright-docs
@@ -147,8 +147,8 @@ jobs:
             matrix:
                 theme: [default, project-theme, project-theme-dark]
         steps:
-            - uses: actions/checkout@v4
-            - uses: actions/setup-node@v4
+            - uses: actions/checkout@v7
+            - uses: actions/setup-node@v7
               with:
                   node-version-file: .nvmrc
                   cache: npm
@@ -159,7 +159,7 @@ jobs:
             - run: npm run test:a11y --workspace ptrn-docs
               env:
                   PTTRN_THEME: ${{ matrix.theme }}
-            - uses: actions/upload-artifact@v4
+            - uses: actions/upload-artifact@v7
               if: failure()
               with:
                   name: a11y-${{ matrix.theme }}
@@ -174,8 +174,8 @@ jobs:
             matrix:
                 theme: [default, project-theme, project-theme-dark]
         steps:
-            - uses: actions/checkout@v4
-            - uses: actions/setup-node@v4
+            - uses: actions/checkout@v7
+            - uses: actions/setup-node@v7
               with:
                   node-version-file: .nvmrc
                   cache: npm
@@ -189,7 +189,7 @@ jobs:
             - run: npm run test:visual --workspace ptrn-docs
               env:
                   PTTRN_THEME: ${{ matrix.theme }}
-            - uses: actions/upload-artifact@v4
+            - uses: actions/upload-artifact@v7
               if: failure()
               with:
                   name: visual-${{ matrix.theme }}
@@ -197,7 +197,7 @@ jobs:
                   retention-days: 7
             # The screenshots this run took, named like the baselines (*-actual.png): after an intended change, these
             # are the new baselines, rendered on the platform the comparison runs on.
-            - uses: actions/upload-artifact@v4
+            - uses: actions/upload-artifact@v7
               if: failure()
               with:
                   name: visual-actual-${{ matrix.theme }}
@@ -208,8 +208,8 @@ jobs:
         name: Package contents
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v4
-            - uses: actions/setup-node@v4
+            - uses: actions/checkout@v7
+            - uses: actions/setup-node@v7
               with:
                   node-version-file: .nvmrc
                   cache: npm
