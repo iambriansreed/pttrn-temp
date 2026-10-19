@@ -50,6 +50,8 @@ jobs:
             - run: npm run lint
             - run: npx tsx .scripts/tasks/lint-components.ts
               working-directory: packages/react
+            # Every component spec is consistent with the React suite and, where one exists, the Web Component suite.
+            - run: npm run lint:specs --workspace @ptrn/react
             - run: npm run check:css-vars --workspace @ptrn/react --workspace @ptrn/web
             - run: npx prettier --check .
             # The stylesheets and the token module in @ptrn/styles are built from tokens/ and committed; they must match.

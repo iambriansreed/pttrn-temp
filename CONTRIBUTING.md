@@ -41,7 +41,8 @@ npm run dev     # docs site at http://localhost:8055, after generating the compo
 
 React lives in `packages/react`; Web Components live in `packages/web`.
 
-- Scaffold with `npm run newc -- ComponentName` inside the package. You get the component, its stylesheet, an example file (the presets the docs and tests use), a test file and the export entry.
+- Scaffold with `npm run newc -- ComponentName` inside the package. You get the component, its stylesheet, an example file (the presets the docs and tests use), a behavior spec, a test file and the export entry.
+- Write the spec first. `spec.ts` next to the component states what it is made of (anatomy), how the keyboard drives it, what it owes assistive technology (roles and states, labels, focus, target size, motion) and the behaviors every implementation must pass, each with a kebab-case id. The React suite and the Web Component suite register one test per id with `describeBehaviors(spec, …)`; a missing test fails the run, and `npm run lint:specs` in `@ptrn/react` fails a Web Component whose React counterpart has no spec. The docs render the spec on the component page and the MCP serves it.
 - Every component carries JSDoc with `@name`, `@phase` (`Backlog`, `Dev`, `UXReview`, `Stable`, or `Utility`) and an `@example`. The docs site and the MCP server read these, so the documentation cannot drift from the code.
 - No `className` prop. Consumers restyle through the `style` prop, which is typed to accept CSS custom properties, so an override is visible in the markup and scoped to that subtree.
 - Styles use tokens only. A build check fails on any CSS variable that does not exist in `@ptrn/styles`.
