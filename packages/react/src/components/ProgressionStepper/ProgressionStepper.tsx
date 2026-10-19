@@ -120,11 +120,16 @@ export function ProgressionStepper({
                                 </span>
                                 <span data-line="after" />
                             </span>
-                            {variant !== 'widget' && (
+                            {variant !== 'widget' ? (
                                 <span data-content>
                                     <span data-name>{name}</span>
                                     {subtext && <span data-subtext>{subtext}</span>}
+                                    {/* The check that marks a completed step is decorative, so the word carries it. */}
+                                    {status === 'complete' && <span data-sr-only>, completed</span>}
                                 </span>
+                            ) : (
+                                // The widget shows no names in the list; assistive technology still gets each step.
+                                <span data-sr-only>{`${name}${status === 'complete' ? ', completed' : ''}`}</span>
                             )}
                         </li>
                     );

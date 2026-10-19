@@ -73,9 +73,11 @@ describeBehaviors(spec, {
         expect(check).toHaveAttribute('aria-hidden', 'true');
         expect(check).toHaveAttribute('data-pttrn-name', 'Check');
         expect(circle(1)).toHaveTextContent('');
-        expect(item(1)).toHaveTextContent('Account');
+        expect(item(1)).toHaveTextContent('Account, completed');
+        expect(item(1).querySelector('[data-sr-only]')).toHaveTextContent(', completed');
         expect(circle(2).querySelector('svg')).toBeNull();
         expect(circle(2)).toHaveTextContent('2');
+        expect(item(2)).not.toHaveTextContent('completed');
     },
     clamps: () => {
         const { rerender } = render(<Subject completedStep={-4} />);
@@ -111,6 +113,11 @@ describeBehaviors(spec, {
         expect(circle(2)).toHaveTextContent('2');
         expect(item(2)).toHaveAttribute('aria-current', 'step');
         expect(circle(3)).toBeEmptyDOMElement();
+        expect(screen.getAllByRole('listitem').map((li) => li.querySelector('[data-sr-only]')?.textContent)).toEqual([
+            'Account, completed',
+            'Address',
+            'Review',
+        ]);
     },
     variants: () => {
         const { rerender } = render(<Subject />);

@@ -30,8 +30,8 @@ export const spec: ComponentSpec = {
     ],
     keyboard: [],
     accessibility: {
-        roles: 'A plain ordered list with no interactive parts: list items, the current one with aria-current step. The check on a completed step is aria-hidden, so completion is not announced and assistive technology reads a completed step by its place before the current one.',
-        labels: 'In the horizontal and vertical variants an item reads its number (none once complete), its name and its subtext. In the widget the items carry only the current step\'s number and the header holds the current name with its subtext or "Step N of M". The component has no name or landmark of its own, so introduce it with a heading or a labelled region; aria-label on the container div has no role to attach to.',
+        roles: 'A plain ordered list with no interactive parts: list items, the current one with aria-current step. The check on a completed step is aria-hidden; a visually hidden ", completed" after the step name says it instead.',
+        labels: 'In the horizontal and vertical variants an item reads its number (none once complete), its name and its subtext. In the widget the items show only the current step\'s number, carry each step\'s name (and completion) as visually hidden text, and the header holds the current name with its subtext or "Step N of M". The component has no name or landmark of its own, so introduce it with a heading or a labelled region; aria-label on the container div has no role to attach to.',
         focus: 'Never focusable.',
     },
     behaviors: [
@@ -46,7 +46,11 @@ export const spec: ComponentSpec = {
                 'completedStep marks the steps up to it complete, the next one current and the rest incomplete, as data-status; none is complete by default.',
         },
         { id: 'current-step', description: 'Only the current step carries aria-current step.' },
-        { id: 'complete-check', description: 'A completed step shows an aria-hidden check in place of its number.' },
+        {
+            id: 'complete-check',
+            description:
+                'A completed step shows an aria-hidden check in place of its number and says "completed" in visually hidden text.',
+        },
         {
             id: 'clamps',
             description:
@@ -59,7 +63,8 @@ export const spec: ComponentSpec = {
         },
         {
             id: 'widget-list',
-            description: 'In the widget variant the items show no names and only the current step shows its number.',
+            description:
+                'In the widget variant the items show no names and only the current step shows its number; each item still names its step, and its completion, for assistive technology.',
         },
         { id: 'variants', description: 'variant is reflected as data-variant; horizontal is the default.' },
         { id: 'empty', description: 'With no steps nothing renders.' },
