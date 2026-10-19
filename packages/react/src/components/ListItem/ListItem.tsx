@@ -183,6 +183,15 @@ function ListItem<As extends ElementType = ElementType>({
             data-width={width === 'hug' ? 'hug' : undefined}
             id={id}
             onClick={isReadOnly || isDisabled ? undefined : props.onClick}
+            onKeyDown={(event: React.KeyboardEvent<HTMLElement>) => {
+                props.onKeyDown?.(event);
+                // A native button or link activates itself; a div with role button needs the keys handled.
+                if (role !== 'button' || As === 'button' || !actionable || !props.onClick) return;
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    props.onClick(event as unknown as React.MouseEvent<HTMLElement>);
+                }
+            }}
             ref={innerRef}
             role={role}
             tabIndex={props.tabIndex || (actionable ? 0 : -1)}

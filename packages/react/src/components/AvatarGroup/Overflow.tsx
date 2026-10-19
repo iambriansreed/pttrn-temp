@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Avatar, AvatarProps, SizeVariant } from '-/components/Avatar';
 import { ListItem } from '-/components/ListItem';
 import { Menu } from '-/components/Menu';
@@ -5,6 +6,7 @@ import { Portal } from '-/components/Portal';
 import { useArrowNavigation } from '-/hooks/useArrowNavigation';
 import { useFloating } from '-/hooks/useFloating';
 import { useOutsideClick } from '-/hooks/useOutsideClick';
+import { getElementById } from '-/utils/dom';
 import { handleKeyDown } from '-/utils/handleKeyDown';
 import { scrollListItemsStyle } from '-/utils/scrollListItemsStyle';
 import { useIds } from '-/utils/useIds';
@@ -35,36 +37,63 @@ export function AvatarGroupOverflow({ items: itemsProp, overflow, size }: Avatar
         refWidth: false,
     });
 
+    // A click outside, or tabbing away, closes the menu.
     useOutsideClick({
         elements: [elements.floating, elements.reference],
         callback: () => closeMenu(),
         disabled: !open,
+        handleTabs: true,
     });
+
+    // Focus follows the active item while the menu is open. The menu mounts through a portal one render after it
+    // opens, so the first attempt may find nothing and a retry on the next tick lands it.
+    useEffect(() => {
+        if (!activeElementId) return undefined;
+        const focusActive = () => getElementById(activeElementId)?.focus();
+        focusActive();
+        const retry = setTimeout(focusActive, 0);
+        return () => clearTimeout(retry);
+    }, [activeElementId]);
+
+    const closeAndRefocus = () => {
+        closeMenu();
+        elements.reference?.focus();
+    };
 
     return (
         <>
             <button
-                aria-activedescendant={activeElementId || undefined}
                 aria-controls={open ? menuId : undefined}
                 aria-expanded={open}
                 aria-haspopup="menu"
-                aria-label={`Show ${overflow} more avatar${overflow > 1 ? 's' : ''}`}
                 data-pttrn="avatar"
                 data-pttrn-owner="avatar-overflow"
                 data-size={size}
-                onBlur={() => closeMenu()}
-                onClick={() => setActiveElementId(activeElementId === null ? items[0]?.id : null)}
-                onKeyDown={handleKeyDown(arrowKeyCallbacks)}
+                onClick={() => (open ? closeMenu() : setActiveElementId(items[0]?.id))}
+                onKeyDown={handleKeyDown({
+                    ArrowDown: () => {
+                        if (!open) setActiveElementId(items[0]?.id);
+                    },
+                })}
                 ref={elements.setReference}
-                role="combobox"
+                type="button"
             >
                 <span data-overflow-count>+{overflow}</span>
+                <span data-sr-only>{` more avatar${overflow > 1 ? 's' : ''}`}</span>
             </button>
             {open && (
                 <Portal>
                     <Menu
                         id={menuId}
                         innerRef={elements.setFloating}
+                        label={`${overflow} more avatar${overflow > 1 ? 's' : ''}`}
+                        onKeyDown={handleKeyDown(
+                            {
+                                ...arrowKeyCallbacks,
+                                Escape: closeAndRefocus,
+                            },
+                            { preventDefault: true, stopPropagation: true },
+                        )}
                         role="menu"
                         style={{
                             ...floatingStyles,
@@ -77,10 +106,13 @@ export function AvatarGroupOverflow({ items: itemsProp, overflow, size }: Avatar
                         {items.map((item, index) => (
                             <ListItem
                                 active={activeElementId === item.id}
+                                aria-label={item.name}
+                                id={item.id}
                                 key={index}
                                 label={item.name}
                                 leading={<Avatar {...item} hideTooltip size="small" />}
                                 role="menuitem"
+                                tabIndex={activeElementId === item.id ? 0 : -1}
                             />
                         ))}
                     </Menu>
