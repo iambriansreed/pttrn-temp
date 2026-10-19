@@ -166,6 +166,36 @@ jobs:
                   path: docs/playwright-report
                   retention-days: 7
 
+    visual:
+        name: Visual regression (${{ matrix.theme }})
+        runs-on: ubuntu-latest
+        strategy:
+            fail-fast: false
+            matrix:
+                theme: [default, project-theme, project-theme-dark]
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version-file: .nvmrc
+                  cache: npm
+            - run: npm ci
+            - run: npm run build
+            - run: npm run build:docs
+            - run: npx playwright install --with-deps chromium
+            # Every component's main example, and the Web Component tab where one exists, against the baselines in
+            # docs/tests/visual/__screenshots__. A change is reviewed and the baselines updated with the
+            # "Update visual baselines" workflow, never by loosening the comparison.
+            - run: npm run test:visual --workspace ptrn-docs
+              env:
+                  PTTRN_THEME: ${{ matrix.theme }}
+            - uses: actions/upload-artifact@v4
+              if: failure()
+              with:
+                  name: visual-${{ matrix.theme }}
+                  path: docs/playwright-report
+                  retention-days: 7
+
     pack:
         name: Package contents
         runs-on: ubuntu-latest
