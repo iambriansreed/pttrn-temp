@@ -1,6 +1,6 @@
 import { ComponentSpec } from '-/types/meta';
 
-export type BehaviorTests = Record<string, () => void | Promise<void>>;
+export type BehaviorTests = Record<string, () => Promise<void> | void>;
 
 /**
  * Registers one test per behavior in a component's `spec.ts`, so the spec and the suite cannot drift: a behavior
