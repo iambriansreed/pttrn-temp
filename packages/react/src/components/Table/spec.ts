@@ -78,7 +78,7 @@ export const spec: ComponentSpec = {
         {
             id: 'sort-cycle',
             description:
-                'Clicking a sortable header sorts ascending, then descending, then removes the sort, with aria-sort and the arrow following; a header without sort has no button and no aria-sort.',
+                'Clicking a sortable header sorts ascending, then descending, then removes the sort and restores the given order, with aria-sort and the arrow following; the data array passed in is never reordered. A header without sort has no button and no aria-sort.',
         },
         {
             id: 'sorters',

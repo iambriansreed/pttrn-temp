@@ -126,7 +126,8 @@ export function useTable<R extends TableRow>({
 
         // Apply sorting
         if (sorting.length) {
-            result = result.sort((a, b) => {
+            // Sort a copy: the rows belong to the caller, and removing the sort must restore their order.
+            result = [...result].sort((a, b) => {
                 for (const { key, order } of sorting) {
                     const aValue = a[key];
                     const bValue = b[key];

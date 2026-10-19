@@ -21,7 +21,6 @@ const COLUMNS: TableColumn<StateRow>[] = [
     { key: 'capital', label: 'Capital' },
     { key: 'population', label: 'Population', align: 'right', sort: 'number' },
 ];
-// Sorting reorders the data array in place, so every render gets its own copy.
 const states = () => STATES.map((row) => ({ ...row }));
 /** Rows "State 1" to "State n", for paging. */
 const many = (n: number): StateRow[] =>
@@ -153,7 +152,8 @@ describeBehaviors(spec, {
     },
     'sort-cycle': async () => {
         const user = userEvent.setup();
-        render(<Subject />);
+        const rows = states();
+        render(<Subject data={rows} />);
 
         expect(header('State')).toHaveAttribute('aria-sort', 'none');
         expect(header('Capital')).not.toHaveAttribute('aria-sort');
@@ -172,6 +172,9 @@ describeBehaviors(spec, {
         await user.click(sortButton('State'));
         expect(header('State')).toHaveAttribute('aria-sort', 'none');
         expect(header('State').querySelector('[data-sort-icon]')).toBeNull();
+        // Removing the sort restores the given order, and the caller's array was never reordered.
+        expect(column('state')).toEqual(['Alaska', 'Vermont', 'Alabama']);
+        expect(rows.map((row) => row.state)).toEqual(['Alaska', 'Vermont', 'Alabama']);
     },
     sorters: async () => {
         const user = userEvent.setup();
