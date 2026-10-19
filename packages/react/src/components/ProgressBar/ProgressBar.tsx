@@ -80,7 +80,6 @@ export function ProgressBar({
         >
             <progress
                 aria-busy={completion < 100}
-                aria-label="A bounded progress bar from 0 to 100"
                 aria-valuemax={100}
                 aria-valuemin={0}
                 aria-valuenow={completion}

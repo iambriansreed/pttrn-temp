@@ -68,7 +68,7 @@ export function Syntax({
                     copyTimeout.set(() => setCopyLabel(DEFAULT_COPY_LABEL), 2000);
                 }}
                 placement="top-right"
-                size="small"
+                size="medium"
                 style={{ marginTop: '-10px', marginRight: '-10px' }}
                 variant="neutral"
             />

@@ -75,10 +75,13 @@ export function Link({ label, trailingIcon, size, variant, target = '_self', ...
             target={trailingIcon === 'external' ? '_blank' : target}
         >
             <span>{label}</span>
+            {trailingIcon === 'external' && <span data-sr-only> (opens in a new tab)</span>}
             {LazyIcon && (
-                <Suspense fallback={null}>
-                    <LazyIcon />
-                </Suspense>
+                <span aria-hidden="true" data-link-icon>
+                    <Suspense fallback={null}>
+                        <LazyIcon />
+                    </Suspense>
+                </span>
             )}
         </a>
     );

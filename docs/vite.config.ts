@@ -24,6 +24,7 @@ export default ({ mode, command }: { mode: string; command: 'build' | 'serve' })
                     api: 'modern-compiler', // or "modern"
                     // Resolves `@use 'pkg:@ptrn/styles/...'` in the React styles. Vite compiles with sass-embedded, so
                     // the importer must come from it too; one from `sass` fails with "findFileUrl is not a function".
+                    // @ts-expect-error Vite types this option with sass's declarations, not sass-embedded's.
                     importers: [new NodePackageImporter()],
                 },
             },

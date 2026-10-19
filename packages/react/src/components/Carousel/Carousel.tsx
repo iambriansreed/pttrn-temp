@@ -134,7 +134,7 @@ export function Carousel({
                             data-active={currentIndex === index || undefined}
                             data-item-wrapper
                             key={index}
-                            role="tabpanel"
+                            role="group"
                             tabIndex={currentIndex === index ? 0 : -1}
                         >
                             {child}

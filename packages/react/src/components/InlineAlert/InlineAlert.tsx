@@ -53,8 +53,8 @@ export function InlineAlert({ label, variant = 'informational', id, owner }: Inl
 }
 
 const VARIANT_ICON: Record<AlertVariant, ReactNode> = {
-    error: <SvgErrorFill />,
-    informational: <SvgInfoFill />,
-    success: <SvgCheckCircleFill />,
-    warning: <SvgWarningTwoTone />,
+    error: <SvgErrorFill aria-hidden />,
+    informational: <SvgInfoFill aria-hidden />,
+    success: <SvgCheckCircleFill aria-hidden />,
+    warning: <SvgWarningTwoTone aria-hidden />,
 };

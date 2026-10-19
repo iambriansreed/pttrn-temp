@@ -173,7 +173,7 @@ export function Select({
         <>
             <input name={name} type="hidden" value={value} />
             <button
-                aria-label={`${ariaLabel} ${selectedItem?.label || placeholder}`}
+                aria-label={[ariaLabel, selectedItem?.label || placeholder].filter(Boolean).join(' ')}
                 {...elementProps}
                 aria-activedescendant={activeElementId || undefined}
                 aria-autocomplete="list"

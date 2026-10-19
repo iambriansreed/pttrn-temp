@@ -16,14 +16,16 @@
         "build": "vite-node ./.scripts/build.ts",
         "meta": "vite-node ./.scripts/meta.ts",
         "dev": "vite-node ./.scripts/dev.ts",
-        "lint": "eslint && tsc --noemit",
+        "lint": "eslint && tsc -b",
         "lint:fix": "eslint --fix",
         "lint:css": "npx stylelint '**/*.scss'",
         "lint:css:fix": "npx stylelint '**/*.scss' --fix",
         "test:dev": "TEST_URL=http://localhost:8055 playwright test",
         "test": "playwright test",
         "test:a11y": "PTTRN_A11Y=1 playwright test",
-        "preview": "vite preview --host 127.0.0.1 --port 8055 --strictPort"
+        "preview": "vite preview --host 127.0.0.1 --port 8055 --strictPort",
+        "test:visual": "PTTRN_VISUAL=1 playwright test",
+        "test:visual:update": "PTTRN_VISUAL=1 playwright test --update-snapshots"
     },
     "peerDependencies": {
         "react": "^18.3.1",

@@ -21,14 +21,14 @@ ul[data-pttrn='tab-group'] {
         }
 
         &[aria-selected='true'] {
-            color: var(--theme-color-primary-medium);
+            color: var(--theme-color-primary-dark);
 
             &::after {
                 content: '';
                 display: block;
                 width: calc(100% - var(--usa-spacing-2) * 2);
                 height: 2px;
-                background-color: var(--theme-color-primary-medium);
+                background-color: var(--theme-color-primary-dark);
                 bottom: calc(-1 * var(--usa-spacing-1px));
                 position: absolute;
                 border-top-right-radius: 2px;
@@ -36,7 +36,7 @@ ul[data-pttrn='tab-group'] {
             }
 
             svg {
-                color: var(--theme-color-primary-medium);
+                color: var(--theme-color-primary-dark);
             }
         }
     }

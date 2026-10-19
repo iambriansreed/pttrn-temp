@@ -49,6 +49,8 @@ export function ExamplePlaceholder({
                 width: dimension(width),
                 height: dimension(height),
                 background: 'var(--theme-color-base-lighter)',
+                // The surface stays light in every theme, so the text stays dark.
+                color: 'var(--theme-color-base-darkest)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',

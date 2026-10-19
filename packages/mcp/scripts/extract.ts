@@ -1,5 +1,5 @@
 import { validateCode } from '../src/core/validate.js';
-import type { Catalog, Component, Icon, Prop, Token } from '../src/core/types.js';
+import type { Catalog, Component, ComponentSpec, Icon, Prop, Token } from '../src/core/types.js';
 
 type RawProperty = {
     name: string;
@@ -17,6 +17,7 @@ type RawData = {
         description?: string;
         dependencies?: string[];
         usage?: { code?: string };
+        spec?: ComponentSpec;
     }[];
     typesMeta: { name: string; properties?: RawProperty[] }[];
 };
@@ -48,6 +49,7 @@ export function extractComponents(data: RawData): Component[] {
             props: (props.get(`${c.name}Props`) ?? []).map(toProp),
         };
         if (c.usage?.code) component.usage = c.usage.code;
+        if (c.spec) component.spec = c.spec;
         return component;
     });
 }

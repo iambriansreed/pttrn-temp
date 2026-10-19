@@ -41,7 +41,8 @@ npm run dev     # docs site at http://localhost:8055, after generating the compo
 
 React lives in `packages/react`; Web Components live in `packages/web`.
 
-- Scaffold with `npm run newc -- ComponentName` inside the package. You get the component, its stylesheet, an example file (the presets the docs and tests use), a test file and the export entry.
+- Scaffold with `npm run newc -- ComponentName` inside the package. You get the component, its stylesheet, an example file (the presets the docs and tests use), a behavior spec, a test file and the export entry.
+- Write the spec first. `spec.ts` next to the component states what it is made of (anatomy), how the keyboard drives it, what it owes assistive technology (roles and states, labels, focus, target size, motion) and the behaviors every implementation must pass, each with a kebab-case id. The React suite and the Web Component suite register one test per id with `describeBehaviors(spec, …)`; a missing test fails the run, and `npm run lint:specs` in `@ptrn/react` fails a Web Component whose React counterpart has no spec. The docs render the spec on the component page and the MCP serves it.
 - Every component carries JSDoc with `@name`, `@phase` (`Backlog`, `Dev`, `UXReview`, `Stable`, or `Utility`) and an `@example`. The docs site and the MCP server read these, so the documentation cannot drift from the code.
 - No `className` prop. Consumers restyle through the `style` prop, which is typed to accept CSS custom properties, so an override is visible in the markup and scoped to that subtree.
 - Styles use tokens only. A build check fails on any CSS variable that does not exist in `@ptrn/styles`.
@@ -52,10 +53,11 @@ Coding conventions are in [GUIDELINES.md](GUIDELINES.md).
 
 ## Tests
 
-- `@ptrn/react`: Jest, Testing Library and jest-axe. Every preset in the example file gets an axe check, and interactive components get behavior tests (keyboard, focus, state).
-- `@ptrn/web`: Playwright against the built package, with axe.
+- `@ptrn/react`: Jest, Testing Library (with user-event) and jest-axe. Every preset in the example file gets an axe check, and every behavior in the component's `spec.ts` gets a test (keyboard, focus, state, ARIA relationships).
+- `@ptrn/web`: Playwright against the built package, with axe. The suite registers the same spec behaviors as the React suite, which is what holds the two implementations at parity.
 - `@ptrn/mcp`: `node:test`, including an integration test that drives the server through the real MCP client over stdio.
-- Docs: Playwright. Console errors on every page, and axe on every component in every theme.
+- Docs: Playwright. Console errors on every page, axe on every component in every theme (`npm run test:a11y`), and a screenshot of every component's main example in every theme against the baselines in `docs/tests/visual/__screenshots__` (`npm run test:visual`). A visual difference is a review, not a flake: when the change is intended, run the "Update visual baselines" workflow (or `npm run test:visual:update` on Linux), look at the diff and commit the new baselines. The comparison tolerance is not a knob to turn.
+- Figma plugin: `node:test` runs the compiled plugin against a fake Figma file and builds its token files with `@ptrn/styles`.
 
 Accessibility checks are required status checks. Never skip, disable or quarantine a test to get a green build; fix the cause or ask for help in the pull request.
 
