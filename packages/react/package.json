@@ -814,6 +814,6 @@
         "tsx": "^4.19.4",
         "typescript": "^5.9.3",
         "typescript-eslint": "^8.49.0",
-        "typescript-json-schema": "^0.65.1"
+        "typescript-json-schema": "^0.68.0"
     }
 }
