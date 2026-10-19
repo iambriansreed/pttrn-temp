@@ -1,5 +1,6 @@
 import { MetaComponentName } from 'src/meta';
 import { accordionWc } from 'src/wc/accordion';
+import { webComponents as webComponentNames } from 'src/wc/names';
 import { WebComponentDemo } from 'src/wc/types';
 
 /**
@@ -9,3 +10,11 @@ import { WebComponentDemo } from 'src/wc/types';
 export const webComponents: Partial<Record<MetaComponentName, WebComponentDemo>> = {
     Accordion: accordionWc,
 };
+
+const listed = [...webComponentNames].sort().join(',');
+const registered = Object.keys(webComponents).sort().join(',');
+if (listed !== registered) {
+    throw new Error(
+        `src/wc/names.ts lists [${listed}] but src/wc/index.ts registers [${registered}]; keep them in step.`,
+    );
+}

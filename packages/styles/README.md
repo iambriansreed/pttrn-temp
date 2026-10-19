@@ -11,7 +11,7 @@ The tokens come from the USWDS Design Kit in Figma. The source of truth in this 
 | `tokens.css`                    | Built. Every token except the theme: the USWDS primitives, the font collections and their modes.                                                                |
 | `themes/default.css`            | Built. The `default` USWDS theme, complete.                                                                                                                     |
 | `themes/project-theme.css`      | Built. The `project-theme` USWDS theme, complete.                                                                                                               |
-| `themes/project-theme-dark.css` | Built. The `project-theme-dark` USWDS theme, complete.                                                                                                          |
+| `themes/project-theme-dark.css` | Built. The `project-theme-dark` theme, derived from `project-theme` (see below).                                                                                |
 | `tokens.js`, `tokens.d.ts`      | Built. Every token with its CSS name, Figma name, type, value and mode values, typed, for tooling and the docs.                                                 |
 | `fonts.css`                     | Hand-written. Loads Public Sans, Merriweather and Roboto Mono from this package's `@fontsource` dependencies, so the fonts ship with your app. Needs a bundler. |
 | `fonts.google.css`              | Hand-written. The same families from Google Fonts, for a page without a bundler.                                                                                |
@@ -71,6 +71,17 @@ style) use `string`, which is pttrn's extension of the type list.
 3. Replace this package's `tokens/` folder with the `tokens/` folder from the ZIP.
 4. Run `npm run build --workspace @ptrn/styles`. It rebuilds `tokens.css`, `themes/` and `tokens.js` from the token
    files; CI fails if the built files and the token files disagree.
+
+### The dark theme is derived
+
+`project-theme-dark` is not taken from the export. The Figma kit's dark mode only swaps ink and ink-reverse, which
+leaves every surface light under white text, so the build derives the dark mode from `project-theme` instead
+(`scripts/derive-dark-theme.ts`, run by `npm run build` through `--derive-dark`, or alone with
+`npm run tokens:derive-dark`). Each color family's ladder is mirrored: lightest and darkest, lighter and darker, light
+and dark trade places while medium and vivid stay, so filled controls keep their white text. The base ladder sits one
+step above the gray-90 page, disabled swaps black-transparent for white-transparent, and component tokens that name
+white or black take ink-reverse or ink. The manifest records this under `source.derived`. Edit the rule, not the file:
+the next build rewrites `tokens/uswds-theme/project-theme-dark.tokens.json`.
 
 The ZIP also holds the stylesheets the plugin builds itself, so a consumer without this pipeline can still use the
 export directly. An export from an older plugin version that only produced CSS can be imported with

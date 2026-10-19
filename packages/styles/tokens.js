@@ -3,7 +3,8 @@ export const source = {
     "figmaFile": "USWDS Design Kit Beta (Community)",
     "exportedAt": "October 4, 2026 at 11:17 PM (UTC-04:00)",
     "exporter": "pttrn Export Tokens",
-    "importedBy": "scripts/css-to-dtcg.ts from tokens.css and themes/*.css"
+    "importedBy": "scripts/css-to-dtcg.ts from tokens.css and themes/*.css",
+    "derived": "uswds-theme/project-theme-dark.tokens.json by scripts/derive-dark-theme.ts from uswds-theme/project-theme.tokens.json"
 };
 
 export const collections = [
@@ -5307,7 +5308,7 @@ export const tokens = {
         "value": "var(--general-usa-color-white)",
         "modes": {
             "project-theme": "var(--general-usa-color-white)",
-            "project-theme-dark": "var(--theme-color-base-darkest)"
+            "project-theme-dark": "var(--usa-color-gray-90)"
         }
     },
     "--theme-color-base-lightest": {
@@ -5319,7 +5320,7 @@ export const tokens = {
         "value": "var(--usa-color-gray-5)",
         "modes": {
             "project-theme": "var(--usa-color-gray-5)",
-            "project-theme-dark": "var(--usa-color-gray-5)"
+            "project-theme-dark": "var(--usa-color-gray-80)"
         }
     },
     "--theme-color-base-lighter": {
@@ -5331,7 +5332,7 @@ export const tokens = {
         "value": "var(--usa-color-gray-cool-10)",
         "modes": {
             "project-theme": "var(--general-usa-color-gray-10)",
-            "project-theme-dark": "var(--general-usa-color-gray-10)"
+            "project-theme-dark": "var(--usa-color-gray-70)"
         }
     },
     "--theme-color-base-light": {
@@ -5343,7 +5344,7 @@ export const tokens = {
         "value": "var(--usa-color-gray-cool-30)",
         "modes": {
             "project-theme": "var(--general-usa-color-gray-30)",
-            "project-theme-dark": "var(--general-usa-color-gray-30)"
+            "project-theme-dark": "var(--usa-color-gray-60)"
         }
     },
     "--theme-color-base-medium": {
@@ -5355,7 +5356,7 @@ export const tokens = {
         "value": "var(--usa-color-gray-cool-50)",
         "modes": {
             "project-theme": "var(--general-usa-color-gray-50)",
-            "project-theme-dark": "var(--general-usa-color-gray-50)"
+            "project-theme-dark": "var(--usa-color-gray-40)"
         }
     },
     "--theme-color-base-dark": {
@@ -5367,7 +5368,7 @@ export const tokens = {
         "value": "var(--usa-color-gray-cool-60)",
         "modes": {
             "project-theme": "var(--usa-color-gray-60)",
-            "project-theme-dark": "var(--usa-color-gray-60)"
+            "project-theme-dark": "var(--usa-color-gray-30)"
         }
     },
     "--theme-color-base-darker": {
@@ -5379,7 +5380,7 @@ export const tokens = {
         "value": "var(--usa-color-gray-cool-70)",
         "modes": {
             "project-theme": "var(--general-usa-color-gray-80)",
-            "project-theme-dark": "var(--general-usa-color-gray-80)"
+            "project-theme-dark": "var(--usa-color-gray-20)"
         }
     },
     "--theme-color-base-darkest": {
@@ -5391,7 +5392,7 @@ export const tokens = {
         "value": "var(--usa-color-gray-90)",
         "modes": {
             "project-theme": "var(--usa-color-gray-90)",
-            "project-theme-dark": "var(--usa-color-gray-90)"
+            "project-theme-dark": "var(--usa-color-gray-5)"
         }
     },
     "--theme-color-primary-lightest": {
@@ -5403,7 +5404,7 @@ export const tokens = {
         "value": "var(--general-usa-color-none)",
         "modes": {
             "project-theme": "var(--general-usa-color-blue-warm-5)",
-            "project-theme-dark": "var(--general-usa-color-blue-warm-5)"
+            "project-theme-dark": "var(--general-usa-color-blue-warm-80)"
         }
     },
     "--theme-color-primary-lighter": {
@@ -5415,7 +5416,7 @@ export const tokens = {
         "value": "var(--general-usa-color-blue-10)",
         "modes": {
             "project-theme": "var(--general-usa-color-blue-warm-20)",
-            "project-theme-dark": "var(--general-usa-color-blue-warm-20)"
+            "project-theme-dark": "var(--general-usa-color-blue-warm-70v)"
         }
     },
     "--theme-color-primary-light": {
@@ -5427,7 +5428,7 @@ export const tokens = {
         "value": "var(--general-usa-color-blue-30)",
         "modes": {
             "project-theme": "var(--usa-color-blue-warm-30v)",
-            "project-theme-dark": "var(--usa-color-blue-warm-30v)"
+            "project-theme-dark": "var(--usa-color-blue-warm-60)"
         }
     },
     "--theme-color-primary-medium": {
@@ -5463,7 +5464,7 @@ export const tokens = {
         "value": "var(--general-usa-color-blue-warm-70v)",
         "modes": {
             "project-theme": "var(--usa-color-blue-warm-60)",
-            "project-theme-dark": "var(--usa-color-blue-warm-60)"
+            "project-theme-dark": "var(--usa-color-blue-warm-30v)"
         }
     },
     "--theme-color-primary-darker": {
@@ -5475,7 +5476,7 @@ export const tokens = {
         "value": "var(--general-usa-color-blue-warm-80v)",
         "modes": {
             "project-theme": "var(--general-usa-color-blue-warm-70v)",
-            "project-theme-dark": "var(--general-usa-color-blue-warm-70)"
+            "project-theme-dark": "var(--general-usa-color-blue-warm-20)"
         }
     },
     "--theme-color-primary-darkest": {
@@ -5487,7 +5488,7 @@ export const tokens = {
         "value": "var(--general-usa-color-none)",
         "modes": {
             "project-theme": "var(--general-usa-color-blue-warm-80)",
-            "project-theme-dark": "var(--general-usa-color-blue-warm-80)"
+            "project-theme-dark": "var(--general-usa-color-blue-warm-5)"
         }
     },
     "--theme-color-secondary-lightest": {
@@ -5499,7 +5500,7 @@ export const tokens = {
         "value": "var(--general-usa-color-none)",
         "modes": {
             "project-theme": "var(--usa-color-gold-5)",
-            "project-theme-dark": "var(--usa-color-gold-5)"
+            "project-theme-dark": "var(--general-usa-color-gold-80)"
         }
     },
     "--theme-color-secondary-lighter": {
@@ -5511,7 +5512,7 @@ export const tokens = {
         "value": "var(--general-usa-color-red-cool-10v)",
         "modes": {
             "project-theme": "var(--general-usa-color-gold-10)",
-            "project-theme-dark": "var(--general-usa-color-gold-10)"
+            "project-theme-dark": "var(--general-usa-color-gold-70)"
         }
     },
     "--theme-color-secondary-light": {
@@ -5523,7 +5524,7 @@ export const tokens = {
         "value": "var(--general-usa-color-red-30)",
         "modes": {
             "project-theme": "var(--usa-color-gold-30)",
-            "project-theme-dark": "var(--usa-color-gold-30)"
+            "project-theme-dark": "var(--general-usa-color-gold-60)"
         }
     },
     "--theme-color-secondary-medium": {
@@ -5559,7 +5560,7 @@ export const tokens = {
         "value": "var(--general-usa-color-red-60)",
         "modes": {
             "project-theme": "var(--general-usa-color-gold-60)",
-            "project-theme-dark": "var(--general-usa-color-gold-60)"
+            "project-theme-dark": "var(--usa-color-gold-30)"
         }
     },
     "--theme-color-secondary-darker": {
@@ -5571,7 +5572,7 @@ export const tokens = {
         "value": "var(--usa-color-red-70v)",
         "modes": {
             "project-theme": "var(--general-usa-color-gold-70)",
-            "project-theme-dark": "var(--general-usa-color-gold-70)"
+            "project-theme-dark": "var(--general-usa-color-gold-10)"
         }
     },
     "--theme-color-secondary-darkest": {
@@ -5583,7 +5584,7 @@ export const tokens = {
         "value": "var(--general-usa-color-none)",
         "modes": {
             "project-theme": "var(--general-usa-color-gold-80)",
-            "project-theme-dark": "var(--general-usa-color-gold-80)"
+            "project-theme-dark": "var(--usa-color-gold-5)"
         }
     },
     "--theme-color-accent-cool-lightest": {
@@ -5595,7 +5596,7 @@ export const tokens = {
         "value": "var(--general-usa-color-none)",
         "modes": {
             "project-theme": "var(--usa-color-mint-5v)",
-            "project-theme-dark": "var(--general-usa-color-mint-5v)"
+            "project-theme-dark": "var(--usa-color-mint-80)"
         }
     },
     "--theme-color-accent-cool-lighter": {
@@ -5607,7 +5608,7 @@ export const tokens = {
         "value": "var(--general-usa-color-blue-cool-5v)",
         "modes": {
             "project-theme": "var(--usa-color-mint-20)",
-            "project-theme-dark": "var(--usa-color-mint-20)"
+            "project-theme-dark": "var(--usa-color-mint-70)"
         }
     },
     "--theme-color-accent-cool-light": {
@@ -5619,7 +5620,7 @@ export const tokens = {
         "value": "var(--usa-color-blue-cool-20v)",
         "modes": {
             "project-theme": "var(--usa-color-mint-30)",
-            "project-theme-dark": "var(--usa-color-mint-30)"
+            "project-theme-dark": "var(--usa-color-mint-60)"
         }
     },
     "--theme-color-accent-cool-medium": {
@@ -5655,7 +5656,7 @@ export const tokens = {
         "value": "var(--usa-color-blue-cool-40v)",
         "modes": {
             "project-theme": "var(--usa-color-mint-60)",
-            "project-theme-dark": "var(--usa-color-mint-60)"
+            "project-theme-dark": "var(--usa-color-mint-30)"
         }
     },
     "--theme-color-accent-cool-darker": {
@@ -5667,7 +5668,7 @@ export const tokens = {
         "value": "var(--usa-color-blue-cool-60v)",
         "modes": {
             "project-theme": "var(--usa-color-mint-70)",
-            "project-theme-dark": "var(--usa-color-mint-70)"
+            "project-theme-dark": "var(--usa-color-mint-20)"
         }
     },
     "--theme-color-accent-cool-darkest": {
@@ -5679,7 +5680,7 @@ export const tokens = {
         "value": "var(--general-usa-color-none)",
         "modes": {
             "project-theme": "var(--usa-color-mint-80)",
-            "project-theme-dark": "var(--usa-color-mint-80)"
+            "project-theme-dark": "var(--usa-color-mint-5v)"
         }
     },
     "--theme-color-accent-warm-lightest": {
@@ -5691,7 +5692,7 @@ export const tokens = {
         "value": "var(--general-usa-color-none)",
         "modes": {
             "project-theme": "var(--general-usa-color-indigo-5)",
-            "project-theme-dark": "var(--general-usa-color-indigo-5)"
+            "project-theme-dark": "var(--general-usa-color-indigo-80)"
         }
     },
     "--theme-color-accent-warm-lighter": {
@@ -5703,7 +5704,7 @@ export const tokens = {
         "value": "var(--general-usa-color-orange-10)",
         "modes": {
             "project-theme": "var(--general-usa-color-indigo-10)",
-            "project-theme-dark": "var(--general-usa-color-indigo-10)"
+            "project-theme-dark": "var(--usa-color-indigo-70v)"
         }
     },
     "--theme-color-accent-warm-light": {
@@ -5715,7 +5716,7 @@ export const tokens = {
         "value": "var(--general-usa-color-orange-20v)",
         "modes": {
             "project-theme": "var(--usa-color-indigo-40v)",
-            "project-theme-dark": "var(--usa-color-indigo-40v)"
+            "project-theme-dark": "var(--usa-color-indigo-60v)"
         }
     },
     "--theme-color-accent-warm-medium": {
@@ -5751,7 +5752,7 @@ export const tokens = {
         "value": "var(--general-usa-color-orange-50v)",
         "modes": {
             "project-theme": "var(--usa-color-indigo-60v)",
-            "project-theme-dark": "var(--usa-color-indigo-60v)"
+            "project-theme-dark": "var(--usa-color-indigo-40v)"
         }
     },
     "--theme-color-accent-warm-darker": {
@@ -5763,7 +5764,7 @@ export const tokens = {
         "value": "var(--general-usa-color-orange-60)",
         "modes": {
             "project-theme": "var(--usa-color-indigo-70v)",
-            "project-theme-dark": "var(--general-usa-color-indigo-70v)"
+            "project-theme-dark": "var(--general-usa-color-indigo-10)"
         }
     },
     "--theme-color-accent-warm-darkest": {
@@ -5775,7 +5776,7 @@ export const tokens = {
         "value": "var(--general-usa-color-none)",
         "modes": {
             "project-theme": "var(--general-usa-color-indigo-80)",
-            "project-theme-dark": "var(--general-usa-color-indigo-80)"
+            "project-theme-dark": "var(--general-usa-color-indigo-5)"
         }
     },
     "--theme-color-info-lightest": {
@@ -5787,7 +5788,7 @@ export const tokens = {
         "value": "var(--usa-color-none)",
         "modes": {
             "project-theme": "var(--usa-color-cyan-5)",
-            "project-theme-dark": "var(--usa-color-cyan-5)"
+            "project-theme-dark": "var(--usa-color-cyan-80)"
         }
     },
     "--theme-color-info-lighter": {
@@ -5799,7 +5800,7 @@ export const tokens = {
         "value": "var(--usa-color-cyan-5)",
         "modes": {
             "project-theme": "var(--general-usa-color-cyan-20)",
-            "project-theme-dark": "var(--general-usa-color-cyan-20)"
+            "project-theme-dark": "var(--general-usa-color-cyan-70)"
         }
     },
     "--theme-color-info-light": {
@@ -5811,7 +5812,7 @@ export const tokens = {
         "value": "var(--usa-color-cyan-20)",
         "modes": {
             "project-theme": "var(--general-usa-color-cyan-30v)",
-            "project-theme-dark": "var(--general-usa-color-cyan-30v)"
+            "project-theme-dark": "var(--general-usa-color-cyan-60v)"
         }
     },
     "--theme-color-info-medium": {
@@ -5835,7 +5836,7 @@ export const tokens = {
         "value": "var(--usa-color-cyan-40v)",
         "modes": {
             "project-theme": "var(--general-usa-color-cyan-60v)",
-            "project-theme-dark": "var(--general-usa-color-cyan-60v)"
+            "project-theme-dark": "var(--general-usa-color-cyan-30v)"
         }
     },
     "--theme-color-info-darker": {
@@ -5847,7 +5848,7 @@ export const tokens = {
         "value": "var(--usa-color-cyan-60)",
         "modes": {
             "project-theme": "var(--general-usa-color-cyan-70)",
-            "project-theme-dark": "var(--general-usa-color-cyan-70)"
+            "project-theme-dark": "var(--general-usa-color-cyan-20)"
         }
     },
     "--theme-color-info-darkest": {
@@ -5859,7 +5860,7 @@ export const tokens = {
         "value": "var(--usa-color-none)",
         "modes": {
             "project-theme": "var(--usa-color-cyan-80)",
-            "project-theme-dark": "var(--usa-color-cyan-80)"
+            "project-theme-dark": "var(--usa-color-cyan-5)"
         }
     },
     "--theme-color-success-lightest": {
@@ -5871,7 +5872,7 @@ export const tokens = {
         "value": "var(--general-usa-color-none)",
         "modes": {
             "project-theme": "var(--general-usa-color-green-cool-5)",
-            "project-theme-dark": "var(--general-usa-color-green-cool-5)"
+            "project-theme-dark": "var(--usa-color-green-cool-80)"
         }
     },
     "--theme-color-success-lighter": {
@@ -5883,7 +5884,7 @@ export const tokens = {
         "value": "var(--general-usa-color-green-cool-5)",
         "modes": {
             "project-theme": "var(--general-usa-color-green-cool-20v)",
-            "project-theme-dark": "var(--general-usa-color-green-cool-20v)"
+            "project-theme-dark": "var(--general-usa-color-green-cool-70v)"
         }
     },
     "--theme-color-success-light": {
@@ -5895,7 +5896,7 @@ export const tokens = {
         "value": "var(--general-usa-color-green-cool-20v)",
         "modes": {
             "project-theme": "var(--general-usa-color-green-cool-40v)",
-            "project-theme-dark": "var(--general-usa-color-green-cool-40v)"
+            "project-theme-dark": "var(--general-usa-color-green-cool-60v)"
         }
     },
     "--theme-color-success-medium": {
@@ -5919,7 +5920,7 @@ export const tokens = {
         "value": "var(--usa-color-green-cool-50v)",
         "modes": {
             "project-theme": "var(--general-usa-color-green-cool-60v)",
-            "project-theme-dark": "var(--general-usa-color-green-cool-60v)"
+            "project-theme-dark": "var(--general-usa-color-green-cool-40v)"
         }
     },
     "--theme-color-success-darker": {
@@ -5931,7 +5932,7 @@ export const tokens = {
         "value": "var(--usa-color-green-cool-60v)",
         "modes": {
             "project-theme": "var(--general-usa-color-green-cool-70v)",
-            "project-theme-dark": "var(--general-usa-color-green-cool-70v)"
+            "project-theme-dark": "var(--general-usa-color-green-cool-20v)"
         }
     },
     "--theme-color-success-darkest": {
@@ -5943,7 +5944,7 @@ export const tokens = {
         "value": "var(--general-usa-color-none)",
         "modes": {
             "project-theme": "var(--usa-color-green-cool-80)",
-            "project-theme-dark": "var(--usa-color-green-cool-80)"
+            "project-theme-dark": "var(--general-usa-color-green-cool-5)"
         }
     },
     "--theme-color-warning-lightest": {
@@ -5955,7 +5956,7 @@ export const tokens = {
         "value": "var(--general-usa-color-none)",
         "modes": {
             "project-theme": "var(--usa-color-yellow-5)",
-            "project-theme-dark": "var(--usa-color-yellow-5)"
+            "project-theme-dark": "var(--general-usa-color-yellow-80)"
         }
     },
     "--theme-color-warning-lighter": {
@@ -5967,7 +5968,7 @@ export const tokens = {
         "value": "var(--general-usa-color-yellow-5)",
         "modes": {
             "project-theme": "var(--usa-color-yellow-20v)",
-            "project-theme-dark": "var(--usa-color-yellow-20v)"
+            "project-theme-dark": "var(--general-usa-color-yellow-70)"
         }
     },
     "--theme-color-warning-light": {
@@ -5979,7 +5980,7 @@ export const tokens = {
         "value": "var(--general-usa-color-yellow-10v)",
         "modes": {
             "project-theme": "var(--general-usa-color-yellow-30v)",
-            "project-theme-dark": "var(--general-usa-color-yellow-30v)"
+            "project-theme-dark": "var(--usa-color-yellow-60)"
         }
     },
     "--theme-color-warning-medium": {
@@ -6003,7 +6004,7 @@ export const tokens = {
         "value": "var(--usa-color-gold-30v)",
         "modes": {
             "project-theme": "var(--usa-color-yellow-60)",
-            "project-theme-dark": "var(--usa-color-yellow-60)"
+            "project-theme-dark": "var(--general-usa-color-yellow-30v)"
         }
     },
     "--theme-color-warning-darker": {
@@ -6015,7 +6016,7 @@ export const tokens = {
         "value": "var(--general-usa-color-gold-50v)",
         "modes": {
             "project-theme": "var(--general-usa-color-yellow-70)",
-            "project-theme-dark": "var(--general-usa-color-yellow-70)"
+            "project-theme-dark": "var(--usa-color-yellow-20v)"
         }
     },
     "--theme-color-warning-darkest": {
@@ -6027,7 +6028,7 @@ export const tokens = {
         "value": "var(--general-usa-color-none)",
         "modes": {
             "project-theme": "var(--general-usa-color-yellow-80)",
-            "project-theme-dark": "var(--general-usa-color-yellow-80)"
+            "project-theme-dark": "var(--usa-color-yellow-5)"
         }
     },
     "--theme-color-error-lightest": {
@@ -6039,7 +6040,7 @@ export const tokens = {
         "value": "var(--general-usa-color-none)",
         "modes": {
             "project-theme": "var(--usa-color-red-10)",
-            "project-theme-dark": "var(--usa-color-red-10)"
+            "project-theme-dark": "var(--general-usa-color-red-80v)"
         }
     },
     "--theme-color-error-lighter": {
@@ -6051,7 +6052,7 @@ export const tokens = {
         "value": "var(--usa-color-red-warm-10)",
         "modes": {
             "project-theme": "var(--general-usa-color-red-20)",
-            "project-theme-dark": "var(--general-usa-color-red-20)"
+            "project-theme-dark": "var(--general-usa-color-red-70v)"
         }
     },
     "--theme-color-error-light": {
@@ -6063,7 +6064,7 @@ export const tokens = {
         "value": "var(--usa-color-red-warm-30v)",
         "modes": {
             "project-theme": "var(--general-usa-color-red-30)",
-            "project-theme-dark": "var(--usa-color-red-30v)"
+            "project-theme-dark": "var(--usa-color-red-60v)"
         }
     },
     "--theme-color-error-medium": {
@@ -6087,7 +6088,7 @@ export const tokens = {
         "value": "var(--usa-color-red-60v)",
         "modes": {
             "project-theme": "var(--usa-color-red-60v)",
-            "project-theme-dark": "var(--usa-color-red-60v)"
+            "project-theme-dark": "var(--general-usa-color-red-30)"
         }
     },
     "--theme-color-error-darker": {
@@ -6099,7 +6100,7 @@ export const tokens = {
         "value": "var(--general-usa-color-red-70)",
         "modes": {
             "project-theme": "var(--general-usa-color-red-70v)",
-            "project-theme-dark": "var(--general-usa-color-red-70v)"
+            "project-theme-dark": "var(--general-usa-color-red-20)"
         }
     },
     "--theme-color-error-darkest": {
@@ -6111,7 +6112,7 @@ export const tokens = {
         "value": "var(--general-usa-color-none)",
         "modes": {
             "project-theme": "var(--general-usa-color-red-80v)",
-            "project-theme-dark": "var(--general-usa-color-red-80v)"
+            "project-theme-dark": "var(--usa-color-red-10)"
         }
     },
     "--theme-color-emergency-medium": {
@@ -6147,7 +6148,7 @@ export const tokens = {
         "value": "var(--general-usa-color-none)",
         "modes": {
             "project-theme": "var(--usa-color-black-transparent-10)",
-            "project-theme-dark": "var(--usa-color-black-transparent-10)"
+            "project-theme-dark": "var(--usa-color-white-transparent-10)"
         }
     },
     "--theme-color-disabled-lighter": {
@@ -6159,7 +6160,7 @@ export const tokens = {
         "value": "var(--usa-color-gray-20)",
         "modes": {
             "project-theme": "var(--general-usa-color-black-transparent-20)",
-            "project-theme-dark": "var(--general-usa-color-black-transparent-30)"
+            "project-theme-dark": "var(--usa-color-white-transparent-20)"
         }
     },
     "--theme-color-disabled-light": {
@@ -6171,7 +6172,7 @@ export const tokens = {
         "value": "var(--usa-color-gray-40)",
         "modes": {
             "project-theme": "var(--usa-color-black-transparent-40)",
-            "project-theme-dark": "var(--usa-color-black-transparent-40)"
+            "project-theme-dark": "var(--usa-color-white-transparent-40)"
         }
     },
     "--theme-color-disabled-medium": {
@@ -6183,7 +6184,7 @@ export const tokens = {
         "value": "var(--usa-color-gray-50)",
         "modes": {
             "project-theme": "var(--general-usa-color-black-transparent-50)",
-            "project-theme-dark": "var(--general-usa-color-black-transparent-50)"
+            "project-theme-dark": "var(--usa-color-white-transparent-50)"
         }
     },
     "--theme-color-disabled-dark": {
@@ -6195,7 +6196,7 @@ export const tokens = {
         "value": "var(--usa-color-gray-70)",
         "modes": {
             "project-theme": "var(--usa-color-white-transparent-30)",
-            "project-theme-dark": "var(--usa-color-white-transparent-30)"
+            "project-theme-dark": "var(--usa-color-black-transparent-30)"
         }
     },
     "--theme-color-disabled-darker": {
@@ -6207,7 +6208,7 @@ export const tokens = {
         "value": "var(--usa-color-gray-90)",
         "modes": {
             "project-theme": "var(--usa-color-white-transparent-20)",
-            "project-theme-dark": "var(--usa-color-white-transparent-20)"
+            "project-theme-dark": "var(--usa-color-black-transparent-20)"
         }
     },
     "--theme-color-disabled-darkest": {
@@ -6219,7 +6220,7 @@ export const tokens = {
         "value": "var(--general-usa-color-none)",
         "modes": {
             "project-theme": "var(--usa-color-white-transparent-10)",
-            "project-theme-dark": "var(--usa-color-white-transparent-10)"
+            "project-theme-dark": "var(--usa-color-black-transparent-10)"
         }
     },
     "--theme-font-size-sans-3xs": {
@@ -6759,7 +6760,7 @@ export const tokens = {
         "value": "var(--general-usa-color-white)",
         "modes": {
             "project-theme": "var(--general-usa-color-white)",
-            "project-theme-dark": "var(--theme-color-base-darkest)"
+            "project-theme-dark": "var(--general-usa-color-white)"
         }
     },
     "--theme-page-margins-breakpoint": {
@@ -6903,7 +6904,7 @@ export const tokens = {
         "value": "var(--theme-color-base-lightest)",
         "modes": {
             "project-theme": "var(--theme-color-primary-light)",
-            "project-theme-dark": "var(--theme-color-base-darker)"
+            "project-theme-dark": "var(--theme-color-primary-light)"
         }
     },
     "--component-accordion-button-text-color": {
@@ -7299,7 +7300,7 @@ export const tokens = {
         "value": "\"medium\"",
         "modes": {
             "project-theme": "\"medium\"",
-            "project-theme-dark": "\"String value\""
+            "project-theme-dark": "\"medium\""
         }
     },
     "--component-button-size": {
@@ -7311,7 +7312,7 @@ export const tokens = {
         "value": "\"medium\"",
         "modes": {
             "project-theme": "\"medium\"",
-            "project-theme-dark": "\"String value\""
+            "project-theme-dark": "\"medium\""
         }
     },
     "--component-button-radius": {
@@ -7479,7 +7480,7 @@ export const tokens = {
         "value": "var(--usa-spacing-2px)",
         "modes": {
             "project-theme": "var(--usa-spacing-0)",
-            "project-theme-dark": "var(--usa-spacing-2px)"
+            "project-theme-dark": "var(--usa-spacing-0)"
         }
     },
     "--component-card-padding-perimeter": {
@@ -7779,7 +7780,7 @@ export const tokens = {
         "value": "var(--usa-color-white)",
         "modes": {
             "project-theme": "var(--usa-color-white)",
-            "project-theme-dark": "var(--usa-color-white)"
+            "project-theme-dark": "var(--theme-color-ink-reverse)"
         }
     },
     "--component-identifier-secondary-link-color": {
@@ -7971,7 +7972,7 @@ export const tokens = {
         "value": "var(--usa-color-white)",
         "modes": {
             "project-theme": "var(--usa-color-white)",
-            "project-theme-dark": "var(--usa-color-white)"
+            "project-theme-dark": "var(--theme-color-ink-reverse)"
         }
     },
     "--component-input-border-radius": {
@@ -8103,7 +8104,7 @@ export const tokens = {
         "value": "var(--theme-color-primary-darker)",
         "modes": {
             "project-theme": "var(--usa-color-black)",
-            "project-theme-dark": "var(--usa-color-black)"
+            "project-theme-dark": "var(--theme-color-ink)"
         }
     },
     "--component-link-visited-color": {
@@ -8115,7 +8116,7 @@ export const tokens = {
         "value": "var(--usa-color-violet-70v)",
         "modes": {
             "project-theme": "var(--usa-color-violet-70v)",
-            "project-theme-dark": "var(--usa-color-violet-70v)"
+            "project-theme-dark": "var(--usa-color-violet-30v)"
         }
     },
     "--component-link-reverse-color": {
@@ -8127,7 +8128,7 @@ export const tokens = {
         "value": "var(--theme-color-base-light)",
         "modes": {
             "project-theme": "var(--theme-color-primary-light)",
-            "project-theme-dark": "var(--theme-color-primary-light)"
+            "project-theme-dark": "var(--usa-color-blue-warm-30v)"
         }
     },
     "--component-link-reverse-hover-color": {
@@ -8139,7 +8140,7 @@ export const tokens = {
         "value": "var(--theme-color-base-lightest)",
         "modes": {
             "project-theme": "var(--theme-color-primary-lighter)",
-            "project-theme-dark": "var(--theme-color-primary-lighter)"
+            "project-theme-dark": "var(--general-usa-color-blue-warm-20)"
         }
     },
     "--component-link-reverse-active-color": {
@@ -8319,7 +8320,7 @@ export const tokens = {
         "value": "var(--usa-color-white)",
         "modes": {
             "project-theme": "var(--usa-color-white)",
-            "project-theme-dark": "var(--usa-color-white)"
+            "project-theme-dark": "var(--theme-color-ink-reverse)"
         }
     },
     "--component-process-list-counter-border-color": {
@@ -8379,7 +8380,7 @@ export const tokens = {
         "value": "var(--usa-color-white)",
         "modes": {
             "project-theme": "var(--usa-color-white)",
-            "project-theme-dark": "var(--usa-color-white)"
+            "project-theme-dark": "var(--theme-color-ink-reverse)"
         }
     },
     "--component-process-list-counter-gap-width": {
@@ -8595,7 +8596,7 @@ export const tokens = {
         "value": "var(--usa-color-white)",
         "modes": {
             "project-theme": "var(--usa-color-white)",
-            "project-theme-dark": "var(--usa-color-white)"
+            "project-theme-dark": "var(--theme-color-ink-reverse)"
         }
     },
     "--component-step-indicator-font-family": {
@@ -8787,7 +8788,7 @@ export const tokens = {
         "value": "var(--theme-color-info-medium)",
         "modes": {
             "project-theme": "var(--theme-color-info-dark)",
-            "project-theme-dark": "var(--theme-color-info-medium)"
+            "project-theme-dark": "var(--theme-color-info-dark)"
         }
     },
     "--component-summary-box-background-color": {
@@ -8799,7 +8800,7 @@ export const tokens = {
         "value": "var(--theme-color-info-lighter)",
         "modes": {
             "project-theme": "var(--theme-color-info-lightest)",
-            "project-theme-dark": "var(--theme-color-info-darkest)"
+            "project-theme-dark": "var(--theme-color-info-lightest)"
         }
     },
     "--component-summary-box-border-width": {

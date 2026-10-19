@@ -40,12 +40,28 @@ A collection with several modes is switched with its own `data-*` attribute on `
 `tokens.css` lists every attribute and its values. A token that aliases a themed token changes with it, so most
 components never need to know which mode is active.
 
+### The dark theme
+
+`project-theme-dark` is derived from `project-theme` by `@ptrn/styles` rather than exported from Figma, because the
+kit's dark mode only swaps ink and ink-reverse. The rule mirrors each color family's ladder (lightest and darkest,
+lighter and darker, light and dark trade places; medium and vivid stay), keeps the base ladder one step above the
+gray-90 page, and swaps the transparent blacks and whites of the disabled tones. USWDS's grade arithmetic makes the
+contrast hold by construction: text and background grades 50 apart meet 4.5:1, so a `dark` tone on the page or on
+`base-lightest` passes in both themes.
+
+Components therefore pick tones by role, not by name: `medium` tones are fills that carry white text, `dark` and
+`darker` tones (and `--component-link-color`) are text on the page, `lightest` and `lighter` are surfaces and borders.
+A `medium` tone used as text passes on white and fails on the dark page.
+
 ## Rules for component styles
 
 - **Spacing** (padding, margin, gap, offsets, border and outline widths, radii) uses the spacing scale:
   `var(--usa-spacing-1)` is 8px, `--usa-spacing-05` is 4px, `--usa-spacing-1px` and `--usa-spacing-2px` exist for
   hairlines. A value that is not on the scale is a design question, not a magic number.
 - **Color** uses theme or component tokens. No hex, no `rgb()`, no primitive unless the design names one.
+- **Tones by role**: `medium` for fills under white text, `dark` or `darker` (or `--component-link-color`) for text,
+  `lightest` and `lighter` for surfaces and borders. The dark theme mirrors the ladders, so a `medium` tone used as
+  text fails there.
 - **Type** uses the `--usa-font-*` and `--theme-font-*` tokens for family, size and weight.
 - **Icon and control sizes** are the exception today: `20px`, `24px` and `28px` boxes are literal until the size
   scale is a token in Figma.

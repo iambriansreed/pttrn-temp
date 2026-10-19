@@ -16,7 +16,7 @@ Every component page gets a `React | Web Component` tab so a consumer can use pt
 | DOM               | Shadow DOM                                                                   | Consumer CSS cannot break components, native `<slot>` covers `leading`, `trailing` and content, and the design tokens are CSS custom properties, which inherit through the shadow boundary, so brand themes keep working.                                                                 |
 | Tab label         | "Web Component" (two words, singular)                                        | Matches the spec and MDN wording. Each tab is one implementation, so singular.                                                                                                                                                                                                            |
 | Code button label | "Edit code" / "Hide code"                                                    | The panel is a live editor, so "Expand code" undersells it.                                                                                                                                                                                                                               |
-| Tag prefix        | `ptrn-`                                                                      | Matches the `data-pttrn` convention and the npm scope.                                                                                                                                                                                                                                    |
+| Tag prefix        | `pttrn-`                                                                      | Matches the `data-pttrn` convention and the npm scope.                                                                                                                                                                                                                                    |
 | Demo wiring       | Docs-only React wrapper around the Lit elements                              | Lets the existing prop controls, presets and error handling drive the Web Component preview. It is not shipped.                                                                                                                                                                           |
 | Playground        | Edit real HTML, render it live                                               | What a non-React user pastes is what they edit. Preview is the HTML set as `innerHTML` into a container where the elements are registered.                                                                                                                                                |
 
@@ -47,20 +47,20 @@ The new package:
 ## Accordion element API
 
 ```html
-<ptrn-accordion multiple>
-    <ptrn-accordion-item heading="Myron Floren" subtitle="The Happy Norwegian" open>
+<pttrn-accordion multiple>
+    <pttrn-accordion-item heading="Myron Floren" subtitle="The Happy Norwegian" open>
         <img slot="leading" src="..." alt="" />
         Content goes here.
         <span slot="trailing">Trailing</span>
-    </ptrn-accordion-item>
-</ptrn-accordion>
+    </pttrn-accordion-item>
+</pttrn-accordion>
 ```
 
 React to Web Component mapping:
 
 | React                            | Web Component                                                   | Note                                                                                      |
 | -------------------------------- | --------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| `items[]`                        | child `<ptrn-accordion-item>` elements                          | The `items` array is a React idiom. The wrapper and the HTML code generator translate.    |
+| `items[]`                        | child `<pttrn-accordion-item>` elements                          | The `items` array is a React idiom. The wrapper and the HTML code generator translate.    |
 | `singleOpen` (default `true`)    | `multiple` (boolean attribute, default off)                     | Inverted. An HTML boolean attribute cannot default to true.                               |
 | `item.title`                     | `heading` attribute                                             | `title` collides with the native `HTMLElement.title` tooltip.                             |
 | `item.subtitle`                  | `subtitle` attribute                                            |                                                                                           |
@@ -69,9 +69,9 @@ React to Web Component mapping:
 | `item.isOpen`                    | `open` (attribute and property, reflected)                      | Ignored when `disabled`, as in React.                                                     |
 | `item.disabled`                  | `disabled` (reflected)                                          |                                                                                           |
 | `item.id`                        | `id` on the item                                                | Generated if missing.                                                                     |
-| none                             | `ptrn-toggle` event (`bubbles`, `composed`, `detail: { open }`) | React has no change callback. Decide during the spike whether React gains one for parity. |
+| none                             | `pttrn-toggle` event (`bubbles`, `composed`, `detail: { open }`) | React has no change callback. Decide during the spike whether React gains one for parity. |
 
-Structure: each item renders its header button and content panel inside its own shadow root, so `aria-controls` and `aria-labelledby` stay valid (IDs cannot be referenced across shadow roots). The parent listens for `ptrn-toggle` from its items and closes the others unless `multiple` is set. Keyboard behavior and disabled behavior match React.
+Structure: each item renders its header button and content panel inside its own shadow root, so `aria-controls` and `aria-labelledby` stay valid (IDs cannot be referenced across shadow roots). The parent listens for `pttrn-toggle` from its items and closes the others unless `multiple` is set. Keyboard behavior and disabled behavior match React.
 
 ## Gaps found so far
 
@@ -140,10 +140,10 @@ Check each box when it is verified, not when it is written.
 
 - [x] 0. Rename `@ptrn/ui` to `@ptrn/react` and the docs workspace to `docs/` (`ptrn-docs`). Verified: build, docs build, lint and 226 tests pass.
 - [x] 1. Scaffold `packages/web`, build, and a stub element. Verified: `npm run build` at the root builds it (per-component ESM with `lit` external, a 22 KB self-contained CDN bundle, and type declarations), and `npm run lint` passes.
-- [x] 2. `ptrn-accordion` and `ptrn-accordion-item` with styles. Shared-SCSS decision: the Web Component keeps its own SCSS (the two packages stay independent), and visual parity is checked side by side in the docs (step 4) instead of by a shared partial.
+- [x] 2. `pttrn-accordion` and `pttrn-accordion-item` with styles. Shared-SCSS decision: the Web Component keeps its own SCSS (the two packages stay independent), and visual parity is checked side by side in the docs (step 4) instead of by a shared partial.
 - [x] 3. Shared behavior tests and axe. Verified: 16 Playwright tests pass in Chromium against the built CDN bundle (behavior, keyboard, events, aria relationships, and axe for all three React presets).
 - [x] 4. Docs: tab bar, framework state, wrapper, HTML generator, `HtmlPlayground`, and a side-by-side visual check of the React and Web Component Accordion. Verified in a browser against the built site: both tabs render, the tab lives in `?framework=`, the choice is remembered across pages, components without a Web Component show the tab disabled, "Edit code" opens an editable HTML editor, the demo has a Code tab with the generated HTML, and the React and Web Component demos measure the same (368 px wide, 48 px items). Docs lint (eslint and tsc) passes.
-- [x] 5. `npm pack` and the bare-HTML consumer check. Verified with the real tarball extracted outside the workspace: `@ptrn/web` and `@ptrn/web/Accordion` resolve through the `exports` map and an esbuild consumer bundles them with the elements defined once and `lit` deduplicated, and a plain HTML file loading `dist/cdn/ptrn-web.min.js` renders and toggles the accordion. No console errors and no React requests in either. Code splitting was added to the build because `index.js` and `Accordion/index.js` each carried their own copy of the code.
+- [x] 5. `npm pack` and the bare-HTML consumer check. Verified with the real tarball extracted outside the workspace: `@ptrn/web` and `@ptrn/web/Accordion` resolve through the `exports` map and an esbuild consumer bundles them with the elements defined once and `lit` deduplicated, and a plain HTML file loading `dist/cdn/pttrn-web.min.js` renders and toggles the accordion. No console errors and no React requests in either. Code splitting was added to the build because `index.js` and `Accordion/index.js` each carried their own copy of the code.
 - [x] 6. Retro: gaps log (above, 12 items), base helpers (`define`, `uniqueId`, `emit`, and the shared shadow reset in `src/styles/_reset.scss`), rhythm and conventions doc (`packages/web/CONTRIBUTING.md`), and the `npm run newc -- <Name>` scaffold. The scaffold was exercised with a throwaway component: it built, linted and passed its skeleton tests, then was removed.
 
 ## Out of scope for now
@@ -151,7 +151,7 @@ Check each box when it is verified, not when it is written.
 - Framework wrappers other than the docs-only React wrapper.
 - Server-side rendering and declarative shadow DOM.
 - A Web Component version of any component other than Accordion.
-- Changes to the React components (except the optional `ptrn-toggle` parity decision).
+- Changes to the React components (except the optional `pttrn-toggle` parity decision).
 - Screenshot note: a stray "Text" label overlaps the Accordion heading on the component page. Unrelated to this plan, worth a separate look.
 
 ## Open items

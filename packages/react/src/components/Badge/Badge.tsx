@@ -5,12 +5,10 @@ import { tryIntParse } from '-/utils/tryIntPsrse';
 
 export type BadgeProps = {
     /**
-     * The content of the badge. If larger than 99, the badge will display '99+'.
+     * The count the badge shows. Above 99 it shows '99+'. Without a count only the children render.
      *
      * @example
      *     5;
-     *
-     * @default 1
      *
      * @type number
      */
@@ -59,7 +57,7 @@ export type BadgeProps = {
 export function Badge({ count: countProp, size = 'small', surfaceBorder, children, color = 'primary' }: BadgeProps) {
     const count: number | null = tryIntParse(countProp);
 
-    if (typeof count === 'undefined') return children || null;
+    if (count === null) return children || null;
 
     const badge = (
         <sup

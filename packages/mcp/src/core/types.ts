@@ -19,6 +19,18 @@ export type Component = {
     /** Example JSX from the docs, when the component has one. */
     usage?: string;
     props: Prop[];
+    /** The behavior specification from the component's `spec.ts`, when it has one. */
+    spec?: ComponentSpec;
+};
+
+/** Mirrors `ComponentSpec` in @ptrn/react's `src/types/meta.ts`. */
+export type ComponentSpec = {
+    name: string;
+    summary: string;
+    anatomy: { part: string; role?: string; description: string }[];
+    keyboard: { keys: string[]; description: string }[];
+    accessibility: { roles: string; labels: string; focus: string; targetSize?: number; motion?: string };
+    behaviors: { id: string; description: string }[];
 };
 
 export type Icon = {
