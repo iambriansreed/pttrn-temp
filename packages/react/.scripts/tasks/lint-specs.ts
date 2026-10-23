@@ -8,8 +8,7 @@
  * - A component with a spec has a React suite that registers its behaviors with `describeBehaviors`.
  * - A Web Component in `@ptrn/web` requires a spec for its React counterpart and a Playwright suite that registers the
  *   behaviors with `describeBehaviors`, so the two implementations are held to the same cases.
- *
- * Stable components without a spec are listed, not failed, until every one has one.
+ * - Every Stable component has a spec. A component cannot reach Stable without its behavior contract.
  */
 import fs from 'fs';
 import path from 'path';
@@ -96,9 +95,9 @@ async function main() {
     }
 
     console.log(`${withSpec.length} components have a spec: ${withSpec.join(', ') || 'none'}`);
-    if (stableWithout.length) {
-        console.log(`${stableWithout.length} Stable components have none yet: ${stableWithout.join(', ')}`);
-    }
+    stableWithout.forEach((name) =>
+        errors.push(`❌ ${name} is Stable but has no spec.ts; write its spec and register the behaviors in its suite`),
+    );
 
     if (errors.length) {
         errors.forEach((error) => console.error(error));
