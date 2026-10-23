@@ -10,7 +10,6 @@ import { useFloating } from '-/hooks/useFloating';
 import { useId } from '-/hooks/useId';
 import { useOutsideClick } from '-/hooks/useOutsideClick';
 import { FieldControlProps } from '-/types/common';
-import { getElementById } from '-/utils/dom';
 import { handleKeyDown } from '-/utils/handleKeyDown';
 import { scrollListItemsStyle, ScrollListItemsStyleProps } from '-/utils/scrollListItemsStyle';
 import { sendAriaLiveMessage } from '-/utils/sendAriaLiveMessage';
@@ -128,12 +127,19 @@ export function SearchBar<O extends SearchBarOption>({
         return items.filter((item) => !valueStr || item.label.toLowerCase().includes(valueStr));
     }, [items, value]);
 
+    const hasQuery = !!value?.trim().length;
+    const noResults = hasQuery && filteredItems.length === 0;
+
     useEffect(() => {
-        if (!items.length) sendAriaLiveMessage('No results found', 'assertive');
-    }, [items.length, value]);
+        if (noResults) sendAriaLiveMessage('No results found', 'assertive');
+    }, [noResults, value]);
+
+    // Choosing an option or pressing Escape closes the list until the next keystroke.
+    const [dismissed, setDismissed] = useState(false);
 
     const { activeElementId, setActiveElementId, arrowKeyCallbacks } = useArrowNavigation({
-        ids: filteredItems.map((i) => i.id),
+        // The no-results row stands in for the options, so the active id stays valid while nothing matches.
+        ids: noResults ? [noResultsId] : filteredItems.map((i) => i.id),
     });
 
     const closeMenu = () => setActiveElementId(null);
@@ -155,23 +161,18 @@ export function SearchBar<O extends SearchBarOption>({
         handleTabs: true,
     });
 
-    const spaceEnter = () => {
-        if (!open) {
-            elements.reference?.click();
-            return;
-        }
-        if (activeElementId) getElementById(activeElementId)?.click();
+    const choose = (item: (typeof items)[number]) => {
+        onChange(item.label, item);
+        setDismissed(true);
+        closeMenu();
     };
 
     useEffect(() => {
-        if (!hasFocus) return setActiveElementId(null);
-
-        if (!filteredItems.length) return setActiveElementId(noResultsId);
-
+        if (!hasFocus || dismissed) return setActiveElementId(null);
+        if (noResults) return setActiveElementId(noResultsId);
         if (activeElementId) return;
-
-        setActiveElementId(value?.trim().length ? filteredItems[0].id : null);
-    }, [hasFocus, filteredItems, activeElementId, setActiveElementId, value, noResultsId]);
+        setActiveElementId(hasQuery ? filteredItems[0].id : null);
+    }, [hasFocus, dismissed, noResults, hasQuery, filteredItems, activeElementId, setActiveElementId, noResultsId]);
 
     return (
         <>
@@ -197,18 +198,34 @@ export function SearchBar<O extends SearchBarOption>({
                     }}
                     leading={<SvgSearch />}
                     name={name}
-                    onChange={(str) => onChange(str)}
+                    onChange={(str) => {
+                        setDismissed(false);
+                        onChange(str);
+                    }}
                     onFocus={() => setHasFocus(true)}
+                    // Up and Down move through the results (Down opens them); Left, Right and Space stay text editing.
+                    // Enter chooses only while the list is open, so a closed search can still submit its form.
                     onKeyDown={handleKeyDown(
                         {
-                            ...arrowKeyCallbacks,
                             ArrowDown: (event) => {
-                                if (!open) spaceEnter();
+                                setDismissed(false);
                                 arrowKeyCallbacks.ArrowDown?.(event);
                             },
-                            Space: spaceEnter,
-                            Enter: spaceEnter,
-                            'Ctrl+Option+Space': spaceEnter,
+                            ArrowUp: (event) => {
+                                if (open) arrowKeyCallbacks.ArrowUp?.(event);
+                            },
+                            ...(open
+                                ? {
+                                      Enter: () => {
+                                          const item = filteredItems.find((entry) => entry.id === activeElementId);
+                                          if (item) choose(item);
+                                      },
+                                      Escape: () => {
+                                          setDismissed(true);
+                                          closeMenu();
+                                      },
+                                  }
+                                : {}),
                         },
                         { preventDefault: true, stopPropagation: true },
                     )}
@@ -236,13 +253,19 @@ export function SearchBar<O extends SearchBarOption>({
                 owner="select"
                 role="listbox"
                 style={{
-                    ...(open ? scrollListItemsStyle(scrollLimit, items.length) : {}),
+                    ...(open ? scrollListItemsStyle(scrollLimit, filteredItems.length) : {}),
                     ...floatingStyles,
                 }}
                 tabIndex={-1}
             >
                 {activeElementId === noResultsId && (
-                    <div data-pttrn="no-items-found" id={noResultsId}>
+                    <div
+                        aria-disabled="true"
+                        aria-selected="false"
+                        data-pttrn="no-items-found"
+                        id={noResultsId}
+                        role="option"
+                    >
                         <Txt as="div" variant="heading-h5">
                             No results found
                         </Txt>
@@ -265,10 +288,7 @@ export function SearchBar<O extends SearchBarOption>({
                             aria-label={undefined}
                             aria-selected={isSelected}
                             as="li"
-                            onClick={() => {
-                                onChange(item.label, item);
-                                closeMenu();
-                            }}
+                            onClick={() => choose(item)}
                             owner="select"
                             role="option"
                             tabIndex={-1} //show && isActive ? -1 : 0}
