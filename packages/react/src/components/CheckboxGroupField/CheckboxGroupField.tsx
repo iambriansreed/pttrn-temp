@@ -34,7 +34,11 @@ export function CheckboxGroupField({
             required={controlProps.required}
             style={style}
         >
-            <CheckboxGroup {...propsWithAria({ controlProps, id, errorMessage, helperText })} />
+            {/* An error marks every checkbox invalid, so each one carries aria-errormessage to the alert. */}
+            <CheckboxGroup
+                {...propsWithAria({ controlProps, id, errorMessage, helperText })}
+                invalid={controlProps.invalid || !!errorMessage}
+            />
         </Fieldset>
     );
 }

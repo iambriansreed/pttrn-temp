@@ -34,7 +34,11 @@ export function RadioGroupField({
             required={controlProps.required}
             style={style}
         >
-            <RadioGroup {...propsWithAria({ id, controlProps, errorMessage, helperText })} />
+            {/* An error marks the radio group invalid with aria-errormessage to the alert, and styles the radios. */}
+            <RadioGroup
+                {...propsWithAria({ id, controlProps, errorMessage, helperText })}
+                invalid={controlProps.invalid || !!errorMessage}
+            />
         </Fieldset>
     );
 }

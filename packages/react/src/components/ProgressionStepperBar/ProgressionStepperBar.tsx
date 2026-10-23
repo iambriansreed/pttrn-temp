@@ -43,7 +43,7 @@ export function ProgressionStepperBar({
     size = 'large',
     ...containerProps
 }: ProgressionStepperBarProps) {
-    const stepCompleted = Math.min(stepCompletedProp, stepCount);
+    const stepCompleted = Math.max(0, Math.min(stepCompletedProp, stepCount));
 
     return (
         <div
@@ -52,7 +52,8 @@ export function ProgressionStepperBar({
             style={cssWithVars({ '--steps': stepCount })}
             {...containerProps}
         >
-            <div data-steps>
+            {/* The segments picture the count below, which is the text assistive technology reads. */}
+            <div aria-hidden data-steps>
                 {Array.from({ length: stepCount }, (_, i) => (
                     <div data-complete={i < stepCompleted || undefined} data-step={i} key={i} />
                 ))}

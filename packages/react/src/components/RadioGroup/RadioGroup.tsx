@@ -82,6 +82,8 @@ export function RadioGroup({
         <div
             {...props}
             aria-describedby={ariaDescribedBy || undefined}
+            // ARIA puts aria-invalid on the radio group, not on a radio, so the error message is tied to the group.
+            aria-errormessage={ariaErrorMessage || undefined}
             data-pttrn="radio-group"
             id={id}
             role="radiogroup"
