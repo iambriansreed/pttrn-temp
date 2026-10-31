@@ -17,11 +17,14 @@ concurrency:
 env:
     FORCE_COLOR: 1
 
+# Every job has a timeout: GitHub's default is six hours, so a stalled download once held the accessibility job for
+# 40 minutes and counting before anything ran.
 jobs:
     commits:
         name: Commit messages
         if: github.event_name == 'pull_request'
         runs-on: ubuntu-latest
+        timeout-minutes: 10
         steps:
             - uses: actions/checkout@v4
               with:
@@ -36,6 +39,7 @@ jobs:
     lint:
         name: Lint and typecheck
         runs-on: ubuntu-latest
+        timeout-minutes: 15
         steps:
             - uses: actions/checkout@v4
             - uses: actions/setup-node@v4
@@ -61,6 +65,7 @@ jobs:
     unit:
         name: Unit tests
         runs-on: ubuntu-latest
+        timeout-minutes: 15
         steps:
             - uses: actions/checkout@v4
             - uses: actions/setup-node@v4
@@ -78,6 +83,7 @@ jobs:
     consumer:
         name: Consumer smoke test (React ${{ matrix.react }})
         runs-on: ubuntu-latest
+        timeout-minutes: 15
         strategy:
             fail-fast: false
             matrix:
@@ -97,6 +103,7 @@ jobs:
     web:
         name: Web Components (Playwright)
         runs-on: ubuntu-latest
+        timeout-minutes: 15
         steps:
             - uses: actions/checkout@v4
             - uses: actions/setup-node@v4
@@ -105,7 +112,9 @@ jobs:
                   cache: npm
             - run: npm ci
             - run: npm run build
+            # apt mirrors and the browser download can stall; fail fast instead of holding a runner for hours.
             - run: npx playwright install --with-deps chromium
+              timeout-minutes: 10
             - run: npm test --workspace @ptrn/web
             - uses: actions/upload-artifact@v4
               if: failure()
@@ -117,6 +126,7 @@ jobs:
     docs:
         name: Docs site (Playwright)
         runs-on: ubuntu-latest
+        timeout-minutes: 25
         steps:
             - uses: actions/checkout@v4
             - uses: actions/setup-node@v4
@@ -126,7 +136,9 @@ jobs:
             - run: npm ci
             - run: npm run build
             - run: npm run build:docs
+            # apt mirrors and the browser download can stall; fail fast instead of holding a runner for hours.
             - run: npx playwright install --with-deps chromium
+              timeout-minutes: 10
             - run: npm test --workspace ptrn-docs
             - uses: actions/upload-artifact@v4
               if: failure()
@@ -138,6 +150,7 @@ jobs:
     accessibility:
         name: Accessibility matrix (${{ matrix.theme }})
         runs-on: ubuntu-latest
+        timeout-minutes: 25
         # Blocking since every theme passed: a violation in any theme fails the run. Fix the component or the token,
         # never skip, quarantine or retry the row.
         strategy:
@@ -153,7 +166,9 @@ jobs:
             - run: npm ci
             - run: npm run build
             - run: npm run build:docs
+            # apt mirrors and the browser download can stall; fail fast instead of holding a runner for hours.
             - run: npx playwright install --with-deps chromium
+              timeout-minutes: 10
             - run: npm run test:a11y --workspace ptrn-docs
               env:
                   PTTRN_THEME: ${{ matrix.theme }}
@@ -167,6 +182,7 @@ jobs:
     visual:
         name: Visual regression (${{ matrix.theme }})
         runs-on: ubuntu-latest
+        timeout-minutes: 25
         strategy:
             fail-fast: false
             matrix:
@@ -180,7 +196,9 @@ jobs:
             - run: npm ci
             - run: npm run build
             - run: npm run build:docs
+            # apt mirrors and the browser download can stall; fail fast instead of holding a runner for hours.
             - run: npx playwright install --with-deps chromium
+              timeout-minutes: 10
             # Every component's main example, and the Web Component tab where one exists, against the baselines in
             # docs/tests/visual/__screenshots__. A change is reviewed and the baselines updated with the
             # "Update visual baselines" workflow, never by loosening the comparison.
@@ -205,6 +223,7 @@ jobs:
     pack:
         name: Package contents
         runs-on: ubuntu-latest
+        timeout-minutes: 15
         steps:
             - uses: actions/checkout@v4
             - uses: actions/setup-node@v4
