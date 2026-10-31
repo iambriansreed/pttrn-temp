@@ -113,9 +113,17 @@ export function TimePickerSegment<T extends string>({
                         handleIncrement(-1);
                         event.preventDefault();
                     },
-                    Enter: () => ref.current?.blur(),
+                    // The segment is contenteditable: without preventDefault, Enter inserts a line break and Backspace
+                    // edits the text React renders (or, at the start of the segment, the node before it).
+                    Enter: () => {
+                        ref.current?.blur();
+                        event.preventDefault();
+                    },
                     Escape: () => ref.current?.blur(),
-                    Backspace: () => onChange(null),
+                    Backspace: () => {
+                        onChange(null);
+                        event.preventDefault();
+                    },
                     Tab: () => {
                         // do nothing
                     },
