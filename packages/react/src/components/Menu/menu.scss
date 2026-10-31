@@ -2,6 +2,7 @@
     --overflow-y: hidden;
 
     width: 332px;
+    max-width: 100%;
     box-sizing: border-box;
     border: var(--usa-spacing-1px) solid var(--theme-color-base-lighter);
     background-color: var(--theme-body-background-color);

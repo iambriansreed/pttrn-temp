@@ -74,6 +74,8 @@ export function Txt<As extends ElementType = ElementType>({
             {...containerProps}
             data-pttrn="txt"
             style={{
+                // A word wider than its container breaks instead of overflowing it, as a large display size on a phone.
+                overflowWrap: 'break-word',
                 ...styleProp,
                 font: inherit ? undefined : txtFont(variant),
             }}

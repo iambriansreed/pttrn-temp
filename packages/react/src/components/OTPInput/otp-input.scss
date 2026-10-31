@@ -1,5 +1,6 @@
 [data-pttrn='otp-input'] {
     width: fit-content;
+    max-width: 100%;
     position: relative;
 
     --border-color: var(--theme-color-base-medium);
@@ -12,6 +13,7 @@
         justify-content: center;
         gap: var(--usa-spacing-1);
         width: fit-content;
+        max-width: 100%;
         position: relative;
 
         [data-digit] {
@@ -21,9 +23,11 @@
             justify-content: center;
             border-radius: var(--theme-border-radius-md);
             border: var(--usa-spacing-1px) solid var(--border-color);
-            flex-grow: 1;
+
+            // Each box is --width wide and shrinks evenly when the row is short; the dots overlay mirrors it.
+            flex: 0 1 var(--width);
+            min-width: 0;
             aspect-ratio: 1;
-            width: var(--width);
             position: relative;
             outline: none;
             text-align: center;
@@ -102,7 +106,8 @@
         pointer-events: none;
 
         [data-dot] {
-            width: var(--width);
+            flex: 0 1 var(--width);
+            min-width: 0;
             display: flex;
             justify-content: center;
 
