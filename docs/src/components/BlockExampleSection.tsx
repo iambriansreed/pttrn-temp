@@ -10,7 +10,7 @@ export function BlockExampleSection({ name, component, pattern, index }: BlockCo
 
     return (
         <Flex direction="column" full gap="16" style={{ margin: 'var(--usa-spacing-5) 0' }}>
-            <Flex align="center" full justify="space-between">
+            <Flex align="center" full gap="8" justify="space-between" wrap="wrap">
                 <h3 id={kebabCase(`section-${name}`)}>{name}</h3>
                 <SegmentedControl
                     label="Type"

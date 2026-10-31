@@ -47,6 +47,9 @@ export function ExamplePlaceholder({
                 flexDirection: 'column',
                 gap: 'var(--usa-spacing-05)',
                 width: dimension(width),
+                // A placeholder stands in for content, so it shrinks with a narrow demo like content would.
+                maxWidth: '100%',
+                minWidth: 0,
                 height: dimension(height),
                 background: 'var(--theme-color-base-lighter)',
                 // The surface stays light in every theme, so the text stays dark.

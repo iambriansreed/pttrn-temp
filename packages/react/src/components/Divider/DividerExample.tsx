@@ -30,6 +30,8 @@ export const DividerExample: ComponentExample<DividerProps> = {
                     flexDirection: props.orientation === 'vertical' ? 'row' : 'column',
                     alignItems: props.orientation === 'vertical' ? 'center' : 'stretch',
                     justifyContent: props.orientation === 'vertical' ? 'center' : 'stretch',
+                    // Horizontal: up to 300px wide, and narrower on a phone.
+                    width: props.orientation !== 'vertical' ? '100%' : 'auto',
                     maxWidth: props.orientation !== 'vertical' ? 300 : 'auto',
                 }}
             >

@@ -21,8 +21,9 @@ h6 {
     scroll-margin-top: calc(var(--usa-spacing-8));
     margin-bottom: 0.25em;
 
-    // Type names such as Pick<CheckboxOptionProps, 'label'> have no break points of their own.
-    overflow-wrap: break-word;
+    // Type names such as Pick<CheckboxOptionProps, 'label'> have no break points of their own. `anywhere` also lets a
+    // heading inside a flex row shrink, which `break-word` does not; either only breaks a word that cannot fit.
+    overflow-wrap: anywhere;
 
     &:not(:first-child) {
         margin-top: 1.15em;

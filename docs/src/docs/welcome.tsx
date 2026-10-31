@@ -102,7 +102,14 @@ export function Welcome() {
                     <Button as="a" href="/components" label="View Components" size="small" variant="secondary" />
                 </div>
             </section>
-            <section style={{ width: '100%', maxWidth: '1280px', padding: 'var(--usa-spacing-5)' }}>
+            <section
+                style={{
+                    width: '100%',
+                    maxWidth: '1280px',
+                    // 40px around the demo grid on a desktop, 16px on a phone.
+                    padding: 'var(--usa-spacing-5) clamp(var(--usa-spacing-2), 4vw, var(--usa-spacing-5))',
+                }}
+            >
                 <Grid columns={3} gap="24" minColumnWidth="300px">
                     <Card
                         style={{

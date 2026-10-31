@@ -14,6 +14,8 @@ export const FlexExample: ComponentExample<FlexProps> = {
         );
     },
     presets,
+    // The demo wraps, so the large gap and padding variants still fit a phone; the wrap variant shows both settings.
+    defaultState: { wrap: 'wrap' },
 };
 
 export const Usage = () => {

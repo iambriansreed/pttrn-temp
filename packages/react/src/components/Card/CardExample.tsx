@@ -8,7 +8,7 @@ export const CardExample: ComponentExample = {
                 style={{
                     height: '200px',
                     width: '100%',
-                    minWidth: '250px',
+                    minWidth: 'min(250px, 100%)',
                     backgroundColor: 'unset',
                 }}
             />
