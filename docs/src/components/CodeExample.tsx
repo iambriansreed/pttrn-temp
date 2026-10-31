@@ -45,7 +45,7 @@ export function CodeExample({
             />
             <section data-active-tab={demoTab === 'example' || undefined} data-example>
                 <ErrorBoundary>
-                    <div data-example-render ref={exampleRef} style={containerStyle}>
+                    <div data-example-render ref={exampleRef} style={{ ...containerStyle, maxWidth: '100%' }}>
                         {children}
                     </div>
                 </ErrorBoundary>

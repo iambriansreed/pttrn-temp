@@ -1,14 +1,14 @@
 [data-page-icons] {
     [data-filters] {
         display: flex;
-        flex-direction: row;
+        flex-flow: row wrap;
         place-items: center center;
-        gap: var(--usa-spacing-6);
+        gap: var(--usa-spacing-2) var(--usa-spacing-6);
         font-size: var(--usa-spacing-6);
         margin-bottom: var(--usa-spacing-1);
 
         [data-type] {
-            max-width: 300px;
+            max-width: min(300px, 100%);
         }
     }
 

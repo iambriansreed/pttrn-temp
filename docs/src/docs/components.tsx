@@ -20,7 +20,7 @@ export function Components() {
                     Here you can find all the components available in the library. We are working on adding more
                     components.
                 </p>
-                <Grid columns={[1, 1, 1]} gap="24" style={{ maxWidth: '900px' }}>
+                <Grid columns={3} gap="24" minColumnWidth="200px" style={{ maxWidth: '900px' }}>
                     {componentsMeta
                         .filter(({ phase }) => phase !== 'Utility' && phase !== 'Backlog')
                         .map((component) => (

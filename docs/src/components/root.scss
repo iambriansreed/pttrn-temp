@@ -21,6 +21,9 @@ h6 {
     scroll-margin-top: calc(var(--usa-spacing-8));
     margin-bottom: 0.25em;
 
+    // Type names such as Pick<CheckboxOptionProps, 'label'> have no break points of their own.
+    overflow-wrap: break-word;
+
     &:not(:first-child) {
         margin-top: 1.15em;
     }
@@ -86,7 +89,8 @@ p {
 }
 
 [data-main] {
-    width: calc(100vw);
+    // 100%, not 100vw: the viewport width includes a desktop scrollbar and made every page scroll sideways.
+    width: 100%;
     height: fit-content;
     margin: calc(var(--usa-spacing-10) + var(--usa-spacing-2)) 0 0;
     padding: 0;
@@ -98,6 +102,12 @@ p {
 
 [data-pttrn='fab'][data-placement][data-nav-button] {
     top: calc(var(--navbar-height) + var(--usa-spacing-105));
+
+    // On a phone the top-right corner holds the page title's tags, so the contents button moves to the thumb.
+    @media (width < 640px) {
+        top: auto;
+        bottom: var(--usa-spacing-2);
+    }
 }
 
 [data-nav-contents] {
@@ -142,10 +152,48 @@ p {
     padding: 0 calc(var(--usa-spacing-10) + var(--usa-spacing-2)) calc(var(--usa-spacing-10) + var(--usa-spacing-2));
 }
 
-[data-screen-size='small'] {
+// Below desktop the side navigation moves into a dialog (Nav.tsx), so pages take the full width with smaller gutters.
+@media (width < 1024px) {
     [data-page] {
-        padding: 0 var(--usa-spacing-6);
+        padding: 0 var(--usa-spacing-4) var(--usa-spacing-8);
     }
+}
+
+@media (width < 640px) {
+    [data-page] {
+        padding: 0 var(--usa-spacing-2) var(--usa-spacing-6);
+    }
+
+    h1 {
+        font-size: var(--usa-font-size-sans-11);
+        line-height: 36px;
+    }
+
+    h2 {
+        font-size: var(--usa-font-size-sans-10);
+        line-height: 32px;
+    }
+
+    h3 {
+        font-size: var(--usa-font-size-sans-9);
+        line-height: 28px;
+    }
+
+    // Demos keep their layout and scroll inside their own box rather than pushing the page sideways.
+    section[data-variants] [data-option-render] {
+        max-width: 100%;
+        overflow-x: auto;
+    }
+}
+
+// Long identifiers in prose break instead of widening the page; code blocks scroll inside themselves.
+:is(p, li, td, dd) > code {
+    overflow-wrap: anywhere;
+}
+
+pre {
+    max-width: 100%;
+    overflow-x: auto;
 }
 
 [data-show-touch-targets] {
@@ -252,6 +300,7 @@ p {
 
     [data-example-render] {
         width: 100%;
+        max-width: 100%;
         margin: 0 auto;
         display: flex;
         flex-direction: column;
@@ -607,6 +656,23 @@ section[data-variants] {
         }
     }
 
+    // On phones the build label goes and the search button keeps its icon and its accessible name, not its text.
+    @media (width < 640px) {
+        padding: 0 var(--usa-spacing-1);
+
+        [data-header] {
+            margin-right: var(--usa-spacing-05);
+        }
+
+        [data-brand] span {
+            display: none;
+        }
+
+        [data-search-text] {
+            display: none;
+        }
+    }
+
     [data-navbar-right] {
         display: flex;
         gap: var(--usa-spacing-105);
@@ -726,7 +792,10 @@ section[data-variants] {
 [data-links-grid] {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(7, 1fr); /* Creates 6 equal columns */
+
+    // Seven states side by side; on a narrow screen the grid scrolls inside itself instead of widening the page.
+    grid-template-columns: repeat(7, minmax(max-content, 1fr));
+    overflow-x: auto;
     margin: var(--usa-spacing-2) 0;
 
     & > span {

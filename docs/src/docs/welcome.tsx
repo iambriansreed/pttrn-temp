@@ -340,6 +340,7 @@ export function Welcome() {
                                 { label: 'Comments', value: 'comments' },
                             ]}
                             value={(state['time-period'] as string) || 'present'}
+                            width="fill"
                         />
                         <Menu
                             style={{ zIndex: 'unset', padding: 'var(--usa-spacing-1) var(--usa-spacing-1)' }}

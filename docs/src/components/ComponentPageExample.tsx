@@ -65,6 +65,9 @@ export function ComponentPageExample() {
                     <div
                         style={{
                             display: 'flex',
+                            flexWrap: 'wrap',
+                            alignItems: 'center',
+                            gap: 'var(--usa-spacing-1)',
                             justifyContent: 'space-between',
                             marginTop: 'var(--usa-spacing-3)',
                         }}

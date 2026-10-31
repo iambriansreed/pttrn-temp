@@ -113,7 +113,7 @@ export function Nav() {
                         variant="secondary"
                     >
                         <SvgSearch />
-                        Search... ⌘K
+                        <span data-search-text>Search... ⌘K</span>
                     </Button>
                     <SearchModal onClose={() => setSearchModalOpen(false)} open={searchModalOpen} />
                 </div>
