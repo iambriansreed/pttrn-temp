@@ -19,7 +19,9 @@ The tokens come from the USWDS Design Kit in Figma. The source of truth in this 
 
 ## Use it
 
-Load the fonts and `tokens.css`, then one theme file:
+Load the fonts and `tokens.css`, then one theme file. The fonts must go through your bundler, from a CSS or JS import
+in your app; `@ptrn/react` does not inject them, because a runtime-injected `<style>` cannot resolve the `@fontsource`
+imports. Without a bundler, link `fonts.google.css` instead.
 
 ```css
 @import '@ptrn/styles/fonts.css';

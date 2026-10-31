@@ -1,3 +1,5 @@
+// The fonts load through Vite, which bundles the @fontsource files; the React package does not inject them.
+import '@ptrn/styles/fonts.css';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';

@@ -16,9 +16,11 @@ Works with React 18.3 and React 19.
 
 ## Usage
 
-Render the styles provider once to load the USWDS tokens, themes and base styles:
+Import the fonts once in your app's entry, so your bundler ships the font files, and render the styles provider once
+to load the USWDS tokens, themes and base styles:
 
 ```tsx
+import '@ptrn/styles/fonts.css';
 import { StylesProvider } from '@ptrn/react/StylesProvider';
 ```
 

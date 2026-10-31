@@ -51,10 +51,9 @@ async function main() {
 
     await exec('tsc --project ./tsconfig.build.json && npm run sass');
 
-    // copy the font, token and theme stylesheets from @ptrn/styles into dist/styles
-    await exec(
-        `cp ${path.resolve(STYLES_SOURCE_DIR, 'fonts.css')} ${path.resolve(STYLES_SOURCE_DIR, 'tokens.css')} ${distStylesPath}/`,
-    );
+    // copy the token and theme stylesheets from @ptrn/styles into dist/styles. Not the fonts: their @import of the
+    // @fontsource packages only resolves through the app's bundler, never from a runtime-injected <style>.
+    await exec(`cp ${path.resolve(STYLES_SOURCE_DIR, 'tokens.css')} ${distStylesPath}/`);
     await exec(`cp -R ${path.resolve(STYLES_SOURCE_DIR, 'themes')} ${distStylesPath}/`);
 
     await writeComponentsStylesheet();
@@ -241,6 +240,16 @@ async function componentExports() {
  * stylesheet cannot break the module.
  */
 async function createImportableCss(cssContent: string, destPath: string) {
+    // The injected <style> is resolved by the browser against the page, so an @import of a package or a relative file
+    // would 404 at runtime (that is how the fonts once went missing). Only absolute URLs can be injected.
+    const unresolvable = [...cssContent.matchAll(/@import\s+(?:url\()?\s*['"]?([^'")\s;]+)/g)]
+        .map((match) => match[1])
+        .filter((target) => !/^https?:\/\//.test(target));
+    if (unresolvable.length) {
+        throw new Error(
+            `${path.relative(distPath, destPath)} would inject @import ${unresolvable.join(', ')}, which a browser cannot resolve from a runtime <style>. Import that stylesheet through the app's bundler instead.`,
+        );
+    }
     const id = JSON.stringify(
         path
             .relative(distPath, destPath)
