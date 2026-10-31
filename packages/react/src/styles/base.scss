@@ -46,7 +46,6 @@ body[data-pttrn] {
     font: 400 var(--usa-font-size-sans-5) / 24px var(--usa-font-family-body);
     background-color: var(--theme-page-background-color);
     color: var(--theme-body-text-color);
-    min-width: 343px;
 
     a:not([data-pttrn], [data-no-link]) {
         @extend %link;
