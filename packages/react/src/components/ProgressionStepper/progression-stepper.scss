@@ -23,6 +23,9 @@
             gap: var(--usa-spacing-1);
             flex-grow: 1;
 
+            // Steps shrink below their content when the row is short, so the stepper fits a phone.
+            min-width: 0;
+
             [data-line-circle] {
                 display: flex;
                 justify-content: center;
@@ -69,6 +72,11 @@
                 padding: 0 var(--usa-spacing-5);
                 font: 400 var(--usa-font-size-sans-3) / 20px var(--usa-font-family-body);
                 text-align: center;
+
+                // On a phone the side padding would leave a step name a few letters wide.
+                @media (width < 640px) {
+                    padding: 0 var(--usa-spacing-05);
+                }
             }
 
             &:first-of-type {

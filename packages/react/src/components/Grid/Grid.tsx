@@ -54,8 +54,14 @@ export function Grid({ columns = 1, children, gap, style, minColumnWidth = 'auto
     if (Array.isArray(columns))
         gridTemplateColumns =
             columns?.map((width) => (typeof width === 'string' ? width : `minmax(0, ${width}fr)`)).join(' ') || 'auto';
-    // If columns is not an array, use the default repeat pattern
-    else gridTemplateColumns = `repeat(${columns}, minmax(${minColumnWidth}, 1fr))`;
+    // With a minimum width, `columns` is the most per row: a column that would be narrower than minColumnWidth wraps
+    // to the next row, and min(100%, …) keeps a single column inside a container narrower than the minimum.
+    else if (minColumnWidth !== 'auto') {
+        const gapSize = numToSizingVar(gap) || '0px';
+        gridTemplateColumns = `repeat(auto-fill, minmax(min(100%, max(${minColumnWidth}, calc((100% - ${columns - 1} * ${gapSize}) / ${columns}))), 1fr))`;
+    }
+    // Otherwise a fixed number of equal columns.
+    else gridTemplateColumns = `repeat(${columns}, minmax(auto, 1fr))`;
 
     return (
         <div

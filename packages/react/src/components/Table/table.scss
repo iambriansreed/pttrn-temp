@@ -7,6 +7,9 @@
 
     display: block;
     min-width: 100%;
+
+    // Never wider than its container, so a wide table scrolls inside itself even in a centered or flex layout.
+    max-width: 100%;
     overflow: auto hidden;
     border-collapse: separate;
     text-align: left;
