@@ -3,8 +3,14 @@ import { test, expect } from '@playwright/test';
 import { components, gotoUrl } from './utils';
 
 /**
- * The docs work on a phone: no page scrolls sideways at 375px wide, and the menu opens the navigation. A failure names
- * the element that widens the page, found by hiding elements top-down until the page fits.
+ * The docs and the components work on a phone, at the 320px width WCAG's reflow criterion uses:
+ *
+ * - No page scrolls sideways. A failure names the element that widens the page, found by hiding elements top-down until
+ *   the page fits.
+ * - Every main example and variant fits its own box, so a component that cannot shrink fails even where its demo box
+ *   would scroll. Components that scroll their content by design (Table, Carousel, a scrolling ChipGroup, code) are
+ *   exempt, and so are touch targets, the invisible hit areas that may extend past a control.
+ * - The menu opens the navigation.
  */
 const PAGES = [
     '/',
@@ -22,10 +28,10 @@ const PAGES = [
     ...components.map((component) => `/${component.slug}`),
 ];
 
-test.use({ viewport: { width: 375, height: 812 }, isMobile: true, hasTouch: true });
+test.use({ viewport: { width: 320, height: 720 }, isMobile: true, hasTouch: true });
 
 for (const path of PAGES) {
-    test(`${path} fits a 375px screen`, async ({ page }) => {
+    test(`${path} fits a 320px screen`, async ({ page }) => {
         await gotoUrl(page, path);
         await page.waitForLoadState('networkidle');
 
@@ -53,10 +59,43 @@ for (const path of PAGES) {
                 chain.push(describe(culprit));
                 node = culprit;
             }
-            return `page is ${document.documentElement.scrollWidth}px wide; widened by ${chain.join(' > ')}`;
+            const by = chain.length
+                ? `widened by ${chain.join(' > ')}`
+                : 'no element widens it, so look for a min-width on html or body';
+            return `page is ${document.documentElement.scrollWidth}px wide; ${by}`;
         });
 
-        expect(overflow, 'no horizontal scrolling').toBeNull();
+        // Soft, so a page that scrolls still reports which demos do not fit.
+        expect.soft(overflow, 'no horizontal scrolling').toBeNull();
+
+        const tooWide = await page.evaluate(() => {
+            const describe = (el: Element) =>
+                el.tagName.toLowerCase() +
+                [...el.attributes]
+                    .filter(
+                        (a) => a.name.startsWith('data-pttrn') || a.name === 'data-size' || a.name === 'data-variant',
+                    )
+                    .map((a) => `[${a.name}="${a.value}"]`)
+                    .join('');
+            const exempt = (el: Element) =>
+                el.matches('[data-touch-target]') ||
+                !!el.closest(
+                    '[data-pttrn="table"], [data-pttrn="carousel"], [data-pttrn="chip-group"][data-scroll], pre',
+                );
+            const problems: string[] = [];
+            for (const box of document.querySelectorAll('[data-example-render], [data-option-render]')) {
+                const edge = box.getBoundingClientRect().right;
+                const widest = [...box.querySelectorAll('*')]
+                    .filter((el) => !exempt(el) && getComputedStyle(el).position !== 'fixed')
+                    .map((el) => ({ el, over: el.getBoundingClientRect().right - edge }))
+                    .filter(({ over }) => over > 1)
+                    .sort((a, b) => b.over - a.over)[0];
+                if (widest) problems.push(`${describe(widest.el)} is ${Math.round(widest.over)}px wider than its demo`);
+            }
+            return problems;
+        });
+
+        expect(tooWide, 'every demo fits its box').toEqual([]);
     });
 }
 
