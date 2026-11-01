@@ -4,9 +4,26 @@ import data from '../src/meta/data.json' with { type: 'json' };
 const { componentsMeta, typesMeta } = data;
 
 /** Navigates relative to the configured baseURL and waits for the network to settle. */
+/**
+ * Opens a docs page and waits for it to settle. The site fades its content in (`#root.loaded` in main.tsx), so a test
+ * that measures the page too early sees it half transparent: axe then reports the blended colors as contrast failures.
+ * Waits for the network, the fade, and any other running finite animation, capped so a stuck one cannot hang a test.
+ */
 async function gotoUrl(page: Page, pathName: string) {
     await page.goto(pathName);
-    return await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('networkidle');
+    await page.locator('#root.loaded').waitFor({ state: 'attached' });
+    await page.evaluate(async () => {
+        await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+        const running = document
+            .getAnimations()
+            .filter(
+                (animation) =>
+                    animation.playState === 'running' && animation.effect?.getTiming().iterations !== Infinity,
+            )
+            .map((animation) => animation.finished.catch(() => undefined));
+        await Promise.race([Promise.all(running), new Promise((resolve) => setTimeout(resolve, 3000))]);
+    });
 }
 
 /** Every documented component except the ones still in Backlog, which have no page worth testing yet. */
