@@ -10,6 +10,8 @@ import { components, gotoUrl } from './utils';
  * - Every main example and variant fits its own box, so a component that cannot shrink fails even where its demo box
  *   would scroll. Components that scroll their content by design (Table, Carousel, a scrolling ChipGroup, code) are
  *   exempt, and so are touch targets, the invisible hit areas that may extend past a control.
+ * - Segmented control labels stay inside their segments: a control that runs out of room wraps to another row instead of
+ *   shrinking segments until labels overlap or get cut off.
  * - The menu opens the navigation.
  */
 const PAGES = [
@@ -95,7 +97,22 @@ for (const path of PAGES) {
             return problems;
         });
 
-        expect(tooWide, 'every demo fits its box').toEqual([]);
+        expect.soft(tooWide, 'every demo fits its box').toEqual([]);
+
+        const clippedLabels = await page.evaluate(() =>
+            [...document.querySelectorAll('[data-pttrn="segmented-control"] li')]
+                .filter((li) => {
+                    const label = li.querySelector('[data-label]');
+                    if (!label) return false;
+                    const segment = li.getBoundingClientRect();
+                    const text = label.getBoundingClientRect();
+                    const cutOff = label.scrollWidth > label.clientWidth + 1;
+                    return cutOff || text.left < segment.left - 1 || text.right > segment.right + 1;
+                })
+                .map((li) => li.textContent?.trim()),
+        );
+
+        expect(clippedLabels, 'segmented control labels fit their segments').toEqual([]);
     });
 }
 

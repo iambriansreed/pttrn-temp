@@ -3,8 +3,25 @@ ul[data-pttrn='segmented-control'] {
     border-radius: var(--theme-border-radius-md);
     padding: var(--usa-spacing-05);
 
-    &[data-width='fill'] {
-        margin: 0 var(--usa-spacing-2);
+    /* Never wider than its container. When the segments do not fit on one row they move to a second row, so the
+       control grows taller rather than cutting or overlapping text. */
+    max-width: 100%;
+    flex-wrap: wrap;
+    row-gap: var(--usa-spacing-05);
+
+    /* The tab-list utility fixes the height; the extra attribute outranks it so a second row has room. */
+    &[data-pttrn-utility] {
+        height: auto;
+        min-height: var(--height);
+
+        /* Segments share any spare width. On one row a hugging control has none, so nothing changes; once segments
+           wrap, each row fills the control instead of leaving a ragged edge. */
+        --item-flex-grow: 1;
+
+        li {
+            min-width: auto; /* a segment never shrinks narrower than its label */
+            min-height: calc(var(--height) - 2 * var(--usa-spacing-05));
+        }
     }
 
     --padding: var(--usa-spacing-2);
@@ -15,6 +32,19 @@ ul[data-pttrn='segmented-control'] {
 
     &[data-size='large'] {
         --padding: var(--usa-spacing-205);
+    }
+
+    /* On a phone the segments give up some side padding before a label has to wrap. */
+    @media (width < 640px) {
+        --padding: var(--usa-spacing-1);
+
+        &[data-size='small'] {
+            --padding: var(--usa-spacing-05);
+        }
+
+        &[data-size='large'] {
+            --padding: var(--usa-spacing-105);
+        }
     }
 
     %active {

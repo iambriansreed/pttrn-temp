@@ -310,6 +310,10 @@ pre {
         position: relative;
         z-index: 2;
         padding: var(--usa-spacing-2);
+
+        @media (width < 640px) {
+            padding: var(--usa-spacing-1);
+        }
     }
 
     > section:not([data-active-tab]) {

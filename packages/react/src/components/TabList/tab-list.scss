@@ -7,7 +7,6 @@ ul[data-pttrn-utility='tab-list'] {
     height: var(--height);
     font: var(--font);
     width: fit-content; /* default to hug content */
-    max-width: 100%; /* never wider than the container; labels truncate instead */
 
     &[data-width='fill'] {
         align-items: stretch;
@@ -52,18 +51,16 @@ ul[data-pttrn-utility='tab-list'] {
         gap: var(--usa-spacing-1);
         min-width: 0; /* Prevent overflow from long content */
 
+        /* In fill mode the items grow to share the full width; in hug mode they keep their content width. */
+        flex: var(--item-flex-grow) 1 auto;
+        justify-content: center;
+
         &[aria-disabled] {
             cursor: not-allowed;
         }
 
         span {
             pointer-events: none;
-        }
-
-        [data-label] {
-            min-width: 0;
-            overflow: hidden;
-            text-overflow: ellipsis;
         }
 
         [data-label][style] {
