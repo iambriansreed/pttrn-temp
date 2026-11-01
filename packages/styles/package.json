@@ -55,7 +55,7 @@
         "./fonts.google.css": "./fonts.google.css"
     },
     "devDependencies": {
-        "style-dictionary": "^5.7.0",
+        "style-dictionary": "^5.7.1",
         "tsx": "^4.23.15"
     },
     "type": "module",
