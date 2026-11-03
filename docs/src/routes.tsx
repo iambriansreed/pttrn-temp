@@ -14,6 +14,7 @@ import { Hooks } from 'src/docs/hooks';
 import { Icons } from 'src/docs/icons';
 import Intro from 'src/docs/intro.md?raw';
 import { Stylesheets } from 'src/docs/styles';
+import { TokenCatalog } from 'src/docs/tokenCatalog';
 import Tokens from 'src/docs/tokens.md?raw';
 import { Typography } from 'src/docs/typography.tsx';
 import { Welcome } from 'src/docs/welcome';
@@ -62,6 +63,7 @@ export const routes: RouteLink[] = [
                     </Page>
                 ),
                 title: 'Get Started',
+                markdown: Intro,
             },
             { path: '/components', Component: Components, title: 'Components' },
             { path: '/icons', Component: Icons, title: 'Icons', noIndex: true },
@@ -70,9 +72,11 @@ export const routes: RouteLink[] = [
                 Component: () => (
                     <Page>
                         <Markdown md={Tokens} />
+                        <TokenCatalog />
                     </Page>
                 ),
                 title: 'Design Tokens',
+                markdown: Tokens,
             },
             { path: '/styles', Component: Stylesheets, title: 'Styles' },
             { path: '/typography', Component: Typography, title: 'Typography' },
@@ -84,6 +88,7 @@ export const routes: RouteLink[] = [
                     </Page>
                 ),
                 title: 'Figma Plugin',
+                markdown: FigmaPlugin,
             },
             {
                 path: '/ai-readiness',
@@ -102,6 +107,7 @@ export const routes: RouteLink[] = [
                     </Page>
                 ),
                 title: 'Contributing',
+                markdown: Contributing,
             },
             {
                 path: '/guidelines',
@@ -111,6 +117,7 @@ export const routes: RouteLink[] = [
                     </Page>
                 ),
                 title: 'Guidelines',
+                markdown: Guidelines,
             },
             {
                 path: '/governance',
@@ -120,6 +127,7 @@ export const routes: RouteLink[] = [
                     </Page>
                 ),
                 title: 'Governance',
+                markdown: Governance,
             },
             {
                 path: '/colors',

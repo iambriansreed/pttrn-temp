@@ -35,13 +35,8 @@ export function Nav() {
     }, [location.pathname]);
 
     useEffect(() => {
-        let element;
-
-        try {
-            element = location.hash && document.querySelector(location.hash);
-        } catch {
-            // location.hash may not be a valid selector.
-        }
+        // By id rather than as a selector: heading ids can start with a digit, which a selector cannot.
+        const element = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1)));
         if (!element) return;
         window.scrollTo({
             top: element.getBoundingClientRect()?.top + window.scrollY - 100,
