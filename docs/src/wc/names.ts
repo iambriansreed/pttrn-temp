@@ -4,6 +4,7 @@
  */
 export const webComponents: string[] = [
     'Accordion',
+    'Carousel',
     'FileUpload',
     'FileUploadItem',
     'ProgressionStepper',
