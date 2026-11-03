@@ -1,0 +1,105 @@
+@use '../../styles/reset';
+@use '../../styles/touch-target';
+
+// The rules of packages/react/src/components/Chip/chip.scss, and of Badge for the trailing count, which is a private part
+// of the chip here rather than a pttrn-badge.
+
+:host {
+    display: block;
+    width: fit-content;
+}
+
+:host([hidden]) {
+    display: none;
+}
+
+[data-pttrn='chip'] {
+    flex-direction: row;
+    gap: var(--usa-spacing-1);
+    height: var(--usa-spacing-4);
+    text-wrap: nowrap;
+    font: 500 var(--usa-font-size-sans-3) / 20px var(--usa-font-family-ui);
+    color: var(--theme-color-base-dark);
+    background-color: var(--theme-body-background-color);
+    border: var(--usa-spacing-1px) solid var(--theme-color-base-lighter);
+    border-radius: var(--theme-border-radius-md);
+    padding: 0 var(--usa-spacing-105);
+
+    [data-touch-target] {
+        min-width: var(--usa-spacing-6);
+        min-height: var(--usa-spacing-6);
+    }
+
+    &:not([data-flat]) {
+        box-shadow: 0 1px 2px 0 var(--usa-color-black-transparent-20);
+    }
+
+    &[data-disabled] {
+        color: var(--theme-color-disabled-dark);
+        cursor: not-allowed;
+        border-color: var(--theme-color-disabled-light);
+        background-color: var(--usa-color-black-transparent-10);
+    }
+
+    &:not([data-disabled]) {
+        &:hover {
+            background-color: var(--usa-color-black-transparent-10);
+        }
+
+        &:active {
+            background-color: var(--usa-color-black-transparent-20);
+        }
+
+        &:focus {
+            outline: var(--usa-spacing-1px) solid var(--theme-global-focus-color);
+            border-color: var(--theme-global-focus-color);
+        }
+    }
+
+    &[data-selected] {
+        background-color: var(--theme-color-primary-lighter);
+        border-color: var(--theme-color-primary-medium);
+    }
+
+    [data-chip-icon] {
+        display: flex;
+        align-items: center;
+    }
+
+    // A React icon is 24 px wide unless told otherwise; a raw SVG has no size of its own, so it gets that width here.
+    ::slotted(svg) {
+        flex: none;
+        width: var(--usa-spacing-3);
+    }
+}
+
+[data-badge] {
+    --size: var(--usa-spacing-3);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--usa-radius-pill);
+    height: var(--size);
+    width: fit-content;
+    min-width: var(--size);
+    font: 500 var(--usa-font-size-sans-1) / 16px var(--usa-font-family-ui);
+    padding: 0 var(--usa-spacing-1);
+    background-color: var(--background);
+    color: var(--foreground);
+
+    &[data-color='primary'] {
+        --foreground: var(--usa-color-white);
+        --background: var(--theme-color-primary-medium);
+    }
+
+    &[data-size='x-small'] {
+        --size: var(--usa-spacing-205);
+
+        padding: var(--usa-spacing-2px) var(--usa-spacing-05);
+    }
+
+    &[data-surface-border] {
+        border: var(--usa-spacing-2px) solid var(--theme-body-background-color);
+    }
+}

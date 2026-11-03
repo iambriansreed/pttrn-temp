@@ -1,0 +1,43 @@
+@use '../../styles/reset';
+
+:host {
+    display: block;
+    width: fit-content;
+}
+
+[data-pttrn='page-control'] {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: var(--usa-radius-pill);
+    border: var(--usa-spacing-1px) solid var(--theme-color-base-lighter);
+    padding: var(--usa-spacing-1);
+    gap: var(--usa-spacing-1);
+    width: fit-content;
+    background-color: var(--theme-body-background-color);
+
+    [data-dot] {
+        background-color: var(--theme-color-base-lighter);
+        border-radius: var(--usa-radius-pill);
+        width: var(--usa-spacing-1);
+        height: var(--usa-spacing-1);
+
+        &[data-active] {
+            background-color: var(--theme-color-primary-medium);
+        }
+
+        &[data-size='x-small'] {
+            width: var(--usa-spacing-05);
+            height: var(--usa-spacing-05);
+        }
+
+        &[data-size='small'] {
+            width: 6px;
+            height: 6px;
+        }
+    }
+
+    &[data-variant='floating'] {
+        box-shadow: var(--card-shadow);
+    }
+}

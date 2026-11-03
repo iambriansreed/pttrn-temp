@@ -31,9 +31,11 @@ export type FileUploadItemProps = FileEntry & {
  *     import { FileUploadItem } from '@ptrn/react/FileUploadItem';
  *
  *     <FileUploadItem
+ *         id="dunder-mifflin-paper-co"
  *         fileName="dunder-mifflin-paper-co.jpg"
- *         fileSize="1.43 mb"
- *         status="Uploading"
+ *         fileSize={1.43}
+ *         status="uploading"
+ *         progress={40}
  *         onCancel={() => sendSnackbar('Cancel item clicked!')}
  *     />;
  *

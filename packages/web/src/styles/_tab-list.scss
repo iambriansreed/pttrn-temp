@@ -1,0 +1,96 @@
+// @ptrn/react's TabList utility (`ul[data-pttrn-utility='tab-list']`), which TabGroup and SegmentedControl build on.
+// The list renders `[role='tablist']` in its shadow root and slots its items, so the rules split in two: `tab-list` for
+// the row, included in the list's rule, and `tab` for each item, included at the root of the item's stylesheet (it
+// writes `:host` rules). The list copies its `size` and `width` onto each item as data-size and data-width.
+
+@mixin tab-list {
+    --font: 500 var(--usa-font-size-sans-5) / 24px var(--usa-font-family-ui);
+    --height: var(--usa-spacing-5);
+
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    height: var(--height);
+    font: var(--font);
+    width: fit-content;
+
+    &[data-size='small'] {
+        --font: 500 var(--usa-font-size-sans-3) / 20px var(--usa-font-family-ui);
+        --height: var(--usa-spacing-4);
+    }
+
+    &[data-size='large'] {
+        --font: 500 var(--usa-font-size-sans-7) / 28px var(--usa-font-family-ui);
+        --height: var(--usa-spacing-6);
+    }
+
+    &[data-width='fill'] {
+        align-items: stretch;
+        width: 100%;
+    }
+
+    // React outlines the row with `:has(:focus-visible)`, which cannot see slotted items; the list sets
+    // data-focus-visible instead.
+    &[data-focus-visible] {
+        outline: var(--usa-spacing-2px) solid var(--theme-global-focus-color);
+        outline-offset: calc(-1 * var(--usa-spacing-1px));
+        position: relative;
+    }
+}
+
+// The host is the tab (it takes focus and carries the role), and the padding sits on `[data-tab]` inside it: a page's
+// reset (`* { padding: 0 }`) reaches a custom element host and outranks `:host` rules.
+@mixin tab {
+    :host {
+        --font: 500 var(--usa-font-size-sans-5) / 24px var(--usa-font-family-ui);
+        --icon-size: var(--usa-spacing-205);
+
+        list-style: none;
+        cursor: pointer;
+        font: var(--font);
+        white-space: nowrap;
+        outline: none;
+        user-select: none;
+        display: flex;
+        flex-direction: row;
+        min-width: 0;
+        flex: 0 1 auto;
+    }
+
+    [data-tab] {
+        display: flex;
+        flex: 1 1 auto;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: var(--usa-spacing-1);
+        min-width: 0;
+    }
+
+    :host([data-size='small']) {
+        --font: 500 var(--usa-font-size-sans-3) / 20px var(--usa-font-family-ui);
+        --icon-size: var(--usa-spacing-2);
+    }
+
+    :host([data-size='large']) {
+        --font: 500 var(--usa-font-size-sans-7) / 28px var(--usa-font-family-ui);
+        --icon-size: var(--usa-spacing-3);
+    }
+
+    :host([data-width='fill']) {
+        flex-grow: 1;
+    }
+
+    :host([disabled]) {
+        cursor: not-allowed;
+    }
+
+    span {
+        pointer-events: none;
+    }
+
+    [data-icon] svg,
+    [data-icon] ::slotted(svg) {
+        width: var(--icon-size);
+    }
+}

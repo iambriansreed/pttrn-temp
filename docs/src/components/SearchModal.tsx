@@ -1,30 +1,21 @@
 import 'src/components/searchModal.scss';
+import { SvgIcon } from '@ptrn/icons/SvgIcon';
 import { Dialog, DialogProps } from '@ptrn/react/Dialog';
 import { Input } from '@ptrn/react/Input';
 import { Tag } from '@ptrn/react/Tag';
 import { Txt } from '@ptrn/react/Txt';
 import { useArrowNavigation } from '@ptrn/react/hooks/useArrowNavigation';
+import { useId } from '@ptrn/react/hooks/useId';
 import { useTimeout } from '@ptrn/react/hooks/useTimeout';
-import { ComponentMeta } from '@ptrn/react/types/meta';
 import { handleKeyDown } from '@ptrn/react/utils/handleKeyDown';
-import { Fragment, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { TypeMeta, UtilityMeta } from 'src/meta';
-import { componentsMeta, typesMeta, utilitiesMeta } from 'src/meta/data.json';
-
-type Meta =
-    (ComponentMeta & { kind: 'component' }) | (TypeMeta & { kind: 'type' }) | (UtilityMeta & { kind: 'utility' });
-
-export type Result = {
-    name: string;
-    url: string;
-    content: (string | { match: string })[];
-    kind: string;
-    score: number;
-    id: string;
-};
+import { escapeRegExp, loadSearchIndex, search, SearchEntry, SearchGroup } from 'src/utils/searchIndex';
 
 const EXCERPT_LENGTH = 150;
+
+/** How long typing has to pause before the search runs. */
+const DEBOUNCE_MS = 150;
 
 const trimContent = (content: string, matchIndex: number, excerptLength: number = EXCERPT_LENGTH): string => {
     const sliceStart = Math.max(matchIndex - excerptLength / 2, 0);
@@ -48,186 +39,190 @@ const trimContent = (content: string, matchIndex: number, excerptLength: number 
         }
     }
 
-    return (matchIndex ? '...' : '') + chunk.trim() + (sliceEnd < content.length ? '...' : '');
+    return (sliceStart > 0 ? '...' : '') + chunk.trim() + (sliceEnd < content.length ? '...' : '');
 };
 
-/** Escapes a user-typed string so it can be used inside a RegExp literally. */
-function escapeRegExp(value: string) {
-    return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+/**
+ * The excerpt shown under a result: the text around the first place the search appears, with that place marked. When
+ * only the name matched, the start of the text.
+ */
+function excerpt(text: string, value: string): (string | { match: string })[] {
+    const terms = [value.trim(), ...value.trim().split(/\s+/)].filter(Boolean);
+    for (const term of terms) {
+        const found = text.match(new RegExp(escapeRegExp(term), 'i'));
+        if (found?.index === undefined) continue;
+        const chunk = trimContent(text, found.index);
+        const at = chunk.toLowerCase().indexOf(found[0].toLowerCase());
+        if (at < 0) break;
+        return [
+            chunk.slice(0, at),
+            { match: chunk.slice(at, at + found[0].length) },
+            chunk.slice(at + found[0].length),
+        ];
+    }
+    return [trimContent(text, 0)];
 }
 
+/**
+ * The site search: components, markdown pages by heading, design tokens, icons, types and hooks, in one index built the
+ * first time the dialog opens. Results are grouped by kind. The field is a combobox: Up and Down move through the
+ * results, Enter opens the highlighted one.
+ */
 export function SearchModal(props: DialogProps) {
-    //
-    const [search, setSearch] = useState('');
-
-    // 1. no search term - null
-    // 2. search term entered - 'searching'
-    // 3. search term entered, debounce timeout complete, results found - Result[]
-    const [results, setResults] = useState<Result[] | 'searching' | null>(null);
+    const [value, setValue] = useState('');
+    // null: nothing typed. 'searching': waiting for the index or the debounce. Otherwise the result groups.
+    const [groups, setGroups] = useState<SearchGroup[] | 'searching' | null>(null);
+    // The value the shown results were found with; excerpts mark it, not what has been typed since.
+    const [searched, setSearched] = useState('');
+    const latestValue = useRef('');
 
     const resultsRef = useRef<HTMLDivElement | null>(null);
     const timeout = useTimeout();
     const navigate = useNavigate();
+    const listboxId = useId();
+
+    // Start building the index as soon as the dialog opens, so it is ready by the first keystroke.
+    useEffect(() => {
+        if (props.open) loadSearchIndex();
+    }, [props.open]);
+
+    const results = useMemo(() => (Array.isArray(groups) ? groups.flatMap((group) => group.results) : []), [groups]);
+
+    const { activeElementId, setActiveElementId, arrowKeyCallbacks } = useArrowNavigation({
+        ids: results.map((result) => result.id),
+        // Left and Right move the caret in the field; only Up and Down move through the results.
+        callback: ({ key }) => key === 'ArrowUp' || key === 'ArrowDown',
+    });
 
     const updateSearch = (next: string | undefined) => {
-        const value = next || '';
-        setSearch(value);
+        const nextValue = next || '';
+        setValue(nextValue);
+        latestValue.current = nextValue;
 
         timeout.clear();
 
-        if (!value.trim().length) {
-            setResults(null);
+        if (!nextValue.trim().length) {
+            setGroups(null);
             return;
         }
 
-        setResults('searching');
+        setGroups('searching');
 
         timeout.set(() => {
-            const searchString = value.toLowerCase().trim();
+            loadSearchIndex().then((index) => {
+                // A later keystroke has started its own search.
+                if (latestValue.current !== nextValue) return;
 
-            const nextResultIndexes = (
-                [
-                    //
-                    ...componentsMeta.map((m) => ({ ...m, kind: 'component' })),
-                    ...typesMeta.map((m) => ({ ...m, kind: 'type' })),
-                    ...utilitiesMeta.map((m) => ({ ...m, kind: 'utility' })),
-                ] as Meta[]
-            )
-                .flatMap((meta): Result | [] => {
-                    const titleMatch = meta.name.toLowerCase().includes(searchString);
-
-                    let trimmedContent = '';
-                    let match: RegExpMatchArray | null = null;
-                    if (meta.description) {
-                        match = meta.description?.match(new RegExp(escapeRegExp(searchString), 'i'));
-                        if (match) trimmedContent = trimContent(meta.description, match.index || 0);
-                    }
-
-                    let content: Result['content'] = [trimmedContent];
-
-                    if (match && match[0]) {
-                        content = trimmedContent.split(match[0]);
-                        content.splice(1, 0, {
-                            match: match[0],
-                        });
-                    }
-
-                    const url = (match || titleMatch) && getUrlForMeta(meta);
-
-                    return url
-                        ? {
-                              ...meta,
-                              content,
-                              score: titleMatch ? 1 : 0.5,
-                              kind: meta.kind || 'component',
-                              url,
-                              id: `result-${meta.name}`,
-                          }
-                        : [];
-                })
-                .sort((a, b) => b.score - a.score);
-
-            setResults(nextResultIndexes);
-
-            setActiveElementId(nextResultIndexes[0]?.id || null);
-
-            resultsRef?.current?.scrollTo({
-                top: 0,
-                behavior: 'smooth',
+                const nextGroups = search(index, nextValue);
+                setSearched(nextValue);
+                setGroups(nextGroups);
+                setActiveElementId(nextGroups[0]?.results[0]?.id || null);
+                resultsRef.current?.scrollTo({ top: 0 });
             });
-        }, 500);
+        }, DEBOUNCE_MS);
     };
-    const { activeElementId, setActiveElementId, arrowKeyCallbacks } = useArrowNavigation({
-        ids: (Array.isArray(results) ? results : []).map((i) => i.id),
-    });
+
+    const open = (result: SearchEntry) => {
+        navigate(result.url);
+        props.onClose();
+    };
+
+    const count = results.length;
 
     return (
         <Dialog data-search-modal {...props} placement="top">
             <Input
                 aria-label="Search"
+                inputProps={{
+                    role: 'combobox',
+                    'aria-autocomplete': 'list',
+                    'aria-controls': listboxId,
+                    'aria-expanded': count > 0,
+                    'aria-activedescendant': (count > 0 && activeElementId) || undefined,
+                }}
                 name="search"
                 onChange={updateSearch}
                 onKeyDown={handleKeyDown({
                     ...arrowKeyCallbacks,
                     Enter: () => {
-                        if (activeElementId) {
-                            const activeResult = Array.isArray(results)
-                                ? results.find((r) => r.id === activeElementId)
-                                : null;
-                            if (activeResult) {
-                                navigate(activeResult.url);
-                                props.onClose();
-                            }
-                        }
+                        const activeResult = results.find((result) => result.id === activeElementId);
+                        if (activeResult) open(activeResult);
                     },
                 })}
+                placeholder="Components, pages, tokens, icons"
                 trailing={
                     <Txt style={{ color: 'var(--theme-color-base-medium)' }} variant="labels-x-small">
                         ESC
                     </Txt>
                 }
-                value={search}
+                value={value}
             />
-            <div data-search-results ref={resultsRef}>
-                {results === 'searching' && <p>Searching...</p>}
-                {Array.isArray(results) && results?.length === 0 && <p>No results found.</p>}
-                {Array.isArray(results) &&
-                    results?.map((result) => {
-                        return (
-                            <div
-                                data-active={activeElementId === result.id || undefined}
-                                data-search-result
-                                id={result.id}
-                                key={result.name}
-                                onClickCapture={() => {
-                                    navigate(result.url);
-                                    props.onClose();
-                                }}
-                            >
-                                <header
-                                    style={{
-                                        display: 'flex',
-                                        justifyContent: 'space-between',
-                                        marginBottom: 'var(--usa-spacing-1)',
-                                    }}
-                                >
-                                    <h5>{result.name}</h5>
-                                    <Tag color="base" label={result.kind} size="x-small" />
-                                </header>
-
-                                <div>
-                                    {result.content.map((fragment, index) => (
-                                        <Fragment key={index}>
-                                            {typeof fragment === 'string' ? (
-                                                fragment
-                                            ) : (
-                                                <span style={{ fontWeight: '600' }}>{fragment.match}</span>
-                                            )}
-                                        </Fragment>
-                                    ))}
-                                </div>
+            <p aria-live="polite" data-search-status>
+                {groups === 'searching' && 'Searching...'}
+                {Array.isArray(groups) && (count ? `${count} result${count === 1 ? '' : 's'}` : 'No results found.')}
+            </p>
+            <div aria-label="Search results" data-search-results id={listboxId} ref={resultsRef} role="listbox">
+                {Array.isArray(groups) &&
+                    groups.map((group) => (
+                        <div
+                            aria-labelledby={`${listboxId}-${group.kind}`}
+                            data-search-group={group.kind}
+                            key={group.kind}
+                            role="group"
+                        >
+                            <div data-search-group-title id={`${listboxId}-${group.kind}`}>
+                                {group.title}
+                                {group.total > group.results.length && (
+                                    <span data-search-group-count>
+                                        {' '}
+                                        {group.results.length} of {group.total}
+                                    </span>
+                                )}
                             </div>
-                        );
-                    })}
+                            {group.results.map((result) => (
+                                <div
+                                    aria-selected={activeElementId === result.id}
+                                    data-active={activeElementId === result.id || undefined}
+                                    data-search-result
+                                    id={result.id}
+                                    key={result.id}
+                                    onClick={() => open(result)}
+                                    onKeyDown={handleKeyDown({ Enter: () => open(result) })}
+                                    role="option"
+                                    tabIndex={-1}
+                                >
+                                    <span data-search-result-header>
+                                        {result.icon && (
+                                            <span aria-hidden data-search-result-icon>
+                                                <SvgIcon name={result.icon} />
+                                            </span>
+                                        )}
+                                        {result.swatch && (
+                                            <span
+                                                aria-hidden
+                                                data-search-result-swatch
+                                                style={{ backgroundColor: result.swatch }}
+                                            />
+                                        )}
+                                        <span data-search-result-name>{result.name}</span>
+                                        {result.detail && <Tag color="base" label={result.detail} size="x-small" />}
+                                    </span>
+                                    {result.text && (
+                                        <span data-search-result-excerpt>
+                                            {excerpt(result.text, searched).map((fragment, index) =>
+                                                typeof fragment === 'string' ? (
+                                                    fragment
+                                                ) : (
+                                                    <mark key={index}>{fragment.match}</mark>
+                                                ),
+                                            )}
+                                        </span>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                    ))}
             </div>
         </Dialog>
     );
-}
-
-function getUrlForMeta(meta: Meta): string | null {
-    switch (meta.kind) {
-        case 'component':
-            return `/${meta.slug}`;
-        case 'type': {
-            let parentSlug;
-            const parentComponent = meta.components?.[0];
-            if (parentComponent) parentSlug = componentsMeta.find((c) => c.name === parentComponent)?.slug;
-            if (parentSlug) return `/${parentSlug}`;
-            return null;
-        }
-        case 'utility':
-            return `/hooks`;
-        default:
-            return '/hooks';
-    }
 }

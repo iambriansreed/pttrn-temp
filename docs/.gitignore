@@ -21,6 +21,7 @@ public
 src/.*
 !.examples
 *.css
+!tests/visual/screenshot.css
 eslint.output.txt
 .examples
 .scripts/symbols.json

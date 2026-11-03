@@ -1,3 +1,4 @@
+import { fileURLToPath } from 'node:url';
 import { expect, test } from '@playwright/test';
 import { COLOR_THEMES } from '@ptrn/react/utils/uiContext';
 
@@ -21,6 +22,8 @@ if (requested && themes.length === 0) {
 }
 
 const RENDER = '[data-main-example] [data-example-render]';
+// Hides what surrounds the demo while the screenshot is taken; see the file.
+const SCREENSHOT_CSS = fileURLToPath(new URL('./screenshot.css', import.meta.url));
 
 for (const theme of themes) {
     test.describe(`theme: ${theme}`, () => {
@@ -44,7 +47,9 @@ for (const theme of themes) {
                     await page.evaluate(() => document.fonts.ready);
                     await page.waitForTimeout(250);
 
-                    await expect(render).toHaveScreenshot(`${component.slug}-${framework}-${theme}.png`);
+                    await expect(render).toHaveScreenshot(`${component.slug}-${framework}-${theme}.png`, {
+                        stylePath: SCREENSHOT_CSS,
+                    });
                 });
             }
         }

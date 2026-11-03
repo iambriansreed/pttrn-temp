@@ -1,0 +1,12 @@
+/*
+ * Applied while the visual suite takes each screenshot. Only the demo is under test: the example's tab bar sits right
+ * above the demo box and its border around it, and when the box lands on a fractional pixel the screenshot's rounding
+ * picked up a row of them. Hidden, they can never bleed into a baseline.
+ */
+[data-main-example] > [data-pttrn='tab-group'] {
+    visibility: hidden !important;
+}
+
+[data-main-example] {
+    border-color: transparent !important;
+}

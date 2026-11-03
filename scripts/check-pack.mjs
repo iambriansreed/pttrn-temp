@@ -6,6 +6,8 @@ import { execSync } from 'node:child_process';
 
 const packages = ['@ptrn/styles', '@ptrn/icons', '@ptrn/react', '@ptrn/web', '@ptrn/mcp'];
 const required = ['LICENSE', 'NOTICE.md', 'README.md'];
+/** Files one package ships on top of those: @ptrn/react carries DESIGN.md, rendered in its prepack, for coding agents. */
+const requiredIn = { '@ptrn/react': ['DESIGN.md'] };
 const forbidden = [
     /^src\//,
     /^\.tmp\//,
@@ -28,7 +30,9 @@ for (const name of packages) {
     );
     const paths = result.files.map((file) => file.path);
     const problems = [
-        ...required.filter((file) => !paths.includes(file)).map((file) => `missing ${file}`),
+        ...[...required, ...(requiredIn[name] ?? [])]
+            .filter((file) => !paths.includes(file))
+            .map((file) => `missing ${file}`),
         ...paths
             .filter((file) => forbidden.some((pattern) => pattern.test(file)))
             .slice(0, 5)

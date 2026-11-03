@@ -1,0 +1,152 @@
+@use '../../styles/reset';
+@use '../../styles/private-tooltip';
+
+:host {
+    display: block;
+    max-width: 100%;
+}
+
+// The same rules as the React calendar (packages/react/src/components/Calendar/calendar.scss).
+[data-pttrn='calendar'] {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font: 500 var(--usa-font-size-sans-5) / 24px var(--usa-font-family-ui);
+    width: 360px;
+    max-width: 100%;
+    color: var(--theme-body-text-color);
+    gap: var(--usa-spacing-05);
+    background: var(--theme-body-background-color);
+    border-radius: var(--theme-border-radius-lg);
+    padding: var(--usa-spacing-1);
+
+    [data-header] {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0;
+        border-bottom: var(--usa-spacing-1px) solid var(--theme-color-base-lighter);
+
+        [data-title] {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    table {
+        display: flex;
+        flex-direction: column;
+
+        tr {
+            display: contents;
+        }
+
+        td,
+        th {
+            height: var(--usa-spacing-6);
+            line-height: var(--usa-spacing-6);
+            text-align: center;
+            border-radius: var(--theme-border-radius-md);
+            font-weight: inherit;
+        }
+
+        thead {
+            display: grid;
+            grid-template-columns: repeat(7, calc(100% / 7));
+            text-align: center;
+
+            th {
+                color: var(--theme-color-base-dark);
+            }
+        }
+
+        tbody {
+            display: grid;
+            grid-template-columns: repeat(7, calc(100% / 7));
+
+            td {
+                &:hover,
+                &:focus-visible {
+                    cursor: pointer;
+                    outline: var(--usa-spacing-2px) solid var(--theme-global-focus-color);
+                    outline-offset: calc(-1 * var(--usa-spacing-2px));
+                }
+
+                &[data-selected] {
+                    background: var(--theme-color-primary-medium);
+                    color: var(--usa-color-white);
+                    outline-offset: var(--usa-spacing-2px);
+                }
+            }
+        }
+    }
+}
+
+// The navigation buttons: the React Button, large, tertiary and icon-only, with the calendar header's corners.
+button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    gap: var(--usa-spacing-1);
+    border: none;
+    border-radius: var(--theme-border-radius-md);
+    cursor: pointer;
+    background: transparent;
+    text-decoration: none;
+    width: fit-content;
+    font-family: var(--usa-font-family-body);
+    font-size: var(--usa-font-size-sans-7);
+    line-height: 24px;
+    height: var(--usa-spacing-6);
+    min-width: var(--usa-spacing-6);
+    color: var(--theme-color-base-dark);
+
+    [data-button-icon] {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        svg {
+            width: var(--usa-spacing-3);
+            height: var(--usa-spacing-3);
+        }
+    }
+
+    &:hover {
+        background: var(--usa-color-black-transparent-10);
+    }
+
+    &:active {
+        background: var(--usa-color-black-transparent-20);
+    }
+
+    &:focus-visible {
+        outline: solid var(--usa-spacing-2px) var(--theme-global-focus-color);
+        isolation: isolate;
+    }
+
+    // Invisible hit areas that reach 48px on touch screens, as the React buttons have.
+    [data-touch-target] {
+        display: none;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+        user-select: none;
+        position: absolute;
+        z-index: 1;
+        height: 100%;
+        width: 100%;
+        min-width: var(--usa-spacing-6);
+        min-height: var(--usa-spacing-6);
+    }
+
+    @media (any-pointer: coarse) {
+        [data-touch-target] {
+            display: block;
+        }
+    }
+}

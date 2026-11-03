@@ -46,7 +46,8 @@ const markup = (text?: string) => (text ? <Markup>{text}</Markup> : '—');
  * and the MCP server read the same file, so these tables cannot drift from the code.
  */
 export function WebComponentApi({ tag }: { tag: string }) {
-    // The component's own element first, then its children.
+    // The component's own element first, then its children. ownerTag keeps another component's elements out:
+    // `pttrn-input-number` is not part of `pttrn-input`.
     const own = elements
         .filter((element) => ownerTag(element.tagName!) === tag)
         .sort((a, b) => (a.tagName === tag ? -1 : b.tagName === tag ? 1 : 0));

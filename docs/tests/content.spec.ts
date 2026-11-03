@@ -10,6 +10,7 @@ import { components, gotoUrl } from './utils';
  * - Prose lists (markdown pages, descriptions, the typography page) hang their markers in a gutter inside the text
  *   column, as USWDS prose does: padding on the list and markers outside the text. A list with no padding pushes its
  *   bullets out past the column; an inside marker leaves wrapped lines flush with the number.
+ * - Every id on the page is unique, so anchors, aria references and the contents nav point at one element.
  */
 const PAGES = [
     '/',
@@ -19,8 +20,11 @@ const PAGES = [
     '/styles',
     '/typography',
     '/figma-plugin',
+    '/ai-readiness',
     '/contributing',
     '/guidelines',
+    '/governance',
+    '/changelog',
     '/hooks',
     ...components.map((component) => `/${component.slug}`),
 ];
@@ -61,6 +65,13 @@ for (const path of PAGES) {
                 .map((list) => `${list.tagName.toLowerCase()}: ${list.textContent?.trim().slice(0, 40)}`),
         );
 
-        expect(badLists, 'prose lists hang their markers inside the text column').toEqual([]);
+        expect.soft(badLists, 'prose lists hang their markers inside the text column').toEqual([]);
+
+        const duplicateIds = await page.evaluate(() => {
+            const ids = [...document.querySelectorAll('[id]')].map((element) => element.id);
+            return [...new Set(ids.filter((id, index) => ids.indexOf(id) !== index))];
+        });
+
+        expect(duplicateIds, 'every id is unique').toEqual([]);
     });
 }

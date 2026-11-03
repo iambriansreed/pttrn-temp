@@ -1,0 +1,137 @@
+@use '../../styles/reset';
+@use '../../styles/tooltip-controller';
+
+// The rules of packages/react/src/components/Fab/fab.scss. The element is the positioned box (the React button is), so
+// the placement rules sit on :host and the inner button keeps the look.
+
+:host {
+    // `--z-index-fab` in the @ptrn/react base stylesheet; a shadow root cannot count on that, so the value is here.
+    --fab-z-index: 800;
+    --placement-offset: var(--usa-spacing-2);
+
+    display: block;
+    position: absolute;
+    z-index: var(--fab-z-index);
+}
+
+:host([container='page']) {
+    position: fixed;
+}
+
+:host([placement='top-right']) {
+    top: var(--placement-offset);
+    right: var(--placement-offset);
+}
+
+:host([placement='bottom-right']) {
+    bottom: var(--placement-offset);
+    right: var(--placement-offset);
+}
+
+:host([placement='top-left']) {
+    top: var(--placement-offset);
+    left: var(--placement-offset);
+}
+
+:host([placement='bottom-left']) {
+    bottom: var(--placement-offset);
+    left: var(--placement-offset);
+}
+
+:host([hidden]) {
+    display: none;
+}
+
+[data-pttrn='fab'] {
+    --variant-gradient: linear-gradient(var(--variant-background), var(--variant-background));
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: var(--usa-spacing-1);
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: var(--card-shadow);
+    border-radius: var(--theme-border-radius-md);
+    background: var(--variant-background);
+    color: var(--variant-foreground);
+
+    > [data-fab-icon] {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    > [data-fab-label] {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    // A React icon is 24 px wide unless told otherwise, and overhangs the 20 px icon box of a medium Fab evenly; a raw
+    // SVG has no size of its own, so it gets that width here.
+    ::slotted(svg) {
+        flex: none;
+        width: var(--usa-spacing-3);
+    }
+
+    &[data-size='medium'] {
+        font: 500 var(--usa-font-size-sans-5) / 24px var(--usa-font-family-ui);
+        height: var(--usa-spacing-5);
+        padding: 0 var(--usa-spacing-2);
+
+        > [data-fab-icon] {
+            width: var(--usa-spacing-205);
+        }
+    }
+
+    &[data-size='x-large'] {
+        font: 500 var(--usa-font-size-sans-7) / 28px var(--usa-font-family-ui);
+        height: var(--usa-spacing-7);
+        padding: 0 calc(var(--usa-spacing-3) + var(--usa-spacing-05));
+
+        > [data-fab-icon] {
+            width: var(--usa-spacing-3);
+        }
+    }
+
+    &[data-variant='primary'] {
+        --variant-background: var(--theme-color-primary-medium);
+        --variant-foreground: var(--usa-color-white);
+    }
+
+    &[data-variant='secondary'] {
+        --variant-background: var(--theme-color-secondary-medium);
+        --variant-foreground: var(--usa-color-white);
+    }
+
+    &[data-variant='neutral'] {
+        --variant-background: var(--theme-body-background-color);
+        --variant-foreground: var(--theme-color-base-dark);
+    }
+
+    &:hover {
+        background:
+            linear-gradient(var(--usa-color-black-transparent-10), var(--usa-color-black-transparent-10)),
+            var(--variant-gradient);
+    }
+
+    &:active {
+        background:
+            linear-gradient(var(--usa-color-black-transparent-20), var(--usa-color-black-transparent-20)),
+            var(--variant-gradient);
+    }
+
+    &:focus-visible {
+        outline: solid var(--usa-spacing-2px) var(--theme-global-focus-color);
+        isolation: isolate;
+    }
+
+    &[data-round] {
+        border-radius: var(--usa-radius-pill);
+        aspect-ratio: 1/1;
+        padding: 0;
+    }
+}

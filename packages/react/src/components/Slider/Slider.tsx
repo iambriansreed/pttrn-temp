@@ -71,7 +71,7 @@ export type SliderProps<Value> = Pick<CommonPropsLibrary, 'disabled' | 'readOnly
  * track.
  *
  * @example
- *     import { Slider } from '-/components/Slider';
+ *     import { Slider } from '@ptrn/react/Slider';
  *
  *     () => {
  *         const [value, setValue] = useState(50);

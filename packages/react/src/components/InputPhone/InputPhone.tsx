@@ -28,9 +28,16 @@ const SELECT_OPTIONS = countryCodes.map((code) => {
     };
 });
 
-export type InputPhoneProps = FieldControlProps<string, SupportedCountryCode> &
+export type InputPhoneProps = Omit<FieldControlProps<string, SupportedCountryCode>, 'onChange'> &
     Pick<InputProps, 'inputRef' | 'size'> &
     ScrollListItemsStyleProps & {
+        /**
+         * Fires as the number is typed or cleared, with the value to show, formatted for the country unless
+         * disableFormatting, and the country code it belongs to.
+         *
+         * @required
+         */
+        onChange: (next: string | undefined, countryCode: SupportedCountryCode) => void;
         /**
          * The default country code to select when the component is rendered. If not provided, it will attempt to guess
          * based on the user's locale. If the guessed country code is not supported, it will default to 'US'. Based on
@@ -40,10 +47,11 @@ export type InputPhoneProps = FieldControlProps<string, SupportedCountryCode> &
          */
         initialCountryCode?: SupportedCountryCode;
         /**
-         * Disables formatting of the phone number input in the UI. values returned by `onChange` are always
-         * unformatted.
+         * Turns off formatting: the input shows the digits as typed and `onChange` gets them unchanged. Without it, the
+         * digits are formatted for the country as they are typed, "(937) 555-1060" in the US, and `onChange` gets the
+         * formatted text, which is the value to pass back.
          *
-         * @type boolean
+         * @default false
          */
         disableFormatting?: boolean;
         /**
@@ -63,7 +71,7 @@ export type InputPhoneProps = FieldControlProps<string, SupportedCountryCode> &
  * For a more complete example with field usage, see the InputPhoneField component.
  *
  * @example
- *     import { InputPhone } from '-/components/InputPhone';
+ *     import { InputPhone } from '@ptrn/react/InputPhone';
  *
  *     () => {
  *         const [value, onChange] = useState<string | undefined>();
@@ -172,7 +180,17 @@ export function InputPhone({
                     containerRef={elements.setReference}
                     disabled={disabled}
                     id={id}
-                    inputMode="tel"
+                    // The input, not the Input container, takes the phone keypad and the digit filter, so the
+                    // country and clear buttons in the field keep their own keys.
+                    inputProps={{
+                        inputMode: 'tel',
+                        onKeyDown: (event) => {
+                            // Ignore keys that would type a non-digit. Shortcuts (Ctrl or Cmd with V, C, X, A, Z) get
+                            // through, so a number can still be pasted, copied and selected.
+                            if (event.ctrlKey || event.metaKey || event.altKey) return;
+                            if (event.key.length === 1 && !/[0-9]/.test(event.key)) event.preventDefault();
+                        },
+                    }}
                     inputRef={(node) => {
                         inputRef?.(node);
                         inputInternalRef.current = node;
@@ -224,10 +242,6 @@ export function InputPhone({
                     }
                     name={name}
                     onChange={handleChange}
-                    onKeyDown={(event) => {
-                        // ignore non numeric keys
-                        if (event.key.length === 1 && !/[0-9]/.test(event.key)) event.preventDefault();
-                    }}
                     owner="input-phone"
                     readOnly={readOnly}
                     required={required}

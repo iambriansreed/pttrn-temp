@@ -15,7 +15,7 @@ export type TxtProps<As extends ElementType = ElementType> = {
     /**
      * The content to render: text, or elements such as a `<code>` inside a heading.
      *
-     * @type React.ReactNode
+     * @type string
      * @required
      */
     children: unknown;
@@ -44,7 +44,7 @@ export type TxtProps<As extends ElementType = ElementType> = {
 };
 
 /**
- * A text component that applies the correct font styles based on the variant and size. variant
+ * A text component that applies the correct font styles based on the variant and size.
  *
  * @example
  *     import { Txt } from '@ptrn/react/Txt';

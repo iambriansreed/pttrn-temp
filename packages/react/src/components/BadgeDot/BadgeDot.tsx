@@ -45,10 +45,10 @@ export type BadgeDotProps = {
  *     import { BadgeDot } from '@ptrn/react/BadgeDot';
  *
  *     <BadgeDot color="secondary" size={12} outline={true}>
- *         <Button>Messages</Button>
+ *         <Button label="Messages" />
  *     </BadgeDot>;
  *
- * @exampleDescription This example shows a badge-dot with a count of 5, size small, and primary variant.
+ * @exampleDescription This example attaches a size 12, secondary badge-dot with an outline to a button.
  *
  * @name BadgeDot
  * @phase Stable

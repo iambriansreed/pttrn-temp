@@ -1,8 +1,6 @@
 // Surfaces the docs paint themselves. Examples sit on the page background so components are scanned and screenshot in
-// the context they ship into; secondary surfaces (code, quotes, backdrops) tint toward ink in light and dark themes alike.
-:root[data-uswds-theme$='-dark'] {
-    --docs-surface: var(--theme-color-base-darker);
-}
+// the context they ship into; secondary surfaces (code, quotes, backdrops, the header) use base-lightest, one step toward
+// ink from the page. The derived dark theme mirrors the base ladder, so the same token is the dark surface there.
 
 [data-uswds-theme] {
     color-scheme: light;
@@ -210,7 +208,7 @@ pre {
 
 [data-show-touch-targets] {
     [data-touch-target] {
-        border: 3px dashed #ff4f8d;
+        border: 3px dashed var(--usa-color-magenta-40v);
         display: block;
         opacity: 1 !important;
         z-index: 2 !important;
@@ -572,26 +570,26 @@ section[data-variants] {
     .hljs-type,
     /* stylelint-disable-next-line selector-class-pattern */
     .hljs-variable.language_ {
-        color: #ce3745;
+        color: var(--theme-color-error-dark);
     }
 
     .hljs-name,
     .hljs-quote,
     .hljs-selector-tag,
     .hljs-selector-pseudo {
-        color: #22804b;
+        color: var(--theme-color-success-darker);
     }
 
     /* stylelint-disable-next-line selector-class-pattern */
     .hljs-built_in,
     .hljs-symbol {
-        color: #bb5006;
+        color: var(--theme-color-accent-warm-darker);
     }
 
     .hljs-comment,
     .hljs-code,
     .hljs-formula {
-        color: #69717b;
+        color: var(--theme-color-base-dark);
     }
 
     pre code.hljs {
@@ -635,11 +633,19 @@ section[data-variants] {
         flex-direction: row;
         align-items: center;
         gap: var(--usa-spacing-1);
-        justify-content: baseline;
+        min-width: 0;
     }
 
     > * {
         margin: 0;
+    }
+
+    // The site name and the version it documents. On phones they stack, the version under the name.
+    [data-identity] {
+        display: flex;
+        align-items: center;
+        gap: var(--usa-spacing-105);
+        min-width: 0;
     }
 
     [data-brand] {
@@ -649,38 +655,65 @@ section[data-variants] {
         flex-direction: row;
         font: 400 var(--usa-font-size-sans-7) / 28px var(--usa-font-family-body);
         color: var(--theme-body-text-color);
-
-        img {
-            height: var(--usa-spacing-4);
-            width: auto;
-        }
-
-        span {
-            display: block;
-
-            & + span {
-                margin-left: var(--usa-spacing-105);
-                padding: 0 0 0 var(--usa-spacing-105);
-                border-left: solid 1px var(--theme-color-base-lighter);
-            }
-        }
+        white-space: nowrap;
 
         [data-name] {
             font: 600 var(--usa-font-size-sans-8) / 28px var(--usa-font-family-heading);
             font-weight: 600;
-            margin: 0 var(--usa-spacing-105) 0 0;
         }
     }
 
-    // On phones the build label goes and the search button keeps its icon and its accessible name, not its text.
+    // "Documents @ptrn/react 0.0.1" and the build label, each after a rule.
+    [data-version],
+    [data-build] {
+        padding-left: var(--usa-spacing-105);
+        border-left: solid var(--usa-spacing-1px) var(--theme-color-base-lighter);
+        font: 400 var(--usa-font-size-sans-4) / 24px var(--usa-font-family-body);
+        color: var(--theme-body-text-color);
+        white-space: nowrap;
+    }
+
+    // A branch name can be long; it gives way before the version does.
+    [data-build] {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    @media (width < 1024px) {
+        [data-build] {
+            display: none;
+        }
+    }
+
+    // On phones the version moves under the name and drops "Documents", and the search button keeps its icon and its
+    // accessible name, not its text.
     @media (width < 640px) {
         padding: 0 var(--usa-spacing-1);
 
         [data-header] {
             margin-right: var(--usa-spacing-05);
+            gap: var(--usa-spacing-05);
         }
 
-        [data-brand] span {
+        [data-identity] {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0;
+        }
+
+        [data-brand] [data-name] {
+            line-height: 24px;
+        }
+
+        [data-version] {
+            padding-left: 0;
+            border-left: none;
+            font-size: var(--usa-font-size-sans-2);
+            line-height: 16px;
+        }
+
+        [data-version-prefix] {
             display: none;
         }
 
@@ -827,16 +860,16 @@ section[data-variants] {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 20px 0;
+        padding: var(--usa-spacing-205) 0;
 
         &[data-kind='subtle-inverse'] {
-            background: #333;
+            background: var(--theme-color-base-darkest);
         }
     }
 }
 
 body[data-pttrn-code-demo] {
-    background-color: #e0e0e0 !important;
+    background-color: var(--theme-color-base-lighter) !important;
 
     ul {
         padding: 0;

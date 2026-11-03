@@ -28,7 +28,13 @@ export function ComponentPageExample() {
     const [html, setHtml] = useState('');
     useEffect(() => {
         if (framework !== 'web-component' || !webComponent) return;
-        pretty(webComponent.toHtml(propState), { parser: 'html' }).then(setHtml);
+        let current = true;
+        Promise.resolve(webComponent.toHtml(propState))
+            .then((code) => pretty(code, { parser: 'html' }))
+            .then((code) => current && setHtml(code));
+        return () => {
+            current = false;
+        };
     }, [framework, webComponent, propState]);
 
     if (!components[component.name as keyof typeof components]) {
