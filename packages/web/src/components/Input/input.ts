@@ -1,9 +1,6 @@
-import cancelIcon from '@ptrn/icons/Cancel.svg';
-import { PropertyValues, html, nothing } from 'lit';
-import { live } from 'lit/directives/live.js';
+import { html } from 'lit';
 import { define } from '../../utils/define';
-import { FIELD_IDS, FieldControl } from '../../utils/field-control';
-import { icon } from '../../utils/icon';
+import { InputBase } from '../../utils/input-base';
 import styles from './input.scss';
 
 /**
@@ -20,12 +17,9 @@ import styles from './input.scss';
  * @slot leading - Shown before the input: a symbol, an icon or a button.
  * @slot trailing - Shown after the input.
  */
-export class PttrnInput extends FieldControl {
+export class PttrnInput extends InputBase {
     static properties = {
-        value: { type: String },
-        placeholder: { type: String },
         type: { type: String },
-        size: { type: String, reflect: true },
         autocomplete: { type: String },
         hideClearButton: { type: Boolean, attribute: 'hide-clear-button' },
         _hasLeading: { state: true },
@@ -34,14 +28,8 @@ export class PttrnInput extends FieldControl {
 
     static styles = styles;
 
-    /** The current value. The `value` attribute is the default value, which a form reset goes back to. */
-    declare value: string;
-    /** Shown while the input is empty. */
-    declare placeholder: string;
     /** The type of the native input. */
     declare type: 'number' | 'password' | 'text';
-    /** The size of the field. */
-    declare size: 'large' | 'medium' | 'small';
     /** Whether the browser may offer to fill the field. */
     declare autocomplete: 'off' | 'on';
     /** Hides the button that clears the field. Keep it unless there is a reason not to. */
@@ -51,46 +39,11 @@ export class PttrnInput extends FieldControl {
 
     constructor() {
         super();
-        this.value = '';
-        this.placeholder = '';
         this.type = 'text';
-        this.size = 'medium';
         this.autocomplete = 'off';
         this.hideClearButton = false;
         this._hasLeading = false;
         this._hasTrailing = false;
-    }
-
-    protected get _validityAnchor() {
-        return this.renderRoot?.querySelector<HTMLInputElement>('[data-main-input]') ?? null;
-    }
-
-    protected _formValue() {
-        return this.value;
-    }
-
-    protected _resetValue() {
-        this.value = this.getAttribute('value') ?? '';
-    }
-
-    protected _restoreValue(state: string) {
-        this.value = state;
-    }
-
-    protected willUpdate(changed: PropertyValues) {
-        super.willUpdate(changed);
-        if (this.value === null || this.value === undefined) this.value = '';
-    }
-
-    private _onInput(event: Event) {
-        this.value = (event.target as HTMLInputElement).value;
-        this._emitChange(this.value);
-    }
-
-    private _clear() {
-        this.value = '';
-        this._emitChange(this.value);
-        this._validityAnchor?.focus();
     }
 
     private _onSlotChange(event: Event, key: '_hasLeading' | '_hasTrailing') {
@@ -98,62 +51,23 @@ export class PttrnInput extends FieldControl {
     }
 
     render() {
-        const disabled = this._isDisabled;
-        const value = String(this.value ?? '');
-        const showClearButton = !this.hideClearButton && !this.readOnly && !disabled && value.length > 0;
-        const aria = this._controlAria;
-
-        return this._renderField(html`
-            <div
-                data-pttrn="input"
-                data-size=${this.size}
-                ?data-disabled=${disabled}
-                ?data-empty=${!value.length}
-                ?data-invalid=${this._isInvalid}
-                ?data-readonly=${this.readOnly}
-                ?data-show-clear-button=${showClearButton}
-            >
-                <span data-leading ?hidden=${!this._hasLeading}>
-                    <slot name="leading" @slotchange=${(e: Event) => this._onSlotChange(e, '_hasLeading')}></slot>
-                </span>
-                <input
-                    aria-describedby=${aria.describedBy}
-                    aria-errormessage=${aria.errorMessage}
-                    aria-invalid=${aria.invalid}
-                    aria-label=${aria.label}
-                    autocomplete=${this.autocomplete}
-                    data-main-input
-                    id=${FIELD_IDS.control}
-                    name=${this.name || nothing}
-                    placeholder=${this.placeholder || ' '}
-                    type=${this.type}
-                    .value=${live(value)}
-                    ?disabled=${disabled}
-                    ?readonly=${this.readOnly}
-                    ?required=${this.required}
-                    @input=${this._onInput}
-                />
-                <span data-trailing ?hidden=${!this._hasTrailing}>
-                    <slot name="trailing" @slotchange=${(e: Event) => this._onSlotChange(e, '_hasTrailing')}></slot>
-                </span>
-                ${
-                    showClearButton
-                        ? html`<button
-                              aria-label="Clear"
-                              data-button
-                              data-clear-button
-                              data-size=${this.size}
-                              data-variant="tertiary"
-                              type="button"
-                              @click=${this._clear}
-                          >
-                              <span aria-hidden="true" data-button-icon>${icon(cancelIcon)}</span>
-                              <span aria-hidden="true" data-touch-target></span>
-                          </button>`
-                        : nothing
-                }
-            </div>
-        `);
+        return this._renderField(
+            this._renderInputBox({
+                type: this.type,
+                autocomplete: this.autocomplete,
+                clearable: !this.hideClearButton,
+                leading: html`<slot
+                    name="leading"
+                    @slotchange=${(e: Event) => this._onSlotChange(e, '_hasLeading')}
+                ></slot>`,
+                leadingHidden: !this._hasLeading,
+                trailing: html`<slot
+                    name="trailing"
+                    @slotchange=${(e: Event) => this._onSlotChange(e, '_hasTrailing')}
+                ></slot>`,
+                trailingHidden: !this._hasTrailing,
+            }),
+        );
     }
 }
 

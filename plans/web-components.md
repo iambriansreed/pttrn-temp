@@ -197,3 +197,17 @@ Conventions these elements share, decided while porting Input:
 | `id`, `aria-describedby`, `aria-errormessage`, `innerRef`    | none                                                                         |
 
 The React Textarea marks read-only with `data-read-only` while its stylesheet selects `data-readonly`, so its read-only style never applies. The element uses `data-readonly` and shows the read-only style, as Input does. The replica that sizes the field is rendered from `value`, so a value set from code sizes the field too (React updates it only on input).
+
+### Password
+
+Built on the same Input box as `pttrn-input` (`src/utils/input-base.ts`, shared with SearchBar and InputPhone too).
+
+| React                                                        | Web Component                                               |
+| ------------------------------------------------------------ | ----------------------------------------------------------- |
+| `value`, `onChange(value, event)`                            | `value`, `pttrn-change` (`detail.value`) and `change`       |
+| `name`, `size`                                               | `name`, `size`                                              |
+| `disabled`, `readOnly`, `required`, `invalid`, `aria-label`  | `disabled`, `readonly`, `required`, `invalid`, `aria-label` |
+| Field `label`, `helperText`, `errorMessage`, `labelTrailing` | `label`, `helper-text`, `error-message`, `label-trailing`   |
+| `id`, `aria-describedby`, `aria-errormessage`, refs, `inputProps` | none                                                   |
+
+The React Password passes an `onClick` that focuses the input to the Input container, so clicking Show moves focus from the toggle to the input; its spec says toggling keeps focus on the button, and the element does that. The React `password.scss` selects `[data-pttrn-owner='password'] [data-pttrn='input']` (a descendant) while the Input carries the owner on the same element, so none of its rules apply; the element matches what React renders (a medium tertiary button, the field's own padding).

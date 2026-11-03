@@ -2,6 +2,7 @@ import { MetaComponentName } from 'src/meta';
 import { accordionWc } from 'src/wc/accordion';
 import { inputWc } from 'src/wc/input';
 import { webComponents as webComponentNames } from 'src/wc/names';
+import { passwordWc } from 'src/wc/password';
 import { textareaWc } from 'src/wc/textarea';
 import { WebComponentDemo } from 'src/wc/types';
 
@@ -12,6 +13,7 @@ import { WebComponentDemo } from 'src/wc/types';
 export const webComponents: Partial<Record<MetaComponentName, WebComponentDemo>> = {
     Accordion: accordionWc,
     Input: inputWc,
+    Password: passwordWc,
     Textarea: textareaWc,
 };
 

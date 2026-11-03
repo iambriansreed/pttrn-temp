@@ -43,6 +43,10 @@
         "./Textarea": {
             "types": "./dist/components/Textarea/index.d.ts",
             "default": "./dist/components/Textarea/index.js"
+        },
+        "./Password": {
+            "types": "./dist/components/Password/index.d.ts",
+            "default": "./dist/components/Password/index.js"
         }
     },
     "scripts": {
