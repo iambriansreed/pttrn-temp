@@ -1,0 +1,11 @@
+@use '../../styles/reset';
+@use '../../styles/tooltip-box' as tooltip;
+
+// The host only wraps the trigger: it adds no box, so the trigger lays out as if the tooltip were not there, as in React.
+:host {
+    display: contents;
+}
+
+[data-pttrn='tooltip'] {
+    @include tooltip.tooltip;
+}

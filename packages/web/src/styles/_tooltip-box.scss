@@ -1,0 +1,87 @@
+// The floating box of @ptrn/react's Tooltip (`[data-pttrn='tooltip']`), shown as a popover in the top layer. Include
+// it in the rule for `tooltipTemplate()` from src/utils/tooltip-controller.ts, which places it and sets
+// data-placement and data-hide-tail.
+@mixin tooltip {
+    --arrow-size: var(--usa-spacing-05);
+    --arrow-offset: calc(var(--arrow-size) * -2);
+    --arrow-color: var(--theme-color-ink);
+
+    // Undo the UA popover box (inset, border, background, overflow); `place()` sets top and left.
+    position: fixed;
+    inset: auto;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    border: none;
+    background: none;
+    color: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition:
+        opacity 250ms,
+        display 250ms allow-discrete,
+        overlay 250ms allow-discrete;
+
+    &:popover-open {
+        opacity: 1;
+
+        @starting-style {
+            opacity: 0;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        transition: none;
+    }
+
+    [data-text] {
+        display: block;
+        z-index: 2;
+        position: relative;
+        background-color: var(--theme-color-ink);
+        border-radius: var(--theme-border-radius-md);
+        color: var(--theme-color-ink-reverse);
+        box-shadow: var(--card-shadow);
+        font: 500 var(--usa-font-size-sans-3) / 20px var(--usa-font-family-ui);
+        padding: var(--usa-spacing-05) var(--usa-spacing-1);
+        border: none;
+        max-width: 300px;
+        overflow-wrap: break-word;
+        white-space: normal;
+        text-align: start;
+    }
+
+    [data-arrow] {
+        display: block;
+        z-index: 1;
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: var(--arrow-size) var(--arrow-size) var(--arrow-size) var(--arrow-size);
+        border-color: transparent;
+    }
+
+    &[data-placement='bottom'] [data-arrow] {
+        top: var(--arrow-offset);
+        border-bottom-color: var(--arrow-color);
+    }
+
+    &[data-placement='top'] [data-arrow] {
+        border-top-color: var(--arrow-color);
+    }
+
+    &[data-placement='right'] [data-arrow] {
+        margin-left: var(--arrow-offset);
+        border-right-color: var(--arrow-color);
+    }
+
+    &[data-placement='left'] [data-arrow] {
+        right: var(--arrow-offset);
+        border-left-color: var(--arrow-color);
+    }
+
+    &[data-hide-tail] [data-arrow] {
+        opacity: 0;
+    }
+}

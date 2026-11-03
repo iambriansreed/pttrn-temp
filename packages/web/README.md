@@ -11,6 +11,7 @@ One line per component, in name order:
 - `pttrn-badge`
 - `pttrn-badge-dot`
 - `pttrn-banner-alert`
+- `pttrn-breadcrumb`, `pttrn-breadcrumb-item`
 - `pttrn-button`
 - `pttrn-card`
 - `pttrn-chip`
@@ -21,15 +22,21 @@ One line per component, in name order:
 - `pttrn-inline-alert`
 - `pttrn-input`
 - `pttrn-input-number`
+- `pttrn-list-item`
+- `pttrn-page-control`
+- `pttrn-pagination`
 - `pttrn-password`
 - `pttrn-radio-group`, `pttrn-radio-group-item`
 - `pttrn-search-bar`, `pttrn-search-bar-item`
+- `pttrn-segmented-control`, `pttrn-segmented-control-item`
 - `pttrn-skeleton`
 - `pttrn-skeleton-text`
 - `pttrn-switch`
 - `pttrn-switch-option`
+- `pttrn-tab-group`, `pttrn-tab-group-item`
 - `pttrn-tag`
 - `pttrn-textarea`
+- `pttrn-tooltip`
 - `pttrn-txt`
 
 ## Use it from a CDN

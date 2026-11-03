@@ -1,0 +1,128 @@
+// @ptrn/react's Button (`[data-pttrn='button']`) at the small size, primary and tertiary, for elements that draw their
+// own buttons in their shadow root (Breadcrumb's overflow, Pagination). Include it in the rule for the `<button>`, which
+// carries data-variant and data-size like the React one and holds [data-button-icon], [data-button-label] and an
+// aria-hidden [data-touch-target].
+@mixin button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    gap: var(--usa-spacing-1);
+    border: none;
+    cursor: pointer;
+    background: transparent;
+    text-decoration: none;
+    width: fit-content;
+    font-family: var(--usa-font-family-body);
+
+    &[data-size='small'] {
+        font-size: var(--usa-font-size-sans-3);
+        line-height: 20px;
+        height: var(--usa-spacing-4);
+        min-width: var(--usa-spacing-4);
+
+        &:has([data-button-label]) {
+            padding: 6px var(--usa-spacing-2);
+        }
+
+        [data-button-icon] svg {
+            width: var(--usa-spacing-205);
+            height: var(--usa-spacing-205);
+        }
+    }
+
+    &[disabled] {
+        cursor: not-allowed;
+    }
+
+    [data-button-icon] {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    [data-button-label] {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    &[data-variant='primary'] {
+        --primary-background: var(--theme-color-primary-medium);
+
+        background-color: var(--primary-background);
+        color: var(--usa-color-white);
+        border-radius: var(--theme-border-radius-md);
+
+        &[disabled] {
+            color: var(--theme-color-disabled-dark);
+            background: var(--usa-color-black-transparent-10);
+        }
+
+        &:not([disabled]) {
+            &:hover {
+                background:
+                    linear-gradient(var(--usa-color-black-transparent-10), var(--usa-color-black-transparent-10)),
+                    linear-gradient(var(--primary-background), var(--primary-background));
+            }
+
+            &:active {
+                background:
+                    linear-gradient(var(--usa-color-black-transparent-20), var(--usa-color-black-transparent-20)),
+                    linear-gradient(var(--primary-background), var(--primary-background));
+            }
+
+            &:focus-visible {
+                outline: solid var(--usa-spacing-2px) var(--theme-global-focus-color);
+                isolation: isolate;
+            }
+        }
+    }
+
+    &[data-variant='tertiary'] {
+        background: transparent;
+        color: var(--theme-color-base-dark);
+
+        &[disabled] {
+            color: var(--theme-color-disabled-dark);
+        }
+
+        &:not([disabled]) {
+            &:hover {
+                background: var(--usa-color-black-transparent-10);
+            }
+
+            &:active {
+                background: var(--usa-color-black-transparent-20);
+            }
+
+            &:focus-visible {
+                outline: solid var(--usa-spacing-2px) var(--theme-global-focus-color);
+                isolation: isolate;
+            }
+        }
+    }
+
+    // The 48px touch target, on coarse pointers only.
+    [data-touch-target] {
+        display: none;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+        user-select: none;
+        position: absolute;
+        z-index: 1;
+        height: 100%;
+        width: 100%;
+        min-width: var(--usa-spacing-6);
+        min-height: var(--usa-spacing-6);
+    }
+
+    @media (any-pointer: coarse) {
+        [data-touch-target] {
+            display: block;
+        }
+    }
+}

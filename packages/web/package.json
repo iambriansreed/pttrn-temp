@@ -52,6 +52,10 @@
             "types": "./dist/components/BannerAlert/index.d.ts",
             "default": "./dist/components/BannerAlert/index.js"
         },
+        "./Breadcrumb": {
+            "types": "./dist/components/Breadcrumb/index.d.ts",
+            "default": "./dist/components/Breadcrumb/index.js"
+        },
         "./Button": {
             "types": "./dist/components/Button/index.d.ts",
             "default": "./dist/components/Button/index.js"
@@ -92,6 +96,18 @@
             "types": "./dist/components/InputNumber/index.d.ts",
             "default": "./dist/components/InputNumber/index.js"
         },
+        "./ListItem": {
+            "types": "./dist/components/ListItem/index.d.ts",
+            "default": "./dist/components/ListItem/index.js"
+        },
+        "./PageControl": {
+            "types": "./dist/components/PageControl/index.d.ts",
+            "default": "./dist/components/PageControl/index.js"
+        },
+        "./Pagination": {
+            "types": "./dist/components/Pagination/index.d.ts",
+            "default": "./dist/components/Pagination/index.js"
+        },
         "./Password": {
             "types": "./dist/components/Password/index.d.ts",
             "default": "./dist/components/Password/index.js"
@@ -103,6 +119,10 @@
         "./SearchBar": {
             "types": "./dist/components/SearchBar/index.d.ts",
             "default": "./dist/components/SearchBar/index.js"
+        },
+        "./SegmentedControl": {
+            "types": "./dist/components/SegmentedControl/index.d.ts",
+            "default": "./dist/components/SegmentedControl/index.js"
         },
         "./Skeleton": {
             "types": "./dist/components/Skeleton/index.d.ts",
@@ -120,6 +140,10 @@
             "types": "./dist/components/SwitchOption/index.d.ts",
             "default": "./dist/components/SwitchOption/index.js"
         },
+        "./TabGroup": {
+            "types": "./dist/components/TabGroup/index.d.ts",
+            "default": "./dist/components/TabGroup/index.js"
+        },
         "./Tag": {
             "types": "./dist/components/Tag/index.d.ts",
             "default": "./dist/components/Tag/index.js"
@@ -127,6 +151,10 @@
         "./Textarea": {
             "types": "./dist/components/Textarea/index.d.ts",
             "default": "./dist/components/Textarea/index.js"
+        },
+        "./Tooltip": {
+            "types": "./dist/components/Tooltip/index.d.ts",
+            "default": "./dist/components/Tooltip/index.js"
         },
         "./Txt": {
             "types": "./dist/components/Txt/index.d.ts",
