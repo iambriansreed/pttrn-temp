@@ -35,5 +35,6 @@ export * from './components/TabGroup';
 export * from './components/Table';
 export * from './components/Tag';
 export * from './components/Textarea';
+export * from './components/TimePicker';
 export * from './components/Tooltip';
 export * from './components/Txt';

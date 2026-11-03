@@ -41,6 +41,7 @@ export const webComponents: string[] = [
     'Table',
     'Tag',
     'Textarea',
+    'TimePicker',
     'Tooltip',
     'Txt',
 ];

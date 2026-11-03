@@ -43,6 +43,7 @@ One line per component, in name order:
 - `pttrn-table`
 - `pttrn-tag`
 - `pttrn-textarea`
+- `pttrn-time-picker`
 - `pttrn-tooltip`
 - `pttrn-txt`
 
