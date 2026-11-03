@@ -158,3 +158,29 @@ Check each box when it is verified, not when it is written.
 
 - Confirm `@ptrn/react` and `@ptrn/web` are free on npm (`@ptrn/ui` was, per `plan.md`).
 - Whether the shared SCSS partial is worth it or the Web Component keeps its own copy with a diff check (decided in step 2 of the build order).
+
+## Text inputs and form controls (Input, Textarea, Password, InputNumber, RadioGroup, RadioGroupField, SearchBar, OTPInput, InputPhone, Rating, Slider)
+
+Conventions these elements share, decided while porting Input:
+
+- **`FieldControl` base** (`packages/web/src/utils/field-control.ts`). A form-associated custom element (`static formAssociated`, `ElementInternals`): it submits `name` and its value with a `<form>`, mirrors the validity of its native control (so `required` blocks submission and `:invalid` and `checkValidity()` work), follows a disabled `<fieldset>`, goes back to its `value` attribute on form reset and restores on back navigation. `delegatesFocus` sends focus and label clicks to the native control. The manifest analyzes `src/utils` too, so the inherited attributes appear on every element's API table.
+- **The Field is built in.** A `Field` or `<label for>` outside the element cannot name or describe the native control inside its shadow root (ids do not cross the boundary), so the text controls take the Field's props as attributes and render the label, helper text and error alert in their own shadow root: `label`, `helper-text`, `error-message`, `label-trailing`. The `*Field` React components (InputField, PasswordField, ...) need no separate element. `error-message` also sets the invalid state, which the React `InputField` misses (it puts `aria-invalid` on the container `div`).
+- **`aria-label`** on the element names the native control and wins over `label`, as the React prop does. axe reports nothing for the attribute on the host, which has no role.
+- **Events.** `pttrn-change` (`detail.value`) for every user-driven change, the counterpart of `onChange`, plus a plain `change` so code that listens the native way works. Neither fires when `value` is set from code.
+- **`value`.** The attribute is the default value (what a form reset goes back to), the property is the current value, as on a native input.
+- **Not ported.** `id`, `aria-describedby` and `aria-errormessage` (ids cannot cross the boundary: use `helper-text` and `error-message`), refs and `inputProps`, `owner`.
+- **Private pieces.** The clear button and the other buttons inside a control are plain `<button>`s styled as the tertiary Button (`src/styles/_button.scss`), and the error alert is the InlineAlert markup (`src/styles/_field.scss`), because Button and InlineAlert belong to other elements. The icon-only clear button has no tooltip until a Tooltip element exists; its name is still "Clear".
+
+### Input
+
+| React                                                          | Web Component                                                              |
+| -------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `value`, `onChange(value, event)`                              | `value`, `pttrn-change` (`detail.value`) and `change`                      |
+| `name`, `placeholder`, `type`, `size`                          | `name`, `placeholder`, `type`, `size`                                      |
+| `autoComplete`                                                 | `autocomplete`                                                             |
+| `disabled`, `readOnly`, `required`, `invalid`                  | `disabled`, `readonly`, `required`, `invalid` (reflected)                  |
+| `leading`, `trailing`                                          | `slot="leading"`, `slot="trailing"`                                        |
+| `showClearButton` (default `true`)                             | `hide-clear-button` (inverted)                                             |
+| `aria-label`                                                   | `aria-label`                                                               |
+| Field `label`, `helperText`, `errorMessage`, `labelTrailing`   | `label`, `helper-text`, `error-message`, `label-trailing`                  |
+| `id`, `aria-describedby`, `aria-errormessage`, refs, `inputProps`, `owner` | none                                                           |

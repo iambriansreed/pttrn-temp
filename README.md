@@ -7,7 +7,7 @@ A monorepo for the Pattern Design System: React components, Web Components, icon
 | Path                                 | Package             | Description                                                                   |
 | ------------------------------------ | ------------------- | ----------------------------------------------------------------------------- |
 | [`packages/react`](packages/react)   | `@ptrn/react`       | The React component library.                                                  |
-| [`packages/web`](packages/web)       | `@ptrn/web`         | The same components as framework-free Web Components (Lit). Accordion so far. |
+| [`packages/web`](packages/web)       | `@ptrn/web`         | The same components as framework-free Web Components (Lit). Listed in README. |
 | [`packages/icons`](packages/icons)   | `@ptrn/icons`       | The icon set (material and custom `nowhere` icons).                           |
 | [`packages/styles`](packages/styles) | `@ptrn/styles`      | The USWDS design tokens and themes, plus the shared reset.                    |
 | [`packages/mcp`](packages/mcp)       | `@ptrn/mcp`         | MCP server for AI coding tools: components, tokens, icons and a validator.    |

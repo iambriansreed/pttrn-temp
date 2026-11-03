@@ -1,6 +1,7 @@
 import { Table } from '@ptrn/react/Table';
 import manifest from '@ptrn/web/custom-elements.json';
 import { Markup } from 'components/Markup';
+import { webComponents as webComponentNames } from 'src/wc/names';
 
 type Typed = { name: string; type?: { text: string }; default?: string; description?: string };
 type Named = { name?: string; description?: string };
@@ -19,6 +20,11 @@ const elements = (manifest as unknown as { modules: { declarations?: Element[] }
     .flatMap((module) => module.declarations ?? [])
     .filter((declaration) => declaration.customElement && declaration.tagName);
 
+/** The tag of every component with a Web Component, `pttrn-` and the kebab-case name. */
+const componentTags = webComponentNames.map(
+    (name) => `pttrn-${name.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase()}`,
+);
+
 // Every table names the member in a column of the same width, so the tables of one element line up; values take what
 // they need and the description takes the rest.
 const NAME_WIDTH = '11rem';
@@ -34,9 +40,15 @@ const markup = (text?: string) => (text ? <Markup>{text}</Markup> : '—');
  * and the MCP server read the same file, so these tables cannot drift from the code.
  */
 export function WebComponentApi({ tag }: { tag: string }) {
-    // The component's own element first, then its children.
+    // The component's own element first, then its children. A child tag that is another component's tag, or one of its
+    // children, belongs to that component: `pttrn-input-number` is not part of `pttrn-input`.
+    const others = componentTags.filter((other) => other !== tag && other.startsWith(`${tag}-`));
+    const belongsToOther = (name: string) => others.some((other) => name === other || name.startsWith(`${other}-`));
     const own = elements
-        .filter((element) => element.tagName === tag || element.tagName?.startsWith(`${tag}-`))
+        .filter(
+            (element) =>
+                element.tagName === tag || (element.tagName?.startsWith(`${tag}-`) && !belongsToOther(element.tagName)),
+        )
         .sort((a, b) => (a.tagName === tag ? -1 : b.tagName === tag ? 1 : 0));
     if (own.length === 0) return null;
 
