@@ -31,6 +31,7 @@ export * from './components/ProgressionStepperBar';
 export * from './components/RadioGroup';
 export * from './components/SearchBar';
 export * from './components/SegmentedControl';
+export * from './components/Select';
 export * from './components/Skeleton';
 export * from './components/SkeletonText';
 export * from './components/Snackbar';

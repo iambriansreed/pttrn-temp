@@ -39,6 +39,7 @@ One line per component, in name order:
 - `pttrn-radio-group`, `pttrn-radio-group-item`
 - `pttrn-search-bar`, `pttrn-search-bar-item`
 - `pttrn-segmented-control`, `pttrn-segmented-control-item`
+- `pttrn-select`, `pttrn-select-item`
 - `pttrn-skeleton`
 - `pttrn-skeleton-text`
 - `pttrn-snackbar`, `pttrn-snackbar-manager`

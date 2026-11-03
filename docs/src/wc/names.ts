@@ -37,6 +37,7 @@ export const webComponents: string[] = [
     'RadioGroupField',
     'SearchBar',
     'SegmentedControl',
+    'Select',
     'Skeleton',
     'SkeletonText',
     'Snackbar',

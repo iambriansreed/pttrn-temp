@@ -1,0 +1,120 @@
+@use '../../styles/reset';
+@use '../../styles/field';
+@use '../../styles/list-item';
+@use '../../styles/menu-surface' as menu;
+
+:host {
+    display: block;
+    width: 100%;
+}
+
+// React's Select button (select.scss), with the ListItem it shows the current option in.
+[data-pttrn='select'] {
+    --select-background: var(--theme-body-background-color);
+    --select-border-color: var(--theme-color-base-medium);
+    --select-text-color: var(--theme-body-text-color);
+    --select-height: var(--usa-spacing-5);
+    --select-font: 400 var(--usa-font-size-sans-5) / 24px var(--usa-font-family-body);
+    --select-padding: var(--usa-spacing-105);
+
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    outline: unset;
+    min-height: var(--select-height);
+    max-height: var(--select-height);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--usa-spacing-1);
+    flex-grow: 0;
+    flex-shrink: 0;
+    text-align: left;
+    font: var(--select-font);
+    color: inherit;
+    border: var(--usa-spacing-1px) solid var(--select-border-color);
+    border-radius: var(--theme-border-radius-md);
+    background: var(--select-background);
+    padding: 0 var(--select-padding);
+    cursor: pointer;
+
+    // The React icon's default width; like it, the arrow gives way a little when the content is long.
+    > svg {
+        width: var(--usa-spacing-3);
+    }
+
+    > [data-pttrn='list-item'] {
+        @include list-item.list-item;
+
+        background: transparent;
+
+        [data-item-label] [data-text] {
+            font: var(--select-font);
+            color: var(--select-text-color);
+        }
+    }
+
+    &[data-size='small'] {
+        --select-height: var(--usa-spacing-4);
+        --select-font: 400 var(--usa-font-size-sans-3) / 20px var(--usa-font-family-body);
+        --select-padding: var(--usa-spacing-1);
+    }
+
+    &[data-size='large'] {
+        --select-height: var(--usa-spacing-6);
+        --select-font: 400 var(--usa-font-size-sans-7) / 28px var(--usa-font-family-body);
+    }
+
+    &[aria-disabled],
+    &[aria-readonly] {
+        --select-text-color: var(--theme-color-disabled-dark);
+        --select-border-color: var(--theme-color-disabled-light);
+        --select-background:
+            linear-gradient(var(--usa-color-black-transparent-10), var(--usa-color-black-transparent-10)),
+            linear-gradient(var(--theme-body-background-color), var(--theme-body-background-color));
+
+        cursor: not-allowed;
+
+        &[aria-readonly] {
+            --select-text-color: var(--theme-body-text-color);
+        }
+    }
+
+    &:not([aria-disabled], [aria-readonly]) {
+        &:focus-within {
+            --select-border-color: var(--theme-global-focus-color);
+
+            border-width: var(--usa-spacing-1px);
+            outline: var(--usa-spacing-1px) solid var(--theme-global-focus-color);
+        }
+
+        &:hover {
+            --select-background:
+                linear-gradient(var(--usa-color-black-transparent-10), var(--usa-color-black-transparent-10)),
+                linear-gradient(var(--theme-body-background-color), var(--theme-body-background-color));
+        }
+
+        &:active {
+            --select-background:
+                linear-gradient(var(--usa-color-black-transparent-20), var(--usa-color-black-transparent-20)),
+                linear-gradient(var(--theme-body-background-color), var(--theme-body-background-color));
+        }
+    }
+
+    &[data-invalid] {
+        --select-border-color: var(--theme-color-error-medium);
+    }
+}
+
+// The list: React's Menu in the top layer, with ListItem options.
+[role='listbox'] {
+    @include menu.menu-popover;
+
+    &:not(:popover-open) {
+        display: none;
+    }
+
+    [data-pttrn='list-item'] {
+        @include list-item.list-item;
+    }
+}

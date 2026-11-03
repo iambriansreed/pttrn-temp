@@ -164,6 +164,10 @@
             "types": "./dist/components/SegmentedControl/index.d.ts",
             "default": "./dist/components/SegmentedControl/index.js"
         },
+        "./Select": {
+            "types": "./dist/components/Select/index.d.ts",
+            "default": "./dist/components/Select/index.js"
+        },
         "./Skeleton": {
             "types": "./dist/components/Skeleton/index.d.ts",
             "default": "./dist/components/Skeleton/index.js"

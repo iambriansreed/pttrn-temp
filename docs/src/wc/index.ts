@@ -34,6 +34,7 @@ import { radioGroupWc } from 'src/wc/radio-group';
 import { radioGroupFieldWc } from 'src/wc/radio-group-field';
 import { searchBarWc } from 'src/wc/search-bar';
 import { segmentedControlWc } from 'src/wc/segmented-control';
+import { selectWc } from 'src/wc/select';
 import { skeletonWc } from 'src/wc/skeleton';
 import { skeletonTextWc } from 'src/wc/skeleton-text';
 import { snackbarWc } from 'src/wc/snackbar';
@@ -86,6 +87,7 @@ export const webComponents: Partial<Record<MetaComponentName, WebComponentDemo>>
     RadioGroupField: radioGroupFieldWc,
     SearchBar: searchBarWc,
     SegmentedControl: segmentedControlWc,
+    Select: selectWc,
     Skeleton: skeletonWc,
     SkeletonText: skeletonTextWc,
     Snackbar: snackbarWc,
