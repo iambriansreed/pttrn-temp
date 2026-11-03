@@ -67,6 +67,10 @@
         "./InlineAlert": {
             "types": "./dist/components/InlineAlert/index.d.ts",
             "default": "./dist/components/InlineAlert/index.js"
+        },
+        "./Switch": {
+            "types": "./dist/components/Switch/index.d.ts",
+            "default": "./dist/components/Switch/index.js"
         }
     },
     "scripts": {

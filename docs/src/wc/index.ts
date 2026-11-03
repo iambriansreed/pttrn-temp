@@ -9,6 +9,7 @@ import { emptyStateWc } from 'src/wc/empty-state';
 import { fabWc } from 'src/wc/fab';
 import { inlineAlertWc } from 'src/wc/inline-alert';
 import { webComponents as webComponentNames } from 'src/wc/names';
+import { switchWc } from 'src/wc/switch';
 import { WebComponentDemo } from 'src/wc/types';
 
 /**
@@ -25,6 +26,7 @@ export const webComponents: Partial<Record<MetaComponentName, WebComponentDemo>>
     EmptyState: emptyStateWc,
     Fab: fabWc,
     InlineAlert: inlineAlertWc,
+    Switch: switchWc,
 };
 
 const listed = [...webComponentNames].sort().join(',');

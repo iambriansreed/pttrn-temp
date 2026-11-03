@@ -7,3 +7,4 @@ export * from './components/ChipGroup';
 export * from './components/EmptyState';
 export * from './components/Fab';
 export * from './components/InlineAlert';
+export * from './components/Switch';

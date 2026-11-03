@@ -12,4 +12,5 @@ export const webComponents: string[] = [
     'EmptyState',
     'Fab',
     'InlineAlert',
+    'Switch',
 ];

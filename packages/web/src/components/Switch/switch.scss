@@ -1,0 +1,11 @@
+@use '../../styles/reset';
+@use '../../styles/switch';
+
+:host {
+    display: block;
+    width: fit-content;
+}
+
+:host([hidden]) {
+    display: none;
+}
