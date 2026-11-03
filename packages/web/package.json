@@ -80,6 +80,10 @@
             "types": "./dist/components/Checkbox/index.d.ts",
             "default": "./dist/components/Checkbox/index.js"
         },
+        "./CheckboxGroup": {
+            "types": "./dist/components/CheckboxGroup/index.d.ts",
+            "default": "./dist/components/CheckboxGroup/index.js"
+        },
         "./CheckboxOption": {
             "types": "./dist/components/CheckboxOption/index.d.ts",
             "default": "./dist/components/CheckboxOption/index.js"
@@ -95,6 +99,10 @@
         "./DatePicker": {
             "types": "./dist/components/DatePicker/index.d.ts",
             "default": "./dist/components/DatePicker/index.js"
+        },
+        "./Dialog": {
+            "types": "./dist/components/Dialog/index.d.ts",
+            "default": "./dist/components/Dialog/index.js"
         },
         "./Divider": {
             "types": "./dist/components/Divider/index.d.ts",
@@ -140,6 +148,14 @@
             "types": "./dist/components/ListItem/index.d.ts",
             "default": "./dist/components/ListItem/index.js"
         },
+        "./Menu": {
+            "types": "./dist/components/Menu/index.d.ts",
+            "default": "./dist/components/Menu/index.js"
+        },
+        "./Modal": {
+            "types": "./dist/components/Modal/index.d.ts",
+            "default": "./dist/components/Modal/index.js"
+        },
         "./OTPInput": {
             "types": "./dist/components/OTPInput/index.d.ts",
             "default": "./dist/components/OTPInput/index.js"
@@ -155,6 +171,10 @@
         "./Password": {
             "types": "./dist/components/Password/index.d.ts",
             "default": "./dist/components/Password/index.js"
+        },
+        "./Popover": {
+            "types": "./dist/components/Popover/index.d.ts",
+            "default": "./dist/components/Popover/index.js"
         },
         "./ProgressBar": {
             "types": "./dist/components/ProgressBar/index.d.ts",
@@ -188,6 +208,10 @@
             "types": "./dist/components/SegmentedControl/index.d.ts",
             "default": "./dist/components/SegmentedControl/index.js"
         },
+        "./Select": {
+            "types": "./dist/components/Select/index.d.ts",
+            "default": "./dist/components/Select/index.js"
+        },
         "./Skeleton": {
             "types": "./dist/components/Skeleton/index.d.ts",
             "default": "./dist/components/Skeleton/index.js"
@@ -199,6 +223,10 @@
         "./Slider": {
             "types": "./dist/components/Slider/index.d.ts",
             "default": "./dist/components/Slider/index.js"
+        },
+        "./Snackbar": {
+            "types": "./dist/components/Snackbar/index.d.ts",
+            "default": "./dist/components/Snackbar/index.js"
         },
         "./Switch": {
             "types": "./dist/components/Switch/index.d.ts",
@@ -235,10 +263,6 @@
         "./Txt": {
             "types": "./dist/components/Txt/index.d.ts",
             "default": "./dist/components/Txt/index.js"
-        },
-        "./CheckboxGroup": {
-            "types": "./dist/components/CheckboxGroup/index.d.ts",
-            "default": "./dist/components/CheckboxGroup/index.js"
         }
     },
     "scripts": {

@@ -1,0 +1,109 @@
+@use '../../styles/reset';
+@use '../../styles/internal-button';
+
+// The host only wraps the trigger: it adds no box, so the trigger lays out as if the popover were not there, as in React.
+:host {
+    display: contents;
+}
+
+[data-pttrn='popover'] {
+    --arrow-size: var(--usa-spacing-1);
+    --arrow-offset: calc(var(--arrow-size) * -2);
+    --arrow-background-color: var(--theme-body-background-color);
+
+    // A popover in the top layer: undo the UA box (inset, border, overflow); `place()` sets top and left.
+    position: fixed;
+    inset: auto;
+    margin: 0;
+    overflow: visible;
+    border: none;
+    color: var(--theme-body-text-color);
+    background: var(--theme-body-background-color);
+    box-shadow: var(--card-shadow);
+    padding: var(--usa-spacing-2);
+    border-radius: var(--theme-border-radius-lg);
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    outline: none;
+
+    &:not(:popover-open) {
+        display: none;
+    }
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: var(--usa-spacing-1);
+        gap: var(--usa-spacing-2);
+
+        // React's Txt heading-h6.
+        [data-header] {
+            overflow-wrap: break-word;
+            font: 500 var(--usa-font-size-sans-7) / 24px var(--usa-font-family-heading);
+        }
+
+        [data-close] {
+            margin-right: calc(var(--usa-spacing-1) * -1);
+            margin-top: calc(var(--usa-spacing-1) * -1);
+        }
+    }
+
+    button {
+        @include internal-button.button;
+    }
+
+    [data-arrow] {
+        z-index: 1;
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: var(--arrow-size) var(--arrow-size) var(--arrow-size) var(--arrow-size);
+        border-color: transparent;
+    }
+
+    &[data-placement^='top'] [data-arrow] {
+        bottom: var(--arrow-offset);
+        border-top-color: var(--arrow-background-color);
+        filter: drop-shadow(0 1px 1px var(--usa-color-black-transparent-10));
+    }
+
+    &[data-placement^='right'] [data-arrow] {
+        margin-left: calc(var(--arrow-offset) * 2);
+        border-right-color: var(--arrow-background-color);
+        filter: drop-shadow(-1px 0 1px var(--usa-color-black-transparent-10));
+    }
+
+    &[data-placement^='bottom'] [data-arrow] {
+        top: -15px;
+        border-bottom-color: var(--arrow-background-color);
+        filter: drop-shadow(0 -1px 1px var(--usa-color-black-transparent-10));
+    }
+
+    &[data-placement^='left'] [data-arrow] {
+        right: var(--arrow-offset);
+        border-left-color: var(--arrow-background-color);
+        filter: drop-shadow(1px 0 1px var(--usa-color-black-transparent-10));
+    }
+
+    [data-content] {
+        gap: var(--usa-spacing-2);
+        display: flex;
+        flex-direction: column;
+
+        // React's Txt body-small.
+        [data-text] {
+            overflow-wrap: break-word;
+            font: 400 var(--usa-font-size-sans-3) / 20px var(--usa-font-family-body);
+        }
+    }
+
+    [data-cta-row] {
+        display: flex;
+        align-items: end;
+        gap: var(--usa-spacing-1);
+        margin: 0 0 0 auto;
+    }
+}

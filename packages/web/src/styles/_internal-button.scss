@@ -1,7 +1,7 @@
-// @ptrn/react's Button (`[data-pttrn='button']`) at the small size, primary and tertiary, for elements that draw their
-// own buttons in their shadow root (Breadcrumb's overflow, Pagination). Include it in the rule for the `<button>`, which
-// carries data-variant and data-size like the React one and holds [data-button-icon], [data-button-label] and an
-// aria-hidden [data-touch-target].
+// @ptrn/react's Button (`[data-pttrn='button']`) at the small and medium sizes, primary, secondary and tertiary, for
+// elements that draw their own buttons in their shadow root (Breadcrumb's overflow, Pagination, Popover). Include it in
+// the rule for the `<button>`, which carries data-variant and data-size like the React one and holds
+// [data-button-icon], [data-button-label] and an aria-hidden [data-touch-target].
 @mixin button {
     display: flex;
     flex-direction: row;
@@ -24,6 +24,22 @@
 
         &:has([data-button-label]) {
             padding: 6px var(--usa-spacing-2);
+        }
+
+        [data-button-icon] svg {
+            width: var(--usa-spacing-205);
+            height: var(--usa-spacing-205);
+        }
+    }
+
+    &[data-size='medium'] {
+        font-size: var(--usa-font-size-sans-5);
+        line-height: 20px;
+        height: var(--usa-spacing-5);
+        min-width: var(--usa-spacing-5);
+
+        &:has([data-button-label]) {
+            padding: var(--usa-spacing-1) var(--usa-spacing-2);
         }
 
         [data-button-icon] svg {
@@ -72,6 +88,32 @@
                 background:
                     linear-gradient(var(--usa-color-black-transparent-20), var(--usa-color-black-transparent-20)),
                     linear-gradient(var(--primary-background), var(--primary-background));
+            }
+
+            &:focus-visible {
+                outline: solid var(--usa-spacing-2px) var(--theme-global-focus-color);
+                isolation: isolate;
+            }
+        }
+    }
+
+    &[data-variant='secondary'] {
+        border: solid var(--usa-spacing-1px) var(--theme-color-base-medium);
+        border-radius: var(--theme-border-radius-md);
+        color: var(--theme-color-base-dark);
+
+        &[disabled] {
+            color: var(--theme-color-disabled-dark);
+            border: solid var(--usa-spacing-1px) var(--theme-color-disabled-light);
+        }
+
+        &:not([disabled]) {
+            &:hover {
+                background-color: var(--usa-color-black-transparent-10);
+            }
+
+            &:active {
+                background-color: var(--usa-color-black-transparent-20);
             }
 
             &:focus-visible {

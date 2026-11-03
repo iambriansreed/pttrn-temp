@@ -1,0 +1,94 @@
+@use '../../styles/reset';
+@use '../../styles/tooltip-box' as tooltip;
+
+:host {
+    display: contents;
+}
+
+// React's portal container, as a popover in the top layer: the whole screen, letting clicks through, with the bar at
+// the bottom.
+[data-pttrn='snackbar'] {
+    position: fixed;
+    inset: 0;
+    width: auto;
+    height: auto;
+    margin: 0;
+    border: none;
+    background: transparent;
+    color: inherit;
+    display: flex;
+    flex-direction: column-reverse;
+    max-height: 100%;
+    overflow: hidden;
+    align-items: center;
+    gap: var(--usa-spacing-1);
+    pointer-events: none;
+    padding: var(--usa-spacing-1);
+
+    &:not(:popover-open) {
+        display: none;
+    }
+}
+
+[data-snackbar-content] {
+    pointer-events: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: var(--theme-border-radius-lg);
+    padding: var(--usa-spacing-1) var(--usa-spacing-1) var(--usa-spacing-1) var(--usa-spacing-2);
+    gap: var(--usa-spacing-105);
+    width: 600px;
+    box-shadow:
+        0 0 1px 0 var(--usa-color-black-transparent-30),
+        0 0 12px 0 var(--usa-color-black-transparent-20);
+    background-color: var(--theme-color-ink);
+    color: var(--theme-color-ink-reverse);
+    height: var(--usa-spacing-7);
+    outline: none;
+
+    [data-snackbar-icon-text] {
+        flex: 1 1 0;
+        min-width: 0;
+        max-width: 100%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        gap: var(--usa-spacing-105);
+    }
+
+    [data-snackbar-icon] {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: var(--usa-spacing-205);
+        height: var(--usa-spacing-205);
+
+        ::slotted(svg) {
+            width: var(--usa-spacing-205);
+            height: var(--usa-spacing-205);
+        }
+    }
+
+    // React's Truncated.
+    [data-label] {
+        max-width: 100%;
+        display: inline-block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    pttrn-button {
+        flex: 0 0 auto;
+    }
+
+    pttrn-button::part(button) {
+        color: inherit;
+    }
+}
+
+[data-pttrn='tooltip'] {
+    @include tooltip.tooltip;
+}

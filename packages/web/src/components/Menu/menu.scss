@@ -1,0 +1,7 @@
+@use '../../styles/reset';
+@use '../../styles/menu-surface' as menu;
+
+// The element is the panel, as React's `[data-pttrn-utility='menu']` container is.
+:host {
+    @include menu.menu;
+}

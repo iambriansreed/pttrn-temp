@@ -1,0 +1,259 @@
+@use '../../styles/reset';
+
+// The element only holds the native <dialog>, which renders in the top layer (or, contained, fills the nearest
+// positioned ancestor).
+:host {
+    display: contents;
+}
+
+// React's `[data-pttrn='dialog']` container: the native <dialog> fills the screen, without the UA box, and lays the
+// box out by placement. Its own backdrop stays clear: the scrim inside it dims the page, as React's Scrim does.
+dialog[data-pttrn='dialog'] {
+    --height: 100vh;
+    --width: 100vw;
+
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: inherit;
+    overflow: visible;
+    pointer-events: none;
+
+    &[open] {
+        display: flex;
+    }
+
+    &::backdrop {
+        background: transparent;
+    }
+
+    &[data-contained] {
+        position: absolute;
+
+        --height: 100%;
+        --width: 100%;
+
+        [data-scrim] {
+            position: absolute;
+        }
+    }
+
+    &[data-placement='center'] {
+        --box-animation-name: fade-in;
+
+        justify-content: center;
+        align-items: center;
+
+        [data-dialog-box] {
+            border-radius: var(--theme-border-radius-lg);
+        }
+    }
+
+    &[data-placement='bottom'] {
+        --box-animation-name: placement-bottom;
+
+        justify-content: center;
+        align-items: end;
+
+        [data-dialog-box] {
+            border-top-left-radius: var(--theme-border-radius-lg);
+            border-top-right-radius: var(--theme-border-radius-lg);
+        }
+    }
+
+    &[data-placement='top'] {
+        --box-animation-name: placement-top;
+
+        justify-content: center;
+        align-items: start;
+
+        [data-dialog-box] {
+            border-bottom-left-radius: var(--theme-border-radius-lg);
+            border-bottom-right-radius: var(--theme-border-radius-lg);
+        }
+    }
+
+    &[data-placement='left'] {
+        --box-animation-name: placement-left;
+
+        justify-content: flex-start;
+
+        [data-dialog-box] {
+            max-height: unset;
+            width: 280px;
+            height: var(--height);
+            border-bottom-right-radius: var(--theme-border-radius-lg);
+            border-top-right-radius: var(--theme-border-radius-lg);
+        }
+    }
+
+    &[data-placement='right'] {
+        --box-animation-name: placement-right;
+
+        justify-content: flex-end;
+
+        [data-dialog-box] {
+            max-height: unset;
+            width: 280px;
+            height: var(--height);
+            border-bottom-left-radius: var(--theme-border-radius-lg);
+            border-top-left-radius: var(--theme-border-radius-lg);
+        }
+    }
+}
+
+// React's Scrim.
+[data-scrim] {
+    position: fixed;
+    inset: 0;
+    pointer-events: auto;
+    background-color: var(--usa-color-black-transparent-30);
+    animation: scrim-fade-in 1s 1 forwards;
+}
+
+[data-dialog-box] {
+    pointer-events: all;
+    text-align: start;
+    position: absolute;
+    box-shadow: var(--card-shadow);
+    background: var(--theme-body-background-color);
+    color: var(--theme-body-text-color);
+    max-height: calc(var(--height) - calc(var(--usa-spacing-15) + var(--usa-spacing-3) + var(--usa-spacing-05)));
+    z-index: 2;
+    width: calc(100% - var(--usa-spacing-4));
+    outline: none;
+    animation-name: var(--box-animation-name);
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-delay: 0s;
+
+    ::slotted(:first-child) {
+        margin-top: 0;
+    }
+
+    ::slotted(:last-child) {
+        margin-bottom: 0;
+    }
+
+    // The width follows the viewport.
+    @media (width >= 640px) {
+        width: 90%;
+    }
+
+    @media (width >= 768px) {
+        width: 80%;
+    }
+
+    @media (width >= 1024px) {
+        width: 60%;
+    }
+
+    @media (width >= 1280px) {
+        width: 50%;
+    }
+
+    &[data-width-full='true'] {
+        width: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    [data-scrim],
+    [data-dialog-box] {
+        animation: none;
+    }
+}
+
+@keyframes scrim-fade-in {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+        transform: translate(var(--usa-spacing-05), var(--usa-spacing-05));
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes placement-left {
+    0% {
+        opacity: 0;
+    }
+
+    1% {
+        transform: translateX(calc(-1 * var(--width, 100vw)));
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes placement-right {
+    0% {
+        opacity: 0;
+    }
+
+    1% {
+        opacity: 1;
+        transform: translateX(var(--width, 100vw));
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes placement-top {
+    0% {
+        opacity: 0;
+    }
+
+    1% {
+        opacity: 1;
+        transform: translateY(calc(-1 * var(--height, 100vh)));
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes placement-bottom {
+    0% {
+        opacity: 0;
+    }
+
+    1% {
+        opacity: 1;
+        transform: translateY(var(--height, 100vh));
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

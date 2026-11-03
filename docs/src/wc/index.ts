@@ -17,6 +17,7 @@ import { checkboxOptionWc } from 'src/wc/checkbox-option';
 import { chipWc } from 'src/wc/chip';
 import { chipGroupWc } from 'src/wc/chip-group';
 import { datePickerWc } from 'src/wc/date-picker';
+import { dialogWc } from 'src/wc/dialog';
 import { dividerWc } from 'src/wc/divider';
 import { emptyStateWc } from 'src/wc/empty-state';
 import { fabWc } from 'src/wc/fab';
@@ -28,11 +29,14 @@ import { inputNumberWc } from 'src/wc/input-number';
 import { inputPhoneWc } from 'src/wc/input-phone';
 import { linkWc } from 'src/wc/link';
 import { listItemWc } from 'src/wc/list-item';
+import { menuWc } from 'src/wc/menu';
+import { modalWc } from 'src/wc/modal';
 import { webComponents as webComponentNames } from 'src/wc/names';
 import { otpInputWc } from 'src/wc/otp-input';
 import { pageControlWc } from 'src/wc/page-control';
 import { paginationWc } from 'src/wc/pagination';
 import { passwordWc } from 'src/wc/password';
+import { popoverWc } from 'src/wc/popover';
 import { progressBarWc } from 'src/wc/progress-bar';
 import { progressCircleWc } from 'src/wc/progress-circle';
 import { progressionStepperWc } from 'src/wc/progression-stepper';
@@ -42,9 +46,11 @@ import { radioGroupFieldWc } from 'src/wc/radio-group-field';
 import { ratingWc } from 'src/wc/rating';
 import { searchBarWc } from 'src/wc/search-bar';
 import { segmentedControlWc } from 'src/wc/segmented-control';
+import { selectWc } from 'src/wc/select';
 import { skeletonWc } from 'src/wc/skeleton';
 import { skeletonTextWc } from 'src/wc/skeleton-text';
 import { sliderWc } from 'src/wc/slider';
+import { snackbarWc } from 'src/wc/snackbar';
 import { switchWc } from 'src/wc/switch';
 import { switchOptionWc } from 'src/wc/switch-option';
 import { tabGroupWc } from 'src/wc/tab-group';
@@ -79,6 +85,7 @@ export const webComponents: Partial<Record<MetaComponentName, WebComponentDemo>>
     Chip: chipWc,
     ChipGroup: chipGroupWc,
     DatePicker: datePickerWc,
+    Dialog: dialogWc,
     Divider: dividerWc,
     EmptyState: emptyStateWc,
     Fab: fabWc,
@@ -90,10 +97,13 @@ export const webComponents: Partial<Record<MetaComponentName, WebComponentDemo>>
     InputPhone: inputPhoneWc,
     Link: linkWc,
     ListItem: listItemWc,
-    OTPInput: otpInputWc,
+    Menu: menuWc,
+    Modal: modalWc,
+    OtpInput: otpInputWc,
     PageControl: pageControlWc,
     Pagination: paginationWc,
     Password: passwordWc,
+    Popover: popoverWc,
     ProgressBar: progressBarWc,
     ProgressCircle: progressCircleWc,
     ProgressionStepper: progressionStepperWc,
@@ -103,9 +113,11 @@ export const webComponents: Partial<Record<MetaComponentName, WebComponentDemo>>
     Rating: ratingWc,
     SearchBar: searchBarWc,
     SegmentedControl: segmentedControlWc,
+    Select: selectWc,
     Skeleton: skeletonWc,
     SkeletonText: skeletonTextWc,
     Slider: sliderWc,
+    Snackbar: snackbarWc,
     Switch: switchWc,
     SwitchOption: switchOptionWc,
     TabGroup: tabGroupWc,

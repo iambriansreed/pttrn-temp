@@ -1,0 +1,61 @@
+@use '../../styles/reset';
+
+:host {
+    display: contents;
+}
+
+[data-pttrn='modal'] {
+    // React sizes the modal to the dialog box with script, so the content scrolls inside it; the same cap as the box
+    // does it here.
+    max-height: calc(100vh - calc(var(--usa-spacing-15) + var(--usa-spacing-3) + var(--usa-spacing-05)));
+    display: flex;
+    flex-direction: column;
+    gap: var(--usa-spacing-1);
+    padding: var(--usa-spacing-205);
+
+    @media (width < 640px) {
+        padding: var(--usa-spacing-2);
+    }
+
+    > [data-modal-header] {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: var(--usa-spacing-2);
+
+        [data-modal-title] {
+            font: 600 var(--usa-font-size-sans-8) / 28px var(--usa-font-family-heading);
+            flex: 1;
+        }
+    }
+
+    [data-modal-main] {
+        flex: 1;
+        overflow-y: auto;
+        max-height: fit-content;
+    }
+
+    > [data-modal-footer] {
+        display: flex;
+        gap: var(--usa-spacing-2);
+    }
+
+    [data-button-format='horizontal'] {
+        flex-direction: row-reverse;
+        justify-content: flex-start;
+    }
+
+    [data-button-format='vertical'] {
+        flex-direction: column;
+
+        @media (width >= 640px) {
+            flex-direction: row-reverse;
+            justify-content: flex-start;
+        }
+    }
+}
+
+pttrn-dialog[contained] [data-pttrn='modal'] {
+    max-height: calc(100% - calc(var(--usa-spacing-15) + var(--usa-spacing-3) + var(--usa-spacing-05)));
+}
