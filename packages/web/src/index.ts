@@ -24,6 +24,7 @@ export * from './components/ListItem';
 export * from './components/PageControl';
 export * from './components/Pagination';
 export * from './components/Password';
+export * from './components/ProgressBar';
 export * from './components/ProgressionStepper';
 export * from './components/ProgressionStepperBar';
 export * from './components/RadioGroup';

@@ -1,0 +1,60 @@
+@use '../../styles/reset';
+
+// The host steps out of the layout, so the bar takes the full width of its container as React's does.
+:host {
+    display: contents;
+}
+
+[data-pttrn='progress-bar'] {
+    /*! --width: is set via inline style */
+
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: var(--usa-spacing-05);
+
+    // The native element carries the value for assistive technology; the bar below draws it.
+    progress {
+        opacity: 0;
+        position: absolute;
+    }
+
+    [data-bar] {
+        width: 100%;
+        height: var(--usa-spacing-1);
+        background-color: var(--theme-color-base-lighter);
+        border-radius: var(--theme-border-radius-md);
+
+        &::after {
+            content: '';
+            display: block;
+            height: 100%;
+            background-color: var(--theme-color-primary-medium);
+            border-radius: var(--theme-border-radius-md);
+            width: var(--width);
+            transition: width 0.3s;
+        }
+    }
+
+    &[data-size='small'] {
+        [data-bar] {
+            height: var(--usa-spacing-05);
+        }
+    }
+
+    &[data-success='color'] {
+        [data-bar]::after {
+            background-color: var(--theme-color-success-medium);
+        }
+    }
+
+    // The label keeps the surrounding font, as React's does (its stylesheet sets an invalid `font-size`).
+    label {
+        width: 100%;
+        text-align: center;
+    }
+
+    &[data-align='left'] label {
+        text-align: left;
+    }
+}

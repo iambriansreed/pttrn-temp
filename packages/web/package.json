@@ -136,6 +136,10 @@
             "types": "./dist/components/Password/index.d.ts",
             "default": "./dist/components/Password/index.js"
         },
+        "./ProgressBar": {
+            "types": "./dist/components/ProgressBar/index.d.ts",
+            "default": "./dist/components/ProgressBar/index.js"
+        },
         "./ProgressionStepper": {
             "types": "./dist/components/ProgressionStepper/index.d.ts",
             "default": "./dist/components/ProgressionStepper/index.js"

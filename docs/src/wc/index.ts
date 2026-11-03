@@ -26,6 +26,7 @@ import { webComponents as webComponentNames } from 'src/wc/names';
 import { pageControlWc } from 'src/wc/page-control';
 import { paginationWc } from 'src/wc/pagination';
 import { passwordWc } from 'src/wc/password';
+import { progressBarWc } from 'src/wc/progress-bar';
 import { progressionStepperWc } from 'src/wc/progression-stepper';
 import { progressionStepperBarWc } from 'src/wc/progression-stepper-bar';
 import { radioGroupWc } from 'src/wc/radio-group';
@@ -75,6 +76,7 @@ export const webComponents: Partial<Record<MetaComponentName, WebComponentDemo>>
     PageControl: pageControlWc,
     Pagination: paginationWc,
     Password: passwordWc,
+    ProgressBar: progressBarWc,
     ProgressionStepper: progressionStepperWc,
     ProgressionStepperBar: progressionStepperBarWc,
     RadioGroup: radioGroupWc,
