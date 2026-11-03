@@ -35,6 +35,10 @@
         "./Accordion": {
             "types": "./dist/components/Accordion/index.d.ts",
             "default": "./dist/components/Accordion/index.js"
+        },
+        "./Button": {
+            "types": "./dist/components/Button/index.d.ts",
+            "default": "./dist/components/Button/index.js"
         }
     },
     "scripts": {
