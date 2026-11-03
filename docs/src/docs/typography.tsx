@@ -204,7 +204,7 @@ import '@ptrn/styles/prose.css';
                 language="typescript"
             />
             {SECTIONS.map(({ title, guidance, html }) => (
-                <section data-typography-section id={title.toLowerCase().replace(/[^a-z]+/g, '-')} key={title}>
+                <section data-typography-section key={title}>
                     <h2>{title}</h2>
                     <Markup>{guidance}</Markup>
                     <CodeExample code={{ str: html.trim(), language: 'html' }}>

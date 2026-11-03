@@ -157,7 +157,6 @@ What is left of the backlog that takes pttrn to its first public release and bey
 - npm: confirm the `ptrn` organization, two-factor authentication and trusted publishing (or an `NPM_TOKEN`), then set `PTTRN_PUBLISH` (maintainer).
 - Confirm who owns the Google Analytics tag in `docs/index.html`, or remove it (maintainer).
 - Apply the phase rule for 0.1.0: hide Backlog and Dev, mark UX Review as preview in the docs and the MCP.
-- Fix the docs examples that the MCP validator rejects, so the MCP serves every example (`npm run build:data` in `@ptrn/mcp` lists them).
 - Merge the Version Packages pull request at 0.1.0, make the repository public and publish.
 
 ### Next
@@ -166,7 +165,7 @@ What is left of the backlog that takes pttrn to its first public release and bey
 - **React.** Ship plain `.css` files imported as side effects, keeping the JavaScript style injector as an opt-in, so strict CSP and server-side style extraction work; type the props the metadata extracts without a type (`Flex` `align`, `justify`, `padding`) so the validator checks them; add example files and `@example` blocks where they are missing, Stable components first; audit the `eslint-disable` comments and the `Flag` sprite.
 - **Icons.** Build Material Symbols from a pinned release instead of a sibling checkout, and emit into `dist/`.
 - **Web Components.** Port the rest of the library in the order leaf components, one-state controls, form-associated controls with `ElementInternals`, then compositions. After four components, revisit sharing SCSS between React and Web Components.
-- **MCP and AI readiness.** Read the MCP's component data from `@ptrn/react` instead of the docs metadata; validate HTML and Web Component code against the Custom Elements Manifest; publish an agent-readable description of the system (`llms.txt`, `DESIGN.md`); an installable component registry with an agent skill; the hosted MCP server (maintainer: hostname and hosting account).
+- **MCP and AI readiness.** Read the MCP's component data from `@ptrn/react` instead of the docs metadata; validate HTML and Web Component code against the Custom Elements Manifest; an installable component registry with an agent skill; the hosted MCP server (maintainer: hostname and hosting account).
 - **CI.** Pin GitHub Actions to commit SHAs and run `npm audit` (Dependabot already runs weekly).
 - **Process.** Turn `plans/*.md` into architecture decision records with a status, and record the decisions behind this plan as new ones.
 

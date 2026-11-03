@@ -152,6 +152,8 @@ export function TypePropControl({
 // eslint-disable-next-line react/no-multi-comp
 function PttrnIconSelect({ onChange, value }: { onChange: (next: string) => void; value?: string }) {
     const [searchValue, setSearchValue] = useState<string | undefined>(value);
+    // Option ids are DOM ids: a page with two icon props (leading and trailing) would repeat them without a prefix.
+    const idPrefix = useId();
 
     return (
         <SearchBar
@@ -161,7 +163,7 @@ function PttrnIconSelect({ onChange, value }: { onChange: (next: string) => void
             })
                 .filter((_, index) => index < 10)
                 .map((icon) => ({
-                    id: icon.name,
+                    id: `${idPrefix}-${icon.name}`,
                     value: icon.name,
                     label: icon.name,
                 }))}
