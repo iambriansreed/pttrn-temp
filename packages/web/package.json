@@ -51,6 +51,10 @@
         "./ChipGroup": {
             "types": "./dist/components/ChipGroup/index.d.ts",
             "default": "./dist/components/ChipGroup/index.js"
+        },
+        "./InlineAlert": {
+            "types": "./dist/components/InlineAlert/index.d.ts",
+            "default": "./dist/components/InlineAlert/index.js"
         }
     },
     "scripts": {

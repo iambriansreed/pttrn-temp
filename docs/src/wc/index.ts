@@ -4,6 +4,7 @@ import { buttonWc } from 'src/wc/button';
 import { chipWc } from 'src/wc/chip';
 import { chipGroupWc } from 'src/wc/chip-group';
 import { fabWc } from 'src/wc/fab';
+import { inlineAlertWc } from 'src/wc/inline-alert';
 import { webComponents as webComponentNames } from 'src/wc/names';
 import { WebComponentDemo } from 'src/wc/types';
 
@@ -17,6 +18,7 @@ export const webComponents: Partial<Record<MetaComponentName, WebComponentDemo>>
     Chip: chipWc,
     ChipGroup: chipGroupWc,
     Fab: fabWc,
+    InlineAlert: inlineAlertWc,
 };
 
 const listed = [...webComponentNames].sort().join(',');
