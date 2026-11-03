@@ -52,6 +52,10 @@
             "types": "./dist/components/Checkbox/index.d.ts",
             "default": "./dist/components/Checkbox/index.js"
         },
+        "./CheckboxOption": {
+            "types": "./dist/components/CheckboxOption/index.d.ts",
+            "default": "./dist/components/CheckboxOption/index.js"
+        },
         "./Chip": {
             "types": "./dist/components/Chip/index.d.ts",
             "default": "./dist/components/Chip/index.js"

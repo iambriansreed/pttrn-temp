@@ -4,6 +4,7 @@ import { bannerAlertWc } from 'src/wc/banner-alert';
 import { buttonWc } from 'src/wc/button';
 import { cardWc } from 'src/wc/card';
 import { checkboxWc } from 'src/wc/checkbox';
+import { checkboxOptionWc } from 'src/wc/checkbox-option';
 import { chipWc } from 'src/wc/chip';
 import { chipGroupWc } from 'src/wc/chip-group';
 import { emptyStateWc } from 'src/wc/empty-state';
@@ -24,6 +25,7 @@ export const webComponents: Partial<Record<MetaComponentName, WebComponentDemo>>
     Button: buttonWc,
     Card: cardWc,
     Checkbox: checkboxWc,
+    CheckboxOption: checkboxOptionWc,
     Chip: chipWc,
     ChipGroup: chipGroupWc,
     EmptyState: emptyStateWc,
