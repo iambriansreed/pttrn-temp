@@ -1,8 +1,6 @@
 // Surfaces the docs paint themselves. Examples sit on the page background so components are scanned and screenshot in
-// the context they ship into; secondary surfaces (code, quotes, backdrops) tint toward ink in light and dark themes alike.
-:root[data-uswds-theme$='-dark'] {
-    --docs-surface: var(--theme-color-base-darker);
-}
+// the context they ship into; secondary surfaces (code, quotes, backdrops, the header) use base-lightest, one step toward
+// ink from the page. The derived dark theme mirrors the base ladder, so the same token is the dark surface there.
 
 [data-uswds-theme] {
     color-scheme: light;
@@ -210,7 +208,7 @@ pre {
 
 [data-show-touch-targets] {
     [data-touch-target] {
-        border: 3px dashed #ff4f8d;
+        border: 3px dashed var(--usa-color-magenta-40v);
         display: block;
         opacity: 1 !important;
         z-index: 2 !important;
@@ -572,26 +570,26 @@ section[data-variants] {
     .hljs-type,
     /* stylelint-disable-next-line selector-class-pattern */
     .hljs-variable.language_ {
-        color: #ce3745;
+        color: var(--theme-color-error-dark);
     }
 
     .hljs-name,
     .hljs-quote,
     .hljs-selector-tag,
     .hljs-selector-pseudo {
-        color: #22804b;
+        color: var(--theme-color-success-darker);
     }
 
     /* stylelint-disable-next-line selector-class-pattern */
     .hljs-built_in,
     .hljs-symbol {
-        color: #bb5006;
+        color: var(--theme-color-accent-warm-darker);
     }
 
     .hljs-comment,
     .hljs-code,
     .hljs-formula {
-        color: #69717b;
+        color: var(--theme-color-base-dark);
     }
 
     pre code.hljs {
@@ -862,16 +860,16 @@ section[data-variants] {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 20px 0;
+        padding: var(--usa-spacing-205) 0;
 
         &[data-kind='subtle-inverse'] {
-            background: #333;
+            background: var(--theme-color-base-darkest);
         }
     }
 }
 
 body[data-pttrn-code-demo] {
-    background-color: #e0e0e0 !important;
+    background-color: var(--theme-color-base-lighter) !important;
 
     ul {
         padding: 0;
