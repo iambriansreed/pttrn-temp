@@ -1,3 +1,9 @@
 // @ptrn/react gets the reset from a global base stylesheet. A shadow root is not reached by page-level rules, so every
 // element `@use`s this to carry its own. Both load the same file from @ptrn/styles.
 @forward 'pkg:@ptrn/styles/reset';
+
+// An element's own `:host { display: … }` outranks the browser's `[hidden] { display: none }`, so without this the
+// `hidden` attribute would not hide it.
+:host([hidden]) {
+    display: none !important;
+}
