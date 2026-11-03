@@ -1,0 +1,66 @@
+@use '../../styles/reset';
+
+// The rules of packages/react/src/components/InlineAlert/inline-alert.scss. The message is a Txt in @ptrn/react
+// (body-small); here it is a span with that type style.
+
+:host {
+    display: block;
+}
+
+:host([hidden]) {
+    display: none;
+}
+
+// Text uses the 60-grade status tones: they hold 4.5:1 on white and on base-lightest, where the medium tones fall short.
+[data-pttrn='inline-alert'] {
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    flex-direction: row;
+    gap: var(--usa-spacing-1);
+
+    [data-txt] {
+        flex: 1;
+        overflow-wrap: break-word;
+        font: 400 var(--usa-font-size-sans-3) / 20px var(--usa-font-family-body);
+    }
+
+    &[data-variant='error'] {
+        color: var(--theme-color-error-dark);
+
+        --first-tone: var(--theme-color-error-dark);
+        --second-tone: var(--theme-color-ink);
+    }
+
+    &[data-variant='success'] {
+        color: var(--theme-color-success-darker);
+
+        --first-tone: var(--theme-color-success-darker);
+        --second-tone: var(--usa-color-white);
+    }
+
+    &[data-variant='warning'] {
+        color: var(--theme-body-text-color);
+
+        --first-tone: var(--theme-color-warning-medium);
+        --second-tone: var(--theme-color-ink);
+    }
+
+    &[data-variant='informational'] {
+        color: var(--theme-color-info-darker);
+
+        --first-tone: var(--theme-color-info-darker);
+        --second-tone: var(--theme-color-ink);
+    }
+
+    svg {
+        color: var(--first-tone);
+        width: var(--usa-spacing-205);
+        height: var(--usa-spacing-205);
+        flex: 0 0 auto;
+
+        [data-second-tone] {
+            fill: var(--second-tone);
+        }
+    }
+}

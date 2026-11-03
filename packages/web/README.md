@@ -10,9 +10,19 @@ One line per component, in name order:
 - `pttrn-avatar`
 - `pttrn-badge`
 - `pttrn-badge-dot`
+- `pttrn-banner-alert`
+- `pttrn-button`
+- `pttrn-card`
+- `pttrn-chip`
+- `pttrn-chip-group`
 - `pttrn-divider`
+- `pttrn-empty-state`
+- `pttrn-fab`
+- `pttrn-inline-alert`
 - `pttrn-skeleton`
 - `pttrn-skeleton-text`
+- `pttrn-switch`
+- `pttrn-switch-option`
 - `pttrn-tag`
 - `pttrn-txt`
 

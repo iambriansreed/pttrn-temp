@@ -3,10 +3,20 @@ import { accordionWc } from 'src/wc/accordion';
 import { avatarWc } from 'src/wc/avatar';
 import { badgeWc } from 'src/wc/badge';
 import { badgeDotWc } from 'src/wc/badge-dot';
+import { bannerAlertWc } from 'src/wc/banner-alert';
+import { buttonWc } from 'src/wc/button';
+import { cardWc } from 'src/wc/card';
+import { chipWc } from 'src/wc/chip';
+import { chipGroupWc } from 'src/wc/chip-group';
 import { dividerWc } from 'src/wc/divider';
+import { emptyStateWc } from 'src/wc/empty-state';
+import { fabWc } from 'src/wc/fab';
+import { inlineAlertWc } from 'src/wc/inline-alert';
 import { webComponents as webComponentNames } from 'src/wc/names';
 import { skeletonWc } from 'src/wc/skeleton';
 import { skeletonTextWc } from 'src/wc/skeleton-text';
+import { switchWc } from 'src/wc/switch';
+import { switchOptionWc } from 'src/wc/switch-option';
 import { tagWc } from 'src/wc/tag';
 import { txtWc } from 'src/wc/txt';
 import { WebComponentDemo } from 'src/wc/types';
@@ -20,9 +30,19 @@ export const webComponents: Partial<Record<MetaComponentName, WebComponentDemo>>
     Avatar: avatarWc,
     Badge: badgeWc,
     BadgeDot: badgeDotWc,
+    BannerAlert: bannerAlertWc,
+    Button: buttonWc,
+    Card: cardWc,
+    Chip: chipWc,
+    ChipGroup: chipGroupWc,
     Divider: dividerWc,
+    EmptyState: emptyStateWc,
+    Fab: fabWc,
+    InlineAlert: inlineAlertWc,
     Skeleton: skeletonWc,
     SkeletonText: skeletonTextWc,
+    Switch: switchWc,
+    SwitchOption: switchOptionWc,
     Tag: tagWc,
     Txt: txtWc,
 };

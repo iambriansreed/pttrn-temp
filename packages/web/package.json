@@ -48,9 +48,41 @@
             "types": "./dist/components/BadgeDot/index.d.ts",
             "default": "./dist/components/BadgeDot/index.js"
         },
+        "./BannerAlert": {
+            "types": "./dist/components/BannerAlert/index.d.ts",
+            "default": "./dist/components/BannerAlert/index.js"
+        },
+        "./Button": {
+            "types": "./dist/components/Button/index.d.ts",
+            "default": "./dist/components/Button/index.js"
+        },
+        "./Card": {
+            "types": "./dist/components/Card/index.d.ts",
+            "default": "./dist/components/Card/index.js"
+        },
+        "./Chip": {
+            "types": "./dist/components/Chip/index.d.ts",
+            "default": "./dist/components/Chip/index.js"
+        },
+        "./ChipGroup": {
+            "types": "./dist/components/ChipGroup/index.d.ts",
+            "default": "./dist/components/ChipGroup/index.js"
+        },
         "./Divider": {
             "types": "./dist/components/Divider/index.d.ts",
             "default": "./dist/components/Divider/index.js"
+        },
+        "./EmptyState": {
+            "types": "./dist/components/EmptyState/index.d.ts",
+            "default": "./dist/components/EmptyState/index.js"
+        },
+        "./Fab": {
+            "types": "./dist/components/Fab/index.d.ts",
+            "default": "./dist/components/Fab/index.js"
+        },
+        "./InlineAlert": {
+            "types": "./dist/components/InlineAlert/index.d.ts",
+            "default": "./dist/components/InlineAlert/index.js"
         },
         "./Skeleton": {
             "types": "./dist/components/Skeleton/index.d.ts",
@@ -59,6 +91,14 @@
         "./SkeletonText": {
             "types": "./dist/components/SkeletonText/index.d.ts",
             "default": "./dist/components/SkeletonText/index.js"
+        },
+        "./Switch": {
+            "types": "./dist/components/Switch/index.d.ts",
+            "default": "./dist/components/Switch/index.js"
+        },
+        "./SwitchOption": {
+            "types": "./dist/components/SwitchOption/index.d.ts",
+            "default": "./dist/components/SwitchOption/index.js"
         },
         "./Tag": {
             "types": "./dist/components/Tag/index.d.ts",
