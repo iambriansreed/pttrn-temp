@@ -1,7 +1,7 @@
 import { LitElement, html } from 'lit';
 import { define } from '../../utils/define';
-import { autoUpdate, place, Side } from '../../utils/floating';
 import { uniqueId } from '../../utils/id';
+import { TooltipController, tooltipTemplate } from '../../utils/tooltip-controller';
 import styles from './tooltip.scss';
 
 /**
@@ -54,7 +54,11 @@ export class PttrnTooltip extends LitElement {
     private _trigger: Element | null = null;
     /** The aria attribute the element added to the trigger, so it removes only its own wiring. */
     private _wiredAttribute: 'aria-labelledby' | 'aria-describedby' | null = null;
-    private _stopUpdates: (() => void) | null = null;
+    private readonly _tooltip = new TooltipController(this, {
+        popover: () => this.renderRoot.querySelector<HTMLElement>('[data-pttrn="tooltip"]'),
+        placement: () => this.placement,
+        tail: () => !this.hideTail,
+    });
 
     constructor() {
         super();
@@ -62,10 +66,6 @@ export class PttrnTooltip extends LitElement {
         this.placement = 'top';
         this.disabled = false;
         this.hideTail = false;
-    }
-
-    private get _popover() {
-        return this.renderRoot.querySelector<HTMLElement>('[data-pttrn="tooltip"]');
     }
 
     private get _active() {
@@ -79,52 +79,22 @@ export class PttrnTooltip extends LitElement {
 
     disconnectedCallback() {
         super.disconnectedCallback();
-        this._hide();
         this._unwire();
     }
 
     protected updated() {
         this._sync();
-        if (this._stopUpdates) this._position();
-    }
-
-    private readonly _show = () => {
-        const popover = this._popover;
-        if (!this._active || !popover || !this._trigger || this._stopUpdates) return;
-        popover.showPopover();
-        this._position();
-        this._stopUpdates = autoUpdate(this._trigger, popover, () => this._position());
-    };
-
-    private readonly _hide = () => {
-        this._stopUpdates?.();
-        this._stopUpdates = null;
-        const popover = this._popover;
-        if (popover?.matches(':popover-open')) popover.hidePopover();
-    };
-
-    private _position() {
-        const popover = this._popover;
-        if (!popover || !this._trigger) return;
-        const { placement } = place(this._trigger, popover, {
-            placement: this.placement,
-            offset: this.hideTail ? 4 : 8,
-            arrow: this.renderRoot.querySelector<HTMLElement>('[data-arrow]'),
-        });
-        popover.dataset.placement = placement.split('-')[0] as Side;
     }
 
     /** Keeps the light-DOM text node and the trigger's wiring in step with `label`, `disabled` and the slotted trigger. */
     private _sync() {
         const trigger = this.renderRoot.querySelector<HTMLSlotElement>('slot:not([name])')?.assignedElements()[0];
         if (trigger !== this._trigger) {
-            this._hide();
             this._unwire();
             this._trigger = trigger ?? null;
         }
 
         if (!this._active || !this.isConnected) {
-            this._hide();
             this._unwire();
             this._text?.remove();
             return;
@@ -153,10 +123,7 @@ export class PttrnTooltip extends LitElement {
         const ids = (trigger.getAttribute(attribute) ?? '').split(/\s+/).filter(Boolean);
         trigger.setAttribute(attribute, [...ids, this._tooltipId].join(' '));
         this._wiredAttribute = attribute;
-        trigger.addEventListener('mouseover', this._show);
-        trigger.addEventListener('mouseleave', this._hide);
-        trigger.addEventListener('focusin', this._show);
-        trigger.addEventListener('focusout', this._hide);
+        this._tooltip.attach(trigger);
     }
 
     private _unwire() {
@@ -168,19 +135,13 @@ export class PttrnTooltip extends LitElement {
         if (ids.length) trigger.setAttribute(this._wiredAttribute, ids.join(' '));
         else trigger.removeAttribute(this._wiredAttribute);
         this._wiredAttribute = null;
-        trigger.removeEventListener('mouseover', this._show);
-        trigger.removeEventListener('mouseleave', this._hide);
-        trigger.removeEventListener('focusin', this._show);
-        trigger.removeEventListener('focusout', this._hide);
+        this._tooltip.attach(null);
     }
 
     render() {
         return html`
             <slot @slotchange=${() => this._sync()}></slot>
-            <div data-pttrn="tooltip" part="tooltip" popover="manual">
-                <span data-text><slot name="tooltip"></slot></span>
-                <span aria-hidden="true" data-arrow></span>
-            </div>
+            ${tooltipTemplate(html`<slot name="tooltip"></slot>`)}
         `;
     }
 }

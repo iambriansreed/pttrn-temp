@@ -1,0 +1,96 @@
+@use '../../styles/reset';
+@use '../../styles/tab-list';
+@use '../../styles/tooltip';
+@include tab-list.tab;
+
+// Segments share any spare width: on one row a hugging control has none, so nothing changes; once segments wrap, each
+// row fills the control instead of leaving a ragged edge. A segment never shrinks narrower than its label.
+:host {
+    --padding: var(--usa-spacing-2);
+
+    flex-grow: 1;
+    min-width: auto;
+    min-height: calc(var(--usa-spacing-5) - 2 * var(--usa-spacing-05));
+    color: var(--theme-body-text-color);
+    border-radius: var(--theme-border-radius-md);
+}
+
+[data-tab] {
+    padding: 0 var(--padding);
+}
+
+:host([data-size='small']) {
+    --padding: var(--usa-spacing-105);
+
+    min-height: calc(var(--usa-spacing-4) - 2 * var(--usa-spacing-05));
+}
+
+:host([data-size='large']) {
+    --padding: var(--usa-spacing-205);
+
+    min-height: calc(var(--usa-spacing-6) - 2 * var(--usa-spacing-05));
+}
+
+// On a phone the segments give up some side padding before a label has to wrap.
+@media (width < 640px) {
+    :host {
+        --padding: var(--usa-spacing-1);
+    }
+
+    :host([data-size='small']) {
+        --padding: var(--usa-spacing-05);
+    }
+
+    :host([data-size='large']) {
+        --padding: var(--usa-spacing-105);
+    }
+}
+
+:host(:not([disabled])[selected]) {
+    background: var(--theme-body-background-color);
+    box-shadow:
+        0 0 1px 0 var(--usa-color-black-transparent-20),
+        0 1px 1px 0 var(--usa-color-black-transparent-30);
+}
+
+// The order follows React's specificity: hover, then pressed, then the active segment while focus is in the control.
+:host(:not([disabled]):hover) {
+    background: var(--usa-color-black-transparent-10);
+}
+
+:host(:not([disabled])[selected]:hover) {
+    background:
+        linear-gradient(var(--usa-color-black-transparent-10), var(--usa-color-black-transparent-10)),
+        linear-gradient(var(--theme-body-background-color), var(--theme-body-background-color));
+}
+
+:host(:not([disabled]):active) {
+    background: var(--usa-color-black-transparent-20);
+}
+
+:host(:not([disabled])[data-active]) {
+    background: var(--usa-color-black-transparent-10);
+}
+
+:host(:not([disabled])[selected][data-active]) {
+    background:
+        linear-gradient(var(--usa-color-black-transparent-10), var(--usa-color-black-transparent-10)),
+        linear-gradient(var(--theme-body-background-color), var(--theme-body-background-color));
+}
+
+:host([disabled]) {
+    color: var(--theme-color-disabled-dark);
+    cursor: not-allowed;
+}
+
+[data-sr-only] {
+    height: 1px;
+    overflow: hidden;
+    position: absolute !important;
+    width: 1px;
+    clip: rect(1px, 1px, 1px, 1px);
+}
+
+[data-pttrn='tooltip'] {
+    @include tooltip.tooltip;
+}

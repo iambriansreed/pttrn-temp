@@ -2,6 +2,7 @@ import { MetaComponentName } from 'src/meta';
 import { accordionWc } from 'src/wc/accordion';
 import { breadcrumbWc } from 'src/wc/breadcrumb';
 import { webComponents as webComponentNames } from 'src/wc/names';
+import { segmentedControlWc } from 'src/wc/segmented-control';
 import { tooltipWc } from 'src/wc/tooltip';
 import { WebComponentDemo } from 'src/wc/types';
 
@@ -12,6 +13,7 @@ import { WebComponentDemo } from 'src/wc/types';
 export const webComponents: Partial<Record<MetaComponentName, WebComponentDemo>> = {
     Accordion: accordionWc,
     Breadcrumb: breadcrumbWc,
+    SegmentedControl: segmentedControlWc,
     Tooltip: tooltipWc,
 };
 

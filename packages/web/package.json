@@ -40,6 +40,10 @@
             "types": "./dist/components/Breadcrumb/index.d.ts",
             "default": "./dist/components/Breadcrumb/index.js"
         },
+        "./SegmentedControl": {
+            "types": "./dist/components/SegmentedControl/index.d.ts",
+            "default": "./dist/components/SegmentedControl/index.js"
+        },
         "./Tooltip": {
             "types": "./dist/components/Tooltip/index.d.ts",
             "default": "./dist/components/Tooltip/index.js"
