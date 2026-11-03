@@ -1,6 +1,6 @@
 {
     "name": "@ptrn/web",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "description": "pttrn Web Components: framework-free custom elements built with Lit.",
     "license": "MIT",
     "publishConfig": {
