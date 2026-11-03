@@ -1,0 +1,134 @@
+@use '../../styles/reset';
+@use '../../styles/field';
+
+:host {
+    display: block;
+    box-sizing: border-box;
+    width: fit-content;
+    max-width: 100%;
+}
+
+// With a label the cells sit in a Field, which takes the full width as the React Field does.
+:host(:state(field)) {
+    width: 100%;
+}
+
+// The rules of the React otp-input.scss.
+[data-pttrn='otp-input'] {
+    width: fit-content;
+    max-width: 100%;
+    position: relative;
+
+    --border-color: var(--theme-color-base-medium);
+    --background: var(--theme-body-background-color);
+    --color: unset;
+
+    [data-digits] {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: var(--usa-spacing-1);
+        width: fit-content;
+        max-width: 100%;
+        position: relative;
+
+        [data-digit] {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--theme-border-radius-md);
+            border: var(--usa-spacing-1px) solid var(--border-color);
+
+            // Each box is --width wide and shrinks evenly when the row is short; the dots overlay mirrors it.
+            flex: 0 1 var(--width);
+            min-width: 0;
+            aspect-ratio: 1;
+            position: relative;
+            outline: none;
+            text-align: center;
+            font: var(--font);
+            background: var(--background);
+            color: var(--color);
+
+            &:focus {
+                outline: solid var(--usa-spacing-2px) var(--theme-global-focus-color);
+                isolation: isolate;
+            }
+        }
+    }
+
+    &:hover:not(:focus-within) {
+        --background:
+            linear-gradient(var(--usa-color-black-transparent-10), var(--usa-color-black-transparent-10)),
+            linear-gradient(var(--theme-body-background-color), var(--theme-body-background-color));
+    }
+
+    &:active:not(:focus-within) {
+        --background:
+            linear-gradient(var(--usa-color-black-transparent-20), var(--usa-color-black-transparent-20)),
+            linear-gradient(var(--theme-body-background-color), var(--theme-body-background-color));
+    }
+
+    &:hover:focus-within {
+        [data-not-selectable] {
+            cursor: not-allowed;
+        }
+    }
+
+    &[data-readonly] {
+        --border-color: var(--theme-color-disabled-light);
+        --background:
+            linear-gradient(var(--usa-color-black-transparent-10), var(--usa-color-black-transparent-10)),
+            linear-gradient(var(--theme-body-background-color), var(--theme-body-background-color));
+    }
+
+    &[data-disabled] {
+        --border-color: var(--theme-color-disabled-light);
+        --background:
+            linear-gradient(var(--usa-color-black-transparent-10), var(--usa-color-black-transparent-10)),
+            linear-gradient(var(--theme-body-background-color), var(--theme-body-background-color));
+        --color: var(--theme-color-disabled-dark);
+    }
+
+    &[data-invalid] {
+        --border-color: var(--theme-color-error-medium);
+    }
+
+    &[data-size='small'] {
+        --width: var(--usa-spacing-4);
+        --font: 400 var(--usa-font-size-sans-8) / 28px var(--usa-font-family-heading);
+        --dot: var(--usa-spacing-205);
+    }
+
+    &[data-size='medium'] {
+        --width: var(--usa-spacing-5);
+        --font: 400 var(--usa-font-size-sans-10) / 32px var(--usa-font-family-heading);
+        --dot: var(--usa-spacing-205);
+    }
+
+    &[data-size='large'] {
+        --width: var(--usa-spacing-6);
+        --font: 400 var(--usa-font-size-sans-11) / 36px var(--usa-font-family-heading);
+        --dot: var(--usa-spacing-3);
+    }
+
+    [data-secure-dots] {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        pointer-events: none;
+
+        [data-dot] {
+            flex: 0 1 var(--width);
+            min-width: 0;
+            display: flex;
+            justify-content: center;
+
+            svg {
+                width: var(--dot);
+            }
+        }
+    }
+}

@@ -254,3 +254,15 @@ The React demo of RadioGroupField gives every example on the page the same radio
 | `id`, `inputRef`                                         | none                                                                            |
 
 The results list is drawn in the element's shadow root (so `aria-controls` and `aria-activedescendant` reach it) as the Menu and ListItem markup (`src/styles/_menu.scss`, shared with InputPhone). It is a manual popover in the top layer, placed with CSS anchor positioning under the field at its width and flipped above it when there is no room, where React uses floating-ui; it fades in as React's does. The "No results found" announcement is an assertive live region inside the element. Not ported yet: an item's `leading` and `trailing` content.
+
+### OTPInput
+
+| React                                                        | Web Component                                                                |
+| ------------------------------------------------------------ | ---------------------------------------------------------------------------- |
+| `defaultValue`, `onChange(code)` (once complete)             | `value` (the default), `pttrn-change` (`detail.value`) once complete         |
+| `length`, `alphanumeric`, `secure`, `size`, `name`           | `length`, `alphanumeric`, `secure`, `size`, `name`                           |
+| `disabled`, `readOnly`, `required`, `invalid`, `aria-label`  | `disabled`, `readonly`, `required`, `invalid`, `aria-label`                  |
+| OTPInputField `label`, `helperText`, `errorMessage`          | `label`, `helper-text`, `error-message`, `label-trailing`                    |
+| `id`, `aria-describedby`, `aria-errormessage`                | none                                                                         |
+
+The form gets the whole code under `name` (the React cells post one character each, as `name`, `name-1`, ...), and `required` blocks submission until every cell is filled. With a `label` and no `aria-label` the group and the cells are named from the label ("Verification code digit 1"); the React default `aria-label` "OTP input" overrides an OTPInputField label. The tag is `pttrn-otp-input`: the scaffold, the spec lint and the docs now keep an acronym as one word (OTPInput is `otp-input`, as the docs slug).

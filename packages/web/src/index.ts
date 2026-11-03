@@ -5,3 +5,4 @@ export * from './components/Password';
 export * from './components/InputNumber';
 export * from './components/RadioGroup';
 export * from './components/SearchBar';
+export * from './components/OTPInput';

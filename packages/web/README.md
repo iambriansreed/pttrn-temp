@@ -2,7 +2,7 @@
 
 pttrn as Web Components: framework-free custom elements built with [Lit](https://lit.dev). No React needed.
 
-Components so far: `pttrn-accordion`, `pttrn-accordion-item`, `pttrn-input`, `pttrn-input-number`, `pttrn-password`, `pttrn-radio-group`, `pttrn-radio-group-item`, `pttrn-search-bar`, `pttrn-search-bar-item`, `pttrn-textarea`.
+Components so far: `pttrn-accordion`, `pttrn-accordion-item`, `pttrn-input`, `pttrn-input-number`, `pttrn-otp-input`, `pttrn-password`, `pttrn-radio-group`, `pttrn-radio-group-item`, `pttrn-search-bar`, `pttrn-search-bar-item`, `pttrn-textarea`.
 
 ## Use it from a CDN
 

@@ -20,7 +20,11 @@ if (!name || !/^[A-Z][A-Za-z0-9]*$/.test(name)) {
     process.exit(1);
 }
 
-const kebab = name.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
+// An acronym stays one word: OTPInput is otp-input, as the docs slug has it.
+const kebab = name
+    .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
+    .replace(/([A-Z])([A-Z][a-z])/g, '$1-$2')
+    .toLowerCase();
 const tag = `pttrn-${kebab}`;
 const dir = path.join(root, 'src/components', name);
 

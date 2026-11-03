@@ -22,7 +22,11 @@ const elements = (manifest as unknown as { modules: { declarations?: Element[] }
 
 /** The tag of every component with a Web Component, `pttrn-` and the kebab-case name. */
 const componentTags = webComponentNames.map(
-    (name) => `pttrn-${name.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase()}`,
+    (name) =>
+        `pttrn-${name
+            .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
+            .replace(/([A-Z])([A-Z][a-z])/g, '$1-$2')
+            .toLowerCase()}`,
 );
 
 // Every table names the member in a column of the same width, so the tables of one element line up; values take what

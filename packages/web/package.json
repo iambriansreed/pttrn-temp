@@ -59,6 +59,10 @@
         "./SearchBar": {
             "types": "./dist/components/SearchBar/index.d.ts",
             "default": "./dist/components/SearchBar/index.js"
+        },
+        "./OTPInput": {
+            "types": "./dist/components/OTPInput/index.d.ts",
+            "default": "./dist/components/OTPInput/index.js"
         }
     },
     "scripts": {

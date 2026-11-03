@@ -6,6 +6,7 @@ export const webComponents: string[] = [
     'Accordion',
     'Input',
     'InputNumber',
+    'OTPInput',
     'Password',
     'RadioGroup',
     'RadioGroupField',

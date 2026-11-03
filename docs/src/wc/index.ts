@@ -3,6 +3,7 @@ import { accordionWc } from 'src/wc/accordion';
 import { inputWc } from 'src/wc/input';
 import { inputNumberWc } from 'src/wc/input-number';
 import { webComponents as webComponentNames } from 'src/wc/names';
+import { otpInputWc } from 'src/wc/otp-input';
 import { passwordWc } from 'src/wc/password';
 import { radioGroupWc } from 'src/wc/radio-group';
 import { radioGroupFieldWc } from 'src/wc/radio-group-field';
@@ -18,6 +19,7 @@ export const webComponents: Partial<Record<MetaComponentName, WebComponentDemo>>
     Accordion: accordionWc,
     Input: inputWc,
     InputNumber: inputNumberWc,
+    OTPInput: otpInputWc,
     Password: passwordWc,
     RadioGroup: radioGroupWc,
     RadioGroupField: radioGroupFieldWc,
