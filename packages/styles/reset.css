@@ -32,14 +32,16 @@ ol {
 
     /*
      * Everything else that moves finishes at once for people who ask for less motion (WCAG 2.3.3): fades, slides and
-     * pulses. A near-zero duration rather than none, so transitionend and animationend still fire.
+     * pulses. Transitions are off (0s): any other duration turns a transition on for every property of every element,
+     * because transition-property defaults to all, and each style change would land a frame late. Animations keep a
+     * near-zero duration so animationend still fires; nothing in pttrn waits for transitionend.
      */
     *,
     *::before,
     *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
+        transition-duration: 0s !important;
         scroll-behavior: auto !important;
     }
 }

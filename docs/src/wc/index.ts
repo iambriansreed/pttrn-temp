@@ -99,7 +99,7 @@ export const webComponents: Partial<Record<MetaComponentName, WebComponentDemo>>
     ListItem: listItemWc,
     Menu: menuWc,
     Modal: modalWc,
-    OtpInput: otpInputWc,
+    OTPInput: otpInputWc,
     PageControl: pageControlWc,
     Pagination: paginationWc,
     Password: passwordWc,

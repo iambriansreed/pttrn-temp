@@ -106,12 +106,6 @@ export class PttrnDatePicker extends InputBase {
         return this.renderRoot.querySelector<HTMLElement>('[data-calendar-toggle]');
     }
 
-    /** The text field is named by `aria-label`, then `label`, then the React default. */
-    protected get _controlAria() {
-        const aria = super._controlAria;
-        return { ...aria, label: this.ariaLabel || (this.label ? nothing : DEFAULT_LABEL) };
-    }
-
     disconnectedCallback() {
         super.disconnectedCallback();
         this._listen(false);
@@ -208,7 +202,13 @@ export class PttrnDatePicker extends InputBase {
 
         return html`<div data-pttrn="date-picker">
             ${this._renderField(
-                this._renderInputBox({ type: 'text', autocomplete: 'off', trailing: locked ? undefined : toggle }),
+                this._renderInputBox({
+                    type: 'text',
+                    autocomplete: 'off',
+                    // Named by aria-label, then label, then the React default.
+                    fallbackLabel: DEFAULT_LABEL,
+                    trailing: locked ? undefined : toggle,
+                }),
             )}
             ${this._open ? this._popupTemplate() : nothing}
             <span aria-hidden="true">${tooltipTemplate('Toggle calendar')}</span>
