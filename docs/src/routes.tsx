@@ -6,6 +6,7 @@ import { ComponentPage } from 'components/ComponentPage';
 import { Markdown } from 'components/Markdown.tsx';
 import { Page } from 'components/Page';
 import { Page404 } from 'components/Page404.tsx';
+import AiReadiness from 'src/docs/ai-readiness.md?raw';
 import { Colors } from 'src/docs/colors';
 import { Components } from 'src/docs/components';
 import { Hooks } from 'src/docs/hooks';
@@ -82,6 +83,15 @@ export const routes: RouteLink[] = [
                     </Page>
                 ),
                 title: 'Figma Plugin',
+            },
+            {
+                path: '/ai-readiness',
+                Component: () => (
+                    <Page>
+                        <Markdown md={AiReadiness} />
+                    </Page>
+                ),
+                title: 'AI Readiness',
             },
             {
                 path: '/contributing',

@@ -23,6 +23,7 @@ const PAGES = [
     '/styles',
     '/typography',
     '/figma-plugin',
+    '/ai-readiness',
     '/contributing',
     '/guidelines',
     '/colors',
