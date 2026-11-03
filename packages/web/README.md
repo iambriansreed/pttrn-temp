@@ -26,6 +26,7 @@ One line per component, in name order:
 - `pttrn-inline-alert`
 - `pttrn-input`
 - `pttrn-input-number`
+- `pttrn-input-phone`
 - `pttrn-list-item`
 - `pttrn-otp-input`
 - `pttrn-page-control`

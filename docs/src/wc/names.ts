@@ -23,6 +23,7 @@ export const webComponents: string[] = [
     'InlineAlert',
     'Input',
     'InputNumber',
+    'InputPhone',
     'ListItem',
     'OTPInput',
     'PageControl',

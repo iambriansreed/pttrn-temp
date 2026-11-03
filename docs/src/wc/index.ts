@@ -19,6 +19,7 @@ import { fileUploadItemWc } from 'src/wc/file-upload-item';
 import { inlineAlertWc } from 'src/wc/inline-alert';
 import { inputWc } from 'src/wc/input';
 import { inputNumberWc } from 'src/wc/input-number';
+import { inputPhoneWc } from 'src/wc/input-phone';
 import { listItemWc } from 'src/wc/list-item';
 import { webComponents as webComponentNames } from 'src/wc/names';
 import { otpInputWc } from 'src/wc/otp-input';
@@ -68,6 +69,7 @@ export const webComponents: Partial<Record<MetaComponentName, WebComponentDemo>>
     InlineAlert: inlineAlertWc,
     Input: inputWc,
     InputNumber: inputNumberWc,
+    InputPhone: inputPhoneWc,
     ListItem: listItemWc,
     OTPInput: otpInputWc,
     PageControl: pageControlWc,

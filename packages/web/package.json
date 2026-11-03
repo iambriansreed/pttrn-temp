@@ -112,6 +112,10 @@
             "types": "./dist/components/InputNumber/index.d.ts",
             "default": "./dist/components/InputNumber/index.js"
         },
+        "./InputPhone": {
+            "types": "./dist/components/InputPhone/index.d.ts",
+            "default": "./dist/components/InputPhone/index.js"
+        },
         "./ListItem": {
             "types": "./dist/components/ListItem/index.d.ts",
             "default": "./dist/components/ListItem/index.js"
@@ -204,6 +208,7 @@
         "check:css-vars": "node ../../scripts/check-css-vars.mjs src"
     },
     "dependencies": {
+        "libphonenumber-js": "^1.12.9",
         "lit": "^3.3.0"
     },
     "devDependencies": {

@@ -266,3 +266,17 @@ The results list is drawn in the element's shadow root (so `aria-controls` and `
 | `id`, `aria-describedby`, `aria-errormessage`                | none                                                                         |
 
 The form gets the whole code under `name` (the React cells post one character each, as `name`, `name-1`, ...), and `required` blocks submission until every cell is filled. With a `label` and no `aria-label` the group and the cells are named from the label ("Verification code digit 1"); the React default `aria-label` "OTP input" overrides an OTPInputField label. The tag is `pttrn-otp-input`: the scaffold, the spec lint and the docs now keep an acronym as one word (OTPInput is `otp-input`, as the docs slug).
+
+### InputPhone
+
+| React                                                        | Web Component                                                                          |
+| ------------------------------------------------------------ | -------------------------------------------------------------------------------------- |
+| `value`, `onChange(value, countryCode)`                      | `value`, `pttrn-change` (`detail.value`, `detail.countryCode`) and `change`            |
+| `initialCountryCode`                                         | `country-code` (the attribute is the initial country; the property is the current one) |
+| `disableFormatting`, `scrollLimit` (default 5), `size`       | `disable-formatting`, `scroll-limit`, `size`                                           |
+| `renderFlag(countryCode)`                                    | the `renderFlag` JavaScript property (returns a string, a node or a Lit template)      |
+| `disabled`, `readOnly`, `required`, `invalid`, `aria-label`  | `disabled`, `readonly`, `required`, `invalid`, `aria-label`                            |
+| InputPhoneField `label`, `helperText`, `errorMessage`        | `label`, `helper-text`, `error-message`, `label-trailing`                              |
+| `id`, `aria-describedby`, `aria-errormessage`, `inputRef`    | none                                                                                   |
+
+The country list reuses the SearchBar's `_menu.scss` popover, anchored to the field; it exists only while open, when `aria-controls` and `aria-owns` name it. Its options are not tab stops (focus stays on the country button and the active option is `aria-activedescendant`), where the React ListItems without a `tabIndex` become tab stops. The list also closes when focus leaves the element by Tab, not only on an outside click. The form gets the number under `name` and the country under `<name>-country-code`. `libphonenumber-js` becomes a dependency of `@ptrn/web` for the formatting, as it is of `@ptrn/react`; it adds about 140 KB (minified) to the all-in-one CDN bundle, while the per-component entries keep it in the InputPhone chunk. The country names are a copy of `@ptrn/react/utils/countryCodes` (`src/utils/country-codes.ts`): keep the two in step.

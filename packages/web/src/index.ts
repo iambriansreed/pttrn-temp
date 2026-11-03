@@ -18,6 +18,7 @@ export * from './components/FileUploadItem';
 export * from './components/InlineAlert';
 export * from './components/Input';
 export * from './components/InputNumber';
+export * from './components/InputPhone';
 export * from './components/ListItem';
 export * from './components/OTPInput';
 export * from './components/PageControl';
