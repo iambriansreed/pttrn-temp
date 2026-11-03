@@ -1,5 +1,6 @@
 /* eslint-disable react/no-multi-comp */
 import Contributing from '../../CONTRIBUTING.md?raw';
+import Governance from '../../GOVERNANCE.md?raw';
 import Guidelines from '../../GUIDELINES.md?raw';
 import FigmaPlugin from '../../figma-plugin/README.md?raw';
 import { ComponentPage } from 'components/ComponentPage';
@@ -110,6 +111,15 @@ export const routes: RouteLink[] = [
                     </Page>
                 ),
                 title: 'Guidelines',
+            },
+            {
+                path: '/governance',
+                Component: () => (
+                    <Page>
+                        <Markdown md={Governance} />
+                    </Page>
+                ),
+                title: 'Governance',
             },
             {
                 path: '/colors',

@@ -22,6 +22,7 @@ const PAGES = [
     '/ai-readiness',
     '/contributing',
     '/guidelines',
+    '/governance',
     '/hooks',
     ...components.map((component) => `/${component.slug}`),
 ];
