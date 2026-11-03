@@ -174,6 +174,21 @@ describeBehaviors(spec, {
         expect(onChange).toHaveBeenCalledTimes(1);
         expect(onChange).toHaveBeenCalledWith('123456');
     },
+    'paste-filters': async () => {
+        const user = userEvent.setup();
+        const onChange = jest.fn();
+        const { unmount } = render(<Subject onChange={onChange} />);
+
+        await user.click(cell(1));
+        await user.paste('12a-3 4');
+        expect(values()).toEqual(['1', '2', '3', '4', '', '']);
+
+        unmount();
+        render(<Subject alphanumeric onChange={onChange} />);
+        await user.click(cell(1));
+        await user.paste('ab-12 c');
+        expect(values()).toEqual(['a', 'b', '1', '2', 'c', '']);
+    },
     'focus-order': async () => {
         const user = userEvent.setup();
         render(<Subject defaultValue="12" length={4} />);

@@ -25,7 +25,7 @@ export const spec: ComponentSpec = {
             part: 'day',
             role: 'gridcell',
             description:
-                'One cell per day, named by its full date ("10th June 2024"). The day matching value carries data-selected and aria-selected; the active day, where the keys move, is the only cell in the Tab order. Clicking any day chooses it.',
+                'One cell per day, named by its full date ("10 June 2024"). The day matching value carries data-selected and aria-selected; the active day, where the keys move, is the only cell in the Tab order. Clicking any day chooses it.',
         },
     ],
     keyboard: [
@@ -48,7 +48,7 @@ export const spec: ComponentSpec = {
     ],
     accessibility: {
         roles: 'A table with role grid, named by the month title through aria-labelledby, with a column header per weekday and a gridcell per day. The day matching value has aria-selected true and carries data-selected; no other day does. The active day has tabIndex 0; every other day has tabIndex -1. The navigation buttons are native buttons.',
-        labels: 'Each day is named by aria-label with its ordinal date, "10th June 2024". The column headers show the short weekday with the full name as abbr. The buttons are named "Previous Year", "Previous Month", "Next Month" and "Next Year".',
+        labels: 'Each day is named by aria-label with its full date, "10 June 2024", which starts with the visible number so the name contains the label (WCAG 2.5.3). The column headers show the short weekday with the full name as abbr. The buttons are named "Previous Year", "Previous Month", "Next Month" and "Next Year".',
         focus: 'The active day is the value on mount, or today without a valid value, and moves to a value that changes later. The arrow keys, Home, End, PageUp and PageDown move it and focus follows. The navigation buttons move it without moving focus. With focusTrap, as inside DatePicker, the active day takes focus on mount and Tab cycles between the grid and the buttons.',
         targetSize: 44,
     },

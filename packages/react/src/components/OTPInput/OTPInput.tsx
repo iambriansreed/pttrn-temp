@@ -51,7 +51,7 @@ export type OTPInputProps = CommonProps<'size'> &
  *         return (
  *             <OTPInput
  *                 name="2-auth"
- *                 maxLength={6}
+ *                 length={6}
  *                 defaultValue="8675"
  *                 onChange={(value) => {
  *                     // add a debounced API call to verify the OTP here
@@ -264,7 +264,11 @@ export function OTPInput({
                             event.preventDefault();
                         }}
                         onPaste={(event) => {
-                            const pastedData = event.clipboardData.getData('text').trim();
+                            // Codes are often copied with spaces or dashes ("123-456"); keep only the characters the
+                            // input accepts, so a numeric input never takes a letter from the clipboard.
+                            const pastedData = event.clipboardData
+                                .getData('text')
+                                .replace(alphanumeric ? /[^0-9a-z]/gi : /[^0-9]/g, '');
                             // add pasted data from this index onward into the inputs and send to onChange
                             setValues((prev) => {
                                 const newValues = [...prev];

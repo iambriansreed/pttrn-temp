@@ -185,7 +185,9 @@ export function InputPhone({
                     inputProps={{
                         inputMode: 'tel',
                         onKeyDown: (event) => {
-                            // ignore non numeric keys
+                            // Ignore keys that would type a non-digit. Shortcuts (Ctrl or Cmd with V, C, X, A, Z) get
+                            // through, so a number can still be pasted, copied and selected.
+                            if (event.ctrlKey || event.metaKey || event.altKey) return;
                             if (event.key.length === 1 && !/[0-9]/.test(event.key)) event.preventDefault();
                         },
                     }}

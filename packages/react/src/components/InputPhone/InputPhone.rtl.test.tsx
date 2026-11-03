@@ -251,6 +251,27 @@ describeBehaviors(spec, {
         expect(input()).toHaveAttribute('inputmode', 'tel');
         expect(Array.from(document.querySelectorAll('[inputmode]'))).toEqual([input()]);
     },
+    shortcuts: async () => {
+        const user = userEvent.setup();
+        render(<Subject />);
+
+        await user.click(input());
+        await user.keyboard('a');
+        expect(input()).toHaveValue('');
+
+        // Ctrl+V and Cmd+V reach the browser's paste instead of being filtered out as the letter v.
+        for (const modifier of ['Control', 'Meta']) {
+            const keydown = new KeyboardEvent('keydown', {
+                key: 'v',
+                ctrlKey: modifier === 'Control',
+                metaKey: modifier === 'Meta',
+                bubbles: true,
+                cancelable: true,
+            });
+            input().dispatchEvent(keydown);
+            expect(keydown.defaultPrevented).toBe(false);
+        }
+    },
     'clear-button': async () => {
         const user = userEvent.setup();
         const onChange = jest.fn();

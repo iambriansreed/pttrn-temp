@@ -90,6 +90,11 @@ export const spec: ComponentSpec = {
             description: 'The input, not its container, carries inputmode tel, so touch devices offer a phone keypad.',
         },
         {
+            id: 'shortcuts',
+            description:
+                'The digit filter lets Ctrl and Cmd shortcuts through, so a number can be pasted, copied, cut and selected.',
+        },
+        {
             id: 'clear-button',
             description:
                 'While there is a value, the clear button follows the input in the Tab order; a click, Enter or Space on it calls onChange with an empty value and the country code and focuses the input.',
