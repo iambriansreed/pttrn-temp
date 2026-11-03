@@ -80,6 +80,10 @@
             "types": "./dist/components/ChipGroup/index.d.ts",
             "default": "./dist/components/ChipGroup/index.js"
         },
+        "./DatePicker": {
+            "types": "./dist/components/DatePicker/index.d.ts",
+            "default": "./dist/components/DatePicker/index.js"
+        },
         "./Divider": {
             "types": "./dist/components/Divider/index.d.ts",
             "default": "./dist/components/Divider/index.js"

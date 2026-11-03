@@ -15,6 +15,7 @@ export const webComponents: string[] = [
     'Carousel',
     'Chip',
     'ChipGroup',
+    'DatePicker',
     'Divider',
     'EmptyState',
     'Fab',

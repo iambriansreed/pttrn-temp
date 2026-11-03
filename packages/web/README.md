@@ -18,6 +18,7 @@ One line per component, in name order:
 - `pttrn-carousel`
 - `pttrn-chip`
 - `pttrn-chip-group`
+- `pttrn-date-picker`
 - `pttrn-divider`
 - `pttrn-empty-state`
 - `pttrn-fab`
