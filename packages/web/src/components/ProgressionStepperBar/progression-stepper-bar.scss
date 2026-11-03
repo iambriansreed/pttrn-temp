@@ -1,0 +1,44 @@
+@use '../../styles/reset';
+
+:host {
+    display: block;
+    width: 100%;
+}
+
+[data-pttrn='progression-stepper-bar'] {
+    &[data-size='large'] {
+        --height: var(--usa-spacing-1);
+    }
+
+    &[data-size='small'] {
+        --height: var(--usa-spacing-05);
+    }
+
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: var(--usa-spacing-05);
+
+    [data-steps] {
+        display: flex;
+        flex-direction: row;
+        gap: var(--usa-spacing-05);
+        height: var(--height);
+
+        [data-step] {
+            width: 100%;
+            height: var(--height);
+            min-width: var(--usa-spacing-1);
+            border-radius: var(--theme-border-radius-md);
+            background: var(--theme-color-base-lighter);
+
+            &[data-complete] {
+                background: var(--theme-color-primary-medium);
+            }
+        }
+    }
+
+    [data-label] {
+        font: 500 var(--usa-font-size-sans-3) / 20px var(--usa-font-family-ui);
+    }
+}

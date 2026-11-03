@@ -2,7 +2,10 @@
 
 pttrn as Web Components: framework-free custom elements built with [Lit](https://lit.dev). No React needed.
 
-Components so far: `pttrn-accordion`, `pttrn-accordion-item`.
+Components so far, by their React name:
+
+- Accordion: `pttrn-accordion`, `pttrn-accordion-item`
+- ProgressionStepperBar: `pttrn-progression-stepper-bar`
 
 ## Use it from a CDN
 

@@ -1,6 +1,7 @@
 import { MetaComponentName } from 'src/meta';
 import { accordionWc } from 'src/wc/accordion';
 import { webComponents as webComponentNames } from 'src/wc/names';
+import { progressionStepperBarWc } from 'src/wc/progression-stepper-bar';
 import { WebComponentDemo } from 'src/wc/types';
 
 /**
@@ -9,6 +10,7 @@ import { WebComponentDemo } from 'src/wc/types';
  */
 export const webComponents: Partial<Record<MetaComponentName, WebComponentDemo>> = {
     Accordion: accordionWc,
+    ProgressionStepperBar: progressionStepperBarWc,
 };
 
 const listed = [...webComponentNames].sort().join(',');
