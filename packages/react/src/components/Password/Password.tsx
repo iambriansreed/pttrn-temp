@@ -13,7 +13,7 @@ export type PasswordProps = FieldControlProps & Pick<InputProps, 'containerRef' 
  * For a more complete example with field usage, see the PasswordField component.
  *
  * @example
- *     import { Password } from '-/components/Password';
+ *     import { Password } from '@ptrn/react/Password';
  *
  *     () => {
  *         const [value, setValue] = useState<string | undefined>('');

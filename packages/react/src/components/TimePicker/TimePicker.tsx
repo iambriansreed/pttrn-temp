@@ -31,7 +31,7 @@ export type TimePickerProps = FieldControlProps & Pick<InputProps, 'size'>;
  * For a more complete example with field usage, see the TimePickerField component.
  *
  * @example
- *     import { TimePicker } from '-/components/TimePicker';
+ *     import { TimePicker } from '@ptrn/react/TimePicker';
  *
  *     () => {
  *         const [value, onChange] = useState<string | undefined>('');
@@ -193,6 +193,8 @@ export function TimePicker({
                 />
                 <TimePickerSegment
                     disabled={disabled}
+                    id={`${id}-hours`}
+                    invalid={invalid}
                     name={`${name}-hours`}
                     onChange={(next) => setValue({ hours: next || undefined })}
                     readOnly={readOnly}
@@ -203,6 +205,8 @@ export function TimePicker({
                 <span aria-hidden="true">:</span>
                 <TimePickerSegment
                     disabled={disabled}
+                    id={`${id}-minutes`}
+                    invalid={invalid}
                     name={`${name}-minutes`}
                     onChange={(next) => setValue({ minutes: next || undefined })}
                     readOnly={readOnly}
@@ -211,6 +215,8 @@ export function TimePicker({
                 />
                 <TimePickerSegment
                     disabled={disabled}
+                    id={`${id}-meridiem`}
+                    invalid={invalid}
                     name={`${name}-meridiem`}
                     onChange={(next) => setValue({ meridiem: next || 'AM' })}
                     readOnly={readOnly}

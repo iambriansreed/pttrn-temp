@@ -158,3 +158,99 @@ Check each box when it is verified, not when it is written.
 
 - Confirm `@ptrn/react` and `@ptrn/web` are free on npm (`@ptrn/ui` was, per `plan.md`).
 - Whether the shared SCSS partial is worth it or the Web Component keeps its own copy with a diff check (decided in step 2 of the build order).
+
+## Text inputs and form controls (Input, Textarea, Password, InputNumber, RadioGroup, RadioGroupField, SearchBar, OTPInput, InputPhone, Rating, Slider)
+
+Conventions these elements share, decided while porting Input:
+
+- **`FieldControl` base** (`packages/web/src/utils/field-control.ts`). A form-associated custom element (`static formAssociated`, `ElementInternals`): it submits `name` and its value with a `<form>`, mirrors the validity of its native control (so `required` blocks submission and `:invalid` and `checkValidity()` work), follows a disabled `<fieldset>`, goes back to its `value` attribute on form reset and restores on back navigation. `delegatesFocus` sends focus and label clicks to the native control. The manifest analyzes `src/utils` too, so the inherited attributes appear on every element's API table.
+- **The Field is built in.** A `Field` or `<label for>` outside the element cannot name or describe the native control inside its shadow root (ids do not cross the boundary), so the text controls take the Field's props as attributes and render the label, helper text and error alert in their own shadow root: `label`, `helper-text`, `error-message`, `label-trailing`. The `*Field` React components (InputField, PasswordField, ...) need no separate element. `error-message` also sets the invalid state, which the React `InputField` misses (it puts `aria-invalid` on the container `div`).
+- **`aria-label`** on the element names the native control and wins over `label`, as the React prop does. axe reports nothing for the attribute on the host, which has no role.
+- **Events.** `pttrn-change` (`detail.value`) for every user-driven change, the counterpart of `onChange`, plus a plain `change` so code that listens the native way works. Neither fires when `value` is set from code.
+- **`value`.** The attribute is the default value (what a form reset goes back to), the property is the current value, as on a native input.
+- **Not ported.** `id`, `aria-describedby` and `aria-errormessage` (ids cannot cross the boundary: use `helper-text` and `error-message`), refs and `inputProps`, `owner`.
+- **Private pieces.** The clear button and the other buttons inside a control are plain `<button>`s styled as the tertiary Button (`src/styles/_button.scss`), and the error alert is the InlineAlert markup (`src/styles/_field.scss`), because Button and InlineAlert belong to other elements. The icon-only clear button has no tooltip until a Tooltip element exists; its name is still "Clear".
+
+### Input
+
+| React                                                          | Web Component                                                              |
+| -------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `value`, `onChange(value, event)`                              | `value`, `pttrn-change` (`detail.value`) and `change`                      |
+| `name`, `placeholder`, `type`, `size`                          | `name`, `placeholder`, `type`, `size`                                      |
+| `autoComplete`                                                 | `autocomplete`                                                             |
+| `disabled`, `readOnly`, `required`, `invalid`                  | `disabled`, `readonly`, `required`, `invalid` (reflected)                  |
+| `leading`, `trailing`                                          | `slot="leading"`, `slot="trailing"`                                        |
+| `showClearButton` (default `true`)                             | `hide-clear-button` (inverted)                                             |
+| `aria-label`                                                   | `aria-label`                                                               |
+| Field `label`, `helperText`, `errorMessage`, `labelTrailing`   | `label`, `helper-text`, `error-message`, `label-trailing`                  |
+| `id`, `aria-describedby`, `aria-errormessage`, refs, `inputProps`, `owner` | none                                                           |
+
+### Textarea
+
+| React                                                        | Web Component                                                                |
+| ------------------------------------------------------------ | ---------------------------------------------------------------------------- |
+| `value`, `onChange(value, event)`                            | `value`, `pttrn-change` (`detail.value`) and `change`                        |
+| `name`, `placeholder`, `size`, `maxLength`                   | `name`, `placeholder`, `size`, `maxlength`                                   |
+| `minRows`, `maxRows`                                         | `min-rows`, `max-rows`                                                       |
+| `disabled`, `readOnly`, `required`, `invalid`, `aria-label`  | `disabled`, `readonly`, `required`, `invalid`, `aria-label`                  |
+| Field `label`, `helperText`, `errorMessage`, `labelTrailing` | `label`, `helper-text`, `error-message`, `label-trailing`                    |
+| `id`, `aria-describedby`, `aria-errormessage`, `innerRef`    | none                                                                         |
+
+The React Textarea marks read-only with `data-read-only` while its stylesheet selects `data-readonly`, so its read-only style never applies. The element uses `data-readonly` and shows the read-only style, as Input does. The replica that sizes the field is rendered from `value`, so a value set from code sizes the field too (React updates it only on input).
+
+### Password
+
+Built on the same Input box as `pttrn-input` (`src/utils/input-base.ts`, shared with SearchBar and InputPhone too).
+
+| React                                                        | Web Component                                               |
+| ------------------------------------------------------------ | ----------------------------------------------------------- |
+| `value`, `onChange(value, event)`                            | `value`, `pttrn-change` (`detail.value`) and `change`       |
+| `name`, `size`                                               | `name`, `size`                                              |
+| `disabled`, `readOnly`, `required`, `invalid`, `aria-label`  | `disabled`, `readonly`, `required`, `invalid`, `aria-label` |
+| Field `label`, `helperText`, `errorMessage`, `labelTrailing` | `label`, `helper-text`, `error-message`, `label-trailing`   |
+| `id`, `aria-describedby`, `aria-errormessage`, refs, `inputProps` | none                                                   |
+
+The React Password passes an `onClick` that focuses the input to the Input container, so clicking Show moves focus from the toggle to the input; its spec says toggling keeps focus on the button, and the element does that. The React `password.scss` selects `[data-pttrn-owner='password'] [data-pttrn='input']` (a descendant) while the Input carries the owner on the same element, so none of its rules apply; the element matches what React renders (a medium tertiary button, the field's own padding).
+
+### InputNumber
+
+| React                                                        | Web Component                                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------------------------------- |
+| `value` (number), `onChange(number \| undefined)`            | `value` (number, empty for none), `pttrn-change` (`detail.value`) and `change`        |
+| `min`, `max`, `step`, `align`, `size`, `name`                | `min`, `max`, `step`, `align`, `size`, `name`                                         |
+| `disabled`, `readOnly`, `required`, `invalid`, `aria-label`  | `disabled`, `readonly`, `required`, `invalid`, `aria-label`                           |
+| Field `label`, `helperText`, `errorMessage`, `labelTrailing` | `label`, `helper-text`, `error-message`, `label-trailing`                             |
+| `id`, `aria-describedby`, `aria-errormessage`                | none                                                                                  |
+
+The field is "Input number" only when it has neither `aria-label` nor `label`: the React default `aria-label` also overrides a Field label, so the React InputNumberField's visible label never names its input. A button activated without a pointer press (a screen reader's click, `element.click()`) steps once; the React buttons answer only to pointer presses.
+
+### RadioGroup
+
+| React                                                         | Web Component                                                            |
+| ------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| `options[]` (`value`, `label`, `description`, `disabled`)     | `pttrn-radio-group-item` children with the same attributes               |
+| `value`, `onChange(value)`                                    | `value`, `pttrn-change` (`detail.value`) and `change`                    |
+| `name`, `disabled`, `required`, `invalid`, `aria-label`       | `name`, `disabled`, `required`, `invalid`, `aria-label`                  |
+| `id`, `aria-describedby`, `aria-errormessage`                 | none (`helper-text` and `error-message` describe the group)              |
+
+The items render nothing; the group draws every option as React's RadioOption (a ListItem label holding a Radio) in its own shadow root, because native radios form a keyboard group (Tab to the chosen one, arrows to move) only inside one tree. A group without `name` gives its radios a generated one so the keyboard still works. The truncated option label has no tooltip until a Tooltip element exists.
+
+### RadioGroupField
+
+No element of its own: `pttrn-radio-group` with a `label` renders the React Fieldset (a fieldset named by its legend, " (Required)" and `label-trailing` in the legend, then `helper-text` or the `error-message` alert), and an error marks the radiogroup `aria-invalid` with `aria-errormessage`, as the text controls do with their Field. `tests/radio-group-field.spec.ts` holds it to the RadioGroupField spec, and the docs page's Web Component tab uses `pttrn-radio-group`. With the field the element takes the full width, as the React Field does (`:state(field)`, a custom state set by FieldControl).
+
+The React demo of RadioGroupField gives every example on the page the same radio `name`, so the variants below the demo uncheck the demo's radio (RadioGroupExample makes the name unique; RadioGroupFieldExample does not). The element's radios are scoped to its shadow root and keep their choice.
+
+### SearchBar
+
+| React                                                    | Web Component                                                                   |
+| -------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `items[]` (`label`, `leading`, `trailing`)               | `pttrn-search-bar-item` children with `label`                                   |
+| `value`, `onChange(value, item)`                         | `value`, `pttrn-change` (`detail.value`, and `detail.item` when one is chosen)  |
+| `placeholder` (default "Search"), `size`, `name`         | `placeholder`, `size`, `name`                                                   |
+| `noResultsMessage`, `scrollLimit`                        | `no-results-message`, `scroll-limit`                                            |
+| `trailing`                                               | `slot="trailing"`                                                               |
+| `disabled`, `aria-label`                                 | `disabled`, `aria-label` (and the Field attributes, as the other controls)      |
+| `id`, `inputRef`                                         | none                                                                            |
+
+The results list is drawn in the element's shadow root (so `aria-controls` and `aria-activedescendant` reach it) as the Menu and ListItem markup (`src/styles/_menu.scss`, shared with InputPhone). It is a manual popover in the top layer, placed with CSS anchor positioning under the field at its width and flipped above it when there is no room, where React uses floating-ui; it fades in as React's does. The "No results found" announcement is an assertive live region inside the element. Not ported yet: an item's `leading` and `trailing` content.

@@ -1,17 +1,21 @@
 /* eslint-disable react/no-multi-comp */
 import Contributing from '../../CONTRIBUTING.md?raw';
+import Governance from '../../GOVERNANCE.md?raw';
 import Guidelines from '../../GUIDELINES.md?raw';
 import FigmaPlugin from '../../figma-plugin/README.md?raw';
 import { ComponentPage } from 'components/ComponentPage';
 import { Markdown } from 'components/Markdown.tsx';
 import { Page } from 'components/Page';
 import { Page404 } from 'components/Page404.tsx';
+import AiReadiness from 'src/docs/ai-readiness.md?raw';
+import { Changelog } from 'src/docs/changelog';
 import { Colors } from 'src/docs/colors';
 import { Components } from 'src/docs/components';
 import { Hooks } from 'src/docs/hooks';
 import { Icons } from 'src/docs/icons';
 import Intro from 'src/docs/intro.md?raw';
 import { Stylesheets } from 'src/docs/styles';
+import { TokenCatalog } from 'src/docs/tokenCatalog';
 import Tokens from 'src/docs/tokens.md?raw';
 import { Typography } from 'src/docs/typography.tsx';
 import { Welcome } from 'src/docs/welcome';
@@ -60,6 +64,7 @@ export const routes: RouteLink[] = [
                     </Page>
                 ),
                 title: 'Get Started',
+                markdown: Intro,
             },
             { path: '/components', Component: Components, title: 'Components' },
             { path: '/icons', Component: Icons, title: 'Icons', noIndex: true },
@@ -68,9 +73,11 @@ export const routes: RouteLink[] = [
                 Component: () => (
                     <Page>
                         <Markdown md={Tokens} />
+                        <TokenCatalog />
                     </Page>
                 ),
                 title: 'Design Tokens',
+                markdown: Tokens,
             },
             { path: '/styles', Component: Stylesheets, title: 'Styles' },
             { path: '/typography', Component: Typography, title: 'Typography' },
@@ -82,6 +89,17 @@ export const routes: RouteLink[] = [
                     </Page>
                 ),
                 title: 'Figma Plugin',
+                markdown: FigmaPlugin,
+            },
+            {
+                path: '/ai-readiness',
+                Component: () => (
+                    <Page>
+                        <Markdown md={AiReadiness} />
+                    </Page>
+                ),
+                title: 'AI Readiness',
+                markdown: AiReadiness,
             },
             {
                 path: '/contributing',
@@ -91,6 +109,7 @@ export const routes: RouteLink[] = [
                     </Page>
                 ),
                 title: 'Contributing',
+                markdown: Contributing,
             },
             {
                 path: '/guidelines',
@@ -100,7 +119,19 @@ export const routes: RouteLink[] = [
                     </Page>
                 ),
                 title: 'Guidelines',
+                markdown: Guidelines,
             },
+            {
+                path: '/governance',
+                Component: () => (
+                    <Page>
+                        <Markdown md={Governance} />
+                    </Page>
+                ),
+                title: 'Governance',
+                markdown: Governance,
+            },
+            { path: '/changelog', Component: Changelog, title: 'Changelog', hide: true },
             {
                 path: '/colors',
                 Component: Colors,

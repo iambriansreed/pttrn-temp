@@ -33,6 +33,11 @@ export const spec: ComponentSpec = {
         { id: 'toggle-calendar', description: 'The toggle opens the calendar dialog and closes it again.' },
         { id: 'pick-date', description: 'Choosing a day calls onChange with mm/dd/yyyy and closes the calendar.' },
         { id: 'stays-open', description: 'With closeCalendarOnChange false the calendar stays open after a choice.' },
+        {
+            id: 'calendar-shows-value',
+            description:
+                'The calendar opens on the month of the value with that day selected; without a valid date it opens on today with no day selected.',
+        },
         { id: 'outside-click-closes', description: 'A click outside the calendar closes it.' },
         {
             id: 'disabled-readonly',

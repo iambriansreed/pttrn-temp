@@ -1,0 +1,48 @@
+@use '../../styles/reset';
+@use '../../styles/skeleton-pulse';
+
+// The host steps out of the layout, so the placeholder, or the content once it arrives, is laid out as React's would be.
+:host {
+    display: contents;
+}
+
+[data-pttrn='skeleton'] {
+    /*!
+    --height: is set via inline style
+    --width: is set via inline style
+    */
+
+    animation: skeleton-pulse 1.5s infinite;
+    background: var(--theme-color-base-lighter);
+
+    &[data-variant='rectangular'],
+    &[data-variant='photo'] {
+        min-width: var(--usa-spacing-4);
+        min-height: var(--usa-spacing-4);
+        height: var(--height, var(--width));
+        width: var(--width, var(--height));
+        border-radius: var(--theme-border-radius-md);
+    }
+
+    &[data-variant='photo'] {
+        border-radius: var(--theme-border-radius-lg);
+    }
+
+    &[data-variant='circular'] {
+        border-radius: 100%;
+        width: var(--width);
+        aspect-ratio: 1/1;
+    }
+
+    &[data-variant='profile'] {
+        border-radius: 100%;
+        width: var(--usa-spacing-5);
+        aspect-ratio: 1/1;
+    }
+
+    &[data-variant='thumbnail'] {
+        width: var(--usa-spacing-6);
+        height: var(--usa-spacing-6);
+        border-radius: var(--theme-border-radius-md);
+    }
+}

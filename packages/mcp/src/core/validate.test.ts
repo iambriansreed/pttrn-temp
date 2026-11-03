@@ -12,6 +12,7 @@ const catalog: Catalog = {
         {
             name: 'Link',
             slug: 'link',
+            phase: 'Stable',
             description: 'A link.',
             import: '@ptrn/react/Link',
             dependencies: [],
@@ -55,6 +56,28 @@ describe('validateCode: imports', () => {
     test('suggests the closest component for a typo', () => {
         const [issue] = validateCode(catalog, `import { Button } from '@ptrn/react/Buton';`).issues;
         assert.match(issue.fix ?? '', /Button/);
+    });
+
+    // Docs examples copied from the library's source used its internal alias, which no app can resolve.
+    test("flags the library's internal -/ alias and names the public path", () => {
+        const { issues } = validateCode(
+            catalog,
+            `import { Button } from '-/components/Button';\nimport { useId } from '-/hooks/useId';\n<Button label="Save" />`,
+        );
+        assert.deepEqual(
+            issues.map((i) => [i.rule, i.fix]),
+            [
+                ['unknown-import', "Import from '@ptrn/react/Button' instead."],
+                ['unknown-import', "Import from '@ptrn/react/hooks/useId' instead."],
+            ],
+        );
+    });
+
+    test('still checks the props of a component imported through the alias', () => {
+        assert.deepEqual(rules(`import { Button } from '-/components/Button';\n<Button />`), [
+            'unknown-import',
+            'missing-required-prop',
+        ]);
     });
 
     test('does not flag lowercase paths such as hooks and utilities', () => {
@@ -128,6 +151,7 @@ describe('validateCode: props', () => {
                 {
                     name: 'Modal',
                     slug: 'modal',
+                    phase: 'Stable',
                     description: '',
                     import: '@ptrn/react/Modal',
                     dependencies: [],

@@ -25,7 +25,8 @@ const dropInternalState = {
 
 export default {
     plugins: [dropInternalState],
-    globs: ['src/components/**/*.ts'],
+    // The shared bases in src/utils (FieldControl) are analyzed too, so elements inherit their attributes in the manifest.
+    globs: ['src/components/**/*.ts', 'src/utils/**/*.ts'],
     exclude: ['src/components/**/index.ts'],
     outdir: 'dist',
     litelement: true,

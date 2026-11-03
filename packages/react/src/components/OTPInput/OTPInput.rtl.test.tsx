@@ -5,7 +5,7 @@ import { presets } from './OTPInputExample';
 import { spec } from './spec';
 import { hasNoBasicA11yIssues } from '-/rtl/hasNoBasicA11yIssues';
 import { describeBehaviors } from '-/rtl/spec';
-import { render, screen } from '-/rtl/util';
+import { fireEvent, render, screen } from '-/rtl/util';
 
 const Subject = (props: Partial<OTPInputProps>) => <OTPInput name="code" onChange={() => {}} {...props} />;
 
@@ -101,6 +101,35 @@ describeBehaviors(spec, {
         expect(cell(2)).toHaveValue('b');
         expect(cell(3)).toHaveFocus();
     },
+    'numeric-shifted-keys': async () => {
+        const user = userEvent.setup();
+        const onChange = jest.fn();
+        const { rerender } = render(<Subject length={3} onChange={onChange} />);
+
+        await user.click(cell(1));
+        await user.keyboard('{Shift>}A{/Shift}');
+        expect(cell(1)).toHaveValue('');
+        expect(cell(1)).toHaveFocus();
+
+        // Some layouts, the French one among them, type the digits with Shift.
+        await user.keyboard('{Shift>}1{/Shift}');
+        expect(cell(1)).toHaveValue('1');
+        expect(cell(2)).toHaveFocus();
+
+        // A virtual keyboard names no key on keydown, so the cell checks what it receives as well.
+        fireEvent.keyDown(cell(2), { key: 'Unidentified' });
+        fireEvent.change(cell(2), { target: { value: 'b' } });
+        expect(cell(2)).toHaveValue('');
+        expect(cell(2)).toHaveFocus();
+        await user.keyboard('2{Shift>}Z{/Shift}');
+        expect(values()).toEqual(['1', '2', '']);
+        expect(onChange).not.toHaveBeenCalled();
+
+        rerender(<Subject alphanumeric length={3} onChange={onChange} />);
+        await user.keyboard('{Shift>}Z{/Shift}');
+        expect(values()).toEqual(['1', '2', 'Z']);
+        expect(onChange).toHaveBeenCalledWith('12Z');
+    },
     backspace: async () => {
         const user = userEvent.setup();
         render(<Subject defaultValue="123" length={4} />);
@@ -144,6 +173,21 @@ describeBehaviors(spec, {
         expect(cell(6)).toHaveFocus();
         expect(onChange).toHaveBeenCalledTimes(1);
         expect(onChange).toHaveBeenCalledWith('123456');
+    },
+    'paste-filters': async () => {
+        const user = userEvent.setup();
+        const onChange = jest.fn();
+        const { unmount } = render(<Subject onChange={onChange} />);
+
+        await user.click(cell(1));
+        await user.paste('12a-3 4');
+        expect(values()).toEqual(['1', '2', '3', '4', '', '']);
+
+        unmount();
+        render(<Subject alphanumeric onChange={onChange} />);
+        await user.click(cell(1));
+        await user.paste('ab-12 c');
+        expect(values()).toEqual(['a', 'b', '1', '2', 'c', '']);
     },
     'focus-order': async () => {
         const user = userEvent.setup();

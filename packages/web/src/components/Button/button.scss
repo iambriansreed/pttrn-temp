@@ -1,6 +1,6 @@
 @use '../../styles/reset';
 @use '../../styles/touch-target';
-@use '../../styles/tooltip';
+@use '../../styles/tooltip-controller';
 
 // The rules of packages/react/src/components/Button/button.scss. The React stylesheet reads the border from
 // `--button-border-*` on :root (its base stylesheet); a shadow root cannot count on that, so they are declared here with

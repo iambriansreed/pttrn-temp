@@ -31,8 +31,12 @@ tmp/
 .env.*
 !.env.example
 .claude/settings.local.json
+.claude/worktrees/
 /plan.md
 
 # License files copied into each package by scripts/copy-license.mjs while packing
 packages/*/LICENSE
 packages/*/NOTICE.md
+
+# DESIGN.md, rendered from the MCP catalog by packages/mcp/scripts/agent-docs.ts while @ptrn/react packs
+packages/react/DESIGN.md

@@ -1,5 +1,5 @@
 @use '../../styles/reset';
-@use '../../styles/tooltip';
+@use '../../styles/tooltip-controller';
 
 // The rules of packages/react/src/components/Fab/fab.scss. The element is the positioned box (the React button is), so
 // the placement rules sit on :host and the inner button keeps the look.

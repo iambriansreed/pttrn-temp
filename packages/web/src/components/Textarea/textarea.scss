@@ -1,0 +1,125 @@
+@use '../../styles/reset';
+@use '../../styles/field';
+
+:host {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+// The rules of the React textarea.scss. The read-only rule matches here: the container carries data-readonly.
+[data-pttrn='textarea'] {
+    /*!
+    --min-rows: is set via inline style
+    --max-rows: is set via inline style
+    */
+
+    display: grid;
+    width: 100%;
+    border: var(--usa-spacing-1px) solid var(--border-color);
+    border-radius: var(--theme-border-radius-md);
+    overflow: hidden;
+    color: var(--theme-body-text-color);
+    background-color: var(--theme-body-background-color);
+
+    --border-color: var(--theme-color-base-medium);
+
+    /* &[data-size='medium'] */
+    --font: 400 var(--usa-font-size-sans-5) / 24px var(--usa-font-family-body);
+    --line-height: 20px;
+    --padding: var(--usa-spacing-105);
+
+    &[data-size='small'] {
+        --font: 400 var(--usa-font-size-sans-3) / 20px var(--usa-font-family-body);
+        --line-height: 20px;
+        --padding: var(--usa-spacing-1);
+    }
+
+    &[data-size='large'] {
+        --font: 400 var(--usa-font-size-sans-7) / 28px var(--usa-font-family-body);
+        --line-height: 24px;
+        --padding: var(--usa-spacing-105);
+    }
+
+    &:has(textarea:focus-within) {
+        --border-color: var(--theme-global-focus-color);
+    }
+
+    &:has(textarea[aria-invalid]) {
+        --border-color: var(--theme-color-error-medium);
+    }
+
+    [data-replicated-value] {
+        white-space: pre-wrap;
+        visibility: hidden;
+        overflow-y: hidden;
+    }
+
+    textarea,
+    [data-replicated-value] {
+        width: 100%;
+        font: var(--font);
+        padding: var(--padding);
+        border: none;
+        background: transparent;
+        grid-area: 1 / 1 / 2 / 2;
+        min-height: calc((var(--line-height) * var(--min-rows)) + (var(--padding) * 2));
+        max-height: calc((var(--line-height) * var(--max-rows)) + (var(--padding) * 2));
+        max-width: 100%;
+    }
+
+    textarea {
+        text-wrap: break-word;
+
+        &::placeholder {
+            color: var(--theme-color-base-medium);
+        }
+
+        resize: none;
+        color: inherit;
+        background-color: inherit;
+        outline: none;
+    }
+
+    &:hover:not(:focus-within) {
+        background:
+            linear-gradient(var(--usa-color-black-transparent-10), var(--usa-color-black-transparent-10)),
+            linear-gradient(var(--theme-body-background-color), var(--theme-body-background-color));
+    }
+
+    &:active:not(:focus-within) {
+        background:
+            linear-gradient(var(--usa-color-black-transparent-20), var(--usa-color-black-transparent-20)),
+            linear-gradient(var(--theme-body-background-color), var(--theme-body-background-color));
+    }
+
+    &[data-readonly] {
+        --border-color: var(--theme-color-disabled-light);
+
+        background:
+            linear-gradient(var(--usa-color-black-transparent-10), var(--usa-color-black-transparent-10)),
+            linear-gradient(var(--theme-body-background-color), var(--theme-body-background-color));
+    }
+
+    &[data-disabled] {
+        --border-color: var(--theme-color-disabled-light);
+
+        background:
+            linear-gradient(var(--usa-color-black-transparent-10), var(--usa-color-black-transparent-10)),
+            linear-gradient(var(--theme-body-background-color), var(--theme-body-background-color));
+
+        & > * {
+            color: var(--theme-color-disabled-dark);
+        }
+    }
+
+    &[data-invalid] {
+        --border-color: var(--theme-color-error-medium);
+    }
+
+    &:focus-within {
+        --border-color: var(--theme-global-focus-color);
+
+        outline: var(--usa-spacing-1px) solid var(--theme-global-focus-color);
+    }
+}

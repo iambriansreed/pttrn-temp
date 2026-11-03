@@ -245,6 +245,55 @@ describeBehaviors(spec, {
         await user.type(input(), '7');
         expect(onChange).toHaveBeenCalledWith('7', 'GB');
     },
+    'phone-keypad': () => {
+        render(<Subject />);
+
+        expect(input()).toHaveAttribute('inputmode', 'tel');
+        expect(Array.from(document.querySelectorAll('[inputmode]'))).toEqual([input()]);
+    },
+    shortcuts: async () => {
+        const user = userEvent.setup();
+        render(<Subject />);
+
+        await user.click(input());
+        await user.keyboard('a');
+        expect(input()).toHaveValue('');
+
+        // Ctrl+V and Cmd+V reach the browser's paste instead of being filtered out as the letter v.
+        for (const modifier of ['Control', 'Meta']) {
+            const keydown = new KeyboardEvent('keydown', {
+                key: 'v',
+                ctrlKey: modifier === 'Control',
+                metaKey: modifier === 'Meta',
+                bubbles: true,
+                cancelable: true,
+            });
+            input().dispatchEvent(keydown);
+            expect(keydown.defaultPrevented).toBe(false);
+        }
+    },
+    'clear-button': async () => {
+        const user = userEvent.setup();
+        const onChange = jest.fn();
+        const clear = () => screen.getByRole('button', { name: 'Clear' });
+        const { rerender } = render(<Subject onChange={onChange} />);
+        expect(screen.queryByRole('button', { name: 'Clear' })).toBeNull();
+
+        rerender(<Subject onChange={onChange} value="07700 900123" />);
+        await user.click(clear());
+        expect(onChange).toHaveBeenCalledWith('', 'GB');
+        expect(input()).toHaveFocus();
+
+        // The input filters what can be typed into it; the clear button, after it, answers its own keys.
+        for (const key of ['{Enter}', ' ']) {
+            onChange.mockClear();
+            await user.tab();
+            expect(clear()).toHaveFocus();
+            await user.keyboard(key);
+            expect(onChange).toHaveBeenCalledWith('', 'GB');
+            expect(input()).toHaveFocus();
+        }
+    },
     states: () => {
         const { rerender } = render(<Subject disabled />);
         expect(input()).toBeDisabled();

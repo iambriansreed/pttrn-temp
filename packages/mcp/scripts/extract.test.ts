@@ -57,6 +57,7 @@ describe('extractComponents', () => {
                 name: 'Button',
                 slug: 'button',
                 description: 'A button.',
+                phase: 'Stable' as const,
                 dependencies: ['Tooltip'],
                 usage: { code: '<Button label="Hi" />' },
             },
@@ -97,6 +98,12 @@ describe('extractComponents', () => {
         assert.equal(size.type, "'small' | 'medium'");
         assert.deepEqual(size.options, ['small', 'medium']);
         assert.equal(size.default, 'medium');
+    });
+
+    test('carries the phase, and treats a component without one as Backlog', () => {
+        const [button, flex] = extractComponents(data);
+        assert.equal(button.phase, 'Stable');
+        assert.equal(flex.phase, 'Backlog');
     });
 
     test('a component with no Props type gets an empty prop list', () => {

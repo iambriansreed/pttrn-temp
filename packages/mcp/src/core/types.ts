@@ -9,10 +9,17 @@ export type Prop = {
     default?: unknown;
 };
 
+/**
+ * Where a component is in its lifecycle, from its `@phase` JSDoc tag. `Stable` is production ready, `Utility` a
+ * building block or provider, and `Backlog` not ready to use.
+ */
+export type ComponentPhase = 'Backlog' | 'Dev' | 'Stable' | 'UXReview' | 'Utility';
+
 export type Component = {
     name: string;
     slug: string;
     description: string;
+    phase: ComponentPhase;
     /** Import path, for example `@ptrn/react/Button`. */
     import: string;
     dependencies: string[];
