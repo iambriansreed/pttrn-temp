@@ -10,6 +10,6 @@ export type WebComponentDemo = {
     usageDescription?: string;
     /** Renders the shared React demo state (the props table controls) as the custom element. Docs only, not shipped. */
     Wrapper: ComponentType<any>;
-    /** The HTML a Web Component user writes for a given demo state. */
-    toHtml: (propState: Record<string, unknown>) => string;
+    /** The HTML a Web Component user writes for a given demo state. Async when it loads markup, such as an icon's. */
+    toHtml: (propState: Record<string, unknown>) => Promise<string> | string;
 };

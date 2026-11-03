@@ -1,0 +1,31 @@
+// The SkeletonText placeholder, shared by pttrn-skeleton-text and pttrn-txt. @ptrn/react has the same rules in its
+// global base stylesheet.
+@use 'skeleton-pulse';
+
+[data-pttrn='skeleton-text'] {
+    /*!
+    --text-margin: is set via inline style
+    --text-height: is set via inline style
+    */
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--text-margin);
+    animation: skeleton-pulse 1.5s infinite;
+    width: 100%;
+    height: fit-content;
+
+    [data-line] {
+        width: 100%;
+        background: var(--theme-color-base-lighter);
+        border-radius: var(--theme-border-radius-md);
+        height: var(--text-height);
+    }
+
+    /* if there are 2 lines or more, make the last line 80% width */
+    &:has([data-line]:nth-child(2)) {
+        [data-line]:last-child {
+            width: 80%;
+        }
+    }
+}

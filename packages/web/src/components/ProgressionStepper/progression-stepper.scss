@@ -1,0 +1,226 @@
+@use '../../styles/reset';
+
+:host {
+    display: block;
+    width: 100%;
+}
+
+[data-sr-only] {
+    height: 1px;
+    overflow: hidden;
+    position: absolute !important;
+    width: 1px;
+    clip: rect(1px, 1px, 1px, 1px);
+}
+
+[data-pttrn='progression-stepper'] {
+    width: 100%;
+
+    --circle-width: calc(var(--usa-spacing-4) + var(--usa-spacing-05));
+    --active-background-color: var(--theme-color-primary-medium);
+    --active-foreground-color: var(--usa-color-white);
+    --inactive-background-color: var(--theme-color-base-lighter);
+    --inactive-foreground-color: var(--theme-body-text-color);
+
+    ol {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+
+        li {
+            display: flex;
+            flex-direction: column;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: var(--usa-spacing-1);
+            flex-grow: 1;
+
+            // Steps shrink below their content when the row is short, so the stepper fits a phone.
+            min-width: 0;
+
+            [data-line-circle] {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: row;
+
+                [data-line] {
+                    background-color: var(--inactive-background-color);
+                    height: 2px;
+                    flex-grow: 1;
+                }
+
+                [data-circle] {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: var(--circle-width);
+                    height: var(--circle-width);
+                    border-radius: 50%;
+                    background-color: none;
+                    border: var(--usa-spacing-2px) solid var(--inactive-background-color);
+                    font: 500 var(--usa-font-size-sans-7) / 28px var(--usa-font-family-ui);
+
+                    svg {
+                        display: none;
+                        width: var(--usa-spacing-3);
+                        height: var(--usa-spacing-3);
+                    }
+                }
+            }
+
+            [data-content] {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+                [data-variant='horizontal'] & {
+                    align-items: center;
+                    justify-content: center;
+                    width: 100%;
+                }
+
+                padding: 0 var(--usa-spacing-5);
+                font: 400 var(--usa-font-size-sans-3) / 20px var(--usa-font-family-body);
+                text-align: center;
+
+                // On a phone the side padding would leave a step name a few letters wide.
+                @media (width < 640px) {
+                    padding: 0 var(--usa-spacing-05);
+                }
+            }
+
+            &:first-of-type {
+                [data-line='before'] {
+                    visibility: hidden;
+                }
+            }
+
+            &:last-of-type {
+                [data-line='after'] {
+                    visibility: hidden;
+                }
+            }
+
+            &[data-status='complete'] {
+                [data-line] {
+                    background-color: var(--active-background-color);
+                }
+
+                [data-circle] {
+                    background-color: var(--active-background-color);
+                    border: var(--usa-spacing-1px) solid var(--active-background-color);
+                    color: var(--active-foreground-color);
+
+                    span {
+                        display: none;
+                    }
+
+                    svg {
+                        display: block;
+                    }
+                }
+            }
+
+            &[data-status='current'] {
+                [data-line='before'] {
+                    background-color: var(--active-background-color);
+                }
+
+                [data-circle] {
+                    border-color: var(--active-background-color);
+                }
+            }
+        }
+    }
+
+    &[data-variant='vertical'] {
+        ol {
+            flex-direction: column;
+        }
+
+        li {
+            flex-direction: row;
+
+            [data-line-circle] {
+                flex-direction: column;
+                width: var(--circle-width);
+
+                [data-line] {
+                    width: 2px;
+                    height: auto;
+                }
+            }
+
+            [data-content] {
+                align-items: start;
+                padding: var(--usa-spacing-5) 0;
+            }
+        }
+    }
+
+    &[data-variant='widget'] {
+        --circle-width: var(--usa-spacing-205);
+
+        [data-header] {
+            display: flex;
+            flex-direction: column;
+            gap: var(--usa-spacing-1);
+            margin-bottom: var(--usa-spacing-105);
+            font: 400 var(--usa-font-size-sans-3) / 20px var(--usa-font-family-body);
+
+            [data-title] {
+                font: 500 var(--usa-font-size-sans-5) / 24px var(--usa-font-family-ui);
+                color: var(--theme-body-text-color);
+            }
+
+            [data-subtitle] {
+                font: 400 var(--usa-font-size-sans-1) / 16px var(--usa-font-family-body);
+                color: var(--theme-color-base-dark);
+            }
+        }
+
+        ol {
+            align-items: center;
+            min-height: calc(var(--usa-spacing-4) + var(--usa-spacing-05));
+
+            li {
+                flex-grow: 1;
+
+                [data-line-circle] {
+                    [data-line='after'] {
+                        flex-grow: 1;
+                    }
+
+                    [data-line='before'] {
+                        display: none;
+                    }
+                }
+
+                &:last-of-type {
+                    flex-grow: 0;
+
+                    [data-line='after'] {
+                        display: none;
+                    }
+                }
+
+                &[data-status='current'] {
+                    --circle-width: calc(var(--usa-spacing-4) + var(--usa-spacing-05));
+                }
+
+                &[data-status='incomplete'] {
+                    [data-circle] {
+                        span {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

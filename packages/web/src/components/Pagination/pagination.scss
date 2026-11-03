@@ -1,0 +1,99 @@
+@use '../../styles/reset';
+@use '../../styles/internal-button';
+
+// The element is the group (role="group"), laid out as React's `[data-pttrn='pagination']` span.
+:host {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: var(--usa-spacing-05);
+    flex: 1;
+}
+
+button {
+    @include internal-button.button;
+}
+
+// Page buttons keep their 32px minimum width with no side padding, as React's pagination override does (and, as there,
+// with the specificity to beat the labelled button's padding).
+button[data-page][data-size='small'][data-variant] {
+    padding: 6px 0;
+}
+
+[data-input-form] {
+    display: contents;
+
+    > span {
+        display: block;
+        white-space: nowrap;
+        font: 400 var(--usa-font-size-sans-3) / 20px var(--usa-font-family-body);
+    }
+}
+
+// React's Input at its default (medium) size, without the clear button.
+[data-input] {
+    --border-color: var(--theme-color-base-medium);
+    --field-padding: var(--usa-spacing-105);
+    --field-height: var(--usa-spacing-5);
+    --field-font: 400 var(--usa-font-size-sans-5) / 24px var(--usa-font-family-body);
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--theme-body-background-color);
+    border: solid var(--usa-spacing-1px) var(--border-color);
+    height: var(--field-height);
+    border-radius: var(--theme-border-radius-md);
+    padding: 0 var(--field-padding);
+    gap: var(--usa-spacing-05);
+    width: 100%;
+    max-width: var(--usa-spacing-6);
+    margin-right: var(--usa-spacing-05);
+
+    > * {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: var(--field-height);
+        font: var(--field-font);
+        color: var(--theme-body-text-color);
+        min-width: 0;
+    }
+
+    &:hover:not(:focus-within) {
+        background:
+            linear-gradient(var(--usa-color-black-transparent-10), var(--usa-color-black-transparent-10)),
+            linear-gradient(var(--theme-body-background-color), var(--theme-body-background-color));
+    }
+
+    &:active:not(:focus-within) {
+        background:
+            linear-gradient(var(--usa-color-black-transparent-20), var(--usa-color-black-transparent-20)),
+            linear-gradient(var(--theme-body-background-color), var(--theme-body-background-color));
+    }
+
+    &:focus-within {
+        --border-color: var(--theme-global-focus-color);
+
+        outline: var(--usa-spacing-1px) solid var(--theme-global-focus-color);
+    }
+
+    [data-main-input] {
+        flex: 1;
+        background-color: transparent !important;
+        border: none;
+        outline: none;
+        padding: 0;
+        pointer-events: all;
+        text-overflow: ellipsis;
+        text-align: center;
+        appearance: textfield;
+
+        &::-webkit-inner-spin-button,
+        &::-webkit-outer-spin-button {
+            display: none;
+        }
+    }
+}

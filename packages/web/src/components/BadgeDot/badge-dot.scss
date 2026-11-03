@@ -1,0 +1,37 @@
+@use '../../styles/reset';
+@use '../../styles/attachment';
+
+:host {
+    display: block;
+    width: fit-content;
+}
+
+// Without slotted content the dot stands alone, as in React, where the wrapper is not rendered at all.
+[data-wrapper]:not([data-attachment-wrapper]) {
+    display: contents;
+}
+
+[data-pttrn='badge-dot'] {
+    /*!
+    --size: is set via inline style
+    --outline-width: is set via inline style
+    */
+
+    display: block;
+    width: var(--size, 6px);
+    height: var(--size, 6px);
+    border-radius: var(--usa-radius-pill);
+    background-color: var(--background);
+
+    &[data-color='primary'] {
+        --background: var(--theme-color-primary-medium);
+    }
+
+    &[data-color='secondary'] {
+        --background: var(--theme-color-secondary-dark);
+    }
+
+    &[data-outline] {
+        border: var(--outline-width) solid var(--theme-body-background-color);
+    }
+}

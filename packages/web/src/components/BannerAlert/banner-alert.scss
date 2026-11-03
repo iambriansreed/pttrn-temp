@@ -1,0 +1,104 @@
+@use '../../styles/reset';
+
+// The rules of packages/react/src/components/BannerAlert/banner-alert.scss.
+
+:host {
+    display: block;
+    width: 100%;
+}
+
+:host([hidden]) {
+    display: none;
+}
+
+[data-pttrn='banner-alert'] {
+    --color: var(--theme-color-info-dark);
+    --on-color: var(--theme-color-ink);
+
+    display: flex;
+    flex-direction: row;
+    border: var(--usa-spacing-2px) solid var(--color);
+    border-radius: var(--theme-border-radius-lg);
+    background-color: var(--theme-body-background-color);
+    width: 100%;
+
+    &[data-variant='error'] {
+        --color: var(--theme-color-error-medium);
+        --on-color: var(--usa-color-white);
+    }
+
+    &[data-variant='success'] {
+        --color: var(--theme-color-success-medium);
+        --on-color: var(--usa-color-white);
+    }
+
+    &[data-variant='warning'] {
+        --color: var(--theme-color-warning-medium);
+        --on-color: var(--theme-color-ink);
+    }
+
+    &[data-elevated] {
+        box-shadow: 0 1px 2px 0 var(--usa-color-black-transparent-20);
+    }
+
+    [data-icon-bar] {
+        flex: 1;
+        padding: var(--usa-spacing-2) var(--usa-spacing-105);
+        background: var(--color);
+        color: var(--on-color);
+
+        svg {
+            width: var(--usa-spacing-3);
+            height: var(--usa-spacing-3);
+        }
+    }
+
+    [data-content] {
+        flex: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: var(--usa-spacing-1) var(--usa-spacing-1) var(--usa-spacing-1) var(--usa-spacing-2);
+
+        [data-header] {
+            display: flex;
+            flex-direction: row;
+            gap: var(--usa-spacing-105);
+            height: var(--usa-spacing-6);
+            align-items: center;
+
+            > span {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                color: var(--theme-body-text-color);
+                font: 500 var(--usa-font-size-sans-7) / 24px var(--usa-font-family-heading);
+            }
+        }
+
+        [data-body] {
+            display: flex;
+            flex-direction: column;
+            gap: var(--usa-spacing-1);
+            padding: 0 var(--usa-spacing-1) var(--usa-spacing-1) 0;
+
+            > span {
+                font: 400 var(--usa-font-size-sans-5) / 24px var(--usa-font-family-body);
+            }
+
+            pttrn-button {
+                margin-left: auto;
+            }
+        }
+
+        // In @ptrn/react the `[data-header] span` and `[data-body] span` rules above also reach the spans inside the
+        // Close and call-to-action Buttons: the close icon takes the body text color and the call-to-action label the
+        // body type. The buttons here have their own shadow roots, so the same look is set through their part.
+        [data-header] pttrn-button::part(button) {
+            color: var(--theme-body-text-color);
+        }
+
+        [data-body] pttrn-button::part(button) {
+            font: 400 var(--usa-font-size-sans-5) / 24px var(--usa-font-family-body);
+        }
+    }
+}

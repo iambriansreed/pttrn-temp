@@ -1,0 +1,51 @@
+@use '../../styles/reset';
+
+// The host only places the line in its parent's layout: stretched across a column, or down a row. The line and its
+// margins are inside, where a page-level reset (`* { margin: 0 }`) cannot reach them.
+:host {
+    display: flex;
+    align-self: stretch;
+}
+
+[data-pttrn='divider'] {
+    /*! --inset: is set via inline style */
+
+    display: flex;
+    background-color: var(--theme-color-base-lighter);
+    align-self: stretch;
+    place-content: stretch stretch;
+    margin: 0;
+    padding: 0;
+
+    --length: calc(100% - var(--inset) * 2);
+
+    &,
+    &[data-thickness='light'] {
+        --line-thickness: 1px;
+        --padding: var(--usa-spacing-1);
+    }
+
+    &[data-thickness='heavy'] {
+        --line-thickness: 2px;
+        --padding: var(--usa-spacing-2);
+
+        border-radius: var(--usa-radius-pill);
+    }
+
+    &,
+    &[data-orientation='horizontal'] {
+        min-height: var(--line-thickness);
+        min-width: var(--length);
+        margin: var(--padding) var(--inset);
+    }
+
+    &[data-orientation='vertical'] {
+        min-width: var(--line-thickness);
+        min-height: var(--length);
+        margin: var(--inset) var(--padding);
+    }
+
+    &[data-hide-padding] {
+        --padding: 0;
+    }
+}

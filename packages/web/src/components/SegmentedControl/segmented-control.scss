@@ -1,0 +1,36 @@
+@use '../../styles/reset';
+@use '../../styles/tab-list';
+
+:host {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+}
+
+:host([width='fill']) {
+    width: 100%;
+}
+
+[role='tablist'] {
+    @include tab-list.tab-list;
+
+    background: var(--theme-color-base-lighter);
+    border-radius: var(--theme-border-radius-md);
+    padding: var(--usa-spacing-05);
+
+    // Never wider than its container. When the segments do not fit on one row they move to a second row, so the
+    // control grows taller rather than cutting or overlapping text.
+    max-width: 100%;
+    flex-wrap: wrap;
+    row-gap: var(--usa-spacing-05);
+    height: auto;
+    min-height: var(--usa-spacing-5);
+
+    &[data-size='small'] {
+        min-height: var(--usa-spacing-4);
+    }
+
+    &[data-size='large'] {
+        min-height: var(--usa-spacing-6);
+    }
+}

@@ -1,0 +1,132 @@
+@use '../../styles/reset';
+
+:host {
+    display: block;
+    width: 100%;
+}
+
+// The same rules as the React component (packages/react/src/components/FileUpload/file-upload.scss).
+[data-pttrn='file-upload'] {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--usa-spacing-2);
+    width: 100%;
+    padding: var(--usa-spacing-2);
+    border: var(--usa-spacing-1px) dashed var(--theme-color-base-medium);
+    border-radius: var(--usa-spacing-1);
+    background-color: var(--theme-color-base-lightest);
+}
+
+[data-file-entries] {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+// The React Txt variants.
+[data-txt] {
+    overflow-wrap: break-word;
+}
+
+[data-txt='body-large'] {
+    font: 400 var(--usa-font-size-sans-7) / 28px var(--usa-font-family-body);
+}
+
+[data-txt='body-small'] {
+    font: 400 var(--usa-font-size-sans-3) / 20px var(--usa-font-family-body);
+}
+
+// Browse: the React Button, medium and primary.
+button {
+    --primary-background: var(--theme-color-primary-medium);
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    gap: var(--usa-spacing-1);
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    width: fit-content;
+    font-family: var(--usa-font-family-body);
+    font-size: var(--usa-font-size-sans-5);
+    line-height: 20px;
+    height: var(--usa-spacing-5);
+    min-width: var(--usa-spacing-5);
+    padding: var(--usa-spacing-1) var(--usa-spacing-2);
+    background-color: var(--primary-background);
+    color: var(--usa-color-white);
+    border-radius: var(--theme-border-radius-md);
+
+    [data-button-label] {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    &[disabled] {
+        cursor: not-allowed;
+        color: var(--theme-color-disabled-dark);
+        background: var(--usa-color-black-transparent-10);
+    }
+
+    &:not([disabled]) {
+        &:hover {
+            background:
+                linear-gradient(var(--usa-color-black-transparent-10), var(--usa-color-black-transparent-10)),
+                linear-gradient(var(--primary-background), var(--primary-background));
+        }
+
+        &:active {
+            background:
+                linear-gradient(var(--usa-color-black-transparent-20), var(--usa-color-black-transparent-20)),
+                linear-gradient(var(--primary-background), var(--primary-background));
+        }
+
+        &:focus-visible {
+            outline: solid var(--usa-spacing-2px) var(--theme-global-focus-color);
+            isolation: isolate;
+        }
+    }
+
+    // Invisible hit areas that reach 48px on touch screens, as the React buttons have.
+    [data-touch-target] {
+        display: none;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+        user-select: none;
+        position: absolute;
+        z-index: 1;
+        height: 100%;
+        width: 100%;
+        min-width: var(--usa-spacing-6);
+        min-height: var(--usa-spacing-6);
+    }
+
+    @media (any-pointer: coarse) {
+        [data-touch-target] {
+            display: block;
+        }
+    }
+}
+
+// The React InlineAlert, error variant.
+[data-alert] {
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    flex-direction: row;
+    gap: var(--usa-spacing-1);
+    color: var(--theme-color-error-dark);
+
+    svg {
+        color: var(--theme-color-error-dark);
+        width: var(--usa-spacing-205);
+        height: var(--usa-spacing-205);
+        flex: 0 0 auto;
+    }
+}

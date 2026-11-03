@@ -1,0 +1,17 @@
+// The corner attachment of Badge and BadgeDot: with slotted content, the indicator sits over its top right corner.
+// @ptrn/react has the same rules in its global base stylesheet.
+[data-attachment-wrapper] {
+    display: block;
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+
+    [data-attachment] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: scale(1) translate(50%, -50%);
+        transform-origin: 100% 0%;
+        z-index: 2;
+    }
+}
