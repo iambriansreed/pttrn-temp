@@ -1,5 +1,6 @@
 import { MetaComponentName } from 'src/meta';
 import { accordionWc } from 'src/wc/accordion';
+import { avatarWc } from 'src/wc/avatar';
 import { badgeWc } from 'src/wc/badge';
 import { badgeDotWc } from 'src/wc/badge-dot';
 import { dividerWc } from 'src/wc/divider';
@@ -16,6 +17,7 @@ import { WebComponentDemo } from 'src/wc/types';
  */
 export const webComponents: Partial<Record<MetaComponentName, WebComponentDemo>> = {
     Accordion: accordionWc,
+    Avatar: avatarWc,
     Badge: badgeWc,
     BadgeDot: badgeDotWc,
     Divider: dividerWc,

@@ -4,6 +4,7 @@
  */
 export const webComponents: string[] = [
     'Accordion',
+    'Avatar',
     'Badge',
     'BadgeDot',
     'Divider',
