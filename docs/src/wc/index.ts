@@ -3,6 +3,7 @@ import { accordionWc } from 'src/wc/accordion';
 import { bannerAlertWc } from 'src/wc/banner-alert';
 import { buttonWc } from 'src/wc/button';
 import { cardWc } from 'src/wc/card';
+import { checkboxWc } from 'src/wc/checkbox';
 import { chipWc } from 'src/wc/chip';
 import { chipGroupWc } from 'src/wc/chip-group';
 import { emptyStateWc } from 'src/wc/empty-state';
@@ -22,6 +23,7 @@ export const webComponents: Partial<Record<MetaComponentName, WebComponentDemo>>
     BannerAlert: bannerAlertWc,
     Button: buttonWc,
     Card: cardWc,
+    Checkbox: checkboxWc,
     Chip: chipWc,
     ChipGroup: chipGroupWc,
     EmptyState: emptyStateWc,

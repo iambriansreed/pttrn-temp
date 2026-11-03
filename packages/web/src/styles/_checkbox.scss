@@ -1,0 +1,88 @@
+// The drawn checkbox of packages/react/src/components/Checkbox/checkbox.scss: a transparent native checkbox over the box.
+// Shared by pttrn-checkbox, pttrn-checkbox-option and the options of pttrn-checkbox-group.
+[data-pttrn='checkbox'] {
+    display: block;
+    position: relative;
+    width: var(--usa-spacing-3);
+    aspect-ratio: 1/1;
+    padding: var(--usa-spacing-2px);
+
+    input[type='checkbox'] {
+        position: absolute;
+        opacity: 0;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        cursor: pointer;
+    }
+
+    span {
+        --stroke: var(--theme-color-base-medium);
+        --background: none;
+        --color: var(--usa-color-white);
+
+        display: flex;
+        width: var(--usa-spacing-205);
+        aspect-ratio: 1/1;
+        cursor: pointer;
+        border-radius: var(--usa-spacing-2px);
+        border: var(--usa-spacing-2px) solid var(--stroke);
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+        background: var(--background);
+        color: var(--color);
+
+        svg[data-checked] {
+            width: 14px;
+        }
+
+        svg[data-indeterminate] {
+            width: 12px;
+        }
+    }
+
+    input[type='checkbox']:not(:checked, :indeterminate, [disabled]) {
+        &:hover + span {
+            background-color: var(--usa-color-black-transparent-10);
+        }
+
+        &:active + span {
+            background-color: var(--usa-color-black-transparent-20);
+        }
+    }
+
+    input[type='checkbox']:checked + span,
+    input[type='checkbox']:indeterminate + span {
+        --stroke: var(--theme-color-primary-medium);
+        --background: var(--theme-color-primary-medium);
+    }
+
+    input[type='checkbox'][disabled] {
+        cursor: not-allowed;
+
+        & + span {
+            --stroke: var(--theme-color-disabled-light);
+        }
+
+        &:is(:checked, :indeterminate) + span {
+            --stroke: transparent;
+            --background: var(--usa-color-black-transparent-10);
+            --color: var(--theme-color-disabled-dark);
+        }
+    }
+
+    input[type='checkbox'][aria-invalid]:not([disabled]) {
+        &:checked + span,
+        &:indeterminate + span {
+            --background: var(--theme-color-error-medium);
+        }
+
+        & + span {
+            --stroke: var(--theme-color-error-medium);
+        }
+    }
+}

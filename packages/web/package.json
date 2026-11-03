@@ -48,6 +48,10 @@
             "types": "./dist/components/Card/index.d.ts",
             "default": "./dist/components/Card/index.js"
         },
+        "./Checkbox": {
+            "types": "./dist/components/Checkbox/index.d.ts",
+            "default": "./dist/components/Checkbox/index.js"
+        },
         "./Chip": {
             "types": "./dist/components/Chip/index.d.ts",
             "default": "./dist/components/Chip/index.js"
