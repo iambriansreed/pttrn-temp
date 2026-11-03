@@ -4,6 +4,7 @@ import { badgeWc } from 'src/wc/badge';
 import { badgeDotWc } from 'src/wc/badge-dot';
 import { dividerWc } from 'src/wc/divider';
 import { webComponents as webComponentNames } from 'src/wc/names';
+import { txtWc } from 'src/wc/txt';
 import { WebComponentDemo } from 'src/wc/types';
 
 /**
@@ -15,6 +16,7 @@ export const webComponents: Partial<Record<MetaComponentName, WebComponentDemo>>
     Badge: badgeWc,
     BadgeDot: badgeDotWc,
     Divider: dividerWc,
+    Txt: txtWc,
 };
 
 const listed = [...webComponentNames].sort().join(',');

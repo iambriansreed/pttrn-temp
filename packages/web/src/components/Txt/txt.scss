@@ -1,0 +1,8 @@
+@use '../../styles/reset';
+@use '../../styles/skeleton-text';
+
+// The host steps out of the layout, so the element it renders (inline span, block heading or paragraph) is laid out
+// as React's would be. Inherited styles set on the host, such as color, still reach the text.
+:host {
+    display: contents;
+}

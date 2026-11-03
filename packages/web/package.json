@@ -47,6 +47,10 @@
         "./Divider": {
             "types": "./dist/components/Divider/index.d.ts",
             "default": "./dist/components/Divider/index.js"
+        },
+        "./Txt": {
+            "types": "./dist/components/Txt/index.d.ts",
+            "default": "./dist/components/Txt/index.js"
         }
     },
     "scripts": {
