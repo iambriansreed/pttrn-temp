@@ -8,6 +8,7 @@ One line per component, in name order:
 
 - `pttrn-accordion`, `pttrn-accordion-item`
 - `pttrn-avatar`
+- `pttrn-avatar-group`
 - `pttrn-badge`
 - `pttrn-badge-dot`
 - `pttrn-divider`

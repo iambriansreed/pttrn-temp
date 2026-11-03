@@ -40,6 +40,10 @@
             "types": "./dist/components/Avatar/index.d.ts",
             "default": "./dist/components/Avatar/index.js"
         },
+        "./AvatarGroup": {
+            "types": "./dist/components/AvatarGroup/index.d.ts",
+            "default": "./dist/components/AvatarGroup/index.js"
+        },
         "./Badge": {
             "types": "./dist/components/Badge/index.d.ts",
             "default": "./dist/components/Badge/index.js"
