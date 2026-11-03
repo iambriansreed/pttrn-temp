@@ -44,6 +44,10 @@
             "types": "./dist/components/PageControl/index.d.ts",
             "default": "./dist/components/PageControl/index.js"
         },
+        "./Pagination": {
+            "types": "./dist/components/Pagination/index.d.ts",
+            "default": "./dist/components/Pagination/index.js"
+        },
         "./SegmentedControl": {
             "types": "./dist/components/SegmentedControl/index.d.ts",
             "default": "./dist/components/SegmentedControl/index.js"

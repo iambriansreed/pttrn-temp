@@ -196,7 +196,8 @@ export class PttrnBreadcrumb extends LitElement {
                     aria-expanded=${this._open}
                     aria-haspopup="menu"
                     data-overflow
-                    data-touch-target-parent
+                    data-size="small"
+                    data-variant="tertiary"
                     type="button"
                     @click=${() => (this._open ? this._close() : this._openMenu())}
                     @focusout=${this._onFocusOut}
