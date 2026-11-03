@@ -7,6 +7,7 @@ export const fixture: Catalog = {
         {
             name: 'Button',
             slug: 'button',
+            phase: 'Stable',
             description: 'A clickable component that allows users to perform an action.',
             import: '@ptrn/react/Button',
             dependencies: ['Tooltip'],
@@ -26,6 +27,7 @@ export const fixture: Catalog = {
         {
             name: 'DatePicker',
             slug: 'date-picker',
+            phase: 'Stable',
             description: 'Lets users choose a date from a calendar.',
             import: '@ptrn/react/DatePicker',
             dependencies: ['Calendar'],
@@ -34,6 +36,7 @@ export const fixture: Catalog = {
         {
             name: 'Modal',
             slug: 'modal',
+            phase: 'Stable',
             description: 'A dialog overlay that interrupts the flow.',
             import: '@ptrn/react/Modal',
             dependencies: [],

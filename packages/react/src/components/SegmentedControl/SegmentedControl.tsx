@@ -16,6 +16,7 @@ export type SegmentedControlProps = TabListProps<SegmentedControlOption>;
  *
  *         return (
  *             <SegmentedControl
+ *                 label="Example segmented control"
  *                 onChange={setSelectedOption}
  *                 options={[
  *                     { value: '1', label: 'Option 1' },

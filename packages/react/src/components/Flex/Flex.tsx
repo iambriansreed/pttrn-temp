@@ -34,7 +34,10 @@ export type FlexProps<As extends ElementType = ElementType> = {
     wrap?: CSSProperties['flexWrap'];
     /** The flex-direction style to apply to the Flex. */
     direction?: 'column-reverse' | 'column' | 'row-reverse' | 'row';
-    /** The padding to apply to the Flex. */
+    /**
+     * The padding to apply to the Flex: one spacing value, or an array of up to four in CSS shorthand order (top,
+     * right, bottom, left).
+     */
     padding?: SizingPixels | SizingPixels[];
     /** If true the Flex will take up the full width of its container. */
     full?: boolean;
@@ -44,7 +47,7 @@ export type FlexProps<As extends ElementType = ElementType> = {
  * Utility component used within other components for layout purposes.
  *
  * @example
- *     import { Flex } from '-/components/Flex';
+ *     import { Flex } from '@ptrn/react/Flex';
  *
  *     () => {
  *         return (

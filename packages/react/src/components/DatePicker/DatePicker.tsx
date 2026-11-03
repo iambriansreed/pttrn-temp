@@ -46,7 +46,7 @@ export type DatePickerProps = Omit<FieldControlProps, 'aria-label' | 'onChange' 
  * For a more complete example with field usage, see the DatePickerField component.
  *
  * @example
- *     import { DatePicker } from '-/components/DatePicker';
+ *     import { DatePicker } from '@ptrn/react/DatePicker';
  *
  *     () => {
  *         const [fieldDate, setFieldDate] = useState<string>();

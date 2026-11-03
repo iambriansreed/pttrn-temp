@@ -44,7 +44,7 @@ export type FabProps<As extends ElementType = ElementType> = Pick<
  * bottom right of a screen.
  *
  * @example
- *     import { Fab } from '-/components/Fab';
+ *     import { Fab } from '@ptrn/react/Fab';
  *
  *     () => {
  *         return (

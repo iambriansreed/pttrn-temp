@@ -14,6 +14,7 @@
         "!dist/**/*Example.css.js",
         "!dist/components/ExamplePlaceholder",
         "README.md",
+        "DESIGN.md",
         "LICENSE",
         "NOTICE.md"
     ],
@@ -40,8 +41,8 @@
         "create:tests": "tsx .scripts/tasks/create-tests.ts",
         "clean": "tsx .scripts/clean.ts",
         "pr-check": "npx tsx .scripts/tasks/lint-components.ts && npm run lint && npm run build && npm run test",
-        "prepack": "node ../../scripts/copy-license.mjs",
-        "postpack": "node ../../scripts/copy-license.mjs --clean",
+        "prepack": "node ../../scripts/copy-license.mjs && tsx ../mcp/scripts/agent-docs.ts DESIGN.md",
+        "postpack": "node ../../scripts/copy-license.mjs --clean && tsx ../mcp/scripts/agent-docs.ts --clean DESIGN.md",
         "check:css-vars": "node ../../scripts/check-css-vars.mjs src --base src/styles/base.scss --base src/styles/_color-variants.scss"
     },
     "static-exports": {

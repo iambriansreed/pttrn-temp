@@ -18,7 +18,11 @@ function oneLine(text: string): string {
 export function listComponents(catalog: Catalog) {
     return {
         version: catalog.meta.version,
-        components: catalog.components.map((c) => ({ name: c.name, description: oneLine(c.description) })),
+        components: catalog.components.map((c) => ({
+            name: c.name,
+            description: oneLine(c.description),
+            phase: c.phase,
+        })),
     };
 }
 

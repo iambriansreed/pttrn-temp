@@ -130,6 +130,7 @@ export type TabListProps<O extends TabOption = TabOption> = {
  *
  *         return (
  *             <TabList
+ *                 label="Example tab list"
  *                 onChange={setSelectedTab}
  *                 options={[
  *                     { value: '1', label: 'Option 1' },

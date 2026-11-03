@@ -33,7 +33,7 @@ export type SkeletonTextProps = {
  * @example
  *     import { SkeletonText } from '@ptrn/react/SkeletonText';
  *
- *     <SkeletonText textLines={1} textVariant="body-base">
+ *     <SkeletonText lines={1} variant="body-base">
  *         <Txt as="p" variant="body-base">
  *             {'This is the loaded text content that was previously loading.'}
  *         </Txt>

@@ -1,5 +1,5 @@
-import { validateCode } from '../src/core/validate.js';
-import type { Catalog, Component, ComponentSpec, Icon, Prop, Token } from '../src/core/types.js';
+import { validateCode, type Rule } from '../src/core/validate.js';
+import type { Catalog, Component, ComponentPhase, ComponentSpec, Icon, Prop, Token } from '../src/core/types.js';
 
 type RawProperty = {
     name: string;
@@ -15,6 +15,7 @@ type RawData = {
         name: string;
         slug: string;
         description?: string;
+        phase?: ComponentPhase;
         dependencies?: string[];
         usage?: { code?: string };
         spec?: ComponentSpec;
@@ -44,6 +45,7 @@ export function extractComponents(data: RawData): Component[] {
             name: c.name,
             slug: c.slug,
             description: c.description ?? '',
+            phase: c.phase ?? 'Backlog',
             import: `@ptrn/react/${c.name}`,
             dependencies: c.dependencies ?? [],
             props: (props.get(`${c.name}Props`) ?? []).map(toProp),
@@ -126,7 +128,7 @@ export function extractTokens(tokensCss: string, themeCss: Record<string, string
 }
 
 /** Rules that mean an example teaches something wrong. Missing imports are fine: examples are fragments. */
-const STALE_RULES = new Set([
+const STALE_RULES = new Set<Rule>([
     'syntax',
     'unknown-import',
     'unknown-icon',

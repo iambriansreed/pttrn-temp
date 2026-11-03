@@ -44,7 +44,7 @@ export type TextareaProps = CommonProps<'size'> &
  * For a more complete example with field usage, see the TextareaField component.
  *
  * @example
- *     import { Textarea } from '-/components/Textarea';
+ *     import { Textarea } from '@ptrn/react/Textarea';
  *
  *     () => {
  *         const [value, setValue] = useState<string | undefined>('');
