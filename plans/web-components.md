@@ -184,3 +184,16 @@ Conventions these elements share, decided while porting Input:
 | `aria-label`                                                   | `aria-label`                                                               |
 | Field `label`, `helperText`, `errorMessage`, `labelTrailing`   | `label`, `helper-text`, `error-message`, `label-trailing`                  |
 | `id`, `aria-describedby`, `aria-errormessage`, refs, `inputProps`, `owner` | none                                                           |
+
+### Textarea
+
+| React                                                        | Web Component                                                                |
+| ------------------------------------------------------------ | ---------------------------------------------------------------------------- |
+| `value`, `onChange(value, event)`                            | `value`, `pttrn-change` (`detail.value`) and `change`                        |
+| `name`, `placeholder`, `size`, `maxLength`                   | `name`, `placeholder`, `size`, `maxlength`                                   |
+| `minRows`, `maxRows`                                         | `min-rows`, `max-rows`                                                       |
+| `disabled`, `readOnly`, `required`, `invalid`, `aria-label`  | `disabled`, `readonly`, `required`, `invalid`, `aria-label`                  |
+| Field `label`, `helperText`, `errorMessage`, `labelTrailing` | `label`, `helper-text`, `error-message`, `label-trailing`                    |
+| `id`, `aria-describedby`, `aria-errormessage`, `innerRef`    | none                                                                         |
+
+The React Textarea marks read-only with `data-read-only` while its stylesheet selects `data-readonly`, so its read-only style never applies. The element uses `data-readonly` and shows the read-only style, as Input does. The replica that sizes the field is rendered from `value`, so a value set from code sizes the field too (React updates it only on input).

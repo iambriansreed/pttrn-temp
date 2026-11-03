@@ -39,6 +39,10 @@
         "./Input": {
             "types": "./dist/components/Input/index.d.ts",
             "default": "./dist/components/Input/index.js"
+        },
+        "./Textarea": {
+            "types": "./dist/components/Textarea/index.d.ts",
+            "default": "./dist/components/Textarea/index.js"
         }
     },
     "scripts": {
