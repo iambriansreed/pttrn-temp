@@ -1,5 +1,6 @@
 import { jest } from '@jest/globals';
 import userEvent from '@testing-library/user-event';
+import { format } from 'date-fns';
 import { DatePicker, DatePickerProps } from './DatePicker';
 import { spec } from './spec';
 import { describeBehaviors } from '-/rtl/spec';
@@ -77,6 +78,23 @@ describeBehaviors(spec, {
         await user.click(await day('15th June 1985'));
         expect(onChange).toHaveBeenCalledWith('06/15/1985');
         expect(calendar()).toBeInTheDocument();
+    },
+    'calendar-shows-value': async () => {
+        const user = userEvent.setup();
+        const selected = () => Array.from(calendar()!.querySelectorAll('[data-selected], [aria-selected]'));
+        const { unmount } = render(<Subject />);
+
+        await user.click(toggle());
+        expect(await openCalendar()).toHaveTextContent('June 1985');
+        expect(selected()).toEqual([await day('3rd June 1985')]);
+        unmount();
+
+        // Today is only where the calendar opens: with nothing typed, nothing is chosen.
+        render(<Subject value="" />);
+        await user.click(toggle());
+        expect(await openCalendar()).toHaveTextContent(format(new Date(), 'MMMM yyyy'));
+        expect(await day(format(new Date(), 'do MMMM yyyy'))).toHaveAttribute('tabindex', '0');
+        expect(selected()).toHaveLength(0);
     },
     'outside-click-closes': async () => {
         const user = userEvent.setup();

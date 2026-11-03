@@ -25,7 +25,7 @@ export const spec: ComponentSpec = {
             part: 'day',
             role: 'gridcell',
             description:
-                'One cell per day, named by its full date ("10th June 2024"). The active day carries data-selected and is the only cell in the Tab order. Clicking any day chooses it.',
+                'One cell per day, named by its full date ("10th June 2024"). The day matching value carries data-selected and aria-selected; the active day, where the keys move, is the only cell in the Tab order. Clicking any day chooses it.',
         },
     ],
     keyboard: [
@@ -47,9 +47,9 @@ export const spec: ComponentSpec = {
         },
     ],
     accessibility: {
-        roles: 'A table with role grid, named by the month title through aria-labelledby, with a column header per weekday and a gridcell per day. The active day has tabIndex 0 and carries data-selected; every other day has tabIndex -1. The navigation buttons are native buttons.',
+        roles: 'A table with role grid, named by the month title through aria-labelledby, with a column header per weekday and a gridcell per day. The day matching value has aria-selected true and carries data-selected; no other day does. The active day has tabIndex 0; every other day has tabIndex -1. The navigation buttons are native buttons.',
         labels: 'Each day is named by aria-label with its ordinal date, "10th June 2024". The column headers show the short weekday with the full name as abbr. The buttons are named "Previous Year", "Previous Month", "Next Month" and "Next Year".',
-        focus: 'The active day is the value on mount, or today without a valid value. The arrow keys, Home, End, PageUp and PageDown move it and focus follows. The navigation buttons move it without moving focus. With focusTrap, as inside DatePicker, the active day takes focus on mount and Tab cycles between the grid and the buttons.',
+        focus: 'The active day is the value on mount, or today without a valid value, and moves to a value that changes later. The arrow keys, Home, End, PageUp and PageDown move it and focus follows. The navigation buttons move it without moving focus. With focusTrap, as inside DatePicker, the active day takes focus on mount and Tab cycles between the grid and the buttons.',
         targetSize: 44,
     },
     behaviors: [
@@ -61,7 +61,7 @@ export const spec: ComponentSpec = {
         {
             id: 'highlights-value',
             description:
-                'The day matching value carries data-selected and is the only cell in the Tab order; without a valid value, today is.',
+                'The day matching value carries data-selected and aria-selected and is the only cell in the Tab order; without a valid value no day is selected and today is in the Tab order.',
         },
         {
             id: 'choose-day',
@@ -92,6 +92,16 @@ export const spec: ComponentSpec = {
             id: 'ids',
             description:
                 'id names the calendar, the title that labels the grid derives from it, and each day gets an id ending in its date as MM-dd-yyyy.',
+        },
+        {
+            id: 'active-is-not-selected',
+            description:
+                'Moving the active day with the keys or the navigation buttons leaves data-selected and aria-selected on the day matching value.',
+        },
+        {
+            id: 'value-change',
+            description:
+                'A value that changes after mount moves the selection, the active day and the view to it, without moving focus; a new Date of the same day leaves the view where it is.',
         },
         { id: 'axe-clean', description: 'Every preset passes axe-core.' },
     ],

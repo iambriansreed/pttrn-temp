@@ -1,6 +1,6 @@
 import './date-picker.scss';
 import { SvgEvent } from '@ptrn/icons/Event';
-import { format, startOfToday } from 'date-fns';
+import { format } from 'date-fns';
 import { useMemo, useState } from 'react';
 import { Button } from '-/components/Button';
 import { Calendar, parseDate } from '-/components/Calendar';
@@ -97,7 +97,8 @@ export function DatePicker({
 
     const calendarId = `${id}-calendar`;
 
-    const activeDate = useMemo(() => parseDate(value) || startOfToday(), [value]);
+    // Without a valid date nothing is selected; the calendar then opens on today by itself.
+    const selectedDate = useMemo(() => parseDate(value), [value]);
 
     return (
         <div
@@ -150,7 +151,7 @@ export function DatePicker({
                             if (closeCalendarOnChange) setCalendarVisible(false);
                             onChange(format(next, 'MM/dd/yyyy'));
                         }}
-                        value={activeDate}
+                        value={selectedDate}
                     />
                 </div>
             )}
