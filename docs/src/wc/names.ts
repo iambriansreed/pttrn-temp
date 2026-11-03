@@ -9,6 +9,7 @@ export const webComponents: string[] = [
     'Card',
     'Chip',
     'ChipGroup',
+    'EmptyState',
     'Fab',
     'InlineAlert',
 ];

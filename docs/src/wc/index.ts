@@ -5,6 +5,7 @@ import { buttonWc } from 'src/wc/button';
 import { cardWc } from 'src/wc/card';
 import { chipWc } from 'src/wc/chip';
 import { chipGroupWc } from 'src/wc/chip-group';
+import { emptyStateWc } from 'src/wc/empty-state';
 import { fabWc } from 'src/wc/fab';
 import { inlineAlertWc } from 'src/wc/inline-alert';
 import { webComponents as webComponentNames } from 'src/wc/names';
@@ -21,6 +22,7 @@ export const webComponents: Partial<Record<MetaComponentName, WebComponentDemo>>
     Card: cardWc,
     Chip: chipWc,
     ChipGroup: chipGroupWc,
+    EmptyState: emptyStateWc,
     Fab: fabWc,
     InlineAlert: inlineAlertWc,
 };

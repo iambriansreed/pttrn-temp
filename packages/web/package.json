@@ -56,6 +56,10 @@
             "types": "./dist/components/ChipGroup/index.d.ts",
             "default": "./dist/components/ChipGroup/index.js"
         },
+        "./EmptyState": {
+            "types": "./dist/components/EmptyState/index.d.ts",
+            "default": "./dist/components/EmptyState/index.js"
+        },
         "./Fab": {
             "types": "./dist/components/Fab/index.d.ts",
             "default": "./dist/components/Fab/index.js"
