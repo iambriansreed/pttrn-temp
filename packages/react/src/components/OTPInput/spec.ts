@@ -86,6 +86,11 @@ export const spec: ComponentSpec = {
                 'Pasting fills the cells from the focused one on, drops what does not fit, moves focus after the last pasted character and calls onChange when the code is complete.',
         },
         {
+            id: 'paste-filters',
+            description:
+                'Pasting keeps only the characters the input accepts: digits in numeric mode, letters and digits in alphanumeric mode, so "123-456" fills six cells and a pasted letter never reaches a numeric input.',
+        },
+        {
             id: 'focus-order',
             description:
                 'Only the filled cells and the next empty one are in the tab order; clicking a cell past them focuses the next empty one.',

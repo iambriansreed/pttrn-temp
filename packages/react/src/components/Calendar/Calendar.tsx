@@ -195,7 +195,7 @@ export function Calendar({ id, value: valueProp, onChange, focusTrap = false }: 
                                 const isSelected = !!value && isSameDay(date, value);
                                 return (
                                     <td
-                                        aria-label={format(date, 'do MMMM yyyy')}
+                                        aria-label={format(date, 'd MMMM yyyy')}
                                         aria-selected={isSelected || undefined}
                                         data-selected={isSelected || undefined}
                                         id={optionId}
