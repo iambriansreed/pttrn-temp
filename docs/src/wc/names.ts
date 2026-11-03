@@ -26,6 +26,7 @@ export const webComponents: string[] = [
     'InputNumber',
     'ListItem',
     'Menu',
+    'Modal',
     'PageControl',
     'Pagination',
     'Password',

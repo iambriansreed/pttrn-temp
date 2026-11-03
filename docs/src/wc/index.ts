@@ -22,6 +22,7 @@ import { inputWc } from 'src/wc/input';
 import { inputNumberWc } from 'src/wc/input-number';
 import { listItemWc } from 'src/wc/list-item';
 import { menuWc } from 'src/wc/menu';
+import { modalWc } from 'src/wc/modal';
 import { webComponents as webComponentNames } from 'src/wc/names';
 import { pageControlWc } from 'src/wc/page-control';
 import { paginationWc } from 'src/wc/pagination';
@@ -73,6 +74,7 @@ export const webComponents: Partial<Record<MetaComponentName, WebComponentDemo>>
     InputNumber: inputNumberWc,
     ListItem: listItemWc,
     Menu: menuWc,
+    Modal: modalWc,
     PageControl: pageControlWc,
     Pagination: paginationWc,
     Password: passwordWc,

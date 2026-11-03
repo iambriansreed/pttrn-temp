@@ -124,6 +124,10 @@
             "types": "./dist/components/Menu/index.d.ts",
             "default": "./dist/components/Menu/index.js"
         },
+        "./Modal": {
+            "types": "./dist/components/Modal/index.d.ts",
+            "default": "./dist/components/Modal/index.js"
+        },
         "./PageControl": {
             "types": "./dist/components/PageControl/index.d.ts",
             "default": "./dist/components/PageControl/index.js"

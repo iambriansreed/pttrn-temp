@@ -21,6 +21,7 @@ export * from './components/Input';
 export * from './components/InputNumber';
 export * from './components/ListItem';
 export * from './components/Menu';
+export * from './components/Modal';
 export * from './components/PageControl';
 export * from './components/Pagination';
 export * from './components/Password';
