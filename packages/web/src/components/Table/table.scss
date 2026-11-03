@@ -1,0 +1,454 @@
+@use '../../styles/reset';
+
+// The host sizes like the React root: as wide as its container, and never wider.
+:host {
+    display: block;
+    min-width: 100%;
+    max-width: 100%;
+}
+
+[data-sr-only] {
+    height: 1px;
+    overflow: hidden;
+    position: absolute !important;
+    width: 1px;
+    clip: rect(1px, 1px, 1px, 1px);
+}
+
+/*
+ * The USWDS table (usa-table, striped): every cell bordered in ink, a gray header row, odd rows striped, the sorted
+ * column tinted. Colors come from the USWDS Design Kit's table tokens, so every theme restyles it. The same rules as the
+ * React table (packages/react/src/components/Table/table.scss).
+ */
+[data-pttrn='table'] {
+    /*! --template-columns: is set via inline style */
+
+    --white-background: var(--component-table-background-color);
+    --grey-background: var(--component-table-stripe-background-color);
+    --header-background: var(--component-table-header-background-color);
+    --border: var(--usa-spacing-1px) solid var(--component-table-border-color);
+    --icon-size: var(--usa-spacing-205);
+
+    // The React base stylesheet sets this on :root; a shadow root carries its own.
+    --z-index-focus: 9999;
+
+    display: block;
+    min-width: 100%;
+
+    // Never wider than its container, so a wide table scrolls inside itself even in a centered or flex layout.
+    max-width: 100%;
+    overflow: auto hidden;
+    text-align: left;
+    color: var(--component-table-text-color);
+    font: 400 var(--theme-body-font-size) / 1.5 var(--usa-font-family-body);
+
+    /* [data-size='medium'] */
+    --min-height: var(--usa-spacing-5);
+    --padding-y: var(--usa-spacing-1);
+
+    &[data-size='x-large'] {
+        --min-height: var(--usa-spacing-7);
+        --padding-y: var(--usa-spacing-2);
+    }
+
+    &[data-size='large'] {
+        --min-height: var(--usa-spacing-6);
+        --padding-y: var(--usa-spacing-105);
+    }
+
+    &[data-size='small'] {
+        --min-height: var(--usa-spacing-4);
+        --padding-y: var(--usa-spacing-05);
+    }
+
+    [data-scroll-container] {
+        width: fit-content;
+        min-width: 100%;
+    }
+
+    table {
+        display: grid;
+        grid-template-columns: var(--template-columns);
+        border-collapse: collapse;
+        min-width: 100%;
+
+        tr,
+        tbody,
+        thead {
+            display: contents;
+        }
+
+        // Above the grid, outside the borders, as USWDS places it.
+        caption {
+            grid-column: 1 / -1;
+            display: flex;
+            flex-direction: row;
+            justify-content: start;
+            align-items: center;
+            font: 700 var(--theme-body-font-size) / 1.5 var(--usa-font-family-body);
+            padding-bottom: var(--usa-spacing-105);
+            overflow: hidden;
+        }
+
+        // A grid does not collapse borders, so each cell draws its right and bottom edge, the header row its top
+        // edge and the first column its left edge.
+        th,
+        td {
+            border-right: var(--border);
+            border-bottom: var(--border);
+
+            &:first-child {
+                border-left: var(--border);
+            }
+        }
+
+        th {
+            display: flex;
+            min-height: var(--min-height);
+            overflow: hidden;
+            flex-direction: row;
+            background: var(--header-background);
+            color: var(--component-table-header-text-color);
+            font: 700 var(--theme-body-font-size) / 1.3 var(--usa-font-family-body);
+            border-top: var(--border);
+            white-space: nowrap;
+            z-index: 1;
+            position: relative;
+
+            &[aria-sort='ascending'],
+            &[aria-sort='descending'] {
+                --header-background: var(--component-table-sorted-header-background-color);
+            }
+
+            &:not([data-sortable]) {
+                padding: calc(var(--padding-y) + var(--usa-spacing-2px)) var(--usa-spacing-2);
+                pointer-events: none;
+            }
+
+            &[data-sortable] {
+                button {
+                    display: flex;
+                    min-height: var(--min-height);
+                    border: none;
+                    overflow: hidden;
+                    flex-direction: row;
+                    padding: calc(var(--padding-y) + var(--usa-spacing-2px)) var(--usa-spacing-2);
+                    background: var(--header-background);
+                    color: inherit;
+                    align-items: center;
+                    justify-content: space-between;
+                    gap: var(--usa-spacing-1);
+                    width: 100%;
+                    cursor: pointer;
+                    font: inherit;
+                    outline: none;
+                    position: relative;
+
+                    &:hover {
+                        background:
+                            linear-gradient(
+                                var(--usa-color-black-transparent-10),
+                                var(--usa-color-black-transparent-10)
+                            ),
+                            linear-gradient(var(--header-background), var(--header-background));
+                    }
+
+                    &:active {
+                        background:
+                            linear-gradient(
+                                var(--usa-color-black-transparent-20),
+                                var(--usa-color-black-transparent-20)
+                            ),
+                            linear-gradient(var(--header-background), var(--header-background));
+                    }
+
+                    [data-sort-icon] {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+
+                        svg {
+                            width: var(--icon-size);
+                        }
+                    }
+
+                    &:focus-visible {
+                        position: absolute;
+                        z-index: var(--z-index-focus);
+                        inset: 0;
+                        outline: solid var(--usa-spacing-2px) var(--theme-global-focus-color);
+                        isolation: isolate;
+                    }
+                }
+            }
+
+            &[data-align='right'] {
+                align-items: flex-end;
+
+                button {
+                    justify-content: flex-end;
+                }
+            }
+
+            &[data-align='center'] {
+                align-items: center;
+
+                button {
+                    justify-content: center;
+                }
+            }
+
+            &[data-align='left'] {
+                align-items: flex-start;
+
+                button {
+                    justify-content: space-between;
+                }
+            }
+        }
+
+        td {
+            display: flex;
+            min-height: var(--min-height);
+            overflow: hidden;
+            padding: calc(var(--padding-y) + var(--usa-spacing-2px)) var(--usa-spacing-2);
+            flex-direction: column;
+            background: var(--white-background);
+            font: inherit;
+
+            &[data-align='right'] {
+                align-items: flex-end;
+            }
+
+            &[data-align='center'] {
+                align-items: center;
+            }
+
+            &[data-align='left'] {
+                align-items: flex-start;
+            }
+
+            &[data-valign='top'] {
+                justify-content: flex-start;
+            }
+
+            &[data-valign='bottom'] {
+                justify-content: flex-end;
+            }
+
+            &[data-valign='center'] {
+                justify-content: center;
+            }
+
+            p {
+                margin: 0;
+                padding: 0;
+                font: inherit;
+            }
+
+            &[data-sorted] {
+                --white-background: var(--component-table-sorted-background-color);
+                --grey-background: var(--component-table-sorted-stripe-background-color);
+            }
+        }
+
+        tbody tr:nth-child(odd) td {
+            background: var(--grey-background);
+            color: var(--component-table-stripe-text-color);
+        }
+    }
+
+    [data-pagination] {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: var(--usa-spacing-105) var(--usa-spacing-2);
+        width: 100%;
+
+        [data-pagination-label] {
+            font: inherit;
+            min-width: fit-content;
+        }
+    }
+}
+
+/*
+ * The pager: the React Pagination in the table footer (small tertiary buttons, the current page a primary one, and a
+ * medium page number field past seven pages), drawn here because aria-labelledby cannot reach into another element's
+ * shadow root.
+ */
+[data-pager] {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: var(--usa-spacing-05);
+    flex: 0 1 0%;
+
+    button {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        gap: var(--usa-spacing-1);
+        border: none;
+        cursor: pointer;
+        background: transparent;
+        text-decoration: none;
+        width: fit-content;
+        font-family: var(--usa-font-family-body);
+        font-size: var(--usa-font-size-sans-3);
+        line-height: 20px;
+        height: var(--usa-spacing-4);
+        min-width: var(--usa-spacing-4);
+        padding: 6px 0;
+        color: var(--theme-color-base-dark);
+
+        [data-button-icon] {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            svg {
+                width: var(--usa-spacing-205);
+                height: var(--usa-spacing-205);
+            }
+        }
+
+        [data-button-label] {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        &[disabled] {
+            cursor: not-allowed;
+            color: var(--theme-color-disabled-dark);
+        }
+
+        &:not([disabled]) {
+            &:hover {
+                background: var(--usa-color-black-transparent-10);
+            }
+
+            &:active {
+                background: var(--usa-color-black-transparent-20);
+            }
+
+            &:focus-visible {
+                outline: solid var(--usa-spacing-2px) var(--theme-global-focus-color);
+                isolation: isolate;
+            }
+        }
+
+        // The current page is a primary button.
+        &[aria-current='page'] {
+            --primary-background: var(--theme-color-primary-medium);
+
+            background-color: var(--primary-background);
+            color: var(--usa-color-white);
+            border-radius: var(--theme-border-radius-md);
+
+            &:hover {
+                background:
+                    linear-gradient(var(--usa-color-black-transparent-10), var(--usa-color-black-transparent-10)),
+                    linear-gradient(var(--primary-background), var(--primary-background));
+            }
+
+            &:active {
+                background:
+                    linear-gradient(var(--usa-color-black-transparent-20), var(--usa-color-black-transparent-20)),
+                    linear-gradient(var(--primary-background), var(--primary-background));
+            }
+        }
+    }
+
+    // Invisible hit areas that reach 48px on touch screens, as the React buttons have.
+    [data-touch-target] {
+        display: none;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+        user-select: none;
+        position: absolute;
+        z-index: 1;
+        height: 100%;
+        width: 100%;
+        min-width: var(--usa-spacing-6);
+        min-height: var(--usa-spacing-6);
+    }
+
+    @media (any-pointer: coarse) {
+        [data-touch-target] {
+            display: block;
+        }
+    }
+
+    [data-input-form] {
+        display: contents;
+
+        span {
+            display: block;
+            white-space: nowrap;
+            font: 400 var(--usa-font-size-sans-3) / 20px var(--usa-font-family-body);
+        }
+    }
+
+    [data-input] {
+        --border-color: var(--theme-color-base-medium);
+
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--theme-body-background-color);
+        border: solid var(--usa-spacing-1px) var(--border-color);
+        height: var(--usa-spacing-5);
+        border-radius: var(--theme-border-radius-md);
+        padding: 0 var(--usa-spacing-105);
+        gap: var(--usa-spacing-05);
+        width: 100%;
+        max-width: var(--usa-spacing-6);
+        margin-right: var(--usa-spacing-05);
+
+        &:hover:not(:focus-within) {
+            background:
+                linear-gradient(var(--usa-color-black-transparent-10), var(--usa-color-black-transparent-10)),
+                linear-gradient(var(--theme-body-background-color), var(--theme-body-background-color));
+        }
+
+        &:active:not(:focus-within) {
+            background:
+                linear-gradient(var(--usa-color-black-transparent-20), var(--usa-color-black-transparent-20)),
+                linear-gradient(var(--theme-body-background-color), var(--theme-body-background-color));
+        }
+
+        &:focus-within {
+            --border-color: var(--theme-global-focus-color);
+
+            outline: var(--usa-spacing-1px) solid var(--theme-global-focus-color);
+        }
+
+        input {
+            display: flex;
+            flex: 1;
+            height: var(--usa-spacing-5);
+            min-width: 0;
+            background-color: transparent;
+            border: none;
+            outline: none;
+            padding: 0;
+            text-align: center;
+            text-overflow: ellipsis;
+            font: 400 var(--usa-font-size-sans-5) / 24px var(--usa-font-family-body);
+            color: var(--theme-body-text-color);
+
+            &::-webkit-inner-spin-button,
+            &::-webkit-outer-spin-button {
+                display: none;
+            }
+        }
+    }
+}

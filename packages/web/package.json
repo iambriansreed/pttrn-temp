@@ -43,6 +43,10 @@
         "./ProgressionStepperBar": {
             "types": "./dist/components/ProgressionStepperBar/index.d.ts",
             "default": "./dist/components/ProgressionStepperBar/index.js"
+        },
+        "./Table": {
+            "types": "./dist/components/Table/index.d.ts",
+            "default": "./dist/components/Table/index.js"
         }
     },
     "scripts": {

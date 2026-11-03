@@ -3,6 +3,7 @@ import { accordionWc } from 'src/wc/accordion';
 import { webComponents as webComponentNames } from 'src/wc/names';
 import { progressionStepperWc } from 'src/wc/progression-stepper';
 import { progressionStepperBarWc } from 'src/wc/progression-stepper-bar';
+import { tableWc } from 'src/wc/table';
 import { WebComponentDemo } from 'src/wc/types';
 
 /**
@@ -13,6 +14,7 @@ export const webComponents: Partial<Record<MetaComponentName, WebComponentDemo>>
     Accordion: accordionWc,
     ProgressionStepper: progressionStepperWc,
     ProgressionStepperBar: progressionStepperBarWc,
+    Table: tableWc,
 };
 
 const listed = [...webComponentNames].sort().join(',');
