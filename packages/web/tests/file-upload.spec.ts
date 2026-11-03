@@ -1,5 +1,5 @@
 import AxeBuilder from '@axe-core/playwright';
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test, type FileChooser, type Page } from '@playwright/test';
 import { spec } from '../../react/src/components/FileUpload/spec';
 import { mount } from './mount';
 import { describeBehaviors } from './spec';
@@ -165,17 +165,22 @@ describeBehaviors(spec, {
         expect(ids[0]).not.toBe(ids[1]);
     },
     browse: async ({ page }) => {
+        // Listen before anything happens: adding a filechooser listener turns on the browser's file chooser
+        // interception asynchronously, and a key press sent right after waitForEvent could open the picker first.
+        const choosers: FileChooser[] = [];
+        page.on('filechooser', (chooser) => choosers.push(chooser));
         await mount(page, '<pttrn-file-upload></pttrn-file-upload>');
 
         await page.keyboard.press('Tab');
         await expect(browse(page)).toBeFocused();
-        let chooser = page.waitForEvent('filechooser');
         await page.keyboard.press('Enter');
-        expect((await chooser).isMultiple()).toBe(false);
+        await expect.poll(() => choosers.length).toBe(1);
+        expect(choosers[0].isMultiple()).toBe(false);
+        // Close the first chooser: the browser ignores a second picker while one is still open.
+        await choosers[0].setFiles([]);
 
-        chooser = page.waitForEvent('filechooser');
         await browse(page).click();
-        await chooser;
+        await expect.poll(() => choosers.length).toBe(2);
     },
     'uploads-selection': async ({ page }) => {
         await mount(page, '<pttrn-file-upload></pttrn-file-upload>');

@@ -29,4 +29,17 @@ ol {
     [data-animated] {
         animation: none !important;
     }
+
+    /*
+     * Everything else that moves finishes at once for people who ask for less motion (WCAG 2.3.3): fades, slides and
+     * pulses. A near-zero duration rather than none, so transitionend and animationend still fire.
+     */
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
 }

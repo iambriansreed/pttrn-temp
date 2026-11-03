@@ -33,6 +33,8 @@ test.describe('pttrn-skeleton-text', () => {
     });
 
     test('pulses unless the visitor asks for reduced motion', async ({ page }) => {
+        // The suite runs with reduced motion (playwright.config.ts); this test needs the default first.
+        await page.emulateMedia({ reducedMotion: 'no-preference' });
         await mount(page, PRESETS.Default);
         await expect(placeholder(page)).toHaveCSS('animation-name', 'skeleton-pulse');
         await page.emulateMedia({ reducedMotion: 'reduce' });

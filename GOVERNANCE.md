@@ -71,7 +71,7 @@ Every pull request carries the template's checklist and waits for a review from 
 
 A failing accessibility or visual check is a review, not a flake. Fix the component or the token; never skip, quarantine or loosen a check to get a green build. Intended visual changes go through the "Update visual baselines" workflow and a reviewed diff of the new screenshots.
 
-Branch protection is not turned on for `main` yet, so GitHub itself does not enforce the review or the checks. Turning it on, with these jobs as required status checks, is the first item on the roadmap.
+`main` is protected: these jobs are required status checks, and a pull request merges only when they pass.
 
 ### Porting to Web Components
 
@@ -152,7 +152,6 @@ What is left of the backlog that takes pttrn to its first public release and bey
 
 ### Before the first public release
 
-- Turn on branch protection for `main` with the CI jobs as required checks (maintainer).
 - Decide the permanent home of the repository, then repoint every link, `repository` field and the Pages domain in one change. Links say `github.com/pttrn/pttrn` until then (maintainer).
 - npm: confirm the `ptrn` organization, two-factor authentication and trusted publishing (or an `NPM_TOKEN`), then set `PTTRN_PUBLISH` (maintainer).
 - Confirm who owns the Google Analytics tag in `docs/index.html`, or remove it (maintainer).

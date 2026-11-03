@@ -1,0 +1,105 @@
+@use '../../styles/reset';
+
+// The host steps out of the layout, so the link is laid out as React's anchor is.
+:host {
+    display: contents;
+}
+
+[data-sr-only] {
+    height: 1px;
+    overflow: hidden;
+    position: absolute !important;
+    width: 1px;
+    clip: rect(1px, 1px, 1px, 1px);
+}
+
+// React's `%link` and `[data-pttrn='link']` rules from its base stylesheet.
+[data-pttrn='link'] {
+    color: var(--component-link-color);
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--usa-spacing-05);
+    font: 500 var(--usa-font-size-sans-5) / 24px var(--usa-font-family-ui);
+
+    &:not([disabled]) {
+        &:hover {
+            color: var(--component-link-hover-color);
+        }
+
+        &:active {
+            color: var(--component-link-color);
+            filter: brightness(80%);
+        }
+
+        &:visited {
+            color: var(--component-link-visited-color);
+        }
+    }
+
+    &[disabled] {
+        pointer-events: none;
+        cursor: text;
+        color: var(--theme-color-disabled-dark);
+    }
+
+    &[data-subtle] {
+        text-decoration: none;
+        color: var(--theme-body-text-color);
+
+        &:not([disabled]) {
+            &:hover,
+            &:active {
+                text-decoration: underline;
+                color: var(--theme-color-ink);
+            }
+
+            &:visited {
+                color: var(--theme-body-text-color);
+            }
+        }
+
+        &[disabled] {
+            pointer-events: none;
+            color: var(--theme-color-disabled-dark);
+        }
+    }
+
+    &[data-subtle-inverse] {
+        text-decoration: none;
+        color: var(--theme-color-ink-reverse);
+
+        &:not([disabled]) {
+            &:hover {
+                text-decoration: underline;
+                color: var(--component-link-reverse-hover-color);
+            }
+
+            &:active {
+                text-decoration: underline;
+                color: var(--component-link-reverse-active-color);
+            }
+
+            &:visited {
+                color: var(--theme-color-ink-reverse);
+            }
+        }
+
+        &[disabled] {
+            pointer-events: none;
+            color: var(--theme-color-disabled-light);
+        }
+    }
+
+    &[data-size='large'] {
+        font: 500 var(--usa-font-size-sans-7) / 28px var(--usa-font-family-ui);
+    }
+
+    &[data-size='small'] {
+        font: 500 var(--usa-font-size-sans-3) / 20px var(--usa-font-family-ui);
+    }
+
+    svg {
+        width: var(--usa-spacing-205);
+    }
+}

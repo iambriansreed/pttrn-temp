@@ -8,6 +8,7 @@ One line per component, in name order:
 
 - `pttrn-accordion`, `pttrn-accordion-item`
 - `pttrn-avatar`
+- `pttrn-avatar-group`
 - `pttrn-badge`
 - `pttrn-badge-dot`
 - `pttrn-banner-alert`
@@ -16,8 +17,12 @@ One line per component, in name order:
 - `pttrn-calendar`
 - `pttrn-card`
 - `pttrn-carousel`
+- `pttrn-checkbox`
+- `pttrn-checkbox-group`, `pttrn-checkbox-group-item`
+- `pttrn-checkbox-option`
 - `pttrn-chip`
 - `pttrn-chip-group`
+- `pttrn-date-picker`
 - `pttrn-divider`
 - `pttrn-empty-state`
 - `pttrn-fab`
@@ -27,11 +32,14 @@ One line per component, in name order:
 - `pttrn-input`
 - `pttrn-input-number`
 - `pttrn-input-phone`
+- `pttrn-link`
 - `pttrn-list-item`
 - `pttrn-otp-input`
 - `pttrn-page-control`
 - `pttrn-pagination`
 - `pttrn-password`
+- `pttrn-progress-bar`
+- `pttrn-progress-circle`
 - `pttrn-progression-stepper`, `pttrn-progression-stepper-item`
 - `pttrn-progression-stepper-bar`
 - `pttrn-radio-group`, `pttrn-radio-group-item`
@@ -47,6 +55,7 @@ One line per component, in name order:
 - `pttrn-table`
 - `pttrn-tag`
 - `pttrn-textarea`
+- `pttrn-time-picker`
 - `pttrn-tooltip`
 - `pttrn-txt`
 

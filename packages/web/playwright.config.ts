@@ -13,6 +13,9 @@ export default defineConfig({
     retries: process.env.CI ? 2 : 0,
     reporter: process.env.CI ? [['list'], ['html', { open: 'never' }]] : 'list',
     use: {
+        // Fades finish at once (the reset honors reduced motion), so axe and assertions see the settled state rather
+        // than a menu half faded in, which a slow CI runner reported as low contrast.
+        reducedMotion: 'reduce',
         ...(executablePath ? { launchOptions: { executablePath } } : {}),
     },
     projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],

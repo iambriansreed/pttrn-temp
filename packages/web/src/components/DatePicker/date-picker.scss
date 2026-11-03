@@ -1,0 +1,42 @@
+@use '../../styles/reset';
+@use '../../styles/field';
+@use '../../styles/button';
+@use '../../styles/input-box';
+@use '../../styles/tooltip-box' as tooltip;
+
+:host {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+// The same rules as the React date picker (packages/react/src/components/DatePicker/date-picker.scss).
+[data-pttrn='date-picker'] {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+
+    [data-pttrn='input'] {
+        padding-right: 0;
+    }
+}
+
+// The calendar popup, a popover in the top layer; `place()` sets top and left, so the UA popover box is undone.
+[data-pttrn='calendar-popup'] {
+    position: fixed;
+    inset: auto;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    overflow: visible;
+    color: inherit;
+    border-radius: var(--theme-border-radius-lg);
+    box-shadow: var(--card-shadow);
+    width: fit-content;
+}
+
+[data-pttrn='tooltip'] {
+    @include tooltip.tooltip;
+}

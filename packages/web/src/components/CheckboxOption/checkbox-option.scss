@@ -1,0 +1,11 @@
+@use '../../styles/reset';
+@use '../../styles/option';
+@use '../../styles/checkbox';
+
+:host {
+    display: block;
+}
+
+:host([hidden]) {
+    display: none;
+}
