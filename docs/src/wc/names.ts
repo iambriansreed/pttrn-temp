@@ -27,6 +27,7 @@ export const webComponents: string[] = [
     'PageControl',
     'Pagination',
     'Password',
+    'Popover',
     'ProgressionStepper',
     'ProgressionStepperBar',
     'RadioGroup',

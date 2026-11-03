@@ -30,6 +30,7 @@ One line per component, in name order:
 - `pttrn-page-control`
 - `pttrn-pagination`
 - `pttrn-password`
+- `pttrn-popover`
 - `pttrn-progression-stepper`, `pttrn-progression-stepper-item`
 - `pttrn-progression-stepper-bar`
 - `pttrn-radio-group`, `pttrn-radio-group-item`
