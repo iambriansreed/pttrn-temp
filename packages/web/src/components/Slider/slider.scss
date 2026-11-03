@@ -1,0 +1,140 @@
+@use '../../styles/reset';
+
+:host {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+// The rules of the React slider.scss, with the Txt variants of its labels.
+[data-pttrn='slider'] {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    gap: 10px;
+
+    [data-top-labels],
+    [data-bottom-labels] {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        user-select: none;
+        color: var(--theme-color-base-dark);
+        overflow-wrap: break-word;
+    }
+
+    // Txt labels-small
+    [data-label] {
+        font: 500 var(--usa-font-size-sans-3) / 20px var(--usa-font-family-ui);
+    }
+
+    // Txt body-base
+    [data-value-label] {
+        font: 400 var(--usa-font-size-sans-5) / 24px var(--usa-font-family-body);
+    }
+
+    // Txt body-small
+    [data-min-label],
+    [data-max-label] {
+        font: 400 var(--usa-font-size-sans-3) / 20px var(--usa-font-family-body);
+    }
+
+    [data-slider-parent] {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+    }
+
+    [data-slider-body] {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        touch-action: none;
+    }
+
+    [data-slider-background] {
+        position: absolute;
+        background: var(--theme-color-base-lighter);
+        height: var(--usa-spacing-05);
+        border-radius: var(--usa-spacing-2px);
+        left: 0;
+        right: 0;
+        cursor: pointer;
+    }
+
+    [data-slider-fill] {
+        position: absolute;
+        height: var(--usa-spacing-05);
+        background-color: var(--theme-color-primary-medium);
+        border-radius: var(--usa-spacing-2px);
+        left: 0;
+        cursor: pointer;
+    }
+
+    [data-slider-knob] {
+        position: absolute;
+        border: var(--usa-spacing-1px) solid var(--theme-color-base-lighter);
+        border-radius: 50%;
+        width: var(--usa-spacing-2);
+        height: var(--usa-spacing-2);
+        background-color: var(--usa-color-white);
+        box-sizing: border-box;
+        box-shadow: 0 0 3px 0 rgba(0 0 0 / 32%);
+        cursor: pointer;
+        touch-action: none;
+    }
+
+    [data-slider-knob]:focus-visible {
+        outline: var(--usa-spacing-2px) solid var(--theme-global-focus-color);
+    }
+
+    [data-interval-dot] {
+        position: absolute;
+        width: 2px;
+        height: 2px;
+        background-color: var(--theme-color-base-dark);
+        transform: translate(-50%) rotate(45deg);
+    }
+
+    [data-interval-dot][data-filled-section] {
+        background-color: var(--usa-color-white);
+    }
+
+    &[data-disabled],
+    &[data-readonly] {
+        [data-slider-knob] {
+            cursor: default;
+        }
+
+        [data-interval-dot] {
+            background-color: var(--theme-color-disabled-dark);
+        }
+
+        [data-interval-dot][data-filled-section] {
+            background-color: var(--usa-color-white);
+        }
+
+        [data-slider-fill] {
+            background-color: var(--theme-color-disabled-dark);
+            cursor: default;
+        }
+
+        [data-slider-background] {
+            background: var(--usa-color-black-transparent-10);
+            cursor: default;
+        }
+    }
+
+    &[data-disabled] {
+        [data-bottom-labels] {
+            color: var(--theme-color-disabled-dark);
+        }
+
+        [data-value-label] {
+            color: var(--theme-color-disabled-dark);
+        }
+    }
+}

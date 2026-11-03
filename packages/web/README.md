@@ -40,6 +40,7 @@ One line per component, in name order:
 - `pttrn-segmented-control`, `pttrn-segmented-control-item`
 - `pttrn-skeleton`
 - `pttrn-skeleton-text`
+- `pttrn-slider`
 - `pttrn-switch`
 - `pttrn-switch-option`
 - `pttrn-tab-group`, `pttrn-tab-group-item`

@@ -168,6 +168,10 @@
             "types": "./dist/components/SkeletonText/index.d.ts",
             "default": "./dist/components/SkeletonText/index.js"
         },
+        "./Slider": {
+            "types": "./dist/components/Slider/index.d.ts",
+            "default": "./dist/components/Slider/index.js"
+        },
         "./Switch": {
             "types": "./dist/components/Switch/index.d.ts",
             "default": "./dist/components/Switch/index.js"

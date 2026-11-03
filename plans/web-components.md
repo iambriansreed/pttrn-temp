@@ -290,3 +290,16 @@ The country list reuses the SearchBar's `_menu.scss` popover, anchored to the fi
 | none                                    | `name`: an interactive rating submits the chosen number with its form  |
 
 A function prop cannot be an attribute, so `interactive` turns the image into the radio group of stars. The element follows `value` when it changes; the React Rating keeps the value it mounted with (`useControlledState` reads its initial value only), so its docs demo shows the previous stars after a preset switch.
+
+### Slider
+
+| React                                               | Web Component                                                              |
+| --------------------------------------------------- | -------------------------------------------------------------------------- |
+| `label`, `min`, `max`, `step`, `marks`, `name`      | `label`, `min`, `max`, `step`, `marks`, `name`                             |
+| `value` (number or `[start, end]`)                  | `value` (`"30"` or `"70,80"` as an attribute, a number or array as a property) |
+| `onChange(value)`                                   | `pttrn-change` (`detail.value`)                                            |
+| `formatNumber(value, context)`                      | the `formatNumber` JavaScript property                                     |
+| `disabled`, `readOnly`                              | `disabled`, `readonly`                                                     |
+| hidden input with `name`                            | the form value (ElementInternals): the value, or "start,end"               |
+
+Where React and the spec differ, the element follows the spec: the range knobs' `aria-valuetext` is formatted with `formatNumber` too ("formatNumber formats the values that are read and shown"; React reads them raw). The marks are placed from `min` and are white inside the filled part for a range as well (React's dots count from 0 and, for a range, whiten those below the start). A press on the track moves the nearest knob and keeps dragging it, with pointer events, so touch works too.

@@ -38,6 +38,7 @@ export const webComponents: string[] = [
     'SegmentedControl',
     'Skeleton',
     'SkeletonText',
+    'Slider',
     'Switch',
     'SwitchOption',
     'TabGroup',
