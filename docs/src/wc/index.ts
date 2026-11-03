@@ -1,5 +1,6 @@
 import { MetaComponentName } from 'src/meta';
 import { accordionWc } from 'src/wc/accordion';
+import { bannerAlertWc } from 'src/wc/banner-alert';
 import { buttonWc } from 'src/wc/button';
 import { chipWc } from 'src/wc/chip';
 import { chipGroupWc } from 'src/wc/chip-group';
@@ -14,6 +15,7 @@ import { WebComponentDemo } from 'src/wc/types';
  */
 export const webComponents: Partial<Record<MetaComponentName, WebComponentDemo>> = {
     Accordion: accordionWc,
+    BannerAlert: bannerAlertWc,
     Button: buttonWc,
     Chip: chipWc,
     ChipGroup: chipGroupWc,
