@@ -3,7 +3,6 @@ import { define } from '../../utils/define';
 import { slotHasContent } from '../../utils/slot';
 import styles from './badge.scss';
 
-
 /**
  * Visual indicator for new items within a parent page represented with a numerical count of new items.
  *
