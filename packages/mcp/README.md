@@ -39,7 +39,7 @@ Then ask for what you want: "Build a sign-in form with an email field, a passwor
 
 `validate_code` reports:
 
-- imports from `@ptrn/react` or `@ptrn/icons` that do not exist, and icons imported without their `Svg` prefix;
+- imports from `@ptrn/react` or `@ptrn/icons` that do not exist, imports through the library's internal `-/` alias, and icons imported without their `Svg` prefix;
 - components used without an import;
 - props a component does not have, values outside a prop's allowed set, and missing required props;
 - hardcoded colors, and pixel spacing that has a token;
@@ -60,4 +60,6 @@ npm test             # unit tests, plus a real MCP client against the real serve
 npm run lint         # typecheck
 ```
 
-`build:data` reads `docs/src/meta/data.json` (generating it with `npm run meta` if it is missing), `packages/icons/icon-aliases.json` and the `packages/styles` token and theme stylesheets. It runs `validate_code` over each docs usage example and does not serve any that disagree with their component's props, listing them so they can be fixed in the docs.
+`build:data` reads `docs/src/meta/data.json` (generating it with `npm run meta` if it is missing), `packages/icons/icon-aliases.json` and the `packages/styles` token and theme stylesheets. It runs `validate_code` over each docs usage example. One that disagrees with its component's props is not served, and the build fails and lists it, so it is fixed where it lives (the component's `@example` JSDoc) instead of quietly disappearing.
+
+`scripts/agent-docs.ts` renders `DESIGN.md` and `llms.txt` from the same catalog, the guide, the server's tools and the validator's rules. The docs site serves both at its root, and `@ptrn/react` ships DESIGN.md.

@@ -27,6 +27,40 @@ describe('src/core/catalog.test.ts - built catalog stays in sync', () => {
         assert.deepEqual(variant?.options, ['primary', 'secondary', 'tertiary']);
     });
 
+    // Unions the schema generator leaves as `anyOf` (`SizingPixels | SizingPixels[]`, csstype keyword unions) used to
+    // come through as `unknown`, so the validator could not check their values.
+    test('gives every prop a type', () => {
+        const unknown = catalog.components.flatMap((c) =>
+            c.props.filter((p) => p.type === 'unknown').map((p) => `${c.name}.${p.name}`),
+        );
+        assert.deepEqual(unknown, []);
+    });
+
+    test('checks the values of Flex align, justify and padding', () => {
+        const flex = catalog.components.find((c) => c.name === 'Flex');
+        const options = (name: string) => flex?.props.find((p) => p.name === name)?.options ?? [];
+        assert.ok(options('align').includes('center'));
+        assert.ok(options('justify').includes('space-between'));
+        assert.ok(options('padding').includes('16'));
+
+        const { issues } = validateCode(
+            catalog,
+            `import { Flex } from '@ptrn/react/Flex';\n<Flex align="middle" justify="between" padding="15" />`,
+        );
+        assert.deepEqual(
+            issues.map((i) => i.rule),
+            ['invalid-prop-value', 'invalid-prop-value', 'invalid-prop-value'],
+        );
+    });
+
+    test('carries each component phase and leaves out docs-only components', () => {
+        assert.equal(catalog.components.find((c) => c.name === 'Button')?.phase, 'Stable');
+        assert.equal(
+            catalog.components.find((c) => c.name === 'ExamplePlaceholder'),
+            undefined,
+        );
+    });
+
     test('groups tokens and carries their values in other themes', () => {
         assert.ok(catalog.tokens.some((t) => t.kind === 'spacing'));
         assert.ok(catalog.tokens.some((t) => t.themes?.['project-theme-dark'] !== undefined));

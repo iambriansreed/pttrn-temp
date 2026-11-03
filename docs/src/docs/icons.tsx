@@ -14,9 +14,10 @@ import { useUIContext } from '@ptrn/react/hooks/useUIContext';
 import { cssWithVars } from '@ptrn/react/utils/cwv';
 import { isDarkTheme } from '@ptrn/react/utils/uiContext';
 import { Fragment, HTMLProps, ReactNode, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { Page } from 'components/Page';
 import { Syntax } from 'src/components/Syntax';
-import { ICON_META, IconMeta, IconName, ICONS } from 'src/utils/icons';
+import { ICON_META, IconMeta, IconName, ICONS, isIconName } from 'src/utils/icons';
 
 import 'src/docs/icons.scss';
 
@@ -30,7 +31,20 @@ export function Icons() {
         type?: IconType | 'all';
     }>({});
 
-    const [selectedIcon, setSelectedIcon] = useState<IconName | null>(null);
+    // The open icon lives in the address (?icon=Name), so the site search and shared links can open one.
+    const [searchParams, setSearchParams] = useSearchParams();
+    const iconParam = searchParams.get('icon');
+    const selectedIcon = iconParam && isIconName(iconParam) ? iconParam : null;
+    const setSelectedIcon = (name: IconName | null) =>
+        setSearchParams(
+            (params) => {
+                const next = new URLSearchParams(params);
+                if (name) next.set('icon', name);
+                else next.delete('icon');
+                return next;
+            },
+            { replace: true },
+        );
 
     const filtered = ICONS.filter((icon) => {
         // don't show duplicate icons filled or unfilled

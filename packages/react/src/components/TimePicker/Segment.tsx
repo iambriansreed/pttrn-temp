@@ -13,6 +13,8 @@ export type TimePickerSegmentProps<T extends string> = {
     disabled?: boolean;
     /** Marks the segment aria-invalid, so it is announced as invalid when it takes focus. */
     invalid?: boolean;
+    /** The segment's DOM id. Defaults to name; the TimePicker passes its own id so two pickers never share one. */
+    id?: string;
     name: string;
     readOnly?: boolean;
     value?: T;
@@ -30,6 +32,7 @@ export type TimePickerSegmentProps<T extends string> = {
 export function TimePickerSegment<T extends string>({
     disabled,
     invalid,
+    id,
     name,
     readOnly,
     value: valueProp,
@@ -202,7 +205,7 @@ export function TimePickerSegment<T extends string>({
             data-input
             data-type={kind}
             data-value={valueProp || undefined}
-            id={`${name}`}
+            id={id || name}
             inputMode={kind === 'meridiem' ? 'text' : 'numeric'}
             onBlur={handleBlur}
             onClick={() => {

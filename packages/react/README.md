@@ -24,6 +24,12 @@ import '@ptrn/styles/fonts.css';
 import { StylesProvider } from '@ptrn/react/StylesProvider';
 ```
 
+## For coding agents
+
+`DESIGN.md` in this package describes the system for an AI: setup, the import and token rules, and every component
+with its import path. The [MCP server](https://www.npmjs.com/package/@ptrn/mcp) (`npx -y @ptrn/mcp`) gives an AI
+client the full catalog and checks the code it writes.
+
 ## Testing
 
 To test all components

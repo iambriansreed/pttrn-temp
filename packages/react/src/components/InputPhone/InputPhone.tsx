@@ -71,7 +71,7 @@ export type InputPhoneProps = Omit<FieldControlProps<string, SupportedCountryCod
  * For a more complete example with field usage, see the InputPhoneField component.
  *
  * @example
- *     import { InputPhone } from '-/components/InputPhone';
+ *     import { InputPhone } from '@ptrn/react/InputPhone';
  *
  *     () => {
  *         const [value, onChange] = useState<string | undefined>();

@@ -15,6 +15,8 @@ export type RouteLink = Omit<RouteObject, 'children'> & {
     noIndex?: boolean;
     hideSideNav?: boolean;
     hideTitle?: boolean;
+    /** The markdown a page renders, so the site search can index it by its headings. */
+    markdown?: string;
 };
 
 /**
