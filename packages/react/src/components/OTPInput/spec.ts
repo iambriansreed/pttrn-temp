@@ -66,6 +66,11 @@ export const spec: ComponentSpec = {
                 'Letters are rejected and the input mode is numeric unless alphanumeric, which accepts them with a text input mode.',
         },
         {
+            id: 'numeric-shifted-keys',
+            description:
+                'Unless alphanumeric, a letter typed with Shift is rejected like any other, as is one that reaches the cell without a readable key (a virtual keyboard or an IME); a digit typed with Shift, as on a French keyboard, is accepted.',
+        },
+        {
             id: 'backspace',
             description:
                 'Backspace clears the cell and stays; on an empty cell it clears the previous cell and moves to it.',
