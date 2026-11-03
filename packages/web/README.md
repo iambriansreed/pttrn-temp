@@ -10,6 +10,7 @@ One line per component, in name order:
 - `pttrn-badge`
 - `pttrn-badge-dot`
 - `pttrn-divider`
+- `pttrn-skeleton`
 - `pttrn-txt`
 
 ## Use it from a CDN

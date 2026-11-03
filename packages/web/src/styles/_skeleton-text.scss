@@ -1,18 +1,6 @@
 // The SkeletonText placeholder, shared by pttrn-skeleton-text and pttrn-txt. @ptrn/react has the same rules in its
-// global base stylesheet. It carries `data-animated`, so the shared reset stops the pulse under reduced motion.
-@keyframes skeleton-pulse {
-    0% {
-        opacity: 0.8;
-    }
-
-    50% {
-        opacity: 0.4;
-    }
-
-    100% {
-        opacity: 0.8;
-    }
-}
+// global base stylesheet.
+@use 'skeleton-pulse';
 
 [data-pttrn='skeleton-text'] {
     /*!
