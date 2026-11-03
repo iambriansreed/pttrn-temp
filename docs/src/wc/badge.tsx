@@ -1,19 +1,17 @@
+import '@ptrn/web/Avatar';
 import '@ptrn/web/Badge';
-import { Avatar } from '@ptrn/react/Avatar';
 import { BadgeProps } from '@ptrn/react/Badge';
 import { ComponentType } from 'react';
-import { renderToStaticMarkup } from 'react-dom/server';
 import { version as webVersion } from '../../../packages/web/package.json';
 import { WebComponentDemo } from 'src/wc/types';
 
-/** The element as a React component for the demo. A boolean attribute is '' for on and undefined for off. */
+/** The elements as React components for the demo. A boolean attribute is '' for on and undefined for off. */
 const PttrnBadge = 'pttrn-badge' as unknown as ComponentType<any>;
+const PttrnAvatar = 'pttrn-avatar' as unknown as ComponentType<any>;
 
-/**
- * What the badge is attached to in the React example (`BadgeExample.tsx`): an avatar. It is the React Avatar until its
- * Web Component exists, so the generated HTML carries its React markup.
- */
-const ATTACHED_TO = <Avatar image="/avatar-01.png" name="Andre Giant" />;
+/** What the badge is attached to in the React example (`BadgeExample.tsx`): an avatar. */
+const ATTACHED_TO = <PttrnAvatar image="/avatar-01.png" name="Andre Giant" />;
+const ATTACHED_TO_HTML = '<pttrn-avatar image="/avatar-01.png" name="Andre Giant"></pttrn-avatar>';
 
 /** The demo state as attributes, in the order the HTML shows them. */
 const attributes = ({ count, size, color, surfaceBorder }: Partial<BadgeProps>) => ({
@@ -33,7 +31,7 @@ function badgeToHtml(props: Partial<BadgeProps>) {
     const attrs = Object.entries(attributes(props))
         .filter(([, value]) => value !== undefined)
         .map(([key, value]) => (value === '' ? key : `${key}="${value}"`));
-    return `<pttrn-badge${attrs.map((attr) => ` ${attr}`).join('')}>\n${renderToStaticMarkup(ATTACHED_TO)}\n</pttrn-badge>`;
+    return `<pttrn-badge${attrs.map((attr) => ` ${attr}`).join('')}>\n${ATTACHED_TO_HTML}\n</pttrn-badge>`;
 }
 
 const USAGE = `<script type="module" src="https://cdn.jsdelivr.net/npm/@ptrn/web@${webVersion}/dist/cdn/pttrn-web.min.js"></script>
