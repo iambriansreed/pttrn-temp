@@ -1,27 +1,164 @@
-// The menu surface of @ptrn/react's Menu (`[data-pttrn-utility='menu']`), for elements that render a menu or listbox
-// in their own shadow root (Breadcrumb's overflow, Menu, Select). Include it in the rule for that element.
-@mixin menu {
-    width: 332px;
+// The floating list a control opens (SearchBar results, InputPhone countries): the React Menu (menu.scss) holding
+// ListItem options (list-item.scss), with the "No results found" row. It is a manual popover in the top layer,
+// anchored under the element's Input box (`anchor-name: --pttrn-field`) at its width, and flips above it when there
+// is no room below, as the React floating list does.
+
+[data-pttrn-utility='menu'] {
     max-width: 100%;
     box-sizing: border-box;
     border: var(--usa-spacing-1px) solid var(--theme-color-base-lighter);
     background-color: var(--theme-body-background-color);
+    color: var(--theme-body-text-color);
     box-shadow: var(--card-shadow);
     border-radius: var(--theme-border-radius-lg);
     display: flex;
     flex-direction: column;
     overflow: hidden auto;
     height: fit-content;
+    padding: 0;
+
+    &[popover] {
+        position: fixed;
+        position-anchor: --pttrn-field;
+        inset: auto;
+        top: anchor(bottom);
+        left: anchor(left);
+        width: anchor-size(width);
+        margin: var(--usa-spacing-05) 0 0;
+        position-try-fallbacks: flip-block;
+
+        // Fades in over 250ms, as the React floating list does.
+        transition: opacity 250ms;
+
+        @starting-style {
+            opacity: 0;
+        }
+    }
+
+    &:not(:popover-open) {
+        display: none;
+    }
 }
 
-// A menu shown as a popover in the top layer: the menu surface without the UA popover box (inset, margin, padding,
-// colors). `place()` in src/utils/floating.ts sets top and left.
-@mixin menu-popover {
-    @include menu;
+[data-pttrn='list-item'] {
+    display: flex;
+    user-select: none;
+    color: var(--theme-body-text-color);
+    background-color: var(--theme-body-background-color);
+    height: 100%;
+    overflow: hidden;
+    min-height: calc(var(--usa-spacing-6) + var(--usa-spacing-05));
+    flex-direction: row;
+    gap: var(--usa-spacing-105);
+    padding: var(--usa-spacing-1);
+    justify-items: stretch;
+    border: unset;
+    border-radius: var(--theme-border-radius-md);
+    margin: unset;
+    text-decoration: unset;
+    width: 100%;
+    cursor: default;
 
-    position: fixed;
-    inset: auto;
-    margin: 0;
-    padding: 0;
-    color: inherit;
+    &:focus-visible,
+    &:has(*:focus-visible) {
+        outline: solid var(--usa-spacing-2px) var(--theme-global-focus-color);
+        isolation: isolate;
+    }
+
+    &:not([data-disabled], [data-readonly]) {
+        &[data-action] {
+            &[data-active],
+            &:hover {
+                background-color: var(--usa-color-black-transparent-10);
+            }
+
+            &:active {
+                background-color: var(--usa-color-black-transparent-20);
+            }
+        }
+    }
+
+    [data-leading],
+    [data-item-label],
+    [data-trailing] {
+        min-height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        flex: 1 1 0;
+        min-width: 0;
+
+        svg {
+            width: var(--usa-spacing-3);
+            max-width: unset;
+        }
+    }
+
+    [data-leading],
+    [data-trailing] {
+        width: fit-content;
+        flex: 0 0 auto;
+
+        &:empty {
+            display: none;
+        }
+    }
+
+    [data-item-label] {
+        text-align: left;
+
+        [data-text] {
+            width: 100%;
+            font: 500 var(--usa-font-size-sans-3) / 20px var(--usa-font-family-ui);
+            color: var(--theme-body-text-color);
+        }
+
+        [data-sub-text] {
+            width: 100%;
+            font: 400 var(--usa-font-size-sans-3) / 20px var(--usa-font-family-body);
+            color: var(--theme-color-base-dark);
+        }
+    }
+
+    // The React Truncated: one line with an ellipsis.
+    [data-truncated] {
+        max-width: 100%;
+        display: inline-block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        background-color: transparent;
+    }
+
+    &[aria-selected='true'] {
+        background-color: var(--theme-color-primary-lighter);
+    }
+}
+
+[data-pttrn='no-items-found'] {
+    display: flex;
+    flex-direction: column;
+    padding: var(--usa-spacing-4) var(--usa-spacing-2);
+    align-items: center;
+    justify-content: center;
+    gap: var(--usa-spacing-105);
+    overflow-wrap: break-word;
+
+    [data-heading] {
+        font: 600 var(--usa-font-size-sans-8) / 28px var(--usa-font-family-heading);
+    }
+
+    [data-message] {
+        font: 400 var(--usa-font-size-sans-5) / 24px var(--usa-font-family-body);
+    }
+}
+
+// Read by screen readers, not shown.
+[data-sr-only] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
 }

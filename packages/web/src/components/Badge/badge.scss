@@ -1,0 +1,48 @@
+@use '../../styles/reset';
+@use '../../styles/attachment';
+
+:host {
+    display: block;
+    width: fit-content;
+}
+
+// Without slotted content the badge stands alone, as in React, where the wrapper is not rendered at all.
+[data-wrapper]:not([data-attachment-wrapper]) {
+    display: contents;
+}
+
+[data-pttrn='badge'] {
+    --size: var(--usa-spacing-3);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--usa-radius-pill);
+    height: var(--size);
+    width: fit-content;
+    min-width: var(--size);
+    font: 500 var(--usa-font-size-sans-1) / 16px var(--usa-font-family-ui);
+    padding: 0 var(--usa-spacing-1);
+    background-color: var(--background);
+    color: var(--foreground);
+
+    &[data-color='primary'] {
+        --foreground: var(--usa-color-white);
+        --background: var(--theme-color-primary-medium);
+    }
+
+    &[data-color='secondary'] {
+        --foreground: var(--usa-color-white);
+        --background: var(--theme-color-secondary-dark);
+    }
+
+    &[data-size='x-small'] {
+        --size: var(--usa-spacing-205);
+
+        padding: var(--usa-spacing-2px) var(--usa-spacing-05);
+    }
+
+    &[data-surface-border] {
+        border: var(--usa-spacing-2px) solid var(--theme-body-background-color);
+    }
+}

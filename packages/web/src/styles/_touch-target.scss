@@ -1,0 +1,29 @@
+// The touch target of @ptrn/react (`[data-touch-target-parent]` and `[data-touch-target]` in its base stylesheet): an
+// invisible box that grows a small control's pointer target to the minimum size on a touch screen. The parent centers
+// it, so it overhangs the control evenly.
+[data-touch-target-parent] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+[data-touch-target] {
+    display: none;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    user-select: none;
+    position: absolute;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    top: auto;
+    left: auto;
+}
+
+@media (any-pointer: coarse) {
+    [data-touch-target] {
+        display: block;
+    }
+}

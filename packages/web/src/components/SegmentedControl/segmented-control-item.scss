@@ -1,6 +1,6 @@
 @use '../../styles/reset';
 @use '../../styles/tab-list';
-@use '../../styles/tooltip';
+@use '../../styles/tooltip-box' as tooltip;
 @include tab-list.tab;
 
 // Segments share any spare width: on one row a hugging control has none, so nothing changes; once segments wrap, each

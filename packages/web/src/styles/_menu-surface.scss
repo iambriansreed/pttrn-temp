@@ -1,0 +1,27 @@
+// The menu surface of @ptrn/react's Menu (`[data-pttrn-utility='menu']`), for elements that render a menu or listbox
+// in their own shadow root (Breadcrumb's overflow, Menu, Select). Include it in the rule for that element.
+@mixin menu {
+    width: 332px;
+    max-width: 100%;
+    box-sizing: border-box;
+    border: var(--usa-spacing-1px) solid var(--theme-color-base-lighter);
+    background-color: var(--theme-body-background-color);
+    box-shadow: var(--card-shadow);
+    border-radius: var(--theme-border-radius-lg);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden auto;
+    height: fit-content;
+}
+
+// A menu shown as a popover in the top layer: the menu surface without the UA popover box (inset, margin, padding,
+// colors). `place()` in src/utils/floating.ts sets top and left.
+@mixin menu-popover {
+    @include menu;
+
+    position: fixed;
+    inset: auto;
+    margin: 0;
+    padding: 0;
+    color: inherit;
+}

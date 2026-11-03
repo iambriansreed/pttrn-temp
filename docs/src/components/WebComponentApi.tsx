@@ -1,6 +1,7 @@
 import { Table } from '@ptrn/react/Table';
 import manifest from '@ptrn/web/custom-elements.json';
 import { Markup } from 'components/Markup';
+import { webComponents } from 'src/wc';
 
 type Typed = { name: string; type?: { text: string }; default?: string; description?: string };
 type Named = { name?: string; description?: string };
@@ -19,6 +20,17 @@ const elements = (manifest as unknown as { modules: { declarations?: Element[] }
     .flatMap((module) => module.declarations ?? [])
     .filter((declaration) => declaration.customElement && declaration.tagName);
 
+const componentTags = Object.values(webComponents).map((demo) => demo!.tag);
+
+/**
+ * The component an element belongs to: the longest component tag it is, or starts with. `pttrn-badge-dot` is its own
+ * component, not a child of `pttrn-badge`, while `pttrn-accordion-item` belongs to `pttrn-accordion`.
+ */
+const ownerTag = (tagName: string) =>
+    componentTags
+        .filter((tag) => tagName === tag || tagName.startsWith(`${tag}-`))
+        .sort((a, b) => b.length - a.length)[0];
+
 // Every table names the member in a column of the same width, so the tables of one element line up; values take what
 // they need and the description takes the rest.
 const NAME_WIDTH = '11rem';
@@ -34,9 +46,10 @@ const markup = (text?: string) => (text ? <Markup>{text}</Markup> : '—');
  * and the MCP server read the same file, so these tables cannot drift from the code.
  */
 export function WebComponentApi({ tag }: { tag: string }) {
-    // The component's own element first, then its children.
+    // The component's own element first, then its children. ownerTag keeps another component's elements out:
+    // `pttrn-input-number` is not part of `pttrn-input`.
     const own = elements
-        .filter((element) => element.tagName === tag || element.tagName?.startsWith(`${tag}-`))
+        .filter((element) => ownerTag(element.tagName!) === tag)
         .sort((a, b) => (a.tagName === tag ? -1 : b.tagName === tag ? 1 : 0));
     if (own.length === 0) return null;
 

@@ -1,0 +1,15 @@
+// The pulse of the Skeleton and SkeletonText placeholders, as in @ptrn/react's base stylesheet. The placeholders carry
+// `data-animated`, so the shared reset stops it under reduced motion.
+@keyframes skeleton-pulse {
+    0% {
+        opacity: 0.8;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+
+    100% {
+        opacity: 0.8;
+    }
+}

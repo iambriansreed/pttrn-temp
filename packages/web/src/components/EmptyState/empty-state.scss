@@ -1,0 +1,47 @@
+@use '../../styles/reset';
+
+// @ptrn/react lays EmptyState out with Flex and Txt (inline styles): a centered column with a 16 px gap, the text in a
+// column with a 4 px gap, the header as heading-h5 and the body as body-base.
+
+:host {
+    display: block;
+}
+
+:host([hidden]) {
+    display: none;
+}
+
+[data-pttrn='empty-state'] {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: var(--usa-spacing-2);
+}
+
+[data-text] {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    gap: var(--usa-spacing-05);
+    align-items: center;
+    text-align: center;
+
+    &[data-body-align='left'] {
+        align-items: flex-start;
+        text-align: left;
+    }
+}
+
+[data-header],
+[data-body] {
+    overflow-wrap: break-word;
+}
+
+[data-header] {
+    font: 600 var(--usa-font-size-sans-8) / 28px var(--usa-font-family-heading);
+}
+
+[data-body] {
+    font: 400 var(--usa-font-size-sans-5) / 24px var(--usa-font-family-body);
+}

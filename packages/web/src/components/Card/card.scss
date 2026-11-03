@@ -1,0 +1,25 @@
+@use '../../styles/reset';
+
+// The rules of packages/react/src/components/Card/card.scss. The element is the card (React passes its props to the
+// card div), so the rules sit on :host, where a page's own styles on the element still win.
+
+:host {
+    display: block;
+    background: var(--theme-body-background-color);
+    border-radius: var(--theme-border-radius-lg);
+    overflow: hidden;
+}
+
+:host([variant='outlined']) {
+    border: solid var(--usa-spacing-1px) var(--theme-color-base-lighter);
+}
+
+:host([variant='elevated']) {
+    box-shadow:
+        0 1px 2px 0 var(--usa-color-black-transparent-30),
+        0 1px 3px 1px var(--usa-color-black-transparent-20);
+}
+
+:host([hidden]) {
+    display: none;
+}

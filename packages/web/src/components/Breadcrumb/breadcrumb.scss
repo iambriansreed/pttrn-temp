@@ -1,7 +1,7 @@
 @use '../../styles/reset';
 @use '../../styles/internal-button';
 @use '../../styles/list-item';
-@use '../../styles/menu';
+@use '../../styles/menu-surface' as menu;
 
 :host {
     --list-item-height: calc(var(--usa-spacing-6) + var(--usa-spacing-05));

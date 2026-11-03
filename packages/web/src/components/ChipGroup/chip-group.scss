@@ -1,0 +1,29 @@
+@use '../../styles/reset';
+
+// The rules of packages/react/src/components/ChipGroup/chip-group.scss.
+
+:host {
+    display: block;
+    width: 100%;
+}
+
+:host([hidden]) {
+    display: none;
+}
+
+[data-pttrn='chip-group'] {
+    display: flex;
+    gap: var(--usa-spacing-1);
+    width: 100%;
+    flex-flow: row wrap;
+    padding-bottom: var(--usa-spacing-05);
+
+    &[data-empty] {
+        display: none;
+    }
+
+    &[data-scroll] {
+        overflow: auto;
+        flex-wrap: nowrap;
+    }
+}

@@ -1,6 +1,6 @@
 @use '../../styles/reset';
 @use '../../styles/list-item';
-@use '../../styles/tooltip';
+@use '../../styles/tooltip-box' as tooltip;
 
 :host {
     display: block;
