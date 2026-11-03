@@ -17,6 +17,9 @@ One line per component, in name order:
 - `pttrn-calendar`
 - `pttrn-card`
 - `pttrn-carousel`
+- `pttrn-checkbox`
+- `pttrn-checkbox-group`, `pttrn-checkbox-group-item`
+- `pttrn-checkbox-option`
 - `pttrn-chip`
 - `pttrn-chip-group`
 - `pttrn-divider`

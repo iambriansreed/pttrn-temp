@@ -1,0 +1,33 @@
+@use '../../styles/reset';
+@use '../../styles/field';
+@use '../../styles/option';
+@use '../../styles/checkbox';
+
+:host {
+    display: block;
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+// With a label the group is a CheckboxGroupField, whose Field takes the full width.
+:host(:state(field)) {
+    width: 100%;
+}
+
+:host([hidden]) {
+    display: none;
+}
+
+// The React checkbox-group.scss: a column of CheckboxOption rows with no minimum height and no background.
+[data-pttrn='checkbox-group'] {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-width: 100%;
+
+    [data-pttrn='list-item'] {
+        --option-min-height: auto;
+
+        background: transparent;
+    }
+}
