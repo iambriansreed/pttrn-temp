@@ -36,6 +36,10 @@
             "types": "./dist/components/Accordion/index.d.ts",
             "default": "./dist/components/Accordion/index.js"
         },
+        "./Calendar": {
+            "types": "./dist/components/Calendar/index.d.ts",
+            "default": "./dist/components/Calendar/index.js"
+        },
         "./Carousel": {
             "types": "./dist/components/Carousel/index.d.ts",
             "default": "./dist/components/Carousel/index.js"

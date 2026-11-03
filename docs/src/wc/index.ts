@@ -1,5 +1,6 @@
 import { MetaComponentName } from 'src/meta';
 import { accordionWc } from 'src/wc/accordion';
+import { calendarWc } from 'src/wc/calendar';
 import { carouselWc } from 'src/wc/carousel';
 import { fileUploadWc } from 'src/wc/file-upload';
 import { fileUploadItemWc } from 'src/wc/file-upload-item';
@@ -15,6 +16,7 @@ import { WebComponentDemo } from 'src/wc/types';
  */
 export const webComponents: Partial<Record<MetaComponentName, WebComponentDemo>> = {
     Accordion: accordionWc,
+    Calendar: calendarWc,
     Carousel: carouselWc,
     FileUpload: fileUploadWc,
     FileUploadItem: fileUploadItemWc,

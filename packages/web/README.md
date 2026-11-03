@@ -5,6 +5,7 @@ pttrn as Web Components: framework-free custom elements built with [Lit](https:/
 Components so far, by their React name:
 
 - Accordion: `pttrn-accordion`, `pttrn-accordion-item`
+- Calendar: `pttrn-calendar`
 - Carousel: `pttrn-carousel`
 - FileUpload: `pttrn-file-upload` (a form control)
 - FileUploadItem: `pttrn-file-upload-item`
