@@ -1,0 +1,7 @@
+@use '../../styles/reset';
+@use '../../styles/skeleton-text';
+
+// The host steps out of the layout, so the placeholder, or the text once it arrives, is laid out as React's would be.
+:host {
+    display: contents;
+}
