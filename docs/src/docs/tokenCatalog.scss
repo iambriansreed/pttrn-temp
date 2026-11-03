@@ -20,7 +20,8 @@
         border-radius: var(--theme-border-radius-md);
     }
 
-    code {
-        overflow-wrap: anywhere;
+    // Token names break after their hyphens, not between any two letters; the table scrolls when they do not fit.
+    td code {
+        overflow-wrap: normal;
     }
 }
