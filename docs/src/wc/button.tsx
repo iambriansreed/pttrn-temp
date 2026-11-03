@@ -71,7 +71,7 @@ const ADD = addIcon.trim().replace('<svg', '<svg slot="icon"');
 
 const USAGE = `<script type="module" src="https://cdn.jsdelivr.net/npm/@ptrn/web@${webVersion}/dist/cdn/pttrn-web.min.js"></script>
 
-<div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center">
+<div style="display: flex; flex-wrap: wrap; gap: var(--usa-spacing-2); align-items: center">
     <pttrn-button label="Add item">
         ${ADD}
     </pttrn-button>

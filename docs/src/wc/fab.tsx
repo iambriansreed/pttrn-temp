@@ -64,7 +64,7 @@ const BOLT = boltIcon.trim().replace('<svg', '<svg slot="icon"');
 
 const USAGE = `<script type="module" src="https://cdn.jsdelivr.net/npm/@ptrn/web@${webVersion}/dist/cdn/pttrn-web.min.js"></script>
 
-<div style="position: relative; height: 120px">
+<div style="position: relative; height: var(--usa-spacing-15)">
     <pttrn-fab label="Example label" variant="neutral">
         ${BOLT}
     </pttrn-fab>
