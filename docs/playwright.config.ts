@@ -11,10 +11,12 @@ import { defineConfig, devices } from '@playwright/test';
  *   rewrites the baselines (on Linux, the platform CI renders on).
  * - The site under test is `dist`, served by `vite preview`. Build it first (`npm run build:docs` at the root). Set
  *   TEST_URL to test an already running server instead (`npm run test:dev` targets the dev server).
+ * - PTTRN_DOCS_PORT serves the site on another port (default 8055), so several checkouts can run the suite at once
+ *   without one reusing another's server.
  * - PLAYWRIGHT_CHROMIUM_EXECUTABLE points the tests at a Chromium that is already on the machine, for environments that
  *   cannot download the browser Playwright pins. CI leaves it unset and installs the pinned browser.
  */
-const PORT = 8055;
+const PORT = Number(process.env.PTTRN_DOCS_PORT) || 8055;
 const executablePath = process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE;
 const a11y = !!process.env.PTTRN_A11Y;
 const visual = !!process.env.PTTRN_VISUAL;

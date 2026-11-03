@@ -6,6 +6,8 @@ import { NodePackageImporter } from 'sass-embedded';
 import { defineConfig, loadEnv } from 'vite';
 import { run } from 'vite-plugin-run';
 
+import { agentFiles } from './.scripts/agent-files';
+
 const debouncedMetaBuild = debounceMetaOnChange();
 
 const REACT_SRC = resolve(__dirname, '../packages/react/src');
@@ -32,6 +34,7 @@ export default ({ mode, command }: { mode: string; command: 'build' | 'serve' })
         publicDir: './assets',
         plugins: [
             react(),
+            agentFiles(),
             run([
                 {
                     name: 'UI Updates',

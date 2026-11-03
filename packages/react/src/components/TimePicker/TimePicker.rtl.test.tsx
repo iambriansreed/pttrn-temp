@@ -351,6 +351,31 @@ describeBehaviors(spec, {
         expect(segment('hours')).toHaveAttribute('tabindex', '0');
         expect(toggle()).not.toHaveAttribute('aria-disabled');
     },
+    'invalid-segments': async () => {
+        const { rerender } = render(<Subject />);
+        screen.getAllByRole('spinbutton').forEach((node) => expect(node).not.toHaveAttribute('aria-invalid'));
+
+        rerender(
+            <>
+                <Subject aria-errormessage="time-error" invalid />
+                <p id="time-error">Choose a time.</p>
+            </>,
+        );
+        expect(group()).toHaveAttribute('data-invalid');
+        expect(group()).toHaveAccessibleDescription('Choose a time.');
+        const segments = screen.getAllByRole('spinbutton');
+        expect(segments).toHaveLength(3);
+        segments.forEach((node) => expect(node).toHaveAttribute('aria-invalid', 'true'));
+        expect(segment('hours')).toBeInvalid();
+        expect(await axe(document.body, { rules: { region: { enabled: false } } })).toHaveNoViolations();
+
+        // Disabled or read-only, an invalid field still says so.
+        rerender(<Subject invalid readOnly />);
+        screen.getAllByRole('spinbutton').forEach((node) => expect(node).toHaveAttribute('aria-invalid', 'true'));
+
+        rerender(<Subject invalid={false} />);
+        screen.getAllByRole('spinbutton').forEach((node) => expect(node).not.toHaveAttribute('aria-invalid'));
+    },
     'axe-clean': async () => {
         // The popup renders in a portal, so the open field is checked on the whole page before anything else renders.
         const user = userEvent.setup();

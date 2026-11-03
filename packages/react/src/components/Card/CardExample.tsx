@@ -7,8 +7,10 @@ export const CardExample: ComponentExample = {
             <ExamplePlaceholder
                 style={{
                     height: '200px',
-                    width: '100%',
-                    minWidth: 'min(250px, 100%)',
+                    // A definite width: a percentage min-width inside a card that sizes to its content cannot
+                    // resolve, and browsers disagree on what it becomes (Chromium versions gave 50px and 250px).
+                    width: '250px',
+                    maxWidth: '100%',
                     backgroundColor: 'unset',
                 }}
             />

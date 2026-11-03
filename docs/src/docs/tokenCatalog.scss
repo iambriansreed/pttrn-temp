@@ -1,0 +1,27 @@
+[data-token-catalog] {
+    margin-top: var(--usa-spacing-5);
+
+    [data-token-count] {
+        margin: var(--usa-spacing-1) 0;
+        color: var(--theme-color-base-dark);
+    }
+
+    [data-token-value] {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--usa-spacing-1);
+    }
+
+    [data-token-swatch] {
+        flex: none;
+        width: var(--usa-spacing-3);
+        height: var(--usa-spacing-3);
+        border: var(--usa-spacing-1px) solid var(--theme-color-base-light);
+        border-radius: var(--theme-border-radius-md);
+    }
+
+    // Token names break after their hyphens, not between any two letters; the table scrolls when they do not fit.
+    td code {
+        overflow-wrap: normal;
+    }
+}

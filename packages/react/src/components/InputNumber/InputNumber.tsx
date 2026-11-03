@@ -44,7 +44,7 @@ export type InputNumberProps = CommonProps<'size'> &
  * For a more complete example with field usage, see the InputNumberField component.
  *
  * @example
- *     import { InputNumber } from '-/components/InputNumber';
+ *     import { InputNumber } from '@ptrn/react/InputNumber';
  *
  *     () => {
  *         const [value, setValue] = useState<number | undefined>();
