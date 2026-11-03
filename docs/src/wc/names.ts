@@ -13,4 +13,5 @@ export const webComponents: string[] = [
     'Fab',
     'InlineAlert',
     'Switch',
+    'SwitchOption',
 ];

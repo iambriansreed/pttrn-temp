@@ -71,6 +71,10 @@
         "./Switch": {
             "types": "./dist/components/Switch/index.d.ts",
             "default": "./dist/components/Switch/index.js"
+        },
+        "./SwitchOption": {
+            "types": "./dist/components/SwitchOption/index.d.ts",
+            "default": "./dist/components/SwitchOption/index.js"
         }
     },
     "scripts": {

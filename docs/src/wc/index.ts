@@ -10,6 +10,7 @@ import { fabWc } from 'src/wc/fab';
 import { inlineAlertWc } from 'src/wc/inline-alert';
 import { webComponents as webComponentNames } from 'src/wc/names';
 import { switchWc } from 'src/wc/switch';
+import { switchOptionWc } from 'src/wc/switch-option';
 import { WebComponentDemo } from 'src/wc/types';
 
 /**
@@ -27,6 +28,7 @@ export const webComponents: Partial<Record<MetaComponentName, WebComponentDemo>>
     Fab: fabWc,
     InlineAlert: inlineAlertWc,
     Switch: switchWc,
+    SwitchOption: switchOptionWc,
 };
 
 const listed = [...webComponentNames].sort().join(',');
