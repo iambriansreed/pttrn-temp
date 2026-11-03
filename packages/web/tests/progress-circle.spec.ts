@@ -52,6 +52,8 @@ test.describe('pttrn-progress-circle', () => {
     });
 
     test('the ring stops under reduced motion', async ({ page }) => {
+        // The suite runs with reduced motion (playwright.config.ts); this test needs the default first.
+        await page.emulateMedia({ reducedMotion: 'no-preference' });
         await mount(page, circle());
         await expect(ring(page)).toHaveCSS('animation-name', 'spin');
         await page.emulateMedia({ reducedMotion: 'reduce' });
