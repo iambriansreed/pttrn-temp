@@ -54,13 +54,15 @@ export class PttrnDivider extends LitElement {
     }
 
     render() {
+        // A removed attribute leaves the property null; it still means the default.
+        const orientation = this.orientation || 'horizontal';
         return html`<div
             aria-hidden="true"
-            aria-orientation=${this.orientation}
-            data-orientation=${this.orientation}
+            aria-orientation=${orientation}
+            data-orientation=${orientation}
             ?data-hide-padding=${this.hidePadding}
             data-pttrn="divider"
-            data-thickness=${this.thickness}
+            data-thickness=${this.thickness || 'light'}
             role="separator"
             style=${styleMap({ '--inset': insetToVariable(this.inset) })}
         ></div>`;

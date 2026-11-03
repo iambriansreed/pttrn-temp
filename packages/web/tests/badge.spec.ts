@@ -43,6 +43,16 @@ test.describe('pttrn-badge', () => {
         await expect(page.getByRole('button', { name: 'Messages, 5 unread' })).toBeVisible();
     });
 
+    test('a removed color or size renders the default again', async ({ page }) => {
+        await mount(page, '<pttrn-badge count="5" color="secondary" size="x-small"></pttrn-badge>');
+        await page.locator('pttrn-badge').evaluate((element) => {
+            element.removeAttribute('color');
+            element.removeAttribute('size');
+        });
+        await expect(badge(page)).toHaveAttribute('data-color', 'primary');
+        await expect(badge(page)).toHaveAttribute('data-size', 'small');
+    });
+
     test('a count that is not a number shows no badge', async ({ page }) => {
         await mount(page, `<pttrn-badge count="many">${BUTTON}</pttrn-badge>`);
         await expect(badge(page)).toHaveCount(0);

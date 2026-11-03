@@ -65,9 +65,9 @@ export class PttrnBadge extends LitElement {
                 hasCount
                     ? html`<sup
                           ?data-attachment=${attached}
-                          data-color=${this.color}
+                          data-color=${this.color || 'primary'}
                           data-pttrn="badge"
-                          data-size=${this.size}
+                          data-size=${this.size || 'small'}
                           ?data-surface-border=${this.surfaceBorder}
                           >${count > 99 ? '99+' : count}</sup
                       >`

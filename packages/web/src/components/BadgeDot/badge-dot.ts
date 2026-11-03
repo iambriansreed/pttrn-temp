@@ -61,7 +61,7 @@ export class PttrnBadgeDot extends LitElement {
             ><slot @slotchange=${this._onSlotChange}></slot
             ><sup
                 ?data-attachment=${this._attached}
-                data-color=${this.color}
+                data-color=${this.color || 'primary'}
                 ?data-outline=${this.outline}
                 data-pttrn="badge-dot"
                 style=${styleMap({ '--size': `${size}px`, '--outline-width': `${OUTLINE_WIDTHS[size]}px` })}
