@@ -36,6 +36,7 @@ import { searchBarWc } from 'src/wc/search-bar';
 import { segmentedControlWc } from 'src/wc/segmented-control';
 import { skeletonWc } from 'src/wc/skeleton';
 import { skeletonTextWc } from 'src/wc/skeleton-text';
+import { snackbarWc } from 'src/wc/snackbar';
 import { switchWc } from 'src/wc/switch';
 import { switchOptionWc } from 'src/wc/switch-option';
 import { tabGroupWc } from 'src/wc/tab-group';
@@ -87,6 +88,7 @@ export const webComponents: Partial<Record<MetaComponentName, WebComponentDemo>>
     SegmentedControl: segmentedControlWc,
     Skeleton: skeletonWc,
     SkeletonText: skeletonTextWc,
+    Snackbar: snackbarWc,
     Switch: switchWc,
     SwitchOption: switchOptionWc,
     TabGroup: tabGroupWc,
