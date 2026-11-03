@@ -8,6 +8,7 @@ import { Markdown } from 'components/Markdown.tsx';
 import { Page } from 'components/Page';
 import { Page404 } from 'components/Page404.tsx';
 import AiReadiness from 'src/docs/ai-readiness.md?raw';
+import { Changelog } from 'src/docs/changelog';
 import { Colors } from 'src/docs/colors';
 import { Components } from 'src/docs/components';
 import { Hooks } from 'src/docs/hooks';
@@ -98,6 +99,7 @@ export const routes: RouteLink[] = [
                     </Page>
                 ),
                 title: 'AI Readiness',
+                markdown: AiReadiness,
             },
             {
                 path: '/contributing',
@@ -129,6 +131,7 @@ export const routes: RouteLink[] = [
                 title: 'Governance',
                 markdown: Governance,
             },
+            { path: '/changelog', Component: Changelog, title: 'Changelog', hide: true },
             {
                 path: '/colors',
                 Component: Colors,

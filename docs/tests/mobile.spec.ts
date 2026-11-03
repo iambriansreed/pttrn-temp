@@ -27,6 +27,7 @@ const PAGES = [
     '/contributing',
     '/guidelines',
     '/governance',
+    '/changelog',
     '/colors',
     '/hooks',
     ...components.map((component) => `/${component.slug}`),

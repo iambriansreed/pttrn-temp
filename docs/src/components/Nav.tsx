@@ -8,11 +8,12 @@ import { Link } from '@ptrn/react/Link/Link';
 import { useUIContext } from '@ptrn/react/hooks/useUIContext';
 import { isDarkTheme } from '@ptrn/react/utils/uiContext';
 import { useEffect, useMemo, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { NavSide } from 'components/NavSide';
 import { SearchModal } from 'components/SearchModal';
-import { MODE, VERSION, UI_HASH, BUILD } from 'src/meta';
+import { MODE, UI_HASH, BUILD } from 'src/meta';
 import { useGlobalState } from 'src/utils/globalState';
+import { DOCUMENTED_PACKAGE } from 'src/utils/packages';
 import useHotkeys from 'src/utils/useHotkeys';
 import { useRouteMeta } from 'src/utils/useRouteMeta';
 
@@ -26,6 +27,7 @@ export function Nav() {
     useHotkeys('meta+k', () => setSearchModalOpen(true));
 
     const location = useLocation();
+    const navigate = useNavigate();
 
     useEffect(() => {
         window.scrollTo({
@@ -46,6 +48,10 @@ export function Nav() {
 
     const routeMeta = useRouteMeta();
 
+    // Which build this is, next to the version: a local checkout, the dev server or a test build. Production shows none.
+    const stage = BUILD === 'local' ? 'LOCAL' : { development: 'DEV', test: 'TEST', production: '' }[MODE];
+    const build = stage && `${stage}${UI_HASH ? ` (${UI_HASH})` : ''}`;
+
     const hideSideNav = useMemo(() => !isDesktop || routeMeta?.hideSideNav, [routeMeta?.hideSideNav, isDesktop]);
 
     return (
@@ -64,31 +70,24 @@ export function Nav() {
                             variant="tertiary"
                         />
                     )}
-                    <h1 data-brand>
-                        <Link data-name href="/" label="pttrn" variant="subtle" />
-                        {BUILD === 'local' ? (
-                            <span>LOCAL ({UI_HASH})</span>
-                        ) : (
-                            <>
-                                <span>
-                                    Version: {VERSION}
-                                    {BUILD !== '0' ? `.${BUILD}` : ''}
-                                </span>
-                                {MODE === 'development' && (
-                                    <span>
-                                        DEV
-                                        {UI_HASH ? ` (${UI_HASH})` : ''}
-                                    </span>
-                                )}
-                                {MODE === 'test' && (
-                                    <span>
-                                        TEST
-                                        {UI_HASH ? ` (${UI_HASH})` : ''}
-                                    </span>
-                                )}
-                            </>
-                        )}
-                    </h1>
+                    <div data-identity>
+                        <h1 data-brand>
+                            <Link data-name href="/" label="pttrn" variant="subtle" />
+                        </h1>
+                        <span data-version>
+                            <span data-version-prefix>Documents </span>
+                            <Link
+                                href="/changelog"
+                                label={`${DOCUMENTED_PACKAGE.name} ${DOCUMENTED_PACKAGE.version}`}
+                                onClick={(event) => {
+                                    event.preventDefault();
+                                    navigate('/changelog');
+                                }}
+                                variant="subtle"
+                            />
+                        </span>
+                    </div>
+                    {build && <span data-build>{build}</span>}
                 </div>
                 <div data-navbar-right="">
                     <Button
