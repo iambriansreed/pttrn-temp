@@ -35,6 +35,10 @@
         "./Accordion": {
             "types": "./dist/components/Accordion/index.d.ts",
             "default": "./dist/components/Accordion/index.js"
+        },
+        "./BadgeDot": {
+            "types": "./dist/components/BadgeDot/index.d.ts",
+            "default": "./dist/components/BadgeDot/index.js"
         }
     },
     "scripts": {
