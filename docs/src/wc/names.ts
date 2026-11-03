@@ -30,6 +30,7 @@ export const webComponents: string[] = [
     'Pagination',
     'Password',
     'ProgressBar',
+    'ProgressCircle',
     'ProgressionStepper',
     'ProgressionStepperBar',
     'RadioGroup',

@@ -22,7 +22,16 @@ const shadow = (page: Page, tag: string) =>
     page
         .locator(tag)
         .first()
-        .evaluate((element) => element.shadowRoot?.innerHTML.replace(/<!--[^>]*-->/g, '') ?? '');
+        .evaluate(
+            (element) =>
+                element.shadowRoot?.innerHTML
+                    .replace(/<!--[^>]*-->/g, '')
+                    // A style written by Lit's styleMap reads `a:b;` on first render and `a: b;` once updated.
+                    .replace(
+                        /style="([^"]*)"/g,
+                        (_, style: string) => `style="${style.replace(/\s*([:;])\s*/g, '$1')}"`,
+                    ) ?? '',
+        );
 
 test.describe('every element', () => {
     test('the manifest lists the elements', () => {
