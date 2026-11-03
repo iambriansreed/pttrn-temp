@@ -15,6 +15,7 @@ export const webComponents: string[] = [
     'Carousel',
     'Checkbox',
     'CheckboxGroup',
+    'CheckboxGroupField',
     'CheckboxOption',
     'Chip',
     'ChipGroup',

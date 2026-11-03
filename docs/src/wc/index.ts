@@ -11,6 +11,7 @@ import { cardWc } from 'src/wc/card';
 import { carouselWc } from 'src/wc/carousel';
 import { checkboxWc } from 'src/wc/checkbox';
 import { checkboxGroupWc } from 'src/wc/checkbox-group';
+import { checkboxGroupFieldWc } from 'src/wc/checkbox-group-field';
 import { checkboxOptionWc } from 'src/wc/checkbox-option';
 import { chipWc } from 'src/wc/chip';
 import { chipGroupWc } from 'src/wc/chip-group';
@@ -62,6 +63,7 @@ export const webComponents: Partial<Record<MetaComponentName, WebComponentDemo>>
     Carousel: carouselWc,
     Checkbox: checkboxWc,
     CheckboxGroup: checkboxGroupWc,
+    CheckboxGroupField: checkboxGroupFieldWc,
     CheckboxOption: checkboxOptionWc,
     Chip: chipWc,
     ChipGroup: chipGroupWc,
