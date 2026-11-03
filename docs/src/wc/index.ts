@@ -11,6 +11,7 @@ import { cardWc } from 'src/wc/card';
 import { carouselWc } from 'src/wc/carousel';
 import { chipWc } from 'src/wc/chip';
 import { chipGroupWc } from 'src/wc/chip-group';
+import { dialogWc } from 'src/wc/dialog';
 import { dividerWc } from 'src/wc/divider';
 import { emptyStateWc } from 'src/wc/empty-state';
 import { fabWc } from 'src/wc/fab';
@@ -61,6 +62,7 @@ export const webComponents: Partial<Record<MetaComponentName, WebComponentDemo>>
     Carousel: carouselWc,
     Chip: chipWc,
     ChipGroup: chipGroupWc,
+    Dialog: dialogWc,
     Divider: dividerWc,
     EmptyState: emptyStateWc,
     Fab: fabWc,

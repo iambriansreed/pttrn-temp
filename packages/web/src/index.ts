@@ -10,6 +10,7 @@ export * from './components/Card';
 export * from './components/Carousel';
 export * from './components/Chip';
 export * from './components/ChipGroup';
+export * from './components/Dialog';
 export * from './components/Divider';
 export * from './components/EmptyState';
 export * from './components/Fab';

@@ -80,6 +80,10 @@
             "types": "./dist/components/ChipGroup/index.d.ts",
             "default": "./dist/components/ChipGroup/index.js"
         },
+        "./Dialog": {
+            "types": "./dist/components/Dialog/index.d.ts",
+            "default": "./dist/components/Dialog/index.js"
+        },
         "./Divider": {
             "types": "./dist/components/Divider/index.d.ts",
             "default": "./dist/components/Divider/index.js"
