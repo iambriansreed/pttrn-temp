@@ -2,7 +2,19 @@
 
 pttrn as Web Components: framework-free custom elements built with [Lit](https://lit.dev). No React needed.
 
-Components so far: `pttrn-accordion`, `pttrn-accordion-item`.
+## Elements
+
+One line per component, in name order:
+
+- `pttrn-accordion`, `pttrn-accordion-item`
+- `pttrn-avatar`
+- `pttrn-badge`
+- `pttrn-badge-dot`
+- `pttrn-divider`
+- `pttrn-skeleton`
+- `pttrn-skeleton-text`
+- `pttrn-tag`
+- `pttrn-txt`
 
 ## Use it from a CDN
 

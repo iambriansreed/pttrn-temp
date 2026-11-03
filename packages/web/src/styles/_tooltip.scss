@@ -1,0 +1,59 @@
+// The private tooltip of `internal/tooltip.ts`, with the look of React's Tooltip (tooltip.scss in @ptrn/react). It
+// opens in the top layer, so the popover defaults (inset, margin, border, padding, colors) are reset here.
+[data-pttrn='tooltip'] {
+    --arrow-size: var(--usa-spacing-05);
+    --arrow-offset: calc(var(--arrow-size) * -2);
+    --arrow-color: var(--theme-color-ink);
+    /*! --arrow-x: is set via inline style */
+
+    position: fixed;
+    inset: auto;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    overflow: visible;
+    background: transparent;
+    pointer-events: none;
+
+    &:not([data-open]) {
+        display: none;
+    }
+
+    [data-text] {
+        display: block;
+        z-index: 2;
+        position: relative;
+        background-color: var(--theme-color-ink);
+        border-radius: var(--theme-border-radius-md);
+        color: var(--theme-color-ink-reverse);
+        box-shadow: var(--card-shadow);
+        font: 500 var(--usa-font-size-sans-3) / 20px var(--usa-font-family-ui);
+        padding: var(--usa-spacing-05) var(--usa-spacing-1);
+        border: none;
+        max-width: 300px;
+        overflow-wrap: break-word;
+    }
+
+    [data-arrow] {
+        display: block;
+        z-index: 1;
+        position: absolute;
+        left: calc(var(--arrow-x, 50%) - var(--arrow-size));
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: var(--arrow-size);
+        border-color: transparent;
+    }
+
+    &[data-placement='bottom'] [data-arrow] {
+        top: var(--arrow-offset);
+        border-bottom-color: var(--arrow-color);
+    }
+
+    &[data-placement='top'] [data-arrow],
+    &:not([data-placement]) [data-arrow] {
+        top: 100%;
+        border-top-color: var(--arrow-color);
+    }
+}

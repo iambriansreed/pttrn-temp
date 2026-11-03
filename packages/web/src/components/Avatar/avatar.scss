@@ -1,0 +1,153 @@
+@use '../../styles/reset';
+@use '../../styles/color-variants';
+@use '../../styles/tooltip';
+
+// The host steps out of the layout, so the avatar is laid out as React's div is, for example as a flex item of a group.
+:host {
+    display: contents;
+}
+
+[data-pttrn='avatar'] {
+    /*!
+    --avatar-border: is set by the parent, such as an avatar group
+    --foreground: is set by the color-variants mixin
+    --background: is set by the color-variants mixin
+    */
+
+    --height: var(--usa-spacing-5);
+    --font: 500 var(--usa-font-size-sans-5) / 24px var(--usa-font-family-ui);
+    --svg-size: var(--usa-spacing-5);
+
+    border: var(--avatar-border);
+
+    &:not([data-color]) {
+        --foreground: var(--theme-body-text-color);
+        --background: var(--theme-color-base-lighter);
+    }
+
+    @include color-variants.color-variants;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    height: var(--height);
+    width: var(--height);
+    aspect-ratio: 1 / 1;
+    border-radius: var(--usa-radius-pill);
+    background-color: var(--background);
+    color: var(--foreground);
+    font: var(--font);
+    flex-shrink: 0;
+    flex-grow: 0;
+    position: relative;
+
+    &:has(img) {
+        overflow: hidden;
+        align-items: start;
+        justify-content: start;
+    }
+
+    img {
+        vertical-align: top;
+        max-width: 100%;
+        height: auto;
+    }
+
+    svg {
+        width: var(--svg-size);
+        height: var(--svg-size);
+    }
+
+    [data-icon] {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &[data-size='x-small'] {
+        --height: var(--usa-spacing-3);
+        --font: 500 var(--usa-font-size-sans-1) / 16px var(--usa-font-family-ui);
+        --svg-size: var(--usa-spacing-2);
+    }
+
+    &[data-size='small'] {
+        --height: var(--usa-spacing-4);
+        --font: 500 var(--usa-font-size-sans-3) / 20px var(--usa-font-family-ui);
+        --svg-size: var(--usa-spacing-205);
+    }
+
+    &[data-size='medium'] {
+        --height: var(--usa-spacing-5);
+        --font: 500 var(--usa-font-size-sans-5) / 24px var(--usa-font-family-ui);
+        --svg-size: var(--usa-spacing-205);
+    }
+
+    &[data-size='large'] {
+        --height: var(--usa-spacing-6);
+        --font: 500 var(--usa-font-size-sans-7) / 28px var(--usa-font-family-ui);
+        --svg-size: var(--usa-spacing-3);
+    }
+
+    &[data-size='x-large'] {
+        --height: var(--usa-spacing-7);
+        --font: 400 var(--usa-font-size-sans-11) / 36px var(--usa-font-family-heading);
+        --svg-size: var(--usa-spacing-4);
+    }
+
+    &[data-size='xx-large'] {
+        --height: calc(var(--usa-spacing-8) + var(--usa-spacing-05));
+        --font: 400 var(--usa-font-size-sans-12) / 40px var(--usa-font-family-heading);
+        --svg-size: var(--usa-spacing-6);
+    }
+
+    &[data-size='xxx-large'] {
+        --height: var(--usa-spacing-10);
+        --font: 400 var(--usa-font-size-sans-15) / 60px var(--usa-font-family-heading);
+        --svg-size: calc(var(--usa-spacing-7) + var(--usa-spacing-05));
+    }
+
+    &[data-size='xxxx-large'] {
+        --height: calc(var(--usa-spacing-10) + var(--usa-spacing-3));
+        --font: 400 var(--usa-font-size-sans-16) / 72px var(--usa-font-family-heading);
+        --svg-size: calc(var(--usa-spacing-8) + var(--usa-spacing-05));
+    }
+
+    &[data-size='xxxxx-large'] {
+        --height: calc(var(--usa-spacing-15) + var(--usa-spacing-1));
+        --font: 400 var(--usa-font-size-sans-17) / 88px var(--usa-font-family-heading);
+        --svg-size: var(--usa-spacing-9);
+    }
+
+    --state-background: transparent;
+
+    &::after {
+        content: '';
+        position: absolute;
+        display: block;
+        inset: 0;
+        border-radius: var(--usa-radius-pill);
+        background: var(--state-background);
+    }
+
+    &:not([aria-disabled])[role='button'] {
+        &:hover {
+            --state-background: var(--usa-color-black-transparent-10);
+        }
+
+        &:active {
+            --state-background: var(--usa-color-black-transparent-20);
+        }
+    }
+
+    &[aria-disabled] {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    &:focus:not(:active, [aria-disabled]) {
+        outline: var(--usa-spacing-2px) solid var(--theme-global-focus-color);
+        outline-offset: calc(-1 * var(--usa-spacing-2px));
+    }
+}
