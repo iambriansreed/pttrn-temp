@@ -5,12 +5,13 @@ import { fixture } from './fixture.js';
 import { getComponent, getTokens, listComponents, searchComponents, searchIcons } from './tools.js';
 
 describe('listComponents', () => {
-    test('lists every component with a one-line description', () => {
+    test('lists every component with a one-line description and its phase', () => {
         const result = listComponents(fixture);
         assert.equal(result.components.length, 3);
         assert.deepEqual(result.components[0], {
             name: 'Button',
             description: 'A clickable component that allows users to perform an action.',
+            phase: 'Stable',
         });
         assert.equal(result.version, '1.2.3');
     });

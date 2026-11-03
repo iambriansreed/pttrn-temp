@@ -83,9 +83,10 @@ export type FileUploadProps = Pick<FileUploadItemProps, 'cancelButtonLabel' | 'o
  *                 acceptedFileTypes={['image/png', 'image/gif', 'image/svg+xml']}
  *                 files={files}
  *                 maxFileSize={5}
- *                 onError={(errorFiles) => sendSnackbar('Upload error:', errorFiles)}
+ *                 onCancel={({ fileName }) => sendSnackbar(`Upload of ${fileName} cancelled.`)}
+ *                 onError={(errorFiles) => sendSnackbar(`${errorFiles.length} files could not be uploaded.`)}
  *                 onUpload={(uploadFiles) => setFiles(uploadFiles)}
- *                 uploadSubtitle="SVG, PNG, JPG or GIF (max. 5MB)"
+ *                 uploadSubtitle="SVG, PNG or GIF (max. 5MB)"
  *             />
  *         );
  *     };

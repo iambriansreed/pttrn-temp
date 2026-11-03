@@ -34,7 +34,7 @@ npm run dev     # docs site at http://localhost:8055, after generating the compo
 1. Branch from `main`: `feat/…`, `fix/…`, `docs/…`, `chore/…`.
 2. Commit with [Conventional Commits](https://www.conventionalcommits.org/). The hook and CI both run commitlint. Types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`, `revert`. Use the package or area as the scope: `react`, `web`, `icons`, `styles`, `mcp`, `docs`, `plugin`, `tokens`, `ci`. Mark breaking changes with `!` after the type or a `BREAKING CHANGE:` footer.
 3. If you changed a published package, add a changeset: `npx changeset`. Pick the packages, pick the bump, and write the note the way a consumer reading the changelog would want it. Docs-only and tooling-only changes need no changeset.
-4. Open a pull request. CI runs lint, typecheck, the unit tests, the Playwright suites and the accessibility matrix across every theme. All of it has to pass; `main` is protected and the checks are required.
+4. Open a pull request. CI runs lint, typecheck, the unit tests, the Playwright suites and the accessibility matrix across every theme. All of it has to pass. These are meant to be required checks on `main`; branch protection is not on yet (see [GOVERNANCE.md](GOVERNANCE.md)).
 5. After merge, the release workflow keeps a "Version Packages" pull request up to date. Merging that one publishes to npm.
 
 ## Adding or changing a component

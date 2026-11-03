@@ -51,7 +51,7 @@ export type CarouselProps = {
  * @example
  *     import { Carousel } from '@ptrn/react/Carousel';
  *
- *     <Carousel label="Example Carousel" width="1/2">
+ *     <Carousel label="Example Carousel" itemWidth="50%">
  *         <ExamplePlaceholder>Slide 1</ExamplePlaceholder>
  *         <ExamplePlaceholder>Slide 2</ExamplePlaceholder>
  *         <ExamplePlaceholder>Slide 3</ExamplePlaceholder>

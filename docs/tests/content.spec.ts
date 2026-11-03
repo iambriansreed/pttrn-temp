@@ -19,8 +19,11 @@ const PAGES = [
     '/styles',
     '/typography',
     '/figma-plugin',
+    '/ai-readiness',
     '/contributing',
     '/guidelines',
+    '/governance',
+    '/changelog',
     '/hooks',
     ...components.map((component) => `/${component.slug}`),
 ];

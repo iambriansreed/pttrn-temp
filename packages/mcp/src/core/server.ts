@@ -23,7 +23,9 @@ export function createServer(catalog: Catalog, guide: string): McpServer {
         'list_components',
         {
             title: 'List components',
-            description: 'Lists every pttrn component with a one-line description. Use to browse what exists.',
+            description:
+                'Lists every pttrn component with a one-line description and its phase. Use to browse what exists. ' +
+                'Prefer Stable components; Backlog ones are not ready to use.',
             annotations: readOnly,
         },
         async () => json(listComponents(catalog)),

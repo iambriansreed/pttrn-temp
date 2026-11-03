@@ -35,6 +35,7 @@ export type SwitchProps = CommonProps<'aria-label' | 'disabled' | 'id' | 'name'>
  *             <Switch
  *                 aria-label="Example aria-label"
  *                 name="example-name"
+ *                 value="example-value"
  *                 onChange={setIsChecked}
  *                 checked={isChecked}
  *             />
