@@ -209,11 +209,12 @@ if (!fs.existsSync(demoFile)) {
     const names = fs.readFileSync(namesFile, 'utf-8');
     const listed = [...names.matchAll(/'([A-Za-z0-9]+)'/g)].map((match) => match[1]);
     const updated = [...new Set([...listed, name])].sort();
+    // One name per line, as Prettier writes a list this long, so components added in parallel merge line by line.
     fs.writeFileSync(
         namesFile,
         names.replace(
             /webComponents: string\[\] = \[[\s\S]*?\];/,
-            `webComponents: string[] = [${updated.map((entry) => `'${entry}'`).join(', ')}];`,
+            `webComponents: string[] = [\n${updated.map((entry) => `    '${entry}',\n`).join('')}];`,
         ),
     );
     console.log(`registered ${name} in docs/src/wc (index.ts, names.ts)`);
