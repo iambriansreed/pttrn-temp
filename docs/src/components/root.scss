@@ -12,12 +12,8 @@
     color-scheme: dark;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+// Spacing for headings outside prose. :where keeps it below prose.css, whose spacing wins inside data-prose.
+:where(h1, h2, h3, h4, h5, h6) {
     scroll-margin-top: calc(var(--usa-spacing-8));
     margin-bottom: 0.25em;
 
@@ -30,28 +26,43 @@ h6 {
     }
 }
 
+// Headings outside prose (page titles, component page sections) use the same USWDS prose scale as prose.css.
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--usa-font-family-heading);
+    font-weight: 700;
+    line-height: 1.2;
+}
+
 h1 {
-    font: 600 var(--usa-font-size-sans-14) / 48px var(--usa-font-family-heading);
+    font-size: var(--component-prose-h1-font-size);
 }
 
 h2 {
-    font: 600 var(--usa-font-size-sans-12) / 40px var(--usa-font-family-heading);
+    font-size: var(--component-prose-h2-font-size);
 }
 
 h3 {
-    font: 600 var(--usa-font-size-sans-11) / 36px var(--usa-font-family-heading);
+    font-size: var(--component-prose-h3-font-size);
 }
 
 h4 {
-    font: 600 var(--usa-font-size-sans-10) / 32px var(--usa-font-family-heading);
+    font-size: var(--component-prose-h4-font-size);
 }
 
 h5 {
-    font: 600 var(--usa-font-size-sans-8) / 28px var(--usa-font-family-heading);
+    font-size: var(--component-prose-h5-font-size);
 }
 
 h6 {
-    font: 500 var(--usa-font-size-sans-7) / 24px var(--usa-font-family-heading);
+    font-size: var(--component-prose-h6-font-size);
+    font-weight: 400;
+    letter-spacing: 0.025em;
+    text-transform: uppercase;
 }
 
 p {
@@ -878,5 +889,36 @@ body[data-pttrn-code-demo] {
 
     [data-muted] {
         color: var(--theme-color-base-dark);
+    }
+}
+
+// The Web Component API: one block per element, its tables spaced apart.
+[data-wc-api] {
+    display: flex;
+    flex-direction: column;
+    gap: var(--usa-spacing-2);
+
+    [data-wc-element] {
+        display: flex;
+        flex-direction: column;
+        gap: var(--usa-spacing-2);
+        margin-top: var(--usa-spacing-2);
+    }
+
+    h4 code {
+        font-size: inherit;
+    }
+}
+
+// Typography examples read like a page: full width and left aligned, not centered like a component demo.
+[data-typography-example] {
+    align-self: stretch;
+}
+
+[data-typography-section] {
+    margin-top: var(--usa-spacing-5);
+
+    > [data-prose] {
+        margin-bottom: var(--usa-spacing-2);
     }
 }

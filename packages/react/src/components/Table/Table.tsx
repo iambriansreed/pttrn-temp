@@ -215,6 +215,9 @@ export function Table<R extends TableRow>({
                                     <td
                                         data-align={column.align || 'left'}
                                         data-cell={column.key}
+                                        data-sorted={
+                                            (column.sort && sorting.some((s) => s.key === column.key)) || undefined
+                                        }
                                         data-valign={column.valign || 'center'}
                                         key={`${row.id}-${column.key}`}
                                     >

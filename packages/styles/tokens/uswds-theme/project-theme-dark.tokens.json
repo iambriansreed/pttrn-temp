@@ -2996,7 +2996,7 @@
                     }
                 },
                 "sorted-stripe-background-color": {
-                    "$value": "{color.usa.color.blue-cool.10v}",
+                    "$value": "{color.usa.color.blue-cool.90}",
                     "$extensions": {
                         "pttrn": {
                             "css": "--component-table-sorted-stripe-background-color",

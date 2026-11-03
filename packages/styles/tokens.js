@@ -8992,7 +8992,7 @@ export const tokens = {
         "value": "var(--usa-color-blue-cool-10v)",
         "modes": {
             "project-theme": "var(--usa-color-blue-cool-10v)",
-            "project-theme-dark": "var(--usa-color-blue-cool-10v)"
+            "project-theme-dark": "var(--usa-color-blue-cool-90)"
         }
     },
     "--component-table-stripe-background-color": {

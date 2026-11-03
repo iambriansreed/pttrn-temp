@@ -1,5 +1,4 @@
 import { Table } from '@ptrn/react/Table';
-import { Txt } from '@ptrn/react/Txt';
 import manifest from '@ptrn/web/custom-elements.json';
 import { Markup } from 'components/Markup';
 
@@ -20,16 +19,25 @@ const elements = (manifest as unknown as { modules: { declarations?: Element[] }
     .flatMap((module) => module.declarations ?? [])
     .filter((declaration) => declaration.customElement && declaration.tagName);
 
-const column = (key: string, label: string, width = 'auto') => ({ key, label, width, valign: 'top' as const });
-const code = (text?: string) => (text ? <code>{text}</code> : '');
+// Every table names the member in a column of the same width, so the tables of one element line up; values take what
+// they need and the description takes the rest.
+const NAME_WIDTH = '11rem';
+const VALUE_WIDTH = 'max-content';
+
+const column = (key: string, label: string, width = '1fr') => ({ key, label, width, valign: 'top' as const });
+const code = (text?: string) => (text ? <code>{text}</code> : '—');
+const markup = (text?: string) => (text ? <Markup>{text}</Markup> : '—');
 
 /**
  * The elements behind one component (its tag and any `<tag>-*` children) as the Custom Elements Manifest describes
  * them: attributes, events, slots and CSS parts. `@ptrn/web` builds the manifest from the element sources, and editors
- * and the MCP server read the same file, so this table cannot drift from the code.
+ * and the MCP server read the same file, so these tables cannot drift from the code.
  */
 export function WebComponentApi({ tag }: { tag: string }) {
-    const own = elements.filter((element) => element.tagName === tag || element.tagName?.startsWith(`${tag}-`));
+    // The component's own element first, then its children.
+    const own = elements
+        .filter((element) => element.tagName === tag || element.tagName?.startsWith(`${tag}-`))
+        .sort((a, b) => (a.tagName === tag ? -1 : b.tagName === tag ? 1 : 0));
     if (own.length === 0) return null;
 
     return (
@@ -40,74 +48,76 @@ export function WebComponentApi({ tag }: { tag: string }) {
                 editors and the MCP server read too.
             </p>
             {own.map((element) => (
-                <div key={element.tagName}>
-                    <Txt as="h4" id={element.tagName} variant="heading-h5">
+                <section data-wc-element key={element.tagName}>
+                    <h4 id={element.tagName}>
                         <code>{`<${element.tagName}>`}</code>
-                    </Txt>
-                    {!!(element.summary || element.description) && (
-                        <Markup>{element.summary || element.description || ''}</Markup>
-                    )}
+                    </h4>
+                    {markup(element.summary || element.description)}
                     {!!element.attributes?.length && (
                         <Table
                             columns={[
-                                column('name', 'Attribute'),
-                                column('type', 'Type'),
-                                column('default', 'Default'),
-                                column('description', 'Description', '1fr'),
+                                column('name', 'Attribute', NAME_WIDTH),
+                                column('type', 'Type', VALUE_WIDTH),
+                                column('default', 'Default', VALUE_WIDTH),
+                                column('description', 'Description'),
                             ]}
                             data={element.attributes.map((attribute) => ({
                                 id: attribute.name,
                                 name: code(attribute.name),
                                 type: code(attribute.type?.text),
                                 default: code(attribute.default),
-                                description: attribute.description ?? '',
+                                description: markup(attribute.description),
                             }))}
                             pageSize={100}
                             size="small"
+                            title="Attributes"
                         />
                     )}
                     {!!element.events?.length && (
                         <Table
                             columns={[
-                                column('name', 'Event'),
-                                column('type', 'Detail'),
-                                column('description', 'Fires', '1fr'),
+                                column('name', 'Event', NAME_WIDTH),
+                                column('type', 'Detail', VALUE_WIDTH),
+                                column('description', 'Fires'),
                             ]}
                             data={element.events.map((event) => ({
                                 id: event.name,
                                 name: code(event.name),
                                 type: code(event.type?.text),
-                                description: event.description ?? '',
+                                description: markup(event.description),
                             }))}
                             pageSize={100}
                             size="small"
+                            title="Events"
                         />
                     )}
                     {!!element.slots?.length && (
                         <Table
-                            columns={[column('name', 'Slot'), column('description', 'Takes', '1fr')]}
+                            columns={[column('name', 'Slot', NAME_WIDTH), column('description', 'Takes')]}
                             data={element.slots.map((slot) => ({
                                 id: slot.name || 'default',
                                 name: code(slot.name || '(default)'),
-                                description: slot.description ?? '',
+                                description: markup(slot.description),
                             }))}
                             pageSize={100}
                             size="small"
+                            title="Slots"
                         />
                     )}
                     {!!element.cssParts?.length && (
                         <Table
-                            columns={[column('name', 'CSS part'), column('description', 'Styles', '1fr')]}
+                            columns={[column('name', 'CSS part', NAME_WIDTH), column('description', 'Styles')]}
                             data={element.cssParts.map((part) => ({
                                 id: part.name || '',
                                 name: code(part.name),
-                                description: part.description ?? '',
+                                description: markup(part.description),
                             }))}
                             pageSize={100}
                             size="small"
+                            title="CSS parts"
                         />
                     )}
-                </div>
+                </section>
             ))}
         </section>
     );

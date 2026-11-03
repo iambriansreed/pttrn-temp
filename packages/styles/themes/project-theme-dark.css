@@ -642,7 +642,7 @@
     /* @-component/table/sorted-icon-color */
     --component-table-sorted-icon-color: var(--theme-color-ink);
     /* @-component/table/sorted-stripe-background-color */
-    --component-table-sorted-stripe-background-color: var(--usa-color-blue-cool-10v);
+    --component-table-sorted-stripe-background-color: var(--usa-color-blue-cool-90);
     /* @-component/table/stripe-background-color */
     --component-table-stripe-background-color: var(--theme-color-base-lightest);
     /* @-component/table/stripe-text-color */

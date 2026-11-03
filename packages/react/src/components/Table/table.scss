@@ -1,8 +1,14 @@
+/*
+ * The USWDS table (usa-table, striped): every cell bordered in ink, a gray header row, odd rows striped, the sorted
+ * column tinted. Colors come from the USWDS Design Kit's table tokens, so every theme restyles it.
+ */
 [data-pttrn='table'] {
     /*! --template-columns: is set via inline style */
 
-    --white-background: var(--theme-body-background-color);
-    --grey-background: var(--theme-color-base-lightest);
+    --white-background: var(--component-table-background-color);
+    --grey-background: var(--component-table-stripe-background-color);
+    --header-background: var(--component-table-header-background-color);
+    --border: var(--usa-spacing-1px) solid var(--component-table-border-color);
     --icon-size: var(--usa-spacing-205);
 
     display: block;
@@ -11,14 +17,9 @@
     // Never wider than its container, so a wide table scrolls inside itself even in a centered or flex layout.
     max-width: 100%;
     overflow: auto hidden;
-    border-collapse: separate;
     text-align: left;
-    border-spacing: 2rem 0.125rem;
-    color: var(--theme-body-text-color);
-    font: 500 var(--usa-font-size-sans-5) / 24px var(--usa-font-family-ui);
-    border-radius: var(--theme-border-radius-lg);
-    border: var(--usa-spacing-1px) solid var(--theme-color-base-lighter);
-    background: var(--white-background);
+    color: var(--component-table-text-color);
+    font: 400 var(--theme-body-font-size) / 1.5 var(--usa-font-family-body);
 
     /* [data-size='medium'] */
     --min-height: var(--usa-spacing-5);
@@ -42,7 +43,6 @@
     [data-scroll-container] {
         width: fit-content;
         min-width: 100%;
-        border-radius: var(--theme-border-radius-lg);
     }
 
     table {
@@ -57,18 +57,28 @@
             display: contents;
         }
 
+        // Above the grid, outside the borders, as USWDS places it.
         caption {
             grid-column: 1 / -1;
-            background: var(--grey-background);
-            border-bottom: var(--usa-spacing-1px) solid var(--theme-color-base-lighter);
             display: flex;
             flex-direction: row;
             justify-content: start;
             align-items: center;
-            font: 500 var(--usa-font-size-sans-3) / 20px var(--usa-font-family-ui);
-            min-height: var(--min-height);
-            padding: calc(var(--padding-y) + var(--usa-spacing-2px)) var(--usa-spacing-2);
+            font: 700 var(--theme-body-font-size) / 1.5 var(--usa-font-family-body);
+            padding-bottom: var(--usa-spacing-105);
             overflow: hidden;
+        }
+
+        // A grid does not collapse borders, so each cell draws its right and bottom edge, the header row its top
+        // edge and the first column its left edge.
+        th,
+        td {
+            border-right: var(--border);
+            border-bottom: var(--border);
+
+            &:first-child {
+                border-left: var(--border);
+            }
         }
 
         th {
@@ -76,12 +86,18 @@
             min-height: var(--min-height);
             overflow: hidden;
             flex-direction: row;
-            background: var(--grey-background);
-            font: 500 var(--usa-font-size-sans-3) / 20px var(--usa-font-family-ui);
-            border-bottom: var(--usa-spacing-1px) solid var(--theme-color-base-medium);
+            background: var(--header-background);
+            color: var(--component-table-header-text-color);
+            font: 700 var(--theme-body-font-size) / 1.3 var(--usa-font-family-body);
+            border-top: var(--border);
             white-space: nowrap;
             z-index: 1;
             position: relative;
+
+            &[aria-sort='ascending'],
+            &[aria-sort='descending'] {
+                --header-background: var(--component-table-sorted-header-background-color);
+            }
 
             &:not([data-sortable]) {
                 padding: calc(var(--padding-y) + var(--usa-spacing-2px)) var(--usa-spacing-2);
@@ -96,7 +112,8 @@
                     overflow: hidden;
                     flex-direction: row;
                     padding: calc(var(--padding-y) + var(--usa-spacing-2px)) var(--usa-spacing-2);
-                    background: var(--grey-background);
+                    background: var(--header-background);
+                    color: inherit;
                     align-items: center;
                     justify-content: space-between;
                     gap: var(--usa-spacing-1);
@@ -112,7 +129,7 @@
                                 var(--usa-color-black-transparent-10),
                                 var(--usa-color-black-transparent-10)
                             ),
-                            linear-gradient(var(--grey-background), var(--grey-background));
+                            linear-gradient(var(--header-background), var(--header-background));
                     }
 
                     &:active {
@@ -121,7 +138,7 @@
                                 var(--usa-color-black-transparent-20),
                                 var(--usa-color-black-transparent-20)
                             ),
-                            linear-gradient(var(--grey-background), var(--grey-background));
+                            linear-gradient(var(--header-background), var(--header-background));
                     }
 
                     [data-sort-icon] {
@@ -175,7 +192,8 @@
             overflow: hidden;
             padding: calc(var(--padding-y) + var(--usa-spacing-2px)) var(--usa-spacing-2);
             flex-direction: column;
-            font: 400 var(--usa-font-size-sans-3) / 20px var(--usa-font-family-body);
+            background: var(--white-background);
+            font: inherit;
 
             &[data-align='right'] {
                 align-items: flex-end;
@@ -204,7 +222,12 @@
             p {
                 margin: 0;
                 padding: 0;
-                font: 400 var(--usa-font-size-sans-3) / 20px var(--usa-font-family-body);
+                font: inherit;
+            }
+
+            &[data-sorted] {
+                --white-background: var(--component-table-sorted-background-color);
+                --grey-background: var(--component-table-sorted-stripe-background-color);
             }
 
             &[data-action]:hover {
@@ -214,8 +237,9 @@
             }
         }
 
-        tr:nth-child(even) td {
+        tbody tr:nth-child(odd) td {
             background: var(--grey-background);
+            color: var(--component-table-stripe-text-color);
 
             &[data-action]:hover {
                 background:
@@ -234,7 +258,7 @@
         width: 100%;
 
         [data-pagination-label] {
-            font: 400 var(--usa-font-size-sans-3) / 20px var(--usa-font-family-body);
+            font: inherit;
             min-width: fit-content;
         }
 

@@ -139,6 +139,12 @@ export function deriveDarkTheme(tokensDir: string): { changed: number; total: nu
             else if (ref.hue === 'white') leaf.$value = '{uswds-theme.theme.color.ink-reverse}';
             else if (ref.grade && Number.parseInt(ref.grade, 10) >= 60)
                 leaf.$value = `{color.usa.color.${ref.hue}.${100 - Number.parseInt(ref.grade, 10)}${ref.grade.endsWith('v') ? 'v' : ''}}`;
+            // A light background (the table's sorted stripe is blue-cool-10v) goes dark, or light text on it fails.
+            // Vivid grades stop at 80v, so a mirrored 90 is the plain grade.
+            else if (ref.grade && segments.at(-1)?.includes('background') && Number.parseInt(ref.grade, 10) <= 40) {
+                const grade = 100 - Number.parseInt(ref.grade, 10);
+                leaf.$value = `{color.usa.color.${ref.hue}.${grade}${ref.grade.endsWith('v') && grade <= 80 ? 'v' : ''}}`;
+            }
         }
     }
 

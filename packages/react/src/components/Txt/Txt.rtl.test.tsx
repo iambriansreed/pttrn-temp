@@ -21,6 +21,19 @@ describeBehaviors(spec, {
         expect(txt().tagName).toBe('SPAN');
         expect(txt()).toHaveTextContent('Example content');
     },
+    'renders-elements': () => {
+        const name = 'pttrn';
+        const { rerender } = render(
+            <Txt as="h4">
+                <code>{'<pttrn-accordion>'}</code>
+            </Txt>,
+        );
+        expect(txt().querySelector('code')).toHaveTextContent('<pttrn-accordion>');
+        expect(txt()).not.toHaveTextContent('[object Object]');
+
+        rerender(<Txt>Hello {name}</Txt>);
+        expect(txt()).toHaveTextContent('Hello pttrn');
+    },
     'as-element': () => {
         render(
             <Txt as="h2" variant="heading-h2">

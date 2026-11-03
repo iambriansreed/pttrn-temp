@@ -12,7 +12,8 @@ export type AccordionToggleDetail = { open: boolean };
 /**
  * One collapsible panel of a `pttrn-accordion`.
  *
- * @fires pttrn-toggle - After the user opens or closes the panel. `detail.open` is the new state.
+ * @fires {CustomEvent<{ open: boolean }>} pttrn-toggle - After the user opens or closes the panel. `detail.open` is the
+ *   new state.
  * @element pttrn-accordion-item
  * @slot - The panel content.
  * @slot leading - Shown before the heading.

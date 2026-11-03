@@ -1,0 +1,225 @@
+/*
+ * Prose: USWDS typography for long-form content, pttrn's version of USWDS's usa-prose.
+ *
+ * Put data-prose on the element that holds the content. Its direct children (headings, paragraphs, lists, quotes,
+ * rules, tables) and the text inside them get the USWDS type scale, spacing and measure. Only direct children are
+ * styled, as usa-prose does, so a component placed inside prose keeps its own styles.
+ *
+ * Sizes, fonts and colors come from the USWDS Design Kit tokens: load tokens.css and a theme first. The kit has no
+ * tokens for line height or measure, so those use the USWDS values (1.5 body, 1.2 headings, a 68ex measure).
+ * Keep it to plain CSS with no nesting, like reset.css.
+ */
+
+[data-prose] {
+    color: var(--theme-body-text-color);
+    font-family: var(--usa-font-family-body);
+    font-size: var(--theme-body-font-size);
+    line-height: 1.5;
+}
+
+/* Spacing: 1em between blocks, 1.5em above a heading, nothing outside the first and last block. */
+[data-prose] > * + * {
+    margin-top: 1em;
+}
+
+[data-prose] > * + :is(h1, h2, h3, h4, h5, h6) {
+    margin-top: 1.5em;
+}
+
+[data-prose] > :first-child {
+    margin-top: 0;
+}
+
+[data-prose] > :last-child {
+    margin-bottom: 0;
+}
+
+/* Headings */
+[data-prose] > :is(h1, h2, h3, h4, h5, h6) {
+    font-family: var(--usa-font-family-heading);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 0;
+}
+
+[data-prose] > h1 {
+    font-size: var(--component-prose-h1-font-size);
+}
+
+[data-prose] > h2 {
+    font-size: var(--component-prose-h2-font-size);
+}
+
+[data-prose] > h3 {
+    font-size: var(--component-prose-h3-font-size);
+}
+
+[data-prose] > h4 {
+    font-size: var(--component-prose-h4-font-size);
+}
+
+[data-prose] > h5 {
+    font-size: var(--component-prose-h5-font-size);
+}
+
+[data-prose] > h6 {
+    font-size: var(--component-prose-h6-font-size);
+    font-weight: 400;
+    letter-spacing: 0.025em;
+    text-transform: uppercase;
+}
+
+/* Paragraphs and lists keep to the reading measure. */
+[data-prose] > p {
+    max-width: 68ex;
+}
+
+/*
+ * Lists hang their markers inside the text column: the bullet or number sits in a 3ch gutter, and a wrapped line
+ * lines up with the first line's text, not with the marker. The reset sets ol inside, so prose sets it back.
+ */
+[data-prose] > :is(ul, ol),
+[data-prose] > :is(ul, ol) :is(ul, ol) {
+    list-style-position: outside;
+    padding-left: 3ch;
+}
+
+[data-prose] > ul {
+    list-style-type: disc;
+}
+
+[data-prose] > ol {
+    list-style-type: decimal;
+}
+
+[data-prose] > :is(ul, ol) ul {
+    list-style-type: circle;
+}
+
+[data-prose] > :is(ul, ol) ol {
+    list-style-type: lower-alpha;
+}
+
+[data-prose] > :is(ul, ol) li {
+    margin-bottom: 0.25em;
+    max-width: 68ex;
+}
+
+[data-prose] > :is(ul, ol) li:last-child {
+    margin-bottom: 0;
+}
+
+[data-prose] > :is(ul, ol) li > :is(ul, ol) {
+    margin-top: 0.25em;
+}
+
+/* Definition lists */
+[data-prose] > dl dt {
+    font-weight: 700;
+}
+
+[data-prose] > dl dd {
+    margin: 0 0 0.5em 3ch;
+    max-width: 68ex;
+}
+
+/* Inline text */
+[data-prose] a:not([data-pttrn]) {
+    color: var(--component-link-color);
+    text-decoration: underline;
+}
+
+[data-prose] a:not([data-pttrn]):visited {
+    color: var(--component-link-visited-color);
+}
+
+[data-prose] a:not([data-pttrn]):hover {
+    color: var(--component-link-hover-color);
+}
+
+[data-prose] a:not([data-pttrn]):active {
+    color: var(--component-link-active-color);
+}
+
+[data-prose] :is(code, kbd, samp) {
+    font-family: var(--usa-font-family-mono);
+    font-size: 0.95em;
+}
+
+[data-prose] kbd {
+    border: 1px solid var(--theme-color-base-light);
+    border-radius: var(--theme-border-radius-sm);
+    padding: 0 0.25em;
+}
+
+[data-prose] small {
+    font-size: var(--component-prose-small-font-size);
+}
+
+[data-prose] mark {
+    background-color: var(--theme-color-warning-lighter);
+    color: inherit;
+}
+
+[data-prose] abbr[title] {
+    text-decoration: underline dotted;
+    cursor: help;
+}
+
+/* Quotes and rules */
+[data-prose] > blockquote {
+    border-left: 4px solid var(--theme-color-base-lighter);
+    max-width: 68ex;
+    padding-left: 2ch;
+}
+
+[data-prose] > blockquote cite {
+    color: var(--theme-color-base-dark);
+    display: block;
+    font-size: var(--component-prose-small-font-size);
+    font-style: normal;
+    margin-top: 0.5em;
+}
+
+[data-prose] > hr {
+    border: 0;
+    border-top: 1px solid var(--theme-color-base-lighter);
+    margin: 2em 0;
+}
+
+/*
+ * Tables: the USWDS default table, from the kit's table tokens. A table wider than the column scrolls inside itself, as
+ * USWDS's usa-table-container--scrollable does, instead of widening the page.
+ */
+[data-prose] > table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    display: block;
+    margin: 1.25em 0;
+    max-width: 100%;
+    overflow-x: auto;
+    text-align: left;
+    width: max-content;
+}
+
+[data-prose] > table caption {
+    font-weight: 700;
+    margin-bottom: 0.75em;
+    text-align: left;
+}
+
+[data-prose] > table :is(th, td) {
+    background-color: var(--component-table-background-color);
+    border: 1px solid var(--component-table-border-color);
+    color: var(--component-table-text-color);
+    font-weight: 400;
+    padding: 0.5rem 1rem;
+    vertical-align: top;
+}
+
+[data-prose] > table thead th {
+    background-color: var(--component-table-header-background-color);
+    color: var(--component-table-header-text-color);
+    font-weight: 700;
+    line-height: 1.3;
+}

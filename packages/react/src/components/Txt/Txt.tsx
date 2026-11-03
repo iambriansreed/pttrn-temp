@@ -1,4 +1,4 @@
-import { ElementType } from 'react';
+import { ElementType, ReactNode, isValidElement } from 'react';
 
 import { SkeletonText } from '-/components/SkeletonText';
 import { ElementProps } from '-/types/common';
@@ -13,9 +13,9 @@ export type TxtProps<As extends ElementType = ElementType> = {
      */
     as?: As;
     /**
-     * The content to render.
+     * The content to render: text, or elements such as a `<code>` inside a heading.
      *
-     * @type string
+     * @type React.ReactNode
      * @required
      */
     children: unknown;
@@ -63,7 +63,10 @@ export function Txt<As extends ElementType = ElementType>({
     inherit,
     ...containerProps
 }: ElementProps<TxtProps<As>, As>) {
-    const content = children?.toString();
+    // Elements and mixed content (`Hello {name}` is an array) render as they are; anything else renders as its text.
+    // Turned into a string they would print "[object Object]" or join the parts with commas.
+    const content: ReactNode =
+        isValidElement(children) || Array.isArray(children) ? (children as ReactNode) : children?.toString();
 
     if (!content) return skeletonLines ? <SkeletonText lines={skeletonLines} variant={variant} /> : null;
 

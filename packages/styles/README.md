@@ -16,6 +16,7 @@ The tokens come from the USWDS Design Kit in Figma. The source of truth in this 
 | `fonts.css`                     | Hand-written. Loads Public Sans, Merriweather and Roboto Mono from this package's `@fontsource` dependencies, so the fonts ship with your app. Needs a bundler. |
 | `fonts.google.css`              | Hand-written. The same families from Google Fonts, for a page without a bundler.                                                                                |
 | `reset.css`                     | Hand-written. `@ptrn/react` loads it for the page, and each `@ptrn/web` element includes it in its shadow root.                                                 |
+| `prose.css`                     | Hand-written. USWDS prose (`usa-prose`) for long-form content: the elements directly inside a `data-prose` element. Opt in; nothing loads it for you.           |
 
 ## Use it
 

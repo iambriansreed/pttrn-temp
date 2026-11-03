@@ -8,7 +8,7 @@ export type WrapHtmlProps<As extends ElementType> = {
 };
 
 /**
- * Adds links to a string returning ReactNode. Markdown and HTML is supported.
+ * Adds links to a string returning ReactNode. Markdown and HTML is supported, rendered as USWDS prose.
  *
  * @param {WrapHtmlProps} props
  * @returns {ReactNode}
@@ -33,5 +33,5 @@ export function Markup<As extends ElementType>({
         },
     });
 
-    return <As dangerouslySetInnerHTML={{ __html: marked(sourceWithLinks) as string }} {...otherProps} />;
+    return <As dangerouslySetInnerHTML={{ __html: marked(sourceWithLinks) as string }} data-prose {...otherProps} />;
 }

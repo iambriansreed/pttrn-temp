@@ -2,7 +2,7 @@
     "name": "@ptrn/styles",
     "version": "0.0.1",
     "license": "MIT",
-    "description": "pttrn design tokens: the DTCG token source exported from the USWDS Design Kit in Figma, the stylesheets built from it, and the reset shared by @ptrn/react and @ptrn/web.",
+    "description": "pttrn design tokens: the DTCG token source exported from the USWDS Design Kit in Figma, the stylesheets built from it, the reset shared by @ptrn/react and @ptrn/web, and USWDS prose styles.",
     "files": [
         "*.css",
         "themes",
@@ -40,6 +40,7 @@
         "./tokens.css": "./tokens.css",
         "./fonts.css": "./fonts.css",
         "./reset.css": "./reset.css",
+        "./prose.css": "./prose.css",
         "./reset": {
             "sass": "./reset.css",
             "style": "./reset.css",

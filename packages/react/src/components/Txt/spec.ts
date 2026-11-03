@@ -22,6 +22,11 @@ export const spec: ComponentSpec = {
     },
     behaviors: [
         { id: 'renders-text', description: 'The content renders as text in a span.' },
+        {
+            id: 'renders-elements',
+            description:
+                'Elements and mixed content render as they are, not stringified into object text or comma-joined words.',
+        },
         { id: 'as-element', description: '`as` renders the text as another element.' },
         { id: 'variant-font', description: 'The variant sets the font, unless inherit leaves it to the parent.' },
         { id: 'skeleton-fallback', description: 'Without content, skeletonLines renders that many skeleton lines.' },
