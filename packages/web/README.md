@@ -13,12 +13,16 @@ One line per component, in name order:
 - `pttrn-banner-alert`
 - `pttrn-breadcrumb`, `pttrn-breadcrumb-item`
 - `pttrn-button`
+- `pttrn-calendar`
 - `pttrn-card`
+- `pttrn-carousel`
 - `pttrn-chip`
 - `pttrn-chip-group`
 - `pttrn-divider`
 - `pttrn-empty-state`
 - `pttrn-fab`
+- `pttrn-file-upload`
+- `pttrn-file-upload-item`
 - `pttrn-inline-alert`
 - `pttrn-input`
 - `pttrn-input-number`
@@ -26,6 +30,8 @@ One line per component, in name order:
 - `pttrn-page-control`
 - `pttrn-pagination`
 - `pttrn-password`
+- `pttrn-progression-stepper`, `pttrn-progression-stepper-item`
+- `pttrn-progression-stepper-bar`
 - `pttrn-radio-group`, `pttrn-radio-group-item`
 - `pttrn-search-bar`, `pttrn-search-bar-item`
 - `pttrn-segmented-control`, `pttrn-segmented-control-item`
@@ -34,6 +40,7 @@ One line per component, in name order:
 - `pttrn-switch`
 - `pttrn-switch-option`
 - `pttrn-tab-group`, `pttrn-tab-group-item`
+- `pttrn-table`
 - `pttrn-tag`
 - `pttrn-textarea`
 - `pttrn-tooltip`
