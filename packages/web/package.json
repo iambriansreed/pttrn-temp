@@ -47,6 +47,10 @@
         "./Chip": {
             "types": "./dist/components/Chip/index.d.ts",
             "default": "./dist/components/Chip/index.js"
+        },
+        "./ChipGroup": {
+            "types": "./dist/components/ChipGroup/index.d.ts",
+            "default": "./dist/components/ChipGroup/index.js"
         }
     },
     "scripts": {

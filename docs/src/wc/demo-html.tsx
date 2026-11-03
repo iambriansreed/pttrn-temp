@@ -4,15 +4,18 @@ import { isIconName } from 'src/utils/icons';
 
 /**
  * The SVG markup of an icon from `@ptrn/icons`, with a `slot` attribute, for the HTML a Web Component user writes. The
- * demo state holds icon names; this loads the icon's module (the same chunk `SvgIcon` loads for the preview) and
- * renders it to markup. Unknown names give an empty string, as an invalid icon renders nothing in React.
+ * demo state holds icon names, or icon elements inside item arrays; a name loads the icon's module (the same chunk
+ * `SvgIcon` loads for the preview) and renders it to markup. Unknown names give an empty string, as an invalid icon
+ * renders nothing in React.
  */
 export async function iconHtml(name: unknown, slot = 'icon'): Promise<string> {
+    // `width: null` drops the default `width="24"` the React icon sets; the element sizes the icon.
+    const props = { slot: slot || undefined, width: null } as Record<string, unknown>;
+    if (isValidElement(name)) return renderToStaticMarkup(cloneElement(name, props));
     if (typeof name !== 'string' || !isIconName(name)) return '';
     const module = await import(`../../../packages/icons/${name}.js`);
     const Svg = module[`Svg${name}`];
-    // `width: null` drops the default `width="24"` the React icon sets; the element sizes the icon.
-    return Svg ? renderToStaticMarkup(createElement(Svg, { slot: slot || undefined, width: null })) : '';
+    return Svg ? renderToStaticMarkup(createElement(Svg, props)) : '';
 }
 
 /** A React icon element from the demo state, with `slot` set so it lands in the element's slot. */
