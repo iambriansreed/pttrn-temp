@@ -2,6 +2,7 @@ import { MetaComponentName } from 'src/meta';
 import { accordionWc } from 'src/wc/accordion';
 import { bannerAlertWc } from 'src/wc/banner-alert';
 import { buttonWc } from 'src/wc/button';
+import { cardWc } from 'src/wc/card';
 import { chipWc } from 'src/wc/chip';
 import { chipGroupWc } from 'src/wc/chip-group';
 import { fabWc } from 'src/wc/fab';
@@ -17,6 +18,7 @@ export const webComponents: Partial<Record<MetaComponentName, WebComponentDemo>>
     Accordion: accordionWc,
     BannerAlert: bannerAlertWc,
     Button: buttonWc,
+    Card: cardWc,
     Chip: chipWc,
     ChipGroup: chipGroupWc,
     Fab: fabWc,

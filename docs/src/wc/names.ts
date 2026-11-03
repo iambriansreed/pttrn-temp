@@ -6,6 +6,7 @@ export const webComponents: string[] = [
     'Accordion',
     'BannerAlert',
     'Button',
+    'Card',
     'Chip',
     'ChipGroup',
     'Fab',
