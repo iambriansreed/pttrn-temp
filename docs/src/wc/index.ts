@@ -30,6 +30,7 @@ import { progressionStepperWc } from 'src/wc/progression-stepper';
 import { progressionStepperBarWc } from 'src/wc/progression-stepper-bar';
 import { radioGroupWc } from 'src/wc/radio-group';
 import { radioGroupFieldWc } from 'src/wc/radio-group-field';
+import { ratingWc } from 'src/wc/rating';
 import { searchBarWc } from 'src/wc/search-bar';
 import { segmentedControlWc } from 'src/wc/segmented-control';
 import { skeletonWc } from 'src/wc/skeleton';
@@ -79,6 +80,7 @@ export const webComponents: Partial<Record<MetaComponentName, WebComponentDemo>>
     ProgressionStepperBar: progressionStepperBarWc,
     RadioGroup: radioGroupWc,
     RadioGroupField: radioGroupFieldWc,
+    Rating: ratingWc,
     SearchBar: searchBarWc,
     SegmentedControl: segmentedControlWc,
     Skeleton: skeletonWc,

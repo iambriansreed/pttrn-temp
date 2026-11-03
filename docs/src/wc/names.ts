@@ -33,6 +33,7 @@ export const webComponents: string[] = [
     'ProgressionStepperBar',
     'RadioGroup',
     'RadioGroupField',
+    'Rating',
     'SearchBar',
     'SegmentedControl',
     'Skeleton',

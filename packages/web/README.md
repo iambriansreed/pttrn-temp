@@ -35,6 +35,7 @@ One line per component, in name order:
 - `pttrn-progression-stepper`, `pttrn-progression-stepper-item`
 - `pttrn-progression-stepper-bar`
 - `pttrn-radio-group`, `pttrn-radio-group-item`
+- `pttrn-rating`
 - `pttrn-search-bar`, `pttrn-search-bar-item`
 - `pttrn-segmented-control`, `pttrn-segmented-control-item`
 - `pttrn-skeleton`

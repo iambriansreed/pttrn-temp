@@ -39,3 +39,4 @@ export * from './components/Tag';
 export * from './components/Textarea';
 export * from './components/Tooltip';
 export * from './components/Txt';
+export * from './components/Rating';

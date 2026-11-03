@@ -1,0 +1,92 @@
+@use '../../styles/reset';
+
+:host {
+    display: block;
+    box-sizing: border-box;
+    width: fit-content;
+}
+
+// The rules of the React rating.scss.
+[data-pttrn='rating'] {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: fit-content;
+
+    &[data-size='small'] {
+        [data-star] {
+            width: var(--usa-spacing-3);
+            height: var(--usa-spacing-3);
+        }
+
+        svg {
+            width: var(--usa-spacing-2);
+            height: var(--usa-spacing-2);
+        }
+    }
+
+    &[data-size='medium'] {
+        [data-star] {
+            width: var(--usa-spacing-4);
+            height: var(--usa-spacing-4);
+        }
+
+        svg {
+            width: var(--usa-spacing-3);
+            height: var(--usa-spacing-3);
+        }
+    }
+
+    &[data-size='large'] {
+        [data-star] {
+            width: var(--usa-spacing-5);
+            height: var(--usa-spacing-5);
+        }
+
+        svg {
+            width: var(--usa-spacing-4);
+            height: var(--usa-spacing-4);
+        }
+    }
+
+    [data-star] {
+        outline: none;
+        cursor: default;
+        background: none;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        color: var(--theme-color-base-lighter);
+
+        &:is(button) {
+            cursor: pointer;
+
+            &:hover {
+                transform: scale(1.2);
+            }
+
+            &:focus-visible {
+                outline: var(--usa-spacing-1px) solid var(--theme-global-focus-color);
+                border-color: var(--theme-global-focus-color);
+                margin-bottom: var(--usa-spacing-1px);
+            }
+        }
+
+        &[data-fill='full'] {
+            color: var(--theme-color-warning-medium);
+        }
+
+        /* half star fill */
+        [data-fill-half] {
+            position: absolute;
+            inset: 0 50% 0 0;
+            overflow: hidden;
+
+            [data-star] {
+                color: var(--theme-color-warning-medium);
+            }
+        }
+    }
+}
