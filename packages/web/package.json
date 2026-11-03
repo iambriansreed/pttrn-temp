@@ -36,6 +36,10 @@
             "types": "./dist/components/Accordion/index.d.ts",
             "default": "./dist/components/Accordion/index.js"
         },
+        "./ProgressionStepper": {
+            "types": "./dist/components/ProgressionStepper/index.d.ts",
+            "default": "./dist/components/ProgressionStepper/index.js"
+        },
         "./ProgressionStepperBar": {
             "types": "./dist/components/ProgressionStepperBar/index.d.ts",
             "default": "./dist/components/ProgressionStepperBar/index.js"
