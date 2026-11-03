@@ -1,0 +1,174 @@
+@use '../../styles/reset';
+@use '../../styles/list-item';
+@use '../../styles/menu';
+
+:host {
+    --list-item-height: calc(var(--usa-spacing-6) + var(--usa-spacing-05));
+
+    display: block;
+    width: 100%;
+}
+
+[data-pttrn='breadcrumb'] {
+    width: 100%;
+
+    ol {
+        display: flex;
+        align-items: center;
+        flex-flow: row wrap;
+        list-style: none;
+        gap: var(--usa-spacing-1);
+
+        li {
+            display: flex;
+            gap: var(--usa-spacing-1);
+        }
+    }
+
+    // The chevrons, at the React icon's default width.
+    li > svg {
+        width: var(--usa-spacing-3);
+    }
+}
+
+// React's small Link.
+[data-link] {
+    color: var(--component-link-color);
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--usa-spacing-05);
+    font: 500 var(--usa-font-size-sans-3) / 20px var(--usa-font-family-ui);
+
+    &:hover {
+        color: var(--component-link-hover-color);
+    }
+
+    &:active {
+        color: var(--component-link-color);
+        filter: brightness(80%);
+    }
+
+    &:visited {
+        color: var(--component-link-visited-color);
+    }
+
+    &[data-subtle] {
+        text-decoration: none;
+        color: var(--theme-body-text-color);
+
+        &:hover,
+        &:active {
+            text-decoration: underline;
+            color: var(--theme-color-ink);
+        }
+
+        &:visited {
+            color: var(--theme-body-text-color);
+        }
+    }
+
+    &[data-subtle-inverse] {
+        text-decoration: none;
+        color: var(--theme-color-ink-reverse);
+
+        &:hover {
+            text-decoration: underline;
+            color: var(--component-link-reverse-hover-color);
+        }
+
+        &:active {
+            text-decoration: underline;
+            color: var(--component-link-reverse-active-color);
+        }
+
+        &:visited {
+            color: var(--theme-color-ink-reverse);
+        }
+    }
+}
+
+// React's Txt labels-small.
+[data-current] {
+    overflow-wrap: break-word;
+    font: 500 var(--usa-font-size-sans-3) / 20px var(--usa-font-family-ui);
+}
+
+// React's small tertiary icon-only Button.
+[data-overflow] {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    gap: var(--usa-spacing-1);
+    border: none;
+    cursor: pointer;
+    background: transparent;
+    color: var(--theme-color-base-dark);
+    text-decoration: none;
+    width: fit-content;
+    font-family: var(--usa-font-family-body);
+    font-size: var(--usa-font-size-sans-3);
+    line-height: 20px;
+    height: var(--usa-spacing-4);
+    min-width: var(--usa-spacing-4);
+
+    &:hover {
+        background: var(--usa-color-black-transparent-10);
+    }
+
+    &:active {
+        background: var(--usa-color-black-transparent-20);
+    }
+
+    &:focus-visible {
+        outline: solid var(--usa-spacing-2px) var(--theme-global-focus-color);
+        isolation: isolate;
+    }
+
+    [data-button-icon] {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        svg {
+            width: var(--usa-spacing-205);
+            height: var(--usa-spacing-205);
+        }
+    }
+
+    // The 48px touch target, on coarse pointers only.
+    [data-touch-target] {
+        display: none;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+        user-select: none;
+        position: absolute;
+        z-index: 1;
+        height: 100%;
+        width: 100%;
+        min-width: var(--usa-spacing-6);
+        min-height: var(--usa-spacing-6);
+    }
+
+    @media (any-pointer: coarse) {
+        [data-touch-target] {
+            display: block;
+        }
+    }
+}
+
+[role='menu'] {
+    @include menu.menu-popover;
+
+    // React asks for fit-content, but Menu's own width prop overrides it, so the menu is its 332px capped at 300px.
+    max-width: 300px;
+    min-width: 150px;
+
+    [data-list-item] {
+        @include list-item.list-item;
+    }
+}

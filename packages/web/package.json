@@ -36,6 +36,10 @@
             "types": "./dist/components/Accordion/index.d.ts",
             "default": "./dist/components/Accordion/index.js"
         },
+        "./Breadcrumb": {
+            "types": "./dist/components/Breadcrumb/index.d.ts",
+            "default": "./dist/components/Breadcrumb/index.js"
+        },
         "./Tooltip": {
             "types": "./dist/components/Tooltip/index.d.ts",
             "default": "./dist/components/Tooltip/index.js"
