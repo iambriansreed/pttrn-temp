@@ -19,7 +19,7 @@ export const spec: ComponentSpec = {
         {
             part: 'input',
             description:
-                'A native text input, "Phone number input" unless aria-label says otherwise, with autocomplete off and the Input clear button while there is a value. Only digits can be typed; the value shown is formatted for the country unless disableFormatting.',
+                'A native text input, "Phone number input" unless aria-label says otherwise, with autocomplete off, inputmode tel and the Input clear button while there is a value. Only digits can be typed; the value shown is formatted for the country unless disableFormatting.',
         },
         {
             part: 'list',
@@ -85,6 +85,15 @@ export const spec: ComponentSpec = {
                 'Typing digits calls onChange with the number formatted for the country and the country code; disableFormatting passes the digits through.',
         },
         { id: 'digits-only', description: 'Keys other than digits are ignored by the input.' },
+        {
+            id: 'phone-keypad',
+            description: 'The input, not its container, carries inputmode tel, so touch devices offer a phone keypad.',
+        },
+        {
+            id: 'clear-button',
+            description:
+                'While there is a value, the clear button follows the input in the Tab order; a click, Enter or Space on it calls onChange with an empty value and the country code and focuses the input.',
+        },
         {
             id: 'states',
             description:

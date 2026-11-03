@@ -24,7 +24,8 @@ import { getEventCode } from '-/utils/handleKeyDown';
 
 export type CalendarProps = {
     /**
-     * The currently selected date
+     * The currently selected date. The calendar opens on its month and moves there when it changes; without a valid
+     * date nothing is selected and the calendar opens on today.
      *
      * @type Date
      */
@@ -59,7 +60,18 @@ export function Calendar({ id, value: valueProp, onChange, focusTrap = false }: 
     const lastButtonRef = useRef<HTMLButtonElement | null>(null);
     const gridRef = useRef<HTMLTableSectionElement | null>(null);
 
-    const [activeDate, setActiveDate] = useState<Date>(valueProp && isValid(valueProp) ? valueProp : startOfToday());
+    const value = valueProp && isValid(valueProp) ? valueProp : undefined;
+
+    // The active day is where the keys move and the only day in the Tab order; it is not the selection.
+    const [activeDate, setActiveDate] = useState<Date>(value ?? startOfToday());
+
+    // A value that changes after mount moves the active day, and so the view, to it. A new Date of the same day does
+    // not, so a parent that rebuilds the Date on every render does not undo the user's navigation.
+    const [shownValue, setShownValue] = useState(value);
+    if (!isSameDate(value, shownValue)) {
+        setShownValue(value);
+        if (value) setActiveDate(value);
+    }
 
     const rows = useMemo(
         () =>
@@ -180,10 +192,12 @@ export function Calendar({ id, value: valueProp, onChange, focusTrap = false }: 
                                 const label = format(date, 'd');
                                 const optionId = generateOptionId(date);
                                 const isActive = isSameDay(date, activeDate);
+                                const isSelected = !!value && isSameDay(date, value);
                                 return (
                                     <td
                                         aria-label={format(date, 'do MMMM yyyy')}
-                                        data-selected={isActive || undefined}
+                                        aria-selected={isSelected || undefined}
+                                        data-selected={isSelected || undefined}
                                         id={optionId}
                                         key={date.toString()}
                                         onClick={() => onChange(date)}
@@ -208,3 +222,5 @@ export function Calendar({ id, value: valueProp, onChange, focusTrap = false }: 
         </div>
     );
 }
+
+const isSameDate = (a: Date | undefined, b: Date | undefined) => (a && b ? isSameDay(a, b) : a === b);

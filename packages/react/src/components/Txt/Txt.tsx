@@ -15,7 +15,7 @@ export type TxtProps<As extends ElementType = ElementType> = {
     /**
      * The content to render: text, or elements such as a `<code>` inside a heading.
      *
-     * @type React.ReactNode
+     * @type string
      * @required
      */
     children: unknown;

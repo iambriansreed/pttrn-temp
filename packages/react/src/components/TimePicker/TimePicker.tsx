@@ -193,6 +193,7 @@ export function TimePicker({
                 />
                 <TimePickerSegment
                     disabled={disabled}
+                    invalid={invalid}
                     name={`${name}-hours`}
                     onChange={(next) => setValue({ hours: next || undefined })}
                     readOnly={readOnly}
@@ -203,6 +204,7 @@ export function TimePicker({
                 <span aria-hidden="true">:</span>
                 <TimePickerSegment
                     disabled={disabled}
+                    invalid={invalid}
                     name={`${name}-minutes`}
                     onChange={(next) => setValue({ minutes: next || undefined })}
                     readOnly={readOnly}
@@ -211,6 +213,7 @@ export function TimePicker({
                 />
                 <TimePickerSegment
                     disabled={disabled}
+                    invalid={invalid}
                     name={`${name}-meridiem`}
                     onChange={(next) => setValue({ meridiem: next || 'AM' })}
                     readOnly={readOnly}

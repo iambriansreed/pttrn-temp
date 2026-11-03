@@ -65,7 +65,7 @@ export const spec: ComponentSpec = {
         { keys: ['Escape'], description: 'In the popup, closes it and returns focus to the toggle.' },
     ],
     accessibility: {
-        roles: 'A group holding three spinbuttons, with aria-valuemin and aria-valuemax on the numeric ones and aria-valuetext on all, and a combobox toggle with aria-haspopup dialog, aria-expanded and aria-controls naming the popup. The popup is a dialog with aria-modal holding three listboxes; their options carry aria-selected and each listbox names its active option through aria-activedescendant. disabled and readOnly reach the segments as aria-disabled and aria-readonly and the toggle as aria-disabled; invalid is a data attribute for the error border only.',
+        roles: 'A group holding three spinbuttons, with aria-valuemin and aria-valuemax on the numeric ones and aria-valuetext on all, and a combobox toggle with aria-haspopup dialog, aria-expanded and aria-controls naming the popup. The popup is a dialog with aria-modal holding three listboxes; their options carry aria-selected and each listbox names its active option through aria-activedescendant. disabled and readOnly reach the segments as aria-disabled and aria-readonly and the toggle as aria-disabled; invalid reaches the segments as aria-invalid, so each one is announced as invalid when it takes focus.',
         labels: 'The group is named by aria-label, "Time picker" unless given another, and described by aria-describedby or, when given, aria-errormessage. The segments are "hours", "minutes" and "meridiem"; the toggle is "Open Time Picker" or "Close Time Picker"; the popup is "Select time" and its listboxes "Select hours", "Select minutes" and "Select meridiem". A Field label points at the hidden input, so it focuses the field but does not name the group.',
         focus: 'Native focus moves through the segments and then the toggle. Opening the popup moves focus to the hours listbox and holds it in the popup; choosing an option moves it to the next listbox, and choosing a meridiem or pressing Escape closes the popup and returns focus to the toggle. Disabled and read-only fields are not in the tab order and do not open.',
         targetSize: 44,
@@ -116,6 +116,11 @@ export const spec: ComponentSpec = {
             id: 'states',
             description:
                 'disabled, readOnly, invalid and size reach the group as data attributes; disabled or read-only segments are neither editable nor in the tab order, and the toggle does not open.',
+        },
+        {
+            id: 'invalid-segments',
+            description:
+                'With invalid every segment carries aria-invalid true, the group data-invalid, and the error message still describes the group; without it no segment carries aria-invalid.',
         },
         {
             id: 'axe-clean',

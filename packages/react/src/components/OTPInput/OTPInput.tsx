@@ -97,6 +97,10 @@ export function OTPInput({
     const onChangeInput = (index: number) => (event: React.ChangeEvent<HTMLInputElement>) => {
         const digitAdded = event.target.value;
 
+        // The keydown filter cannot see every character: a virtual keyboard or an IME sends no readable key. The cell
+        // is controlled, so ignoring the change puts its value back.
+        if (digitAdded && !alphanumeric && !/^[0-9]$/.test(digitAdded)) return;
+
         setValues((prev) => {
             const newValues = [...prev];
             newValues[index] = digitAdded;
@@ -221,12 +225,12 @@ export function OTPInput({
                         }}
                         onKeyDown={(event) => {
                             if (
-                                // is a single key that doesn't have ctrl/meta/alt modifiers
+                                // is a single character typed without ctrl/meta/alt, so shortcuts like paste get
+                                // through. Shift is not exempt: Shift+A types "A", and some layouts type digits with it.
                                 event.key.length === 1 &&
                                 !event.ctrlKey &&
                                 !event.metaKey &&
                                 !event.altKey &&
-                                !event.shiftKey &&
                                 // only accepts numbers
                                 !alphanumeric &&
                                 // is not a number 0-9
