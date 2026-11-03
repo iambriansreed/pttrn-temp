@@ -22,6 +22,7 @@ One line per component, in name order:
 - `pttrn-checkbox-option`
 - `pttrn-chip`
 - `pttrn-chip-group`
+- `pttrn-date-picker`
 - `pttrn-divider`
 - `pttrn-empty-state`
 - `pttrn-fab`
@@ -50,6 +51,7 @@ One line per component, in name order:
 - `pttrn-table`
 - `pttrn-tag`
 - `pttrn-textarea`
+- `pttrn-time-picker`
 - `pttrn-tooltip`
 - `pttrn-txt`
 

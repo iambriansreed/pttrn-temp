@@ -16,6 +16,7 @@ import { checkboxGroupFieldWc } from 'src/wc/checkbox-group-field';
 import { checkboxOptionWc } from 'src/wc/checkbox-option';
 import { chipWc } from 'src/wc/chip';
 import { chipGroupWc } from 'src/wc/chip-group';
+import { datePickerWc } from 'src/wc/date-picker';
 import { dividerWc } from 'src/wc/divider';
 import { emptyStateWc } from 'src/wc/empty-state';
 import { fabWc } from 'src/wc/fab';
@@ -46,6 +47,7 @@ import { tabGroupWc } from 'src/wc/tab-group';
 import { tableWc } from 'src/wc/table';
 import { tagWc } from 'src/wc/tag';
 import { textareaWc } from 'src/wc/textarea';
+import { timePickerWc } from 'src/wc/time-picker';
 import { tooltipWc } from 'src/wc/tooltip';
 import { txtWc } from 'src/wc/txt';
 import { WebComponentDemo } from 'src/wc/types';
@@ -72,6 +74,7 @@ export const webComponents: Partial<Record<MetaComponentName, WebComponentDemo>>
     CheckboxOption: checkboxOptionWc,
     Chip: chipWc,
     ChipGroup: chipGroupWc,
+    DatePicker: datePickerWc,
     Divider: dividerWc,
     EmptyState: emptyStateWc,
     Fab: fabWc,
@@ -101,6 +104,7 @@ export const webComponents: Partial<Record<MetaComponentName, WebComponentDemo>>
     Table: tableWc,
     Tag: tagWc,
     Textarea: textareaWc,
+    TimePicker: timePickerWc,
     Tooltip: tooltipWc,
     Txt: txtWc,
 };

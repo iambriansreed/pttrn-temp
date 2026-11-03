@@ -20,6 +20,7 @@ export const webComponents: string[] = [
     'CheckboxOption',
     'Chip',
     'ChipGroup',
+    'DatePicker',
     'Divider',
     'EmptyState',
     'Fab',
@@ -49,6 +50,7 @@ export const webComponents: string[] = [
     'Table',
     'Tag',
     'Textarea',
+    'TimePicker',
     'Tooltip',
     'Txt',
 ];
