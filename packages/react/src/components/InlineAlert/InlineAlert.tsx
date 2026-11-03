@@ -32,7 +32,7 @@ export type InlineAlertProps = CommonProps<'owner'> & {
  * @example
  *     import { InlineAlert } from '@ptrn/react/InlineAlert';
  *
- *     <InlineAlert variant="informational">Example informational inline alert</InlineAlert>;
+ *     <InlineAlert label="Example informational inline alert" variant="informational" />;
  *
  * @name InlineAlert
  * @phase Stable

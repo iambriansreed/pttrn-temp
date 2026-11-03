@@ -44,7 +44,7 @@ export type TxtProps<As extends ElementType = ElementType> = {
 };
 
 /**
- * A text component that applies the correct font styles based on the variant and size. variant
+ * A text component that applies the correct font styles based on the variant and size.
  *
  * @example
  *     import { Txt } from '@ptrn/react/Txt';

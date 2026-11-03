@@ -31,7 +31,7 @@ export type TimePickerProps = FieldControlProps & Pick<InputProps, 'size'>;
  * For a more complete example with field usage, see the TimePickerField component.
  *
  * @example
- *     import { TimePicker } from '-/components/TimePicker';
+ *     import { TimePicker } from '@ptrn/react/TimePicker';
  *
  *     () => {
  *         const [value, onChange] = useState<string | undefined>('');

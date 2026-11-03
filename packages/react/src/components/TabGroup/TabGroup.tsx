@@ -25,6 +25,7 @@ export type TabGroupProps = Omit<TabListProps<TabOption>, 'iconsOnly'> & {
  *
  *         return (
  *             <TabGroup
+ *                 label="Example tab group"
  *                 onChange={setSelectedTab}
  *                 options={[
  *                     { value: '1', label: 'Option 1' },

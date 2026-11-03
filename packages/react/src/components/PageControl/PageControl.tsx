@@ -40,7 +40,7 @@ export type DotSize = 'medium' | 'small' | 'x-small';
  * @example
  *     import { PageControl } from '@ptrn/react/PageControl';
  *
- *     <PageControl value={1} numPages={3} />;
+ *     <PageControl currentPage={1} numPages={3} />;
  *
  * @name PageControl
  * @phase Stable
