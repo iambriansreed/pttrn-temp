@@ -31,8 +31,10 @@ One line per component, in name order:
 - `pttrn-inline-alert`
 - `pttrn-input`
 - `pttrn-input-number`
+- `pttrn-input-phone`
 - `pttrn-link`
 - `pttrn-list-item`
+- `pttrn-otp-input`
 - `pttrn-page-control`
 - `pttrn-pagination`
 - `pttrn-password`
@@ -41,10 +43,12 @@ One line per component, in name order:
 - `pttrn-progression-stepper`, `pttrn-progression-stepper-item`
 - `pttrn-progression-stepper-bar`
 - `pttrn-radio-group`, `pttrn-radio-group-item`
+- `pttrn-rating`
 - `pttrn-search-bar`, `pttrn-search-bar-item`
 - `pttrn-segmented-control`, `pttrn-segmented-control-item`
 - `pttrn-skeleton`
 - `pttrn-skeleton-text`
+- `pttrn-slider`
 - `pttrn-switch`
 - `pttrn-switch-option`
 - `pttrn-tab-group`, `pttrn-tab-group-item`

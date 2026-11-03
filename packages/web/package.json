@@ -128,6 +128,10 @@
             "types": "./dist/components/InputNumber/index.d.ts",
             "default": "./dist/components/InputNumber/index.js"
         },
+        "./InputPhone": {
+            "types": "./dist/components/InputPhone/index.d.ts",
+            "default": "./dist/components/InputPhone/index.js"
+        },
         "./Link": {
             "types": "./dist/components/Link/index.d.ts",
             "default": "./dist/components/Link/index.js"
@@ -135,6 +139,10 @@
         "./ListItem": {
             "types": "./dist/components/ListItem/index.d.ts",
             "default": "./dist/components/ListItem/index.js"
+        },
+        "./OTPInput": {
+            "types": "./dist/components/OTPInput/index.d.ts",
+            "default": "./dist/components/OTPInput/index.js"
         },
         "./PageControl": {
             "types": "./dist/components/PageControl/index.d.ts",
@@ -168,6 +176,10 @@
             "types": "./dist/components/RadioGroup/index.d.ts",
             "default": "./dist/components/RadioGroup/index.js"
         },
+        "./Rating": {
+            "types": "./dist/components/Rating/index.d.ts",
+            "default": "./dist/components/Rating/index.js"
+        },
         "./SearchBar": {
             "types": "./dist/components/SearchBar/index.d.ts",
             "default": "./dist/components/SearchBar/index.js"
@@ -183,6 +195,10 @@
         "./SkeletonText": {
             "types": "./dist/components/SkeletonText/index.d.ts",
             "default": "./dist/components/SkeletonText/index.js"
+        },
+        "./Slider": {
+            "types": "./dist/components/Slider/index.d.ts",
+            "default": "./dist/components/Slider/index.js"
         },
         "./Switch": {
             "types": "./dist/components/Switch/index.d.ts",
@@ -236,6 +252,7 @@
         "check:css-vars": "node ../../scripts/check-css-vars.mjs src"
     },
     "dependencies": {
+        "libphonenumber-js": "^1.12.9",
         "lit": "^3.3.0"
     },
     "devDependencies": {

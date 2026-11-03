@@ -25,9 +25,11 @@ import { fileUploadItemWc } from 'src/wc/file-upload-item';
 import { inlineAlertWc } from 'src/wc/inline-alert';
 import { inputWc } from 'src/wc/input';
 import { inputNumberWc } from 'src/wc/input-number';
+import { inputPhoneWc } from 'src/wc/input-phone';
 import { linkWc } from 'src/wc/link';
 import { listItemWc } from 'src/wc/list-item';
 import { webComponents as webComponentNames } from 'src/wc/names';
+import { otpInputWc } from 'src/wc/otp-input';
 import { pageControlWc } from 'src/wc/page-control';
 import { paginationWc } from 'src/wc/pagination';
 import { passwordWc } from 'src/wc/password';
@@ -37,10 +39,12 @@ import { progressionStepperWc } from 'src/wc/progression-stepper';
 import { progressionStepperBarWc } from 'src/wc/progression-stepper-bar';
 import { radioGroupWc } from 'src/wc/radio-group';
 import { radioGroupFieldWc } from 'src/wc/radio-group-field';
+import { ratingWc } from 'src/wc/rating';
 import { searchBarWc } from 'src/wc/search-bar';
 import { segmentedControlWc } from 'src/wc/segmented-control';
 import { skeletonWc } from 'src/wc/skeleton';
 import { skeletonTextWc } from 'src/wc/skeleton-text';
+import { sliderWc } from 'src/wc/slider';
 import { switchWc } from 'src/wc/switch';
 import { switchOptionWc } from 'src/wc/switch-option';
 import { tabGroupWc } from 'src/wc/tab-group';
@@ -83,8 +87,10 @@ export const webComponents: Partial<Record<MetaComponentName, WebComponentDemo>>
     InlineAlert: inlineAlertWc,
     Input: inputWc,
     InputNumber: inputNumberWc,
+    InputPhone: inputPhoneWc,
     Link: linkWc,
     ListItem: listItemWc,
+    OTPInput: otpInputWc,
     PageControl: pageControlWc,
     Pagination: paginationWc,
     Password: passwordWc,
@@ -94,10 +100,12 @@ export const webComponents: Partial<Record<MetaComponentName, WebComponentDemo>>
     ProgressionStepperBar: progressionStepperBarWc,
     RadioGroup: radioGroupWc,
     RadioGroupField: radioGroupFieldWc,
+    Rating: ratingWc,
     SearchBar: searchBarWc,
     SegmentedControl: segmentedControlWc,
     Skeleton: skeletonWc,
     SkeletonText: skeletonTextWc,
+    Slider: sliderWc,
     Switch: switchWc,
     SwitchOption: switchOptionWc,
     TabGroup: tabGroupWc,

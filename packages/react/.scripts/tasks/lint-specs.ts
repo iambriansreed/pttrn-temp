@@ -21,7 +21,12 @@ const componentsDir = path.resolve('./src/components');
 const webComponentsDir = path.resolve('../web/src/components');
 const webTestsDir = path.resolve('../web/tests');
 
-const kebab = (name: string) => name.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
+/** The Web Component file name, as the @ptrn/web scaffold makes it: an acronym stays one word (OTPInput is otp-input). */
+const kebab = (name: string) =>
+    name
+        .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
+        .replace(/([A-Z])([A-Z][a-z])/g, '$1-$2')
+        .toLowerCase();
 
 function checkSpec(name: string, spec: ComponentSpec | undefined, errors: string[]) {
     const where = `${name}/spec.ts`;

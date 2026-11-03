@@ -1,4 +1,4 @@
-import { RefObject, useEffect, useRef } from 'react';
+import { useCallback, useRef } from 'react';
 
 /**
  * Helpers shared by the demos of the `@ptrn/web` form controls (Input, Textarea, Password and the rest): the props
@@ -46,22 +46,25 @@ export function elementHtml(tag: string, attributes: Attributes, inner = '') {
     return `<${tag}${attrs.length ? ` ${attrs.join(' ')}` : ''}>${inner}</${tag}>`;
 }
 
-/** Calls `handler` with each `name` event the element fires. React 18 cannot listen to custom events through props. */
-export function useElementEvent<E extends Event>(
-    name: string,
-    handler: ((event: E) => void) | undefined,
-): RefObject<HTMLElement> {
-    const ref = useRef<HTMLElement>(null);
+/**
+ * Calls `handler` with each `name` event the element fires; pass the result as the element's `ref`. React 18 cannot
+ * listen to custom events through props. A callback ref, so an element remounted under a new `key` is listened to too.
+ */
+export function useElementEvent<E extends Event>(name: string, handler: ((event: E) => void) | undefined) {
     const latest = useRef(handler);
     latest.current = handler;
-    useEffect(() => {
-        const element = ref.current;
-        if (!element) return;
-        const listener = (event: Event) => latest.current?.(event as E);
-        element.addEventListener(name, listener);
-        return () => element.removeEventListener(name, listener);
-    }, [name]);
-    return ref;
+    const detach = useRef<() => void>();
+    return useCallback(
+        (element: HTMLElement | null) => {
+            detach.current?.();
+            detach.current = undefined;
+            if (!element) return;
+            const listener = (event: Event) => latest.current?.(event as E);
+            element.addEventListener(name, listener);
+            detach.current = () => element.removeEventListener(name, listener);
+        },
+        [name],
+    );
 }
 
 export const USAGE_DESCRIPTION =

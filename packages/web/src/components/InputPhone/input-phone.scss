@@ -1,0 +1,68 @@
+@use '../../styles/reset';
+@use '../../styles/field';
+@use '../../styles/button';
+@use '../../styles/input-box';
+@use '../../styles/menu';
+
+:host {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+// The rules of the React input-phone.scss.
+[data-pttrn='input-phone'] {
+    position: relative;
+    width: 100%;
+
+    // The country list is anchored to the Input box.
+    [data-pttrn='input'] {
+        anchor-name: --pttrn-field;
+    }
+}
+
+[data-pttrn-owner='input-phone'][data-pttrn='input'] {
+    padding-left: 0;
+
+    &:focus-within {
+        outline: none;
+    }
+
+    input:focus-visible {
+        outline: solid var(--usa-spacing-2px) var(--theme-global-focus-color);
+        isolation: isolate;
+        border-radius: var(--theme-border-radius-md);
+    }
+
+    [data-leading] {
+        position: relative;
+
+        [data-button] {
+            gap: var(--usa-spacing-1);
+            padding: 0 var(--usa-spacing-105);
+            min-height: 100%;
+            margin-right: var(--usa-spacing-1);
+            position: relative;
+            z-index: 2;
+
+            &::after {
+                content: '';
+                position: absolute;
+                top: var(--usa-spacing-05);
+                bottom: var(--usa-spacing-05);
+                right: 0;
+                width: 1px;
+                background-color: var(--theme-color-base-medium);
+                pointer-events: none;
+            }
+        }
+    }
+
+    &[data-size='small'] {
+        [data-leading] {
+            [data-button] {
+                padding-left: var(--usa-spacing-1);
+            }
+        }
+    }
+}

@@ -254,3 +254,52 @@ The React demo of RadioGroupField gives every example on the page the same radio
 | `id`, `inputRef`                                         | none                                                                            |
 
 The results list is drawn in the element's shadow root (so `aria-controls` and `aria-activedescendant` reach it) as the Menu and ListItem markup (`src/styles/_menu.scss`, shared with InputPhone). It is a manual popover in the top layer, placed with CSS anchor positioning under the field at its width and flipped above it when there is no room, where React uses floating-ui; it fades in as React's does. The "No results found" announcement is an assertive live region inside the element. Not ported yet: an item's `leading` and `trailing` content.
+
+### OTPInput
+
+| React                                                        | Web Component                                                                |
+| ------------------------------------------------------------ | ---------------------------------------------------------------------------- |
+| `defaultValue`, `onChange(code)` (once complete)             | `value` (the default), `pttrn-change` (`detail.value`) once complete         |
+| `length`, `alphanumeric`, `secure`, `size`, `name`           | `length`, `alphanumeric`, `secure`, `size`, `name`                           |
+| `disabled`, `readOnly`, `required`, `invalid`, `aria-label`  | `disabled`, `readonly`, `required`, `invalid`, `aria-label`                  |
+| OTPInputField `label`, `helperText`, `errorMessage`          | `label`, `helper-text`, `error-message`, `label-trailing`                    |
+| `id`, `aria-describedby`, `aria-errormessage`                | none                                                                         |
+
+The form gets the whole code under `name` (the React cells post one character each, as `name`, `name-1`, ...), and `required` blocks submission until every cell is filled. With a `label` and no `aria-label` the group and the cells are named from the label ("Verification code digit 1"); the React default `aria-label` "OTP input" overrides an OTPInputField label. The tag is `pttrn-otp-input`: the scaffold, the spec lint and the docs now keep an acronym as one word (OTPInput is `otp-input`, as the docs slug).
+
+### InputPhone
+
+| React                                                        | Web Component                                                                          |
+| ------------------------------------------------------------ | -------------------------------------------------------------------------------------- |
+| `value`, `onChange(value, countryCode)`                      | `value`, `pttrn-change` (`detail.value`, `detail.countryCode`) and `change`            |
+| `initialCountryCode`                                         | `country-code` (the attribute is the initial country; the property is the current one) |
+| `disableFormatting`, `scrollLimit` (default 5), `size`       | `disable-formatting`, `scroll-limit`, `size`                                           |
+| `renderFlag(countryCode)`                                    | the `renderFlag` JavaScript property (returns a string, a node or a Lit template)      |
+| `disabled`, `readOnly`, `required`, `invalid`, `aria-label`  | `disabled`, `readonly`, `required`, `invalid`, `aria-label`                            |
+| InputPhoneField `label`, `helperText`, `errorMessage`        | `label`, `helper-text`, `error-message`, `label-trailing`                              |
+| `id`, `aria-describedby`, `aria-errormessage`, `inputRef`    | none                                                                                   |
+
+The country list reuses the SearchBar's `_menu.scss` popover, anchored to the field; it exists only while open, when `aria-controls` and `aria-owns` name it. Its options are not tab stops (focus stays on the country button and the active option is `aria-activedescendant`), where the React ListItems without a `tabIndex` become tab stops. The list also closes when focus leaves the element by Tab, not only on an outside click. The form gets the number under `name` and the country under `<name>-country-code`. `libphonenumber-js` becomes a dependency of `@ptrn/web` for the formatting, as it is of `@ptrn/react`; it adds about 140 KB (minified) to the all-in-one CDN bundle, while the per-component entries keep it in the InputPhone chunk. The country names are a copy of `@ptrn/react/utils/countryCodes` (`src/utils/country-codes.ts`): keep the two in step.
+
+### Rating
+
+| React                                   | Web Component                                                           |
+| --------------------------------------- | ----------------------------------------------------------------------- |
+| `value`, `size`                         | `value`, `size`                                                         |
+| `onChange(value)` (makes it interactive) | `interactive`, and `pttrn-change` (`detail.value`) when a star is chosen |
+| none                                    | `name`: an interactive rating submits the chosen number with its form  |
+
+A function prop cannot be an attribute, so `interactive` turns the image into the radio group of stars. The element follows `value` when it changes; the React Rating keeps the value it mounted with (`useControlledState` reads its initial value only), so its docs demo shows the previous stars after a preset switch.
+
+### Slider
+
+| React                                               | Web Component                                                              |
+| --------------------------------------------------- | -------------------------------------------------------------------------- |
+| `label`, `min`, `max`, `step`, `marks`, `name`      | `label`, `min`, `max`, `step`, `marks`, `name`                             |
+| `value` (number or `[start, end]`)                  | `value` (`"30"` or `"70,80"` as an attribute, a number or array as a property) |
+| `onChange(value)`                                   | `pttrn-change` (`detail.value`)                                            |
+| `formatNumber(value, context)`                      | the `formatNumber` JavaScript property                                     |
+| `disabled`, `readOnly`                              | `disabled`, `readonly`                                                     |
+| hidden input with `name`                            | the form value (ElementInternals): the value, or "start,end"               |
+
+Where React and the spec differ, the element follows the spec: the range knobs' `aria-valuetext` is formatted with `formatNumber` too ("formatNumber formats the values that are read and shown"; React reads them raw). The marks are placed from `min` and are white inside the filled part for a range as well (React's dots count from 0 and, for a range, whiten those below the start). A press on the track moves the nearest knob and keeps dragging it, with pointer events, so touch works too.

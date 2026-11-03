@@ -20,6 +20,8 @@ export type InputBoxOptions = {
     clearable?: boolean;
     autocomplete?: string;
     inputmode?: string;
+    /** The input's name when it has neither `aria-label` nor `label` (InputPhone's "Phone number input"). */
+    fallbackLabel?: string;
     /** Combobox semantics for an input that controls a list (SearchBar). */
     combobox?: { controls?: string; expanded: boolean; activeDescendant?: string };
     /** `data-pttrn-owner` on the box, as the React Input's `owner`. */
@@ -64,7 +66,7 @@ export class InputBase extends FieldControl {
         return this._input;
     }
 
-    protected _formValue() {
+    protected _formValue(): string | FormData | null {
         return this.value;
     }
 
@@ -125,7 +127,7 @@ export class InputBase extends FieldControl {
                     aria-expanded=${combobox ? String(combobox.expanded) : nothing}
                     aria-haspopup=${combobox ? 'listbox' : nothing}
                     aria-invalid=${aria.invalid}
-                    aria-label=${aria.label}
+                    aria-label=${this.ariaLabel || (this.label ? nothing : (options.fallbackLabel ?? nothing))}
                     autocomplete=${options.autocomplete ?? 'off'}
                     data-main-input
                     id=${FIELD_IDS.control}
