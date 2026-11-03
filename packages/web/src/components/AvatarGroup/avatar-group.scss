@@ -1,0 +1,159 @@
+@use '../../styles/reset';
+@use '../../styles/avatar';
+
+:host {
+    display: flex;
+    width: fit-content;
+    max-width: 100%;
+}
+
+[data-pttrn='avatar-group'] {
+    width: fit-content;
+    max-width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    [data-wrap] {
+        min-width: fit-content;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+    // The slotted avatars are display: contents on their own; in the row they are boxes that overlap or spread.
+    ::slotted(pttrn-avatar) {
+        display: flex;
+        position: relative;
+        z-index: 1;
+    }
+
+    ::slotted(pttrn-avatar:hover) {
+        z-index: 2;
+    }
+
+    [data-pttrn='avatar'] {
+        z-index: 1;
+
+        &:hover {
+            z-index: 2;
+        }
+
+        &[data-pttrn-owner='avatar-overflow'] {
+            --avatar-border: solid 1px var(--theme-color-base-lighter);
+
+            background-color: var(--theme-body-background-color);
+        }
+    }
+
+    &[data-variant='spread'] {
+        --avatar-border: none;
+
+        [data-pttrn-owner='avatar-overflow'] {
+            margin-left: var(--usa-spacing-1);
+        }
+
+        // Important, because a page-level reset (`* { margin: 0 }`) outranks a normal ::slotted rule.
+        ::slotted(pttrn-avatar:not(:first-of-type)) {
+            margin-left: var(--usa-spacing-1) !important;
+        }
+    }
+
+    &[data-variant='stacked'] {
+        --avatar-border: solid 1px var(--theme-color-base-lighter);
+
+        [data-pttrn-owner='avatar-overflow'] {
+            margin-left: calc(var(--usa-spacing-1) * -1);
+        }
+
+        ::slotted(pttrn-avatar:not(:first-of-type)) {
+            margin-left: calc(var(--usa-spacing-1) * -1) !important;
+        }
+    }
+}
+
+[data-sr-only] {
+    height: 1px;
+    overflow: hidden;
+    position: absolute !important;
+    width: 1px;
+    clip: rect(1px, 1px, 1px, 1px);
+}
+
+// The overflow menu: React's Menu and ListItem, in the top layer (the Popover API), so nothing on the page clips it.
+[data-pttrn-utility='menu'] {
+    --list-item-height: var(--usa-spacing-6);
+
+    position: fixed;
+    inset: auto;
+    margin: 0;
+    padding: 0 var(--usa-spacing-2) 0 0;
+    width: fit-content;
+    max-width: 100%;
+    max-height: calc(var(--list-item-height) * 5);
+    border: var(--usa-spacing-1px) solid var(--theme-color-base-lighter);
+    background-color: var(--theme-body-background-color);
+    color: var(--theme-body-text-color);
+    box-shadow: var(--card-shadow);
+    border-radius: var(--theme-border-radius-lg);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden auto;
+    height: fit-content;
+}
+
+[data-pttrn='list-item'] {
+    display: flex;
+    flex-shrink: 0;
+    user-select: none;
+    color: var(--theme-body-text-color);
+    background-color: var(--theme-body-background-color);
+    overflow: hidden;
+    min-height: var(--list-item-height);
+    flex-direction: row;
+    gap: var(--usa-spacing-105);
+    padding: var(--usa-spacing-1);
+    border-radius: var(--theme-border-radius-md);
+    width: 100%;
+
+    &:focus-visible {
+        outline: solid var(--usa-spacing-2px) var(--theme-global-focus-color);
+        isolation: isolate;
+    }
+
+    [data-leading],
+    [data-item-label] {
+        min-height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        flex: 1 1 0;
+        min-width: 0;
+    }
+
+    [data-leading] {
+        width: fit-content;
+        flex: 0 0 auto;
+    }
+
+    // React's ListItem sizes any image in an item to 36px, the avatar's image included.
+    img {
+        height: 36px;
+        width: 36px;
+        max-width: unset;
+    }
+
+    [data-text] {
+        max-width: 100%;
+        display: inline-block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 100%;
+        font: 500 var(--usa-font-size-sans-3) / 20px var(--usa-font-family-ui);
+        color: var(--theme-body-text-color);
+        text-align: left;
+    }
+}

@@ -1,6 +1,7 @@
 import { MetaComponentName } from 'src/meta';
 import { accordionWc } from 'src/wc/accordion';
 import { avatarWc } from 'src/wc/avatar';
+import { avatarGroupWc } from 'src/wc/avatar-group';
 import { badgeWc } from 'src/wc/badge';
 import { badgeDotWc } from 'src/wc/badge-dot';
 import { bannerAlertWc } from 'src/wc/banner-alert';
@@ -19,11 +20,14 @@ import { fileUploadItemWc } from 'src/wc/file-upload-item';
 import { inlineAlertWc } from 'src/wc/inline-alert';
 import { inputWc } from 'src/wc/input';
 import { inputNumberWc } from 'src/wc/input-number';
+import { linkWc } from 'src/wc/link';
 import { listItemWc } from 'src/wc/list-item';
 import { webComponents as webComponentNames } from 'src/wc/names';
 import { pageControlWc } from 'src/wc/page-control';
 import { paginationWc } from 'src/wc/pagination';
 import { passwordWc } from 'src/wc/password';
+import { progressBarWc } from 'src/wc/progress-bar';
+import { progressCircleWc } from 'src/wc/progress-circle';
 import { progressionStepperWc } from 'src/wc/progression-stepper';
 import { progressionStepperBarWc } from 'src/wc/progression-stepper-bar';
 import { radioGroupWc } from 'src/wc/radio-group';
@@ -49,6 +53,7 @@ import { WebComponentDemo } from 'src/wc/types';
 export const webComponents: Partial<Record<MetaComponentName, WebComponentDemo>> = {
     Accordion: accordionWc,
     Avatar: avatarWc,
+    AvatarGroup: avatarGroupWc,
     Badge: badgeWc,
     BadgeDot: badgeDotWc,
     BannerAlert: bannerAlertWc,
@@ -67,10 +72,13 @@ export const webComponents: Partial<Record<MetaComponentName, WebComponentDemo>>
     InlineAlert: inlineAlertWc,
     Input: inputWc,
     InputNumber: inputNumberWc,
+    Link: linkWc,
     ListItem: listItemWc,
     PageControl: pageControlWc,
     Pagination: paginationWc,
     Password: passwordWc,
+    ProgressBar: progressBarWc,
+    ProgressCircle: progressCircleWc,
     ProgressionStepper: progressionStepperWc,
     ProgressionStepperBar: progressionStepperBarWc,
     RadioGroup: radioGroupWc,

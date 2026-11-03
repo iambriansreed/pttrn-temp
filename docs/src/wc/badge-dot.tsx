@@ -1,25 +1,22 @@
 import '@ptrn/web/Avatar';
 import '@ptrn/web/BadgeDot';
+import '@ptrn/web/Button';
 import { BadgeDotProps } from '@ptrn/react/BadgeDot';
-import { Button } from '@ptrn/react/Button';
 import { ComponentType } from 'react';
-import { renderToStaticMarkup } from 'react-dom/server';
 import { version as webVersion } from '../../../packages/web/package.json';
 import { WebComponentDemo } from 'src/wc/types';
 
 /** The elements as React components for the demo. A boolean attribute is '' for on and undefined for off. */
 const PttrnBadgeDot = 'pttrn-badge-dot' as unknown as ComponentType<any>;
 const PttrnAvatar = 'pttrn-avatar' as unknown as ComponentType<any>;
+const PttrnButton = 'pttrn-button' as unknown as ComponentType<any>;
 
-/**
- * What the dot is attached to in the React example (`BadgeDotExample.tsx`): a button when outlined, else an avatar. The
- * button is the React Button until its Web Component exists, so the generated HTML carries its React markup.
- */
+/** What the dot is attached to in the React example (`BadgeDotExample.tsx`): a button when outlined, else an avatar. */
 const attachedTo = (outline?: boolean) =>
-    outline ? <Button label="Button" size="large" /> : <PttrnAvatar image="/avatar-01.png" name="Andre Giant" />;
+    outline ? <PttrnButton label="Button" size="large" /> : <PttrnAvatar image="/avatar-01.png" name="Andre Giant" />;
 const attachedToHtml = (outline?: boolean) =>
     outline
-        ? renderToStaticMarkup(attachedTo(outline))
+        ? '<pttrn-button label="Button" size="large"></pttrn-button>'
         : '<pttrn-avatar image="/avatar-01.png" name="Andre Giant"></pttrn-avatar>';
 
 /** The demo state as attributes, in the order the HTML shows them. */
