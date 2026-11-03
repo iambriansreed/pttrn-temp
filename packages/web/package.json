@@ -84,6 +84,26 @@
             "types": "./dist/components/InlineAlert/index.d.ts",
             "default": "./dist/components/InlineAlert/index.js"
         },
+        "./Input": {
+            "types": "./dist/components/Input/index.d.ts",
+            "default": "./dist/components/Input/index.js"
+        },
+        "./InputNumber": {
+            "types": "./dist/components/InputNumber/index.d.ts",
+            "default": "./dist/components/InputNumber/index.js"
+        },
+        "./Password": {
+            "types": "./dist/components/Password/index.d.ts",
+            "default": "./dist/components/Password/index.js"
+        },
+        "./RadioGroup": {
+            "types": "./dist/components/RadioGroup/index.d.ts",
+            "default": "./dist/components/RadioGroup/index.js"
+        },
+        "./SearchBar": {
+            "types": "./dist/components/SearchBar/index.d.ts",
+            "default": "./dist/components/SearchBar/index.js"
+        },
         "./Skeleton": {
             "types": "./dist/components/Skeleton/index.d.ts",
             "default": "./dist/components/Skeleton/index.js"
@@ -103,6 +123,10 @@
         "./Tag": {
             "types": "./dist/components/Tag/index.d.ts",
             "default": "./dist/components/Tag/index.js"
+        },
+        "./Textarea": {
+            "types": "./dist/components/Textarea/index.d.ts",
+            "default": "./dist/components/Textarea/index.js"
         },
         "./Txt": {
             "types": "./dist/components/Txt/index.d.ts",

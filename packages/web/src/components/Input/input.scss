@@ -1,0 +1,10 @@
+@use '../../styles/reset';
+@use '../../styles/field';
+@use '../../styles/button';
+@use '../../styles/input-box';
+
+:host {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+}

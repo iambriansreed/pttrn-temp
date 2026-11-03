@@ -19,11 +19,17 @@ One line per component, in name order:
 - `pttrn-empty-state`
 - `pttrn-fab`
 - `pttrn-inline-alert`
+- `pttrn-input`
+- `pttrn-input-number`
+- `pttrn-password`
+- `pttrn-radio-group`, `pttrn-radio-group-item`
+- `pttrn-search-bar`, `pttrn-search-bar-item`
 - `pttrn-skeleton`
 - `pttrn-skeleton-text`
 - `pttrn-switch`
 - `pttrn-switch-option`
 - `pttrn-tag`
+- `pttrn-textarea`
 - `pttrn-txt`
 
 ## Use it from a CDN

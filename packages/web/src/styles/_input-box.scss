@@ -1,0 +1,126 @@
+// The Input container of @ptrn/react (input.scss): the bordered box with leading content, the native input, trailing
+// content and the clear button. Input draws it, and so do the elements built on it (Password, SearchBar, InputPhone).
+
+[data-pttrn='input'] {
+    --border-color: var(--theme-color-base-medium);
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--theme-body-background-color);
+    border: solid var(--usa-spacing-1px) var(--border-color);
+    height: var(--field-height);
+    border-radius: var(--theme-border-radius-md);
+    padding: 0 var(--field-padding);
+    gap: var(--usa-spacing-05);
+    width: 100%;
+
+    &[data-show-clear-button]:focus-within {
+        padding-right: 0;
+    }
+
+    & > * {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: var(--field-height);
+        font: var(--field-font);
+        color: var(--theme-body-text-color);
+        min-width: 0;
+    }
+
+    &:hover:not(:focus-within) {
+        background:
+            linear-gradient(var(--usa-color-black-transparent-10), var(--usa-color-black-transparent-10)),
+            linear-gradient(var(--theme-body-background-color), var(--theme-body-background-color));
+    }
+
+    &:active:not(:focus-within) {
+        background:
+            linear-gradient(var(--usa-color-black-transparent-20), var(--usa-color-black-transparent-20)),
+            linear-gradient(var(--theme-body-background-color), var(--theme-body-background-color));
+    }
+
+    &[data-readonly] {
+        --border-color: var(--theme-color-disabled-light);
+
+        background:
+            linear-gradient(var(--usa-color-black-transparent-10), var(--usa-color-black-transparent-10)),
+            linear-gradient(var(--theme-body-background-color), var(--theme-body-background-color));
+    }
+
+    &[data-disabled] {
+        --border-color: var(--theme-color-disabled-light);
+
+        background:
+            linear-gradient(var(--usa-color-black-transparent-10), var(--usa-color-black-transparent-10)),
+            linear-gradient(var(--theme-body-background-color), var(--theme-body-background-color));
+
+        & > * {
+            color: var(--theme-color-disabled-dark);
+        }
+    }
+
+    &[data-invalid] {
+        --border-color: var(--theme-color-error-medium);
+    }
+
+    &:not(:focus-within) {
+        [data-clear-button] {
+            display: none;
+        }
+    }
+
+    &:focus-within {
+        --border-color: var(--theme-global-focus-color);
+
+        outline: var(--usa-spacing-1px) solid var(--theme-global-focus-color);
+    }
+
+    &[data-size='small'] {
+        --field-padding: var(--usa-spacing-1);
+        --field-height: var(--usa-spacing-4);
+        --field-font: 400 var(--usa-font-size-sans-3) / 20px var(--usa-font-family-body);
+        --field-icon-width: var(--usa-spacing-2);
+    }
+
+    &[data-size='medium'] {
+        --field-padding: var(--usa-spacing-105);
+        --field-height: var(--usa-spacing-5);
+        --field-font: 400 var(--usa-font-size-sans-5) / 24px var(--usa-font-family-body);
+        --field-icon-width: var(--usa-spacing-205);
+    }
+
+    &[data-size='large'] {
+        --field-padding: var(--usa-spacing-105);
+        --field-height: var(--usa-spacing-6);
+        --field-font: 400 var(--usa-font-size-sans-7) / 28px var(--usa-font-family-body);
+        --field-icon-width: var(--usa-spacing-3);
+    }
+
+    [data-leading],
+    [data-trailing] {
+        position: relative;
+
+        svg,
+        ::slotted(svg) {
+            width: var(--field-icon-width);
+        }
+    }
+
+    [data-main-input] {
+        flex: 1;
+        background-color: transparent !important;
+        border: none;
+        outline: none;
+        padding: 0;
+        pointer-events: all;
+        text-overflow: ellipsis;
+
+        &[type='number']::-webkit-inner-spin-button,
+        &[type='number']::-webkit-outer-spin-button {
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,70 @@
+// The Field parts a form control renders in its own shadow root (label, helper text, error), with the rules of the
+// React Field (field.scss) and the error InlineAlert (inline-alert.scss) it shows.
+
+[data-field] {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--usa-spacing-05);
+    border: none;
+    max-width: 100%;
+    min-inline-size: unset;
+
+    [data-field-label] {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: var(--usa-spacing-05);
+
+        span {
+            font: 500 var(--usa-font-size-sans-3) / 20px var(--usa-font-family-ui);
+            color: var(--theme-body-text-color);
+
+            &[data-required] {
+                font: 400 var(--usa-font-size-sans-3) / 20px var(--usa-font-family-body);
+                color: var(--theme-color-base-dark);
+            }
+
+            &[data-trailing] {
+                font: 400 var(--usa-font-size-sans-3) / 20px var(--usa-font-family-body);
+                color: var(--theme-color-base-dark);
+                margin-left: auto;
+            }
+        }
+    }
+
+    [data-field-description] {
+        font: 400 var(--usa-font-size-sans-3) / 20px var(--usa-font-family-body);
+        color: var(--theme-color-base-dark);
+        margin: 0;
+        padding: 0;
+    }
+
+    fieldset,
+    legend {
+        display: contents;
+    }
+}
+
+// The 60-grade error tone holds 4.5:1 on white and on base-lightest, as in the InlineAlert.
+[data-field-error] {
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    flex-direction: row;
+    gap: var(--usa-spacing-1);
+    color: var(--theme-color-error-dark);
+
+    span {
+        flex: 1;
+        font: 400 var(--usa-font-size-sans-3) / 20px var(--usa-font-family-body);
+        overflow-wrap: break-word;
+    }
+
+    svg {
+        color: var(--theme-color-error-dark);
+        width: var(--usa-spacing-205);
+        height: var(--usa-spacing-205);
+        flex: 0 0 auto;
+    }
+}

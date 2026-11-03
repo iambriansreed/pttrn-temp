@@ -12,12 +12,19 @@ import { dividerWc } from 'src/wc/divider';
 import { emptyStateWc } from 'src/wc/empty-state';
 import { fabWc } from 'src/wc/fab';
 import { inlineAlertWc } from 'src/wc/inline-alert';
+import { inputWc } from 'src/wc/input';
+import { inputNumberWc } from 'src/wc/input-number';
 import { webComponents as webComponentNames } from 'src/wc/names';
+import { passwordWc } from 'src/wc/password';
+import { radioGroupWc } from 'src/wc/radio-group';
+import { radioGroupFieldWc } from 'src/wc/radio-group-field';
+import { searchBarWc } from 'src/wc/search-bar';
 import { skeletonWc } from 'src/wc/skeleton';
 import { skeletonTextWc } from 'src/wc/skeleton-text';
 import { switchWc } from 'src/wc/switch';
 import { switchOptionWc } from 'src/wc/switch-option';
 import { tagWc } from 'src/wc/tag';
+import { textareaWc } from 'src/wc/textarea';
 import { txtWc } from 'src/wc/txt';
 import { WebComponentDemo } from 'src/wc/types';
 
@@ -39,11 +46,18 @@ export const webComponents: Partial<Record<MetaComponentName, WebComponentDemo>>
     EmptyState: emptyStateWc,
     Fab: fabWc,
     InlineAlert: inlineAlertWc,
+    Input: inputWc,
+    InputNumber: inputNumberWc,
+    Password: passwordWc,
+    RadioGroup: radioGroupWc,
+    RadioGroupField: radioGroupFieldWc,
+    SearchBar: searchBarWc,
     Skeleton: skeletonWc,
     SkeletonText: skeletonTextWc,
     Switch: switchWc,
     SwitchOption: switchOptionWc,
     Tag: tagWc,
+    Textarea: textareaWc,
     Txt: txtWc,
 };
 

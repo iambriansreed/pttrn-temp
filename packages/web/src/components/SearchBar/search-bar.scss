@@ -1,0 +1,27 @@
+@use '../../styles/reset';
+@use '../../styles/field';
+@use '../../styles/button';
+@use '../../styles/input-box';
+@use '../../styles/menu';
+
+:host {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+// The rules of the React search-bar.scss.
+[data-pttrn='search-bar'] {
+    display: flex;
+    width: 100%;
+    min-width: 100px;
+
+    [data-field] {
+        flex: 1;
+    }
+
+    // The results list is anchored to the Input box.
+    [data-pttrn='input'] {
+        anchor-name: --pttrn-field;
+    }
+}

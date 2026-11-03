@@ -1,0 +1,120 @@
+// The tertiary Button of @ptrn/react (button.scss), for the buttons a control draws inside its own shadow root (the
+// clear button, the password toggle): `data-button data-variant="tertiary"`, with `data-size` the Button size. The
+// selectors keep the React specificity, so the rules of the control around the button apply as they do in React.
+
+[data-button] {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    gap: var(--usa-spacing-1);
+    border: none;
+    cursor: pointer;
+    background: transparent;
+    text-decoration: none;
+    width: fit-content;
+    font-family: var(--usa-font-family-body);
+
+    &[data-size='small'] {
+        font-size: var(--usa-font-size-sans-3);
+        line-height: 20px;
+        height: var(--usa-spacing-4);
+        min-width: var(--usa-spacing-4);
+
+        &:has([data-button-label]) {
+            padding: 6px var(--usa-spacing-2);
+        }
+
+        [data-button-icon] svg {
+            width: var(--usa-spacing-205);
+            height: var(--usa-spacing-205);
+        }
+    }
+
+    &[data-size='medium'] {
+        font-size: var(--usa-font-size-sans-5);
+        line-height: 20px;
+        height: var(--usa-spacing-5);
+        min-width: var(--usa-spacing-5);
+
+        &:has([data-button-label]) {
+            padding: var(--usa-spacing-1) var(--usa-spacing-2);
+        }
+
+        [data-button-icon] svg {
+            width: var(--usa-spacing-205);
+            height: var(--usa-spacing-205);
+        }
+    }
+
+    &[data-size='large'] {
+        font-size: var(--usa-font-size-sans-7);
+        line-height: 24px;
+        height: var(--usa-spacing-6);
+        min-width: var(--usa-spacing-6);
+
+        &:has([data-button-label]) {
+            padding: var(--usa-spacing-105) var(--usa-spacing-2);
+        }
+
+        [data-button-icon] svg {
+            width: var(--usa-spacing-3);
+            height: var(--usa-spacing-3);
+        }
+    }
+
+    [data-button-icon],
+    [data-button-label] {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &[disabled] {
+        cursor: not-allowed;
+    }
+
+    &[data-variant='tertiary'] {
+        background: transparent;
+        color: var(--theme-color-base-dark);
+
+        &[disabled] {
+            color: var(--theme-color-disabled-dark);
+        }
+
+        &:not([disabled]) {
+            &:hover {
+                background: var(--usa-color-black-transparent-10);
+            }
+
+            &:active {
+                background: var(--usa-color-black-transparent-20);
+            }
+
+            &:focus-visible {
+                outline: solid var(--usa-spacing-2px) var(--theme-global-focus-color);
+                isolation: isolate;
+            }
+        }
+    }
+
+    // A 48px hit area on touch screens, as the React Button has.
+    [data-touch-target] {
+        display: none;
+        position: absolute;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        min-width: var(--usa-spacing-6);
+        min-height: var(--usa-spacing-6);
+        touch-action: manipulation;
+        user-select: none;
+    }
+
+    @media (any-pointer: coarse) {
+        [data-touch-target] {
+            display: block;
+        }
+    }
+}

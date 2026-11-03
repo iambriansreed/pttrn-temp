@@ -1,0 +1,153 @@
+@use '../../styles/reset';
+@use '../../styles/field';
+
+:host {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+// The rules of the React input-number.scss.
+[data-pttrn='input-number'] {
+    /* medium is the default size */
+    --font: 400 var(--usa-font-size-sans-5) / 24px var(--usa-font-family-body);
+    --height: var(--usa-spacing-5);
+    --svg-width: var(--usa-spacing-205);
+    --color: var(--theme-body-text-color);
+
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    font: var(--font);
+    height: var(--height);
+    border: var(--usa-spacing-1px) solid var(--theme-color-base-medium);
+    border-radius: var(--theme-border-radius-md);
+    background: var(--theme-body-background-color);
+
+    &:focus-within {
+        outline: solid var(--usa-spacing-2px) var(--theme-global-focus-color);
+        isolation: isolate;
+    }
+
+    [data-divider] {
+        width: 1px;
+        background: var(--theme-color-base-medium);
+        margin: 3px 0;
+
+        /* account for border - 3(margin)  * 2 + 2(border) */
+        height: calc(var(--height) - 8px);
+    }
+
+    button {
+        width: var(--height);
+        height: calc(var(--height) - 2px);
+        background: none;
+        border: none;
+        cursor: pointer;
+        font: var(--font);
+        flex-shrink: 0;
+
+        svg {
+            width: var(--svg-width);
+        }
+
+        &:focus {
+            outline: none;
+        }
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: var(--color);
+
+        &:disabled {
+            cursor: not-allowed;
+            color: var(--theme-color-disabled-dark);
+        }
+    }
+
+    input {
+        color: var(--color);
+        min-width: 0;
+        display: block;
+        font: var(--font);
+        text-align: center;
+        padding: 0 var(--usa-spacing-105);
+        background: transparent;
+        border: none;
+        flex-grow: 1;
+
+        &:focus {
+            outline: none;
+        }
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+            appearance: none;
+            margin: 0;
+        }
+
+        &[type='number'] {
+            appearance: textfield;
+        }
+    }
+
+    &:not([data-disabled], [data-readonly]) {
+        input,
+        button:not(:disabled) {
+            &:hover {
+                background-color: var(--usa-color-black-transparent-10);
+            }
+
+            &:active {
+                background-color: var(--usa-color-black-transparent-20);
+            }
+        }
+
+        &[data-invalid] {
+            border-color: var(--theme-color-error-medium);
+            outline-color: var(--theme-color-error-medium);
+        }
+    }
+
+    &[data-disabled],
+    &[data-readonly] {
+        --color: var(--theme-color-disabled-dark);
+
+        border-color: var(--theme-color-disabled-light);
+        background:
+            linear-gradient(var(--usa-color-black-transparent-10), var(--usa-color-black-transparent-10)),
+            linear-gradient(var(--theme-body-background-color), var(--theme-body-background-color));
+
+        [data-divider] {
+            border-color: var(--theme-color-disabled-light);
+        }
+    }
+
+    &[data-readonly] {
+        input {
+            color: var(--theme-body-text-color) !important;
+        }
+    }
+
+    &[data-size='small'] {
+        --font: 400 var(--usa-font-size-sans-3) / 20px var(--usa-font-family-body);
+        --height: var(--usa-spacing-4);
+    }
+
+    &[data-size='large'] {
+        --font: 400 var(--usa-font-size-sans-7) / 28px var(--usa-font-family-body);
+        --height: var(--usa-spacing-6);
+        --svg-width: var(--usa-spacing-3);
+    }
+
+    &[data-centered] {
+        button:first-of-type {
+            order: -1;
+        }
+
+        [data-divider] {
+            display: none;
+        }
+    }
+}
