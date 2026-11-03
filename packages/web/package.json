@@ -47,6 +47,10 @@
         "./Password": {
             "types": "./dist/components/Password/index.d.ts",
             "default": "./dist/components/Password/index.js"
+        },
+        "./InputNumber": {
+            "types": "./dist/components/InputNumber/index.d.ts",
+            "default": "./dist/components/InputNumber/index.js"
         }
     },
     "scripts": {

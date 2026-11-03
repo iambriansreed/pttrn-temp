@@ -211,3 +211,15 @@ Built on the same Input box as `pttrn-input` (`src/utils/input-base.ts`, shared 
 | `id`, `aria-describedby`, `aria-errormessage`, refs, `inputProps` | none                                                   |
 
 The React Password passes an `onClick` that focuses the input to the Input container, so clicking Show moves focus from the toggle to the input; its spec says toggling keeps focus on the button, and the element does that. The React `password.scss` selects `[data-pttrn-owner='password'] [data-pttrn='input']` (a descendant) while the Input carries the owner on the same element, so none of its rules apply; the element matches what React renders (a medium tertiary button, the field's own padding).
+
+### InputNumber
+
+| React                                                        | Web Component                                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------------------------------- |
+| `value` (number), `onChange(number \| undefined)`            | `value` (number, empty for none), `pttrn-change` (`detail.value`) and `change`        |
+| `min`, `max`, `step`, `align`, `size`, `name`                | `min`, `max`, `step`, `align`, `size`, `name`                                         |
+| `disabled`, `readOnly`, `required`, `invalid`, `aria-label`  | `disabled`, `readonly`, `required`, `invalid`, `aria-label`                           |
+| Field `label`, `helperText`, `errorMessage`, `labelTrailing` | `label`, `helper-text`, `error-message`, `label-trailing`                             |
+| `id`, `aria-describedby`, `aria-errormessage`                | none                                                                                  |
+
+The field is "Input number" only when it has neither `aria-label` nor `label`: the React default `aria-label` also overrides a Field label, so the React InputNumberField's visible label never names its input. A button activated without a pointer press (a screen reader's click, `element.click()`) steps once; the React buttons answer only to pointer presses.
