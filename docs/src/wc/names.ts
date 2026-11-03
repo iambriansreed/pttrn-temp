@@ -5,6 +5,7 @@
 export const webComponents: string[] = [
     'Accordion',
     'Breadcrumb',
+    'ListItem',
     'PageControl',
     'Pagination',
     'SegmentedControl',

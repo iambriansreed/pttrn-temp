@@ -40,6 +40,10 @@
             "types": "./dist/components/Breadcrumb/index.d.ts",
             "default": "./dist/components/Breadcrumb/index.js"
         },
+        "./ListItem": {
+            "types": "./dist/components/ListItem/index.d.ts",
+            "default": "./dist/components/ListItem/index.js"
+        },
         "./PageControl": {
             "types": "./dist/components/PageControl/index.d.ts",
             "default": "./dist/components/PageControl/index.js"

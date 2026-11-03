@@ -1,0 +1,46 @@
+@use '../../styles/reset';
+@use '../../styles/list-item';
+@use '../../styles/tooltip';
+
+:host {
+    display: block;
+    width: 100%;
+    outline: none;
+}
+
+:host([width='hug']) {
+    width: auto;
+    max-width: 100%;
+}
+
+[data-pttrn='list-item'] {
+    @include list-item.list-item;
+}
+
+// With a role of its own the element is the item, and takes the focus ring.
+:host(:focus-visible) [data-pttrn='list-item'] {
+    outline: solid var(--usa-spacing-2px) var(--theme-global-focus-color);
+    isolation: isolate;
+}
+
+:host([aria-selected='true']) [data-pttrn='list-item'] {
+    background-color: var(--theme-color-primary-lighter);
+}
+
+[data-leading],
+[data-trailing] {
+    ::slotted(svg) {
+        width: 24px;
+        max-width: unset;
+    }
+
+    ::slotted(img) {
+        height: 36px;
+        width: 36px;
+        max-width: unset;
+    }
+}
+
+[data-pttrn='tooltip'] {
+    @include tooltip.tooltip;
+}

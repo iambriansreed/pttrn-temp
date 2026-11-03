@@ -1,6 +1,7 @@
 import { MetaComponentName } from 'src/meta';
 import { accordionWc } from 'src/wc/accordion';
 import { breadcrumbWc } from 'src/wc/breadcrumb';
+import { listItemWc } from 'src/wc/list-item';
 import { webComponents as webComponentNames } from 'src/wc/names';
 import { pageControlWc } from 'src/wc/page-control';
 import { paginationWc } from 'src/wc/pagination';
@@ -16,6 +17,7 @@ import { WebComponentDemo } from 'src/wc/types';
 export const webComponents: Partial<Record<MetaComponentName, WebComponentDemo>> = {
     Accordion: accordionWc,
     Breadcrumb: breadcrumbWc,
+    ListItem: listItemWc,
     PageControl: pageControlWc,
     Pagination: paginationWc,
     SegmentedControl: segmentedControlWc,

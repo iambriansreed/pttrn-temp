@@ -2,7 +2,7 @@
 
 pttrn as Web Components: framework-free custom elements built with [Lit](https://lit.dev). No React needed.
 
-Components so far: `pttrn-accordion`, `pttrn-accordion-item`, `pttrn-breadcrumb`, `pttrn-breadcrumb-item`, `pttrn-page-control`, `pttrn-pagination`, `pttrn-segmented-control`, `pttrn-segmented-control-item`, `pttrn-tab-group`, `pttrn-tab-group-item`, `pttrn-tooltip`.
+Components so far: `pttrn-accordion`, `pttrn-accordion-item`, `pttrn-breadcrumb`, `pttrn-breadcrumb-item`, `pttrn-list-item`, `pttrn-page-control`, `pttrn-pagination`, `pttrn-segmented-control`, `pttrn-segmented-control-item`, `pttrn-tab-group`, `pttrn-tab-group-item`, `pttrn-tooltip`.
 
 ## Use it from a CDN
 
