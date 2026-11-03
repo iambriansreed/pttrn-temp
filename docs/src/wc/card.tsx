@@ -11,9 +11,7 @@ const PttrnCard = 'pttrn-card' as unknown as ComponentType<any>;
 
 /** The content the React example's render puts in the card. */
 const placeholder = (
-    <ExamplePlaceholder
-        style={{ height: '200px', width: '100%', minWidth: 'min(250px, 100%)', backgroundColor: 'unset' }}
-    />
+    <ExamplePlaceholder style={{ height: '200px', width: '250px', maxWidth: '100%', backgroundColor: 'unset' }} />
 );
 
 /** The React demo state rendered as the element, with the same content as the React example. */
