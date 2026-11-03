@@ -122,6 +122,8 @@ describeBehaviors(spec, {
         await expect(page.getByRole('button', { name: 'close' })).toBeFocused();
     },
     'axe-clean': async ({ page }) => {
+        // The box and the scrim fade in, and axe measures contrast on what is painted: without motion they are there at once.
+        await page.emulateMedia({ reducedMotion: 'reduce' });
         for (const html of Object.values(PRESETS)) {
             await mount(page, html);
             await expect(dialog(page)).toBeVisible();
