@@ -240,3 +240,17 @@ The items render nothing; the group draws every option as React's RadioOption (a
 No element of its own: `pttrn-radio-group` with a `label` renders the React Fieldset (a fieldset named by its legend, " (Required)" and `label-trailing` in the legend, then `helper-text` or the `error-message` alert), and an error marks the radiogroup `aria-invalid` with `aria-errormessage`, as the text controls do with their Field. `tests/radio-group-field.spec.ts` holds it to the RadioGroupField spec, and the docs page's Web Component tab uses `pttrn-radio-group`. With the field the element takes the full width, as the React Field does (`:state(field)`, a custom state set by FieldControl).
 
 The React demo of RadioGroupField gives every example on the page the same radio `name`, so the variants below the demo uncheck the demo's radio (RadioGroupExample makes the name unique; RadioGroupFieldExample does not). The element's radios are scoped to its shadow root and keep their choice.
+
+### SearchBar
+
+| React                                                    | Web Component                                                                   |
+| -------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `items[]` (`label`, `leading`, `trailing`)               | `pttrn-search-bar-item` children with `label`                                   |
+| `value`, `onChange(value, item)`                         | `value`, `pttrn-change` (`detail.value`, and `detail.item` when one is chosen)  |
+| `placeholder` (default "Search"), `size`, `name`         | `placeholder`, `size`, `name`                                                   |
+| `noResultsMessage`, `scrollLimit`                        | `no-results-message`, `scroll-limit`                                            |
+| `trailing`                                               | `slot="trailing"`                                                               |
+| `disabled`, `aria-label`                                 | `disabled`, `aria-label` (and the Field attributes, as the other controls)      |
+| `id`, `inputRef`                                         | none                                                                            |
+
+The results list is drawn in the element's shadow root (so `aria-controls` and `aria-activedescendant` reach it) as the Menu and ListItem markup (`src/styles/_menu.scss`, shared with InputPhone). It is a manual popover in the top layer, placed with CSS anchor positioning under the field at its width and flipped above it when there is no room, where React uses floating-ui; it fades in as React's does. The "No results found" announcement is an assertive live region inside the element. Not ported yet: an item's `leading` and `trailing` content.

@@ -173,9 +173,12 @@ export class FieldControl extends LitElement {
         return null;
     }
 
-    /** Fires `pttrn-change` (and `change`, for code that listens the native way) after a user-driven change. */
-    protected _emitChange<Value>(value: Value) {
-        emit<FieldChangeDetail<Value>>(this, 'pttrn-change', { value });
+    /**
+     * Fires `pttrn-change` (and `change`, for code that listens the native way) after a user-driven change. `extra`
+     * adds to the detail, as the item a SearchBar result was chosen from.
+     */
+    protected _emitChange<Value>(value: Value, extra: Record<string, unknown> = {}) {
+        emit<FieldChangeDetail<Value>>(this, 'pttrn-change', { ...extra, value });
         this.dispatchEvent(new Event('change', { bubbles: true }));
     }
 

@@ -55,6 +55,10 @@
         "./RadioGroup": {
             "types": "./dist/components/RadioGroup/index.d.ts",
             "default": "./dist/components/RadioGroup/index.js"
+        },
+        "./SearchBar": {
+            "types": "./dist/components/SearchBar/index.d.ts",
+            "default": "./dist/components/SearchBar/index.js"
         }
     },
     "scripts": {

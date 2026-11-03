@@ -9,5 +9,6 @@ export const webComponents: string[] = [
     'Password',
     'RadioGroup',
     'RadioGroupField',
+    'SearchBar',
     'Textarea',
 ];
