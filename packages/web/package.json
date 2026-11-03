@@ -195,6 +195,10 @@
         "./Txt": {
             "types": "./dist/components/Txt/index.d.ts",
             "default": "./dist/components/Txt/index.js"
+        },
+        "./CheckboxGroup": {
+            "types": "./dist/components/CheckboxGroup/index.d.ts",
+            "default": "./dist/components/CheckboxGroup/index.js"
         }
     },
     "scripts": {
