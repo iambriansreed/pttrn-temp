@@ -27,6 +27,7 @@ One line per component, in name order:
 - `pttrn-input`
 - `pttrn-input-number`
 - `pttrn-list-item`
+- `pttrn-menu`
 - `pttrn-page-control`
 - `pttrn-pagination`
 - `pttrn-password`

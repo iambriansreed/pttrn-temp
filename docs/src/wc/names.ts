@@ -24,6 +24,7 @@ export const webComponents: string[] = [
     'Input',
     'InputNumber',
     'ListItem',
+    'Menu',
     'PageControl',
     'Pagination',
     'Password',
