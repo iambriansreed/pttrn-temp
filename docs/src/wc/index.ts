@@ -2,6 +2,7 @@ import { MetaComponentName } from 'src/meta';
 import { accordionWc } from 'src/wc/accordion';
 import { badgeWc } from 'src/wc/badge';
 import { badgeDotWc } from 'src/wc/badge-dot';
+import { dividerWc } from 'src/wc/divider';
 import { webComponents as webComponentNames } from 'src/wc/names';
 import { WebComponentDemo } from 'src/wc/types';
 
@@ -13,6 +14,7 @@ export const webComponents: Partial<Record<MetaComponentName, WebComponentDemo>>
     Accordion: accordionWc,
     Badge: badgeWc,
     BadgeDot: badgeDotWc,
+    Divider: dividerWc,
 };
 
 const listed = [...webComponentNames].sort().join(',');

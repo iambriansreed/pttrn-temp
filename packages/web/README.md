@@ -9,6 +9,7 @@ One line per component, in name order:
 - `pttrn-accordion`, `pttrn-accordion-item`
 - `pttrn-badge`
 - `pttrn-badge-dot`
+- `pttrn-divider`
 
 ## Use it from a CDN
 

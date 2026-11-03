@@ -43,6 +43,10 @@
         "./BadgeDot": {
             "types": "./dist/components/BadgeDot/index.d.ts",
             "default": "./dist/components/BadgeDot/index.js"
+        },
+        "./Divider": {
+            "types": "./dist/components/Divider/index.d.ts",
+            "default": "./dist/components/Divider/index.js"
         }
     },
     "scripts": {
