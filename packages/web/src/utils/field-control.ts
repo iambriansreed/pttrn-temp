@@ -229,16 +229,30 @@ export class FieldControl extends LitElement {
     }
 
     /**
-     * The control inside the `Field` parts, when there are any. The label points at `controlId` with `for`, so it names
-     * a native control; pass `labelFor: false` for a control the label cannot point at, and name it with
-     * `aria-labelledby` instead.
+     * The control inside the `Field` parts, when there are any. The label points at the native control with `for`, as
+     * the React Field does. With `fieldset`, the parts are the React Fieldset instead: a fieldset named by a legend,
+     * for a group of controls (RadioGroupField).
      */
-    protected _renderField(control: TemplateResult, { labelFor = true }: { labelFor?: boolean } = {}) {
+    protected _renderField(control: TemplateResult, { fieldset = false }: { fieldset?: boolean } = {}) {
         if (!this.label && !this.helperText && !this.errorMessage) return control;
+        if (fieldset) {
+            return html`<div data-field>
+                <fieldset role="group">
+                    ${
+                        this.label
+                            ? html`<legend>
+                                  <span data-field-label id=${FIELD_IDS.label}>${this._renderLabelContent()}</span>
+                              </legend>`
+                            : nothing
+                    }
+                    ${control} ${this._renderMessage()}
+                </fieldset>
+            </div>`;
+        }
         return html`<div data-field role="group">
             ${
                 this.label
-                    ? html`<label data-field-label for=${labelFor ? FIELD_IDS.control : nothing} id=${FIELD_IDS.label}
+                    ? html`<label data-field-label for=${FIELD_IDS.control} id=${FIELD_IDS.label}
                           >${this._renderLabelContent()}</label
                       >`
                     : nothing

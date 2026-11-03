@@ -223,3 +223,14 @@ The React Password passes an `onClick` that focuses the input to the Input conta
 | `id`, `aria-describedby`, `aria-errormessage`                | none                                                                                  |
 
 The field is "Input number" only when it has neither `aria-label` nor `label`: the React default `aria-label` also overrides a Field label, so the React InputNumberField's visible label never names its input. A button activated without a pointer press (a screen reader's click, `element.click()`) steps once; the React buttons answer only to pointer presses.
+
+### RadioGroup
+
+| React                                                         | Web Component                                                            |
+| ------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| `options[]` (`value`, `label`, `description`, `disabled`)     | `pttrn-radio-group-item` children with the same attributes               |
+| `value`, `onChange(value)`                                    | `value`, `pttrn-change` (`detail.value`) and `change`                    |
+| `name`, `disabled`, `required`, `invalid`, `aria-label`       | `name`, `disabled`, `required`, `invalid`, `aria-label`                  |
+| `id`, `aria-describedby`, `aria-errormessage`                 | none (`helper-text` and `error-message` describe the group)              |
+
+The items render nothing; the group draws every option as React's RadioOption (a ListItem label holding a Radio) in its own shadow root, because native radios form a keyboard group (Tab to the chosen one, arrows to move) only inside one tree. A group without `name` gives its radios a generated one so the keyboard still works. The truncated option label has no tooltip until a Tooltip element exists.

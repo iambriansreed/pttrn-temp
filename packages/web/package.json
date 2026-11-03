@@ -51,6 +51,10 @@
         "./InputNumber": {
             "types": "./dist/components/InputNumber/index.d.ts",
             "default": "./dist/components/InputNumber/index.js"
+        },
+        "./RadioGroup": {
+            "types": "./dist/components/RadioGroup/index.d.ts",
+            "default": "./dist/components/RadioGroup/index.js"
         }
     },
     "scripts": {

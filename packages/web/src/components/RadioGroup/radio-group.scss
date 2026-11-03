@@ -1,0 +1,180 @@
+@use '../../styles/reset';
+@use '../../styles/field';
+
+:host {
+    display: block;
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+// The React radio-group.scss, with each option drawn as React's RadioOption: a ListItem rendered as a label (the
+// list-item.scss rules it uses), holding a Radio (radio.scss).
+[data-pttrn='radio-group'] {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-width: 100%;
+}
+
+[data-pttrn='list-item'] {
+    display: flex;
+    user-select: none;
+    color: var(--theme-body-text-color);
+    background: transparent;
+    height: 100%;
+    overflow: hidden;
+    flex-direction: row;
+    gap: var(--usa-spacing-105);
+    padding: var(--usa-spacing-1);
+    justify-items: stretch;
+    border: unset;
+    border-radius: var(--theme-border-radius-md);
+    margin: unset;
+    text-decoration: unset;
+    width: auto;
+    max-width: 100%;
+
+    &:has(*:focus-visible) {
+        outline: solid var(--usa-spacing-2px) var(--theme-global-focus-color);
+        isolation: isolate;
+    }
+
+    &:not([data-disabled]) {
+        &:hover {
+            background-color: var(--usa-color-black-transparent-10);
+        }
+
+        &:active {
+            background-color: var(--usa-color-black-transparent-20);
+        }
+    }
+
+    [data-leading],
+    [data-item-label] {
+        min-height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        flex: 1 1 0;
+        min-width: 0;
+    }
+
+    [data-leading] {
+        width: fit-content;
+        flex: 0 0 auto;
+    }
+
+    [data-item-label] {
+        text-align: left;
+
+        [data-text] {
+            width: 100%;
+            font: 500 var(--usa-font-size-sans-3) / 20px var(--usa-font-family-ui);
+            color: var(--theme-body-text-color);
+        }
+
+        // The React Truncated: one line with an ellipsis.
+        [data-truncated] {
+            max-width: 100%;
+            display: inline-block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            background-color: transparent;
+        }
+
+        [data-sub-text] {
+            width: 100%;
+            font: 400 var(--usa-font-size-sans-3) / 20px var(--usa-font-family-body);
+            color: var(--theme-color-base-dark);
+        }
+    }
+
+    &[data-disabled] {
+        [data-text],
+        [data-sub-text] {
+            color: var(--theme-color-disabled-dark);
+            cursor: not-allowed;
+        }
+    }
+}
+
+[data-pttrn='radio'] {
+    display: block;
+    position: relative;
+    width: var(--usa-spacing-3);
+    aspect-ratio: 1/1;
+    padding: var(--usa-spacing-2px);
+
+    input[type='radio'] {
+        position: absolute;
+        opacity: 0;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        cursor: pointer;
+    }
+
+    span {
+        --stroke: var(--theme-color-base-medium);
+        --inner: var(--theme-color-primary-medium);
+        --background: none;
+
+        position: relative;
+        z-index: 1;
+        display: flex;
+        width: var(--usa-spacing-205);
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+        border: var(--usa-spacing-2px) solid var(--stroke);
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        background: var(--background);
+
+        &::before {
+            content: '';
+            display: block;
+            width: 100%;
+            scale: 0.7;
+            aspect-ratio: 1/1;
+            background: var(--inner);
+            border-radius: var(--usa-radius-pill);
+            opacity: 0;
+        }
+    }
+
+    input[type='radio']:not(:disabled) {
+        &:hover + span {
+            --background: var(--usa-color-black-transparent-10);
+        }
+
+        &:active + span {
+            --background: var(--usa-color-black-transparent-20);
+        }
+
+        &[data-invalid] + span {
+            --stroke: var(--theme-color-error-medium);
+            --inner: var(--theme-color-error-medium);
+        }
+    }
+
+    input[type='radio']:checked + span {
+        --stroke: var(--theme-color-primary-medium);
+
+        &::before {
+            opacity: 1;
+        }
+    }
+
+    input[type='radio']:disabled {
+        pointer-events: none;
+
+        & + span {
+            --stroke: var(--theme-color-disabled-light);
+            --inner: var(--theme-color-disabled-dark);
+        }
+    }
+}
