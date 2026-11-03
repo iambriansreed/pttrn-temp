@@ -4,9 +4,10 @@ Status: approved in chat. Stage 1 is built and tested: `packages/mcp` (data buil
 
 Added during stage 1, not in the original design:
 
-- `build:data` runs `validate_code` over every docs usage example and does not serve any that disagree with their component's props (12 of 65 today, listed in the build output). An AI copies the example it is shown, so a stale one is worse than none. Fixing them in the docs brings them back automatically.
+- `build:data` runs `validate_code` over every docs usage example and does not serve any that disagree with their component's props. An AI copies the example it is shown, so a stale one is worse than none. The build fails while any example is left out (all are served today), so one is fixed in its `@example` JSDoc rather than quietly dropped.
 - `validate_code` does not flag a missing import as stale in examples, because docs examples are fragments that borrow neighbours from the playground. It still reports `missing-import` for real code.
-- Known data gap: some props extract as `unknown` (for example `Flex` `align`, `justify`, `padding`), so their values are not checked.
+- Props typed as unions the schema generator leaves as `anyOf` (`Flex` `align`, `justify`, `padding`, `style`, ARIA `role`) are read by `packages/react/meta.ts`, so no prop is `unknown` and their values are checked. A test holds that.
+- `scripts/agent-docs.ts` renders `DESIGN.md` and `llms.txt` from the catalog, the guide, the server's tools and the validator's `RULES`. The docs site serves both at its root and `@ptrn/react` ships DESIGN.md.
 
 ## Goal
 

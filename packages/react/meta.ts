@@ -351,6 +351,88 @@ function generateTypes() {
         return defEnum;
     };
 
+    /** `string & {}` or `number & {}`: the type it widens to, or undefined for any other definition. */
+    const widenedHint = (def: TJS.Definition): string | undefined => {
+        const parts = def.allOf?.filter((part): part is TJS.Definition => typeof part === 'object');
+        if (parts?.length !== 2) return undefined;
+        const empty = parts.find((part) => part.type === 'object' && !Object.keys(part.properties ?? {}).length);
+        const widened = parts.find((part) => part !== empty && typeof part.type === 'string' && !part.enum);
+        return empty && widened ? (widened.type as string) : undefined;
+    };
+
+    const typeName = (def: TJS.Definition): string => {
+        if (def.$ref) return def.$ref.split('/').pop() as string;
+        if (def.type === 'array' && def.items && typeof def.items === 'object' && !Array.isArray(def.items)) {
+            const item = typeName(def.items);
+            return item.includes(' ') ? `(${item})[]` : `${item}[]`;
+        }
+        if (Array.isArray(def.type)) return def.type.join(' | ');
+        if (def.allOf) {
+            return def.allOf.flatMap((part) => (typeof part === 'object' ? typeName(part) : [])).join(' & ');
+        }
+        return def.type ?? 'unknown';
+    };
+
+    /**
+     * Reads a union the generator leaves as `anyOf`, such as `SizingPixels | SizingPixels[]` or
+     * `CSSProperties['alignItems']`. Its literal members become the options, the same as a plain literal union, and
+     * every other member is named in the type. An array of literals takes the options of one literal.
+     *
+     * Csstype and React's `AriaRole` add `string & {}` to their keyword unions only so editors keep suggesting the
+     * keywords while accepting any string. Next to literals it is read as that hint, not as "any string", so the docs
+     * and the MCP validator list and check the keywords. A member that intersects another member (`A | (A & B)`, as in
+     * `style`) adds nothing to the description and is left out.
+     */
+    const describeUnion = (members: TJS.DefinitionOrBoolean[]): Pick<TypeProperty, 'options' | 'type'> => {
+        const definitionsOnly = members.filter((member): member is TJS.Definition => typeof member === 'object');
+        const literals = new Set<boolean | number | string>();
+        const names: string[] = [];
+        const hints: string[] = [];
+        const intersections: TJS.Definition[] = [];
+
+        for (const member of definitionsOnly) {
+            const referenced =
+                member.$ref && definitions?.[typeName(member)] && typeof definitions[typeName(member)] === 'object'
+                    ? (definitions[typeName(member)] as TJS.Definition)
+                    : undefined;
+            const item =
+                member.type === 'array' &&
+                member.items &&
+                typeof member.items === 'object' &&
+                !Array.isArray(member.items)
+                    ? member.items
+                    : undefined;
+            const values = member.enum ?? referenced?.enum ?? item?.enum;
+            const hint = widenedHint(member);
+
+            if (values) {
+                for (const value of values) if (value !== null && typeof value !== 'object') literals.add(value);
+            } else if (hint) hints.push(hint);
+            else if (member.allOf) intersections.push(member);
+            else if (Array.isArray(member.type)) names.push(...member.type);
+            else names.push(typeName(member));
+        }
+
+        for (const intersection of intersections) {
+            const parts = intersection.allOf!.flatMap((part) => (typeof part === 'object' ? typeName(part) : []));
+            if (!parts.some((part) => names.includes(part))) names.push(typeName(intersection));
+        }
+
+        const options = literals.size ? cleanUpDefinitionEnums({ enum: [...literals] }) : undefined;
+        // A widening hint stands for its type only when there are no literals for it to keep suggesting.
+        if (!options) names.push(...hints);
+        const unique = names.filter((name, index) => names.indexOf(name) === index);
+
+        if (!options) return { type: unique.join(' | ') || undefined };
+        if (!unique.length) return { type: options.map((option) => option.toString()), options };
+
+        return {
+            type: [...options.map((option) => `'${option}'`), ...unique].join(' | '),
+            // A plain string member accepts any value, so there is no closed set to check.
+            options: unique.includes('string') ? undefined : options,
+        };
+    };
+
     const defineProperty = (
         name: string,
         definition: TJS.Definition,
@@ -398,6 +480,12 @@ function generateTypes() {
             if (definitions && definitions[next.type] && typeof definitions[next.type] !== 'boolean') {
                 next.options = cleanUpDefinitionEnums(definitions[next.type] as TJS.Definition) || next.options;
             }
+        }
+
+        if (next.type === undefined && definition.anyOf) {
+            const union = describeUnion(definition.anyOf);
+            next.type = union.type;
+            if (union.options) next.options = union.options;
         }
 
         return next;

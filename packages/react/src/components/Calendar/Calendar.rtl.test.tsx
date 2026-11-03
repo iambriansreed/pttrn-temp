@@ -18,10 +18,17 @@ const button = (name: string) => screen.getByRole('button', { name });
 // A day is a cell named with its full date.
 const day = (label: string) => screen.getByLabelText(label);
 const days = () => Array.from(document.querySelectorAll('tbody td'));
+const selected = () => Array.from(document.querySelectorAll('[data-selected], [aria-selected]'));
+// The selected day carries both marks; the active day is the one in the Tab order.
+const expectSelected = (label: string) => {
+    expect(day(label)).toHaveAttribute('data-selected');
+    expect(day(label)).toHaveAttribute('aria-selected', 'true');
+    expect(selected()).toEqual([day(label)]);
+};
 // Focus follows the active day a tick after it moves.
 const expectActive = (label: string) =>
     waitFor(() => {
-        expect(day(label)).toHaveAttribute('data-selected');
+        expect(day(label)).toHaveAttribute('tabindex', '0');
         expect(day(label)).toHaveFocus();
     });
 // Long enough for the focus the component schedules on mount, when it schedules one.
@@ -57,41 +64,43 @@ describeBehaviors(spec, {
         // One header row and six weeks.
         expect(screen.getAllByRole('row')).toHaveLength(7);
         expect(days()).toHaveLength(42);
-        expect(days()[0]).toHaveAttribute('aria-label', '26th May 2024');
-        expect(days()[41]).toHaveAttribute('aria-label', '6th July 2024');
-        expect(day('1st June 2024')).toBeInTheDocument();
-        expect(day('30th June 2024')).toBeInTheDocument();
+        expect(days()[0]).toHaveAttribute('aria-label', '26 May 2024');
+        expect(days()[41]).toHaveAttribute('aria-label', '6 July 2024');
+        expect(day('1 June 2024')).toBeInTheDocument();
+        expect(day('30 June 2024')).toBeInTheDocument();
     },
     'highlights-value': () => {
         const withValue = render(<Subject />);
-        expect(day('10th June 2024')).toHaveAttribute('data-selected');
-        expect(day('10th June 2024')).toHaveAttribute('role', 'gridcell');
-        expect(day('10th June 2024')).toHaveAttribute('tabindex', '0');
-        expect(day('11th June 2024')).not.toHaveAttribute('data-selected');
-        expect(day('11th June 2024')).toHaveAttribute('tabindex', '-1');
-        expect(document.querySelectorAll('[data-selected]')).toHaveLength(1);
+        expectSelected('10 June 2024');
+        expect(day('10 June 2024')).toHaveAttribute('role', 'gridcell');
+        expect(day('10 June 2024')).toHaveAttribute('tabindex', '0');
+        expect(day('11 June 2024')).toHaveAttribute('tabindex', '-1');
+        expect(document.querySelectorAll('[tabindex="0"]')).toHaveLength(1);
 
         // The value seeds the active day on mount, so each case needs its own mount.
         withValue.unmount();
         const today = new Date();
         const withoutValue = render(<Subject value={undefined} />);
         expect(title()).toHaveTextContent(format(today, 'MMMM yyyy'));
-        expect(day(format(today, 'do MMMM yyyy'))).toHaveAttribute('data-selected');
+        // Today is where the keys start, not a choice: nothing is selected.
+        expect(day(format(today, 'd MMMM yyyy'))).toHaveAttribute('tabindex', '0');
+        expect(selected()).toEqual([]);
 
         withoutValue.unmount();
         render(<Subject value={new Date(NaN)} />);
-        expect(day(format(today, 'do MMMM yyyy'))).toHaveAttribute('data-selected');
+        expect(day(format(today, 'd MMMM yyyy'))).toHaveAttribute('tabindex', '0');
+        expect(selected()).toEqual([]);
     },
     'choose-day': async () => {
         const user = userEvent.setup();
         const onChange = jest.fn();
         render(<Subject onChange={onChange} />);
 
-        await user.click(day('15th June 2024'));
+        await user.click(day('15 June 2024'));
         expect(onChange).toHaveBeenCalledTimes(1);
         expect(onChange).toHaveBeenCalledWith(new Date(2024, 5, 15));
 
-        await user.click(day('26th May 2024'));
+        await user.click(day('26 May 2024'));
         expect(onChange).toHaveBeenLastCalledWith(new Date(2024, 4, 26));
     },
     'month-year-buttons': async () => {
@@ -102,7 +111,7 @@ describeBehaviors(spec, {
         await user.click(button('Next Month'));
         expect(title()).toHaveTextContent('July 2024');
         expect(screen.getByRole('grid', { name: 'July 2024' })).toBeInTheDocument();
-        expect(day('10th July 2024')).toHaveAttribute('data-selected');
+        expect(day('10 July 2024')).toHaveAttribute('tabindex', '0');
 
         await user.click(button('Previous Month'));
         await user.click(button('Previous Month'));
@@ -113,7 +122,7 @@ describeBehaviors(spec, {
 
         await user.click(button('Previous Year'));
         expect(title()).toHaveTextContent('May 2024');
-        expect(day('10th May 2024')).toHaveAttribute('data-selected');
+        expect(day('10 May 2024')).toHaveAttribute('tabindex', '0');
         expect(onChange).not.toHaveBeenCalled();
     },
     'arrow-keys': async () => {
@@ -121,25 +130,23 @@ describeBehaviors(spec, {
         const onChange = jest.fn();
         render(<Subject onChange={onChange} />);
 
-        day('10th June 2024').focus();
+        day('10 June 2024').focus();
         await user.keyboard('{ArrowRight}');
-        await expectActive('11th June 2024');
-        expect(day('11th June 2024')).toHaveAttribute('tabindex', '0');
-        expect(day('10th June 2024')).not.toHaveAttribute('data-selected');
-        expect(day('10th June 2024')).toHaveAttribute('tabindex', '-1');
+        await expectActive('11 June 2024');
+        expect(day('10 June 2024')).toHaveAttribute('tabindex', '-1');
 
         await user.keyboard('{ArrowDown}');
-        await expectActive('18th June 2024');
+        await expectActive('18 June 2024');
         await user.keyboard('{ArrowLeft}');
-        await expectActive('17th June 2024');
+        await expectActive('17 June 2024');
         await user.keyboard('{ArrowUp}');
-        await expectActive('10th June 2024');
+        await expectActive('10 June 2024');
 
         // Two weeks up crosses into May, and the grid follows.
         await user.keyboard('{ArrowUp}');
-        await expectActive('3rd June 2024');
+        await expectActive('3 June 2024');
         await user.keyboard('{ArrowUp}');
-        await expectActive('27th May 2024');
+        await expectActive('27 May 2024');
         expect(title()).toHaveTextContent('May 2024');
         expect(screen.getByRole('grid', { name: 'May 2024' })).toBeInTheDocument();
         expect(onChange).not.toHaveBeenCalled();
@@ -148,17 +155,17 @@ describeBehaviors(spec, {
         const user = userEvent.setup();
         render(<Subject value={new Date(2024, 5, 12)} />);
 
-        day('12th June 2024').focus();
+        day('12 June 2024').focus();
         await user.keyboard('{Home}');
-        await expectActive('9th June 2024');
+        await expectActive('9 June 2024');
         await user.keyboard('{End}');
-        await expectActive('15th June 2024');
+        await expectActive('15 June 2024');
 
         await user.keyboard('{PageDown}');
-        await expectActive('15th July 2024');
+        await expectActive('15 July 2024');
         expect(title()).toHaveTextContent('July 2024');
         await user.keyboard('{PageUp}');
-        await expectActive('15th June 2024');
+        await expectActive('15 June 2024');
         expect(title()).toHaveTextContent('June 2024');
     },
     'keyboard-choose': async () => {
@@ -166,12 +173,12 @@ describeBehaviors(spec, {
         const onChange = jest.fn();
         render(<Subject onChange={onChange} />);
 
-        day('10th June 2024').focus();
+        day('10 June 2024').focus();
         await user.keyboard('{Enter}');
         expect(onChange).toHaveBeenCalledWith(new Date(2024, 5, 10));
 
         await user.keyboard('{ArrowRight}');
-        await expectActive('11th June 2024');
+        await expectActive('11 June 2024');
         await user.keyboard(' ');
         expect(onChange).toHaveBeenLastCalledWith(new Date(2024, 5, 11));
         expect(onChange).toHaveBeenCalledTimes(2);
@@ -180,11 +187,11 @@ describeBehaviors(spec, {
         const user = userEvent.setup();
         const trapped = render(<Subject focusTrap />);
 
-        await expectActive('10th June 2024');
+        await expectActive('10 June 2024');
         await user.tab();
         expect(button('Previous Year')).toHaveFocus();
         await user.tab({ shift: true });
-        await expectActive('10th June 2024');
+        await expectActive('10 June 2024');
 
         trapped.unmount();
         render(
@@ -195,11 +202,11 @@ describeBehaviors(spec, {
         );
         await tick();
         expect(document.body).toHaveFocus();
-        day('10th June 2024').focus();
+        day('10 June 2024').focus();
         await user.tab();
         expect(button('After')).toHaveFocus();
         await user.tab({ shift: true });
-        expect(day('10th June 2024')).toHaveFocus();
+        expect(day('10 June 2024')).toHaveFocus();
         await user.tab({ shift: true });
         expect(button('Next Year')).toHaveFocus();
     },
@@ -209,8 +216,60 @@ describeBehaviors(spec, {
         expect(document.getElementById('cal')).toHaveAttribute('data-pttrn', 'calendar');
         expect(title()).toHaveAttribute('id', 'cal-title');
         expect(screen.getByRole('grid')).toHaveAttribute('aria-labelledby', 'cal-title');
-        expect(day('10th June 2024')).toHaveAttribute('id', 'cal-option-06-10-2024');
-        expect(day('26th May 2024')).toHaveAttribute('id', 'cal-option-05-26-2024');
+        expect(day('10 June 2024')).toHaveAttribute('id', 'cal-option-06-10-2024');
+        expect(day('26 May 2024')).toHaveAttribute('id', 'cal-option-05-26-2024');
+    },
+    'active-is-not-selected': async () => {
+        const user = userEvent.setup();
+        render(<Subject />);
+
+        day('10 June 2024').focus();
+        await user.keyboard('{ArrowRight}');
+        await expectActive('11 June 2024');
+        expectSelected('10 June 2024');
+        expect(day('11 June 2024')).not.toHaveAttribute('data-selected');
+
+        await user.keyboard('{End}');
+        await expectActive('15 June 2024');
+        expectSelected('10 June 2024');
+
+        // In a month without the value nothing is selected, and coming back finds the value still selected.
+        await user.click(button('Next Month'));
+        expect(title()).toHaveTextContent('July 2024');
+        expect(selected()).toEqual([]);
+        await user.click(button('Previous Month'));
+        expect(title()).toHaveTextContent('June 2024');
+        expect(day('15 June 2024')).toHaveAttribute('tabindex', '0');
+        expectSelected('10 June 2024');
+    },
+    'value-change': async () => {
+        const user = userEvent.setup();
+        const { rerender } = render(<Subject />);
+
+        rerender(<Subject value={new Date(2024, 7, 20)} />);
+        expect(title()).toHaveTextContent('August 2024');
+        expectSelected('20 August 2024');
+        expect(day('20 August 2024')).toHaveAttribute('tabindex', '0');
+        await tick();
+        expect(document.body).toHaveFocus();
+
+        // A value of the same day, as a new Date on every render, does not undo the user's navigation.
+        await user.click(button('Next Month'));
+        expect(title()).toHaveTextContent('September 2024');
+        rerender(<Subject value={new Date(2024, 7, 20, 15, 30)} />);
+        expect(title()).toHaveTextContent('September 2024');
+        expect(day('20 September 2024')).toHaveAttribute('tabindex', '0');
+
+        // A value that goes away clears the selection and leaves the view.
+        rerender(<Subject value={undefined} />);
+        expect(title()).toHaveTextContent('September 2024');
+        await user.click(button('Previous Month'));
+        expect(selected()).toEqual([]);
+
+        // From no value to one, the view moves again.
+        rerender(<Subject value={new Date(2025, 0, 1)} />);
+        expect(title()).toHaveTextContent('January 2025');
+        expectSelected('1 January 2025');
     },
     'axe-clean': async () => {
         for (const preset of presets) {

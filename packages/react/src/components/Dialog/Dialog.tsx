@@ -64,7 +64,7 @@ export type DialogProps = CommonProps<'id' | 'owner'> &
  * Also known as: Tray, Drawer, Flyout, Sheet
  *
  * @example
- *     import { Dialog } from '-/components/Dialog';
+ *     import { Dialog } from '@ptrn/react/Dialog';
  *
  *     () => {
  *         const [open, setOpen] = useState(false);

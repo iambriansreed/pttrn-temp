@@ -132,7 +132,7 @@ export function NavContents() {
             )}
             {menuItems.map((link, index) => (
                 <Portal container={link.element} key={index}>
-                    <a aria-label={link.title} data-nav-link href={link.hash} id={link.hash.substring(1)}>
+                    <a aria-label={link.title} data-nav-link href={link.hash}>
                         <SvgLink />
                     </a>
                 </Portal>

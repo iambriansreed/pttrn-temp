@@ -3,8 +3,48 @@ import ts from 'typescript';
 import { closest } from './search.js';
 import type { Catalog, Component, Token } from './types.js';
 
+/**
+ * Every rule `validate_code` reports, with its severity and what it checks. The validator takes each issue's severity
+ * from here, and DESIGN.md and llms.txt list the rules from here, so the published rules are the enforced ones.
+ */
+export const RULES = {
+    syntax: { severity: 'error', description: 'The code does not parse as TSX.' },
+    'unknown-import': {
+        severity: 'error',
+        description:
+            "An import that does not resolve: the `@ptrn/react` package root, a component path that is not a component, or the library's internal `-/` alias.",
+    },
+    'unknown-icon': {
+        severity: 'error',
+        description: 'An `@ptrn/icons/<Name>` import of an icon that does not exist.',
+    },
+    'wrong-icon-export': {
+        severity: 'error',
+        description: 'An icon imported under any name but its `Svg` export: `SvgPerson` from `@ptrn/icons/Person`.',
+    },
+    'missing-import': { severity: 'error', description: 'A pttrn component used without importing it.' },
+    'unknown-prop': { severity: 'warning', description: 'A prop the component does not have.' },
+    'invalid-prop-value': { severity: 'error', description: "A literal value outside a prop's allowed set." },
+    'missing-required-prop': { severity: 'error', description: 'A required prop left out.' },
+    'raw-html': {
+        severity: 'warning',
+        description: 'A raw HTML element that has a pttrn component: `<button>` for `Button`, `<a>` for `Link`.',
+    },
+    'hardcoded-color': {
+        severity: 'warning',
+        description:
+            'A hex, `rgb()` or `hsl()` color, which breaks theming and dark mode. Use a `--theme-color-*` token.',
+    },
+    'hardcoded-spacing': {
+        severity: 'warning',
+        description: 'A pixel padding, margin or gap that has a `--usa-spacing-*` token.',
+    },
+} as const satisfies Record<string, { severity: 'error' | 'warning'; description: string }>;
+
+export type Rule = keyof typeof RULES;
+
 export type Issue = {
-    rule: string;
+    rule: Rule;
     severity: 'error' | 'warning';
     /** 1-based. */
     line: number;
@@ -87,10 +127,10 @@ export function validateCode(catalog: Catalog, code: string): ValidationResult {
     const source = ts.createSourceFile('input.tsx', code, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
     const issues: Issue[] = [];
 
-    const add = (node: ts.Node | number, rule: string, severity: Issue['severity'], message: string, fix?: string) => {
+    const add = (node: ts.Node | number, rule: Rule, message: string, fix?: string) => {
         const position = typeof node === 'number' ? node : node.getStart(source);
         const { line, character } = source.getLineAndCharacterOfPosition(position);
-        const issue: Issue = { rule, severity, line: line + 1, column: character + 1, message };
+        const issue: Issue = { rule, severity: RULES[rule].severity, line: line + 1, column: character + 1, message };
         if (fix) issue.fix = fix;
         issues.push(issue);
     };
@@ -107,7 +147,7 @@ export function validateCode(catalog: Catalog, code: string): ValidationResult {
     const syntaxErrors = (source as unknown as { parseDiagnostics: ts.Diagnostic[] }).parseDiagnostics;
     if (syntaxErrors.length > 0) {
         for (const diagnostic of syntaxErrors) {
-            add(diagnostic.start ?? 0, 'syntax', 'error', ts.flattenDiagnosticMessageText(diagnostic.messageText, ' '));
+            add(diagnostic.start ?? 0, 'syntax', ts.flattenDiagnosticMessageText(diagnostic.messageText, ' '));
         }
         return finish();
     }
@@ -132,11 +172,28 @@ export function validateCode(catalog: Catalog, code: string): ValidationResult {
         const named = node.importClause?.namedBindings;
         const specifiers = named && ts.isNamedImports(named) ? named.elements : [];
 
-        if (specifier === '@ptrn/react') {
+        if (specifier.startsWith('-/')) {
+            // `-/components/Button` is how @ptrn/react's own source imports its modules; an app has no such alias.
+            const [, area = '', ...rest] = specifier.split('/');
+            const target = `@ptrn/react/${area === 'components' ? rest.join('/') : [area, ...rest].join('/')}`;
+            const component = area === 'components' ? components.get(rest[0] ?? '') : undefined;
+            if (component) {
+                for (const element of specifiers) {
+                    if ((element.propertyName ?? element.name).text === component.name) {
+                        bound.set(element.name.text, component);
+                    }
+                }
+            }
             add(
                 node,
                 'unknown-import',
-                'error',
+                `${specifier} is the alias @ptrn/react uses inside its own source. It does not resolve in an app.`,
+                `Import from '${target}' instead.`,
+            );
+        } else if (specifier === '@ptrn/react') {
+            add(
+                node,
+                'unknown-import',
                 '@ptrn/react has no root export.',
                 "Import each component from its own path, for example import { Button } from '@ptrn/react/Button'.",
             );
@@ -158,7 +215,6 @@ export function validateCode(catalog: Catalog, code: string): ValidationResult {
                 add(
                     node,
                     'unknown-import',
-                    'error',
                     `There is no pttrn component at ${specifier}.`,
                     suggestion
                         ? `Did you mean '@ptrn/react/${suggestion}'?`
@@ -175,7 +231,6 @@ export function validateCode(catalog: Catalog, code: string): ValidationResult {
                         add(
                             element,
                             'wrong-icon-export',
-                            'error',
                             `${specifier} exports Svg${segment}, not ${imported}.`,
                             `import { Svg${segment} } from '${specifier}';`,
                         );
@@ -186,7 +241,6 @@ export function validateCode(catalog: Catalog, code: string): ValidationResult {
                 add(
                     node,
                     'unknown-icon',
-                    'error',
                     `There is no icon named ${segment}.`,
                     suggestion
                         ? `Did you mean ${suggestion}? import { Svg${suggestion} } from '@ptrn/icons/${suggestion}';`
@@ -246,7 +300,6 @@ export function validateCode(catalog: Catalog, code: string): ValidationResult {
                 add(
                     attribute,
                     'unknown-prop',
-                    'warning',
                     `${component.name} has no prop "${name}".`,
                     suggestion
                         ? `Did you mean "${suggestion}"?`
@@ -260,7 +313,6 @@ export function validateCode(catalog: Catalog, code: string): ValidationResult {
                 add(
                     attribute,
                     'invalid-prop-value',
-                    'error',
                     `${component.name} ${name} must be one of ${prop.options.map((o) => `'${o}'`).join(', ')}, not '${value}'.`,
                 );
             }
@@ -270,7 +322,7 @@ export function validateCode(catalog: Catalog, code: string): ValidationResult {
         for (const prop of component.props) {
             if (!prop.required || given.has(prop.name)) continue;
             if (prop.name === 'children' && hasChildren) continue;
-            add(node, 'missing-required-prop', 'error', `${component.name} requires the "${prop.name}" prop.`);
+            add(node, 'missing-required-prop', `${component.name} requires the "${prop.name}" prop.`);
         }
     };
 
@@ -286,7 +338,6 @@ export function validateCode(catalog: Catalog, code: string): ValidationResult {
         add(
             node,
             'raw-html',
-            'warning',
             `<${tag}> has a pttrn equivalent.`,
             `Use <${target}> from '@ptrn/react/${target}'. Look it up with get_component.`,
         );
@@ -309,7 +360,6 @@ export function validateCode(catalog: Catalog, code: string): ValidationResult {
             add(
                 node,
                 'hardcoded-color',
-                'warning',
                 `Hardcoded color ${match[0]} breaks theming and dark mode.`,
                 names.length > 0 ? `Use ${names.join(' or ')}.` : 'Use a --theme-color-* token. See get_tokens.',
             );
@@ -318,7 +368,6 @@ export function validateCode(catalog: Catalog, code: string): ValidationResult {
             add(
                 node,
                 'hardcoded-color',
-                'warning',
                 `Hardcoded ${match[0]}…) color breaks theming and dark mode.`,
                 'Use a --theme-color-* token. See get_tokens.',
             );
@@ -335,7 +384,6 @@ export function validateCode(catalog: Catalog, code: string): ValidationResult {
         add(
             node,
             'hardcoded-spacing',
-            'warning',
             `Hardcoded spacing ${written} has a token.`,
             `Use var(${token.name}) (${token.value}).`,
         );
@@ -370,7 +418,6 @@ export function validateCode(catalog: Catalog, code: string): ValidationResult {
                         add(
                             node,
                             'missing-import',
-                            'error',
                             `${tag} is not imported.`,
                             `import { ${tag} } from '@ptrn/react/${tag}';`,
                         );

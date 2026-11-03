@@ -51,7 +51,7 @@ export type OTPInputProps = CommonProps<'size'> &
  *         return (
  *             <OTPInput
  *                 name="2-auth"
- *                 maxLength={6}
+ *                 length={6}
  *                 defaultValue="8675"
  *                 onChange={(value) => {
  *                     // add a debounced API call to verify the OTP here
@@ -96,6 +96,10 @@ export function OTPInput({
 
     const onChangeInput = (index: number) => (event: React.ChangeEvent<HTMLInputElement>) => {
         const digitAdded = event.target.value;
+
+        // The keydown filter cannot see every character: a virtual keyboard or an IME sends no readable key. The cell
+        // is controlled, so ignoring the change puts its value back.
+        if (digitAdded && !alphanumeric && !/^[0-9]$/.test(digitAdded)) return;
 
         setValues((prev) => {
             const newValues = [...prev];
@@ -221,12 +225,12 @@ export function OTPInput({
                         }}
                         onKeyDown={(event) => {
                             if (
-                                // is a single key that doesn't have ctrl/meta/alt modifiers
+                                // is a single character typed without ctrl/meta/alt, so shortcuts like paste get
+                                // through. Shift is not exempt: Shift+A types "A", and some layouts type digits with it.
                                 event.key.length === 1 &&
                                 !event.ctrlKey &&
                                 !event.metaKey &&
                                 !event.altKey &&
-                                !event.shiftKey &&
                                 // only accepts numbers
                                 !alphanumeric &&
                                 // is not a number 0-9
@@ -260,7 +264,11 @@ export function OTPInput({
                             event.preventDefault();
                         }}
                         onPaste={(event) => {
-                            const pastedData = event.clipboardData.getData('text').trim();
+                            // Codes are often copied with spaces or dashes ("123-456"); keep only the characters the
+                            // input accepts, so a numeric input never takes a letter from the clipboard.
+                            const pastedData = event.clipboardData
+                                .getData('text')
+                                .replace(alphanumeric ? /[^0-9a-z]/gi : /[^0-9]/g, '');
                             // add pasted data from this index onward into the inputs and send to onChange
                             setValues((prev) => {
                                 const newValues = [...prev];
