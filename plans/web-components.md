@@ -234,3 +234,9 @@ The field is "Input number" only when it has neither `aria-label` nor `label`: t
 | `id`, `aria-describedby`, `aria-errormessage`                 | none (`helper-text` and `error-message` describe the group)              |
 
 The items render nothing; the group draws every option as React's RadioOption (a ListItem label holding a Radio) in its own shadow root, because native radios form a keyboard group (Tab to the chosen one, arrows to move) only inside one tree. A group without `name` gives its radios a generated one so the keyboard still works. The truncated option label has no tooltip until a Tooltip element exists.
+
+### RadioGroupField
+
+No element of its own: `pttrn-radio-group` with a `label` renders the React Fieldset (a fieldset named by its legend, " (Required)" and `label-trailing` in the legend, then `helper-text` or the `error-message` alert), and an error marks the radiogroup `aria-invalid` with `aria-errormessage`, as the text controls do with their Field. `tests/radio-group-field.spec.ts` holds it to the RadioGroupField spec, and the docs page's Web Component tab uses `pttrn-radio-group`. With the field the element takes the full width, as the React Field does (`:state(field)`, a custom state set by FieldControl).
+
+The React demo of RadioGroupField gives every example on the page the same radio `name`, so the variants below the demo uncheck the demo's radio (RadioGroupExample makes the name unique; RadioGroupFieldExample does not). The element's radios are scoped to its shadow root and keep their choice.

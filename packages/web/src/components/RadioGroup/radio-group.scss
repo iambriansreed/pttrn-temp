@@ -7,6 +7,11 @@
     max-width: 100%;
 }
 
+// With a label the group is a RadioGroupField, whose Field takes the full width.
+:host(:state(field)) {
+    width: 100%;
+}
+
 // The React radio-group.scss, with each option drawn as React's RadioOption: a ListItem rendered as a label (the
 // list-item.scss rules it uses), holding a Radio (radio.scss).
 [data-pttrn='radio-group'] {

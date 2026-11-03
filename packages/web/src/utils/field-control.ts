@@ -179,10 +179,17 @@ export class FieldControl extends LitElement {
         this.dispatchEvent(new Event('change', { bubbles: true }));
     }
 
+    /** Whether the Field parts render, so a stylesheet can size the element like the React Field (`:state(field)`). */
+    protected get _hasField() {
+        return !!(this.label || this.helperText || this.errorMessage);
+    }
+
     protected updated(changed: PropertyValues) {
         super.updated(changed);
         this._internals.setFormValue(this._formValue());
         this._syncValidity();
+        if (this._hasField) this._internals.states.add('field');
+        else this._internals.states.delete('field');
     }
 
     protected _syncValidity() {
@@ -234,7 +241,7 @@ export class FieldControl extends LitElement {
      * for a group of controls (RadioGroupField).
      */
     protected _renderField(control: TemplateResult, { fieldset = false }: { fieldset?: boolean } = {}) {
-        if (!this.label && !this.helperText && !this.errorMessage) return control;
+        if (!this._hasField) return control;
         if (fieldset) {
             return html`<div data-field>
                 <fieldset role="group">

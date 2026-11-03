@@ -5,6 +5,7 @@ import { inputNumberWc } from 'src/wc/input-number';
 import { webComponents as webComponentNames } from 'src/wc/names';
 import { passwordWc } from 'src/wc/password';
 import { radioGroupWc } from 'src/wc/radio-group';
+import { radioGroupFieldWc } from 'src/wc/radio-group-field';
 import { textareaWc } from 'src/wc/textarea';
 import { WebComponentDemo } from 'src/wc/types';
 
@@ -18,6 +19,7 @@ export const webComponents: Partial<Record<MetaComponentName, WebComponentDemo>>
     InputNumber: inputNumberWc,
     Password: passwordWc,
     RadioGroup: radioGroupWc,
+    RadioGroupField: radioGroupFieldWc,
     Textarea: textareaWc,
 };
 
