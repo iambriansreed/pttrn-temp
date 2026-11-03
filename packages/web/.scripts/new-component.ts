@@ -194,9 +194,9 @@ if (!fs.existsSync(demoFile)) {
     let last = first;
     while (isWcImport(lines[last + 1])) last += 1;
     // In ESLint's import/order: by module path, so `src/wc/badge` comes before `src/wc/badge-dot`.
-    const path = (text: string) => text.slice(text.indexOf(" from '") + 7, text.lastIndexOf("'"));
+    const modulePath = (text: string) => text.slice(text.indexOf(" from '") + 7, text.lastIndexOf("'"));
     const imports = [...lines.slice(first, last + 1), `import { ${camel}Wc } from 'src/wc/${kebab}';`].sort((a, b) =>
-        path(a) < path(b) ? -1 : path(a) > path(b) ? 1 : 0,
+        modulePath(a) < modulePath(b) ? -1 : modulePath(a) > modulePath(b) ? 1 : 0,
     );
     lines.splice(first, last - first + 1, ...imports);
     // Keep the registry entries in name order.
