@@ -1,0 +1,73 @@
+@use '../../styles/reset';
+@use '../../styles/tab-list';
+@include tab-list.tab;
+
+:host {
+    border: 0;
+    color: var(--theme-color-base-dark);
+    background: none;
+    border-bottom: var(--usa-spacing-1px) solid var(--theme-color-base-lighter);
+    position: relative;
+}
+
+// With show-trail the list draws the line across its whole width instead.
+:host([data-trail]) {
+    border-bottom: none;
+}
+
+[data-tab] {
+    padding: 0 var(--usa-spacing-2);
+}
+
+:host(:not([disabled]):active) {
+    background: var(--usa-color-black-transparent-20);
+}
+
+// The active tab while focus is in the group.
+:host(:not([disabled])[data-active]) {
+    background: var(--usa-color-black-transparent-10);
+}
+
+:host([disabled]) {
+    color: var(--theme-color-disabled-dark);
+}
+
+:host([selected]) {
+    color: var(--theme-color-primary-dark);
+}
+
+// The underline: centered in the tab, inside its padding, over the tab's own bottom border.
+:host([selected]) [data-tab]::after {
+    content: '';
+    display: block;
+    width: calc(100% - var(--usa-spacing-2) * 2);
+    height: 2px;
+    background-color: var(--theme-color-primary-dark);
+    bottom: calc(-1 * var(--usa-spacing-1px));
+    position: absolute;
+    border-top-right-radius: 2px;
+    border-top-left-radius: 2px;
+}
+
+// React's Badge, primary, x-small (small on a large tab).
+[data-badge] {
+    --size: var(--usa-spacing-205);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--usa-radius-pill);
+    height: var(--size);
+    width: fit-content;
+    min-width: var(--size);
+    font: 500 var(--usa-font-size-sans-1) / 16px var(--usa-font-family-ui);
+    padding: var(--usa-spacing-2px) var(--usa-spacing-05);
+    background-color: var(--theme-color-primary-medium);
+    color: var(--usa-color-white);
+}
+
+:host([data-size='large']) [data-badge] {
+    --size: var(--usa-spacing-3);
+
+    padding: 0 var(--usa-spacing-1);
+}

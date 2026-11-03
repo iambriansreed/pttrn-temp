@@ -44,6 +44,10 @@
             "types": "./dist/components/SegmentedControl/index.d.ts",
             "default": "./dist/components/SegmentedControl/index.js"
         },
+        "./TabGroup": {
+            "types": "./dist/components/TabGroup/index.d.ts",
+            "default": "./dist/components/TabGroup/index.js"
+        },
         "./Tooltip": {
             "types": "./dist/components/Tooltip/index.d.ts",
             "default": "./dist/components/Tooltip/index.js"
