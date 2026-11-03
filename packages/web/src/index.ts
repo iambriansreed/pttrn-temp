@@ -4,4 +4,5 @@ export * from './components/BadgeDot';
 export * from './components/Divider';
 export * from './components/Skeleton';
 export * from './components/SkeletonText';
+export * from './components/Tag';
 export * from './components/Txt';

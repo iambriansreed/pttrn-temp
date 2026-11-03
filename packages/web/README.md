@@ -12,6 +12,7 @@ One line per component, in name order:
 - `pttrn-divider`
 - `pttrn-skeleton`
 - `pttrn-skeleton-text`
+- `pttrn-tag`
 - `pttrn-txt`
 
 ## Use it from a CDN
