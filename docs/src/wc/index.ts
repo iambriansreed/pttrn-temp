@@ -20,6 +20,7 @@ import { fileUploadItemWc } from 'src/wc/file-upload-item';
 import { inlineAlertWc } from 'src/wc/inline-alert';
 import { inputWc } from 'src/wc/input';
 import { inputNumberWc } from 'src/wc/input-number';
+import { linkWc } from 'src/wc/link';
 import { listItemWc } from 'src/wc/list-item';
 import { webComponents as webComponentNames } from 'src/wc/names';
 import { pageControlWc } from 'src/wc/page-control';
@@ -69,6 +70,7 @@ export const webComponents: Partial<Record<MetaComponentName, WebComponentDemo>>
     InlineAlert: inlineAlertWc,
     Input: inputWc,
     InputNumber: inputNumberWc,
+    Link: linkWc,
     ListItem: listItemWc,
     PageControl: pageControlWc,
     Pagination: paginationWc,

@@ -116,6 +116,10 @@
             "types": "./dist/components/InputNumber/index.d.ts",
             "default": "./dist/components/InputNumber/index.js"
         },
+        "./Link": {
+            "types": "./dist/components/Link/index.d.ts",
+            "default": "./dist/components/Link/index.js"
+        },
         "./ListItem": {
             "types": "./dist/components/ListItem/index.d.ts",
             "default": "./dist/components/ListItem/index.js"

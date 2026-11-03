@@ -19,6 +19,7 @@ export * from './components/FileUploadItem';
 export * from './components/InlineAlert';
 export * from './components/Input';
 export * from './components/InputNumber';
+export * from './components/Link';
 export * from './components/ListItem';
 export * from './components/PageControl';
 export * from './components/Pagination';

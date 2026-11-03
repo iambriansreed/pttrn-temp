@@ -24,6 +24,7 @@ export const webComponents: string[] = [
     'InlineAlert',
     'Input',
     'InputNumber',
+    'Link',
     'ListItem',
     'PageControl',
     'Pagination',
