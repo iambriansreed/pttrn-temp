@@ -5,7 +5,6 @@ import { slotHasContent } from '../../utils/slot';
 import styles from './badge-dot.scss';
 
 export type BadgeDotSize = 6 | 8 | 10 | 12;
-export type BadgeDotColor = 'primary' | 'secondary';
 
 const OUTLINE_WIDTHS: Record<BadgeDotSize, number> = {
     6: 1,
@@ -37,9 +36,9 @@ export class PttrnBadgeDot extends LitElement {
     static styles = styles;
 
     /** The color of the dot. */
-    declare color: BadgeDotColor;
+    declare color: 'primary' | 'secondary';
     /** The diameter of the dot in pixels: 6, 8, 10 or 12. Any other value falls back to 6. */
-    declare size: BadgeDotSize;
+    declare size: 6 | 8 | 10 | 12;
     /** Adds an outline in the surface color, which separates the dot from what it sits on. */
     declare outline: boolean;
     declare _attached: boolean;

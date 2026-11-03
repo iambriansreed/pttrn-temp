@@ -7,6 +7,7 @@ pttrn as Web Components: framework-free custom elements built with [Lit](https:/
 One line per component, in name order:
 
 - `pttrn-accordion`, `pttrn-accordion-item`
+- `pttrn-badge`
 - `pttrn-badge-dot`
 
 ## Use it from a CDN
